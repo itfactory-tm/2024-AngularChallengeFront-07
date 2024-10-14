@@ -21,4 +21,8 @@ export class ArtistComponent implements OnInit {
   detail(id: number) {
     this.router.navigate(['/artist', id]);
   }
+
+  goBack() {
+    window.history.back();
+}
 }

@@ -1,19 +1,26 @@
 @if(artist) {
-    <article>
+    <div class="">
         <h1 class="mt-5">{{artist.name}}</h1>
         @if(!isDetail) {
-            <p class="text-justify my-3">
-                {{artist.biography}}
-            </p>
+
             } @else {
             <p class="text-justify my-3">
+                    {{artist.genre}}
+            </p>
+            <p class="text-justify my-3">
                 {{artist.biography}}
             </p>
-            <p>HANGT</p>
             }
             <p class="py-2">
-                <button class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded" (click)="detail(artist.id)">Read more</button>
+                @if(!isDetail) {
+                    <!-- 'Read more' button when not on detail page -->
+                    <button class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded" (click)="detail(artist.id)">Read more</button>
+                } @else 
+                {
+                    <!-- 'Go back' button on detail page -->
+                    <button class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded" (click)="goBack()">Go back</button>
+                }
             </p>
-    </article>
+        </div>
 }
 
