@@ -10,13 +10,16 @@ import { CommonModule } from '@angular/common';
   styleUrls: []
 })
 export class HeaderComponent {
-  pages = [
+  leftPages = [
     { path: '/home', name: 'Home' },
     { path: '/line-up', name: 'Line-up' },
-    { path: '/stage', name: 'Stages' },
+    { path: '/stage-list', name: 'Stages' },
+  ];
+
+  rightPages = [
     { path: '/tickets', name: 'Tickets' },
     { path: '/info', name: 'Info' },
-    { path: '/q-and-a', name: 'Q&A' } // Add this line for the Q&A page
+    { path: '/q-and-a', name: 'Q&A' }
   ];
 
   isMenuOpen = false;
