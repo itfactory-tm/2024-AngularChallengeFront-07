@@ -6,8 +6,8 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './home.component.html',
-  styles: [] // Add this line if it's not already present
+  styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-
+  backgroundImage: string = '/festival_main.webp';
 }
