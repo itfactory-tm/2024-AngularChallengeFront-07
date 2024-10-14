@@ -14,4 +14,5 @@ export const routes: Routes = [
   { path: 'stage', component: StageComponent },
   { path: 'tickets', component: TicketsComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '**', redirectTo: '/home' } // Add this line for wildcard route
 ];
