@@ -1,0 +1,15 @@
+<header>
+  <div class="header-content">
+    <div class="logo">
+      <h1>FritFest</h1>
+      <p>Food Truck Festival</p>
+    </div>
+    <nav>
+      <ul>
+        <li *ngFor="let page of pages">
+          <a [routerLink]="page.path" routerLinkActive="active">{{ page.name }}</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
