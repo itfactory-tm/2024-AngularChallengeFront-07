@@ -1,15 +1,33 @@
-<header>
-  <div class="header-content">
-    <div class="logo">
-      <h1>FritFest</h1>
-      <p>Food Truck Festival</p>
+<header class="bg-background text-text fixed top-0 left-0 w-full z-50 shadow-lg">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex justify-between items-center">
+    <div class="flex flex-col items-start">
+      <h1 class="text-4xl font-bold text-primary tracking-wide">FritFest</h1>
+      <p class="text-secondary font-medium">Food Truck Festival</p>
     </div>
-    <nav>
-      <ul>
+    <nav class="hidden md:block">
+      <ul class="flex space-x-6">
         <li *ngFor="let page of pages">
-          <a [routerLink]="page.path" routerLinkActive="active">{{ page.name }}</a>
+          <a [routerLink]="page.path" routerLinkActive="bg-accent text-background"
+             class="font-semibold text-lg text-text hover:bg-accent hover:text-background transition-all duration-300 py-2 px-4 rounded-full">
+            {{ page.name }}
+          </a>
         </li>
       </ul>
     </nav>
+    <button class="md:hidden text-text" (click)="toggleMenu()">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
   </div>
+  <nav class="md:hidden" [ngClass]="{'hidden': !isMenuOpen}">
+    <ul class="flex flex-col items-center py-4">
+      <li *ngFor="let page of pages" class="w-full">
+        <a [routerLink]="page.path" routerLinkActive="bg-accent text-background"
+           class="block font-semibold text-lg text-text hover:bg-accent hover:text-background transition-all duration-300 py-2 px-4 text-center">
+          {{ page.name }}
+        </a>
+      </li>
+    </ul>
+  </nav>
 </header>

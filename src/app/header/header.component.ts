@@ -7,15 +7,20 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [RouterModule, CommonModule],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  styleUrls: []
 })
 export class HeaderComponent {
   pages = [
     { path: '/home', name: 'Home' },
-    { path: '/info', name: 'Info' },
     { path: '/line-up', name: 'Line-up' },
-    { path: '/q-and-a', name: 'Q&A' },
-    { path: '/stage', name: 'Stage' },
-    { path: '/tickets', name: 'Tickets' }
+    { path: '/stage', name: 'Stages' },
+    { path: '/tickets', name: 'Tickets' },
+    { path: '/info', name: 'Info' },
   ];
+
+  isMenuOpen = false;
+
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
 }
