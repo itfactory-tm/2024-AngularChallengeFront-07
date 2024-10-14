@@ -16,6 +16,7 @@ export class HeaderComponent {
     { path: '/stage', name: 'Stages' },
     { path: '/tickets', name: 'Tickets' },
     { path: '/info', name: 'Info' },
+    { path: '/q-and-a', name: 'Q&A' } // Add this line for the Q&A page
   ];
 
   isMenuOpen = false;
