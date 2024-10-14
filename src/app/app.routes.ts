@@ -5,7 +5,9 @@ import { LineUpComponent } from './line-up/line-up.component';
 import { QAndAComponent } from './q-and-a/q-and-a.component';
 import { StageComponent } from './stage/stage.component';
 import { TicketsComponent } from './tickets/tickets.component';
-import { StageListComponent } from './stage-list/stage-list.component';
+import { ArtistDetailComponent } from './artist-detail/artist-detail.component';
+import { ArtistComponent } from './artist/artist.component';
+import { StageListComponent } from './stage-list/stage-list.component';n
 
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -15,5 +17,7 @@ export const routes: Routes = [
   { path: 'stage-list', component: StageListComponent },
   { path: 'tickets', component: TicketsComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: '**', redirectTo: '/home' } // Add this line for wildcard route
+  // { path: '**', redirectTo: '/home' }, // Add this line for wildcard route
+  { path: 'artist', component: ArtistComponent },
+  { path: 'artist/:id', component: ArtistDetailComponent },
 ];

@@ -5,10 +5,9 @@ import { Artist } from './artist';
   providedIn: 'root'
 })
 export class ArtistService {
-  constructor() { }
+  private artists: Artist[] = [];
 
-  getArtists(): Artist[] {
-    let artists: Artist[] = [];
+  constructor() {
 
   let artist1: Artist = {
     id: 1,
@@ -17,9 +16,16 @@ export class ArtistService {
     biography: "De rijke chocolade prins van Leopoldsburg en de befaamde schoonbroer van Wesley Johan A. Meylaers (Flopper)",
   };
 
-  artists.push(artist1);
+  this.artists.push(artist1);
 
-  return artists;
+}
+  getArtists(): Artist[] {
+    return this.artists;
   }
+
+  getArtistById(id: number) : Artist | null {
+    return this.artists.find(a=>a.id === id) ?? null; //find = JavaScript method on arrays!
+  }
+  
 }
 
