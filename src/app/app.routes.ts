@@ -1,3 +1,17 @@
 import { Routes } from '@angular/router';
+import { HomeComponent } from './home/home.component';
+import { InfoComponent } from './info/info.component';
+import { LineUpComponent } from './line-up/line-up.component';
+import { QAndAComponent } from './q-and-a/q-and-a.component';
+import { StageComponent } from './stage/stage.component';
+import { TicketsComponent } from './tickets/tickets.component';
 
-export const routes: Routes = [];
+export const routes: Routes = [
+  { path: 'home', component: HomeComponent },
+  { path: 'info', component: InfoComponent },
+  { path: 'line-up', component: LineUpComponent },
+  { path: 'q-and-a', component: QAndAComponent },
+  { path: 'stage', component: StageComponent },
+  { path: 'tickets', component: TicketsComponent },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+];
