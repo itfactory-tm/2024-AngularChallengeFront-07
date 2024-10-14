@@ -1,31 +1,31 @@
 <header class="bg-secondary text-text-light fixed top-0 left-0 w-full z-50 shadow-lg">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
     <nav class="hidden md:block flex-1 justify-end">
-      <ul class="flex space-x-6">
+      <ul class="flex space-x-6 justify-end">
         <li *ngFor="let page of leftPages">
           <a [routerLink]="page.path" routerLinkActive="text-primary"
-             class="font-semibold text-lg text-text-light hover:text-primary transition-all duration-300">
+             class="font-semibold text-lg text-text-light hover:text-primary hover:underline hover:scale-105 transition-transform duration-300 ease-in-out">
             {{ page.name }}
           </a>
         </li>
       </ul>
     </nav>
     <div class="flex flex-col items-center flex-shrink-0 mx-8">
-      <h1 class="text-4xl font-bold text-primary tracking-wide">FritFest</h1>
-      <p class="text-accent font-medium">Food Truck Festival</p>
+      <h1 class="text-4xl font-bold text-primary tracking-wide hover:text-accent transition-colors duration-300 ease-in-out">FritFest</h1>
+      <p class="text-accent font-medium hover:text-primary transition-colors duration-300 ease-in-out">Food Truck Festival</p>
     </div>
     <nav class="hidden md:block flex-1 justify-start">
-      <ul class="flex space-x-6">
+      <ul class="flex space-x-6 justify-start">
         <li *ngFor="let page of rightPages">
           <a [routerLink]="page.path" routerLinkActive="text-primary"
-             class="font-semibold text-lg text-text-light hover:text-primary transition-all duration-300">
+             class="font-semibold text-lg text-text-light hover:text-primary hover:underline hover:scale-105 transition-transform duration-300 ease-in-out">
             {{ page.name }}
           </a>
         </li>
       </ul>
     </nav>
     <button class="md:hidden text-text-light" (click)="toggleMenu()">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hover:text-primary transition-colors duration-300 ease-in-out" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
       </svg>
     </button>
@@ -34,7 +34,7 @@
     <ul class="flex flex-col items-center py-4">
       <li *ngFor="let page of leftPages.concat(rightPages)" class="w-full">
         <a [routerLink]="page.path" routerLinkActive="text-primary"
-           class="block font-semibold text-lg text-text-light hover:text-primary transition-all duration-300 py-2 px-4 text-center">
+           class="block font-semibold text-lg text-text-light hover:text-primary hover:bg-secondary-dark hover:scale-105 transition-all duration-300 ease-in-out py-2 px-4 text-center">
           {{ page.name }}
         </a>
       </li>
