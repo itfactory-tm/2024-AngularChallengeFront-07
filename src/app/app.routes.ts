@@ -5,13 +5,14 @@ import { LineUpComponent } from './line-up/line-up.component';
 import { QAndAComponent } from './q-and-a/q-and-a.component';
 import { StageComponent } from './stage/stage.component';
 import { TicketsComponent } from './tickets/tickets.component';
+import { StageListComponent } from './stage-list/stage-list.component';
 
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'info', component: InfoComponent },
   { path: 'line-up', component: LineUpComponent },
   { path: 'q-and-a', component: QAndAComponent },
-  { path: 'stage', component: StageComponent },
+  { path: 'stage-list', component: StageListComponent },
   { path: 'tickets', component: TicketsComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', redirectTo: '/home' } // Add this line for wildcard route

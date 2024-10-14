@@ -1,1 +1,4 @@
-<p>line-up works!</p>
+@for (artist of artists; track $index) {
+    <app-artist class="mt-10" [artist]="artist"></app-artist>
+}
+

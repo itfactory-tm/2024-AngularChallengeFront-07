@@ -13,7 +13,7 @@ export class HeaderComponent {
   leftPages = [
     { path: '/home', name: 'Home' },
     { path: '/line-up', name: 'Line-up' },
-    { path: '/stage', name: 'Stages' },
+    { path: '/stage-list', name: 'Stages' },
   ];
 
   rightPages = [
