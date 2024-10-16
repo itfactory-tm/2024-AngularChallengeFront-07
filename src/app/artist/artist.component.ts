@@ -1,11 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Artist } from '../artist';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-artist',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './artist.component.html',
   styleUrl: './artist.component.css'
 })
