@@ -53,7 +53,7 @@ export class ArtistService {
     id: 6,
     name: "Acid",
     genre: "Pop",
-    biography: "Nathan Vandergunst (also known as Acid & Acid2) is a Belgian Internet Sensation. He loves his mom very much. He is a sweet boy in a big mean world, mainly misunderstood. ALL THE LOVE, ALL THE POWER",
+    biography: "Nathan Vandergunst (also known as Acid & Acid2) is a Belgian Internet Sensation. He loves his mom very much. He is a sweet boy in a big mean world, mainly misunderstood. ALL THE LOVE, ALL THE POWER!",
     imageUrl: "https://i.scdn.co/image/ab6761610000e5eb1aad24d326afc626fd017688",
   };
 
