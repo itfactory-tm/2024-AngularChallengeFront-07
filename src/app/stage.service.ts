@@ -5,65 +5,51 @@ import { Stage } from './stage';
   providedIn: 'root'
 })
 export class StageService {
-  private stages: Stage[] = [];
-  constructor() {
-    let stage1: Stage = {
+  private stages: Stage[] = [
+    {
       id: 1,
-      name: "Main Frit stage",
-      size: "Large",
+      name: "Main Frit Stage",
+      location: { latitude: 52.3676, longitude: 4.9041 },
+      size: 120,
       imageUrl: "https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       imageCaption: "Main stage",
-      description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur voluptas sequi voluptatum pariatur! Quae cumque
-      quidem dolor maxime enim debitis omnis nemo facilis sequi autem? Quae tenetur, repellat vero deleniti vitae
-      dolores? Cum tempore, mollitia provident placeat fugit earum, sint, quae iusto optio ea officiis consectetur sit
-      necessitatibus itaque explicabo?`,
-    };
-
-    let stage2: Stage = {
+      description: "Our largest stage, hosting headliners and major acts. Experience unforgettable performances with state-of-the-art sound and lighting.",
+    },
+    {
       id: 2,
-      name: "Currywust Stage",
-      size: "Large",
-      imageUrl: "https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      imageCaption: "Sub Stage",
-      description: `2 Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur voluptas sequi voluptatum pariatur! Quae cumque
-      quidem dolor maxime enim debitis omnis nemo facilis sequi autem? Quae tenetur, repellat vero deleniti vitae
-      dolores? Cum tempore, mollitia provident placeat fugit earum, sint, quae iusto optio ea officiis consectetur sit
-      necessitatibus itaque explicabo?`,
-    };
-    let stage3: Stage = {
+      name: "Currywurst Stage",
+      location: { latitude: 52.3680, longitude: 4.9045 },
+      size: 89,
+      imageUrl: "https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      imageCaption: "Currywurst Stage",
+      description: "A vibrant stage for up-and-coming artists and eclectic performances. Discover new favorites in an intimate setting.",
+    },
+    {
       id: 3,
       name: "Bitterbal Stage",
-      size: "medium",
-      imageUrl: "https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      imageCaption: "Stage3",
-      description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur voluptas sequi voluptatum pariatur! Quae cumque
-      quidem dolor maxime enim debitis omnis nemo facilis sequi autem? Quae tenetur, repellat vero deleniti vitae
-      dolores? Cum tempore, mollitia provident placeat fugit earum, sint, quae iusto optio ea officiis consectetur sit
-      necessitatibus itaque explicabo?`,
-    };
-    let stage4: Stage = {
-      id: 4,
-      name: "Saus Stage",
-      size: "small",
-      imageUrl: "https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      imageCaption: "Stage 4",
-      description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur voluptas sequi voluptatum pariatur! Quae cumque
-      quidem dolor maxime enim debitis omnis nemo facilis sequi autem? Quae tenetur, repellat vero deleniti vitae
-      dolores? Cum tempore, mollitia provident placeat fugit earum, sint, quae iusto optio ea officiis consectetur sit
-      necessitatibus itaque explicabo?`,
-    };
-    this.stages.push(stage1);
-    this.stages.push(stage2);
-    this.stages.push(stage3);
-    this.stages.push(stage4);
+      location: { latitude: 52.3672, longitude: 4.9038 },
+      size: 71,
+      imageUrl: "https://images.pexels.com/photos/1047442/pexels-photo-1047442.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      imageCaption: "Bitterbal Stage",
+      description: "Our cozy stage for acoustic sets and indie artists. Get up close and personal with emerging talent in a laid-back atmosphere.",
+    },
+  ];
 
-  }
   getStages(): Stage[] {
     return this.stages;
   }
 
-  getStageById(id: number) : Stage | null {
-    return this.stages.find(a=>a.id === id) ?? null;
+  getStageById(id: number): Stage | null {
+    return this.stages.find(a => a.id === id) ?? null;
   }
 
+  getStageSize(size: number): string {
+    if (size >= 100) return 'Large';
+    if (size >= 80) return 'Medium';
+    return 'Small';
+  }
+
+  getStageHeight(size: number): string {
+    return size >= 100 ? '5ft' : '4ft';
+  }
 }
