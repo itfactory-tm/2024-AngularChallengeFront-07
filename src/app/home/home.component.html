@@ -1,8 +1,9 @@
 <div class="relative min-h-screen bg-gray-900">
   <div class="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-50 transition-opacity duration-1000" [ngStyle]="{'background-image': 'url(' + backgroundImage + ')'}" #bgImage></div>
   <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-    <h1 class="text-6xl font-extrabold text-white mb-6 text-center text-shadow-lg">Welcome to FritFest</h1>
-    <p class="text-white text-2xl mb-12 text-center text-shadow-md">Experience the ultimate food truck festival!</p>
+    <div class="text-center mb-12">
+      <h1 class="text-6xl font-extrabold text-text mb-6">Welcome to FritFest</h1>
+    </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       <div *ngFor="let card of cards" class="bg-black bg-opacity-80 rounded-xl shadow-lg p-6 transform hover:scale-105 transition-all duration-300">
         <i [class]="'fas ' + card.icon + ' text-4xl text-blue-400 mb-4'"></i>
