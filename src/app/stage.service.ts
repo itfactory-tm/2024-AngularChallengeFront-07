@@ -33,6 +33,15 @@ export class StageService {
       imageCaption: "Bitterbal Stage",
       description: "Our cozy stage for acoustic sets and indie artists. Get up close and personal with emerging talent in a laid-back atmosphere.",
     },
+        {
+      id: 4,
+      name: "Bitterbal Stage",
+      location: { latitude: 52.3672, longitude: 4.9038 },
+      size: 71,
+      imageUrl: "https://images.pexels.com/photos/1047442/pexels-photo-1047442.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      imageCaption: "Bitterbal Stage",
+      description: "Our cozy stage for acoustic sets and indie artists. Get up close and personal with emerging talent in a laid-back atmosphere.",
+    },
   ];
 
   getStages(): Stage[] {
