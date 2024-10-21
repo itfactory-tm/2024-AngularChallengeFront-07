@@ -57,6 +57,7 @@ export class HomeComponent implements AfterViewInit {
     '/home/festival_main_1.webp',
     '/home/festival_main_2.webp',
     '/home/festival_main_3.webp',
+    '/home/festival_main_4.webp',
   ];
 
   constructor() {
