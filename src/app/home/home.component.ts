@@ -53,20 +53,20 @@ export class HomeComponent implements AfterViewInit {
     }
   ];
 
-  private images: string[] = [
+  private readonly images: string[] = [
     '/home/festival_main_1.webp',
     '/home/festival_main_2.webp',
     '/home/festival_main_3.webp',
     '/home/festival_main_4.webp',
+    '/home/festival_main_5.webp',
   ];
 
   constructor() {
-    this.setRandomBackgroundImage();
+    this.backgroundImage = this.getRandomBackgroundImage();
   }
 
-  private setRandomBackgroundImage(): void {
-    const randomIndex = Math.floor(Math.random() * this.images.length);
-    this.backgroundImage = this.images[randomIndex];
+  private getRandomBackgroundImage(): string {
+    return this.images[Math.floor(Math.random() * this.images.length)];
   }
 
   ngAfterViewInit() {
