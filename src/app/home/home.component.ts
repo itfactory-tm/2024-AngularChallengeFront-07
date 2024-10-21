@@ -18,7 +18,7 @@ interface Card {
 export class HomeComponent implements AfterViewInit {
   @ViewChild('bgImage') bgImageElement!: ElementRef;
 
-  backgroundImage: string = '/festival_main.webp';
+  backgroundImage: string = ''; // Initialized to an empty string
 
   cards: Card[] = [
     {
@@ -52,6 +52,22 @@ export class HomeComponent implements AfterViewInit {
       description: 'Upgrade to VIP for exclusive perks, seating, and special tastings.'
     }
   ];
+
+  private readonly images: string[] = [
+    '/home/festival_main_1.webp',
+    '/home/festival_main_2.webp',
+    '/home/festival_main_3.webp',
+    '/home/festival_main_4.webp',
+    '/home/festival_main_5.webp',
+  ];
+
+  constructor() {
+    this.backgroundImage = this.getRandomBackgroundImage();
+  }
+
+  private getRandomBackgroundImage(): string {
+    return this.images[Math.floor(Math.random() * this.images.length)];
+  }
 
   ngAfterViewInit() {
     const img = new Image();
