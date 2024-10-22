@@ -58,7 +58,7 @@ export class QAndAComponent implements OnInit {
     },
     {
       question: "Are there any eating competitions at FritFest?",
-      answer: "Yes! We host several eating competitions throughout the festival, including our famous 'Frite Frenzy' where contestants compete to eat the most fries in 5 minutes. We also have a 'Spicy Wing Challenge' for those who can handle the heat!"
+      answer: "Yes! We host several eating competitions throughout the festival, including our famous 'Friet Frenzy' where contestants compete to eat the most fries in 5 minutes. We also have a 'Spicy Wing Challenge' for those who can handle the heat!"
     },
     {
       question: "Is there a VIP experience available?",
