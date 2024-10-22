@@ -22,7 +22,7 @@ export class QAndAComponent implements OnInit {
     },
     {
       question: "When and where is FritFest held?",
-      answer: "FritFest is held annually on the first weekend of July in Antwerp's Sportpaleis. The exact dates for this year are July 1-3, 2023."
+      answer: "FritFest is held annually on the first weekend of July in Brussels Expo. The exact dates for this year are July 1-3, 2023."
     },
     {
       question: "Is FritFest suitable for children?",
@@ -31,10 +31,6 @@ export class QAndAComponent implements OnInit {
     {
       question: "How much do tickets cost?",
       answer: "Ticket prices vary depending on the type and duration. Single-day tickets start at €25 for adults and €15 for children (ages 5-12). Weekend passes and VIP options are also available. Children under 5 enter for free."
-    },
-    {
-      question: "Are there vegetarian and vegan options available?",
-      answer: "Yes! While we celebrate fried foods, we ensure there are plenty of options for all dietary preferences. Many food trucks offer vegetarian and vegan dishes, including plant-based fries and creative meat-free alternatives."
     },
     {
       question: "Can I bring my own food and drinks?",
@@ -55,6 +51,26 @@ export class QAndAComponent implements OnInit {
     {
       question: "What kind of music can we expect?",
       answer: "FritFest features a diverse range of music to complement your culinary journey. Expect everything from local Belgian bands to international DJs, covering genres like rock, pop, electronic, and jazz."
+    },
+    {
+      question: "What types of food trucks can we expect at FritFest?",
+      answer: "FritFest features a wide variety of food trucks specializing in fried delicacies. You'll find trucks offering classic Belgian frites, loaded fries with unique toppings, fried chicken, fish and chips, deep-fried desserts, and many more indulgent options."
+    },
+    {
+      question: "Are there any eating competitions at FritFest?",
+      answer: "Yes! We host several eating competitions throughout the festival, including our famous 'Frite Frenzy' where contestants compete to eat the most fries in 5 minutes. We also have a 'Spicy Wing Challenge' for those who can handle the heat!"
+    },
+    {
+      question: "Is there a VIP experience available?",
+      answer: "Absolutely! Our VIP package includes priority entry, access to a exclusive VIP lounge with complimentary drinks, meet-and-greets with celebrity chefs, and vouchers for free tastings at select food trucks."
+    },
+    {
+      question: "What's the 'Golden Friet' award?",
+      answer: "The 'Golden Friet' is our prestigious award given to the food truck voted best in show by festival attendees. The winning truck receives a golden friet trophy and automatic entry to next year's festival."
+    },
+    {
+      question: "Do you offer any discounts for group bookings?",
+      answer: "Yes, we offer group discounts for parties of 10 or more. Please contact our ticket office for more information on group rates and packages."
     }
   ];
 
