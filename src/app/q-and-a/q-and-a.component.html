@@ -1,1 +1,33 @@
-<p>q-and-a works!</p>
+<div class="bg-secondary min-h-screen w-full p-4 sm:p-8">
+  <div class="max-w-4xl mx-auto">
+    <h1 class="text-5xl font-extrabold text-primary text-center mb-12">Frequently Asked Questions</h1>
+
+    <div class="space-y-6">
+      @for (qa of qaList; track $index) {
+      <div
+        class="bg-background/30 backdrop-blur-sm rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl border border-text/10">
+        <button class="w-full text-left p-6 focus:outline-none" (click)="qa.isOpen = !qa.isOpen">
+          <div class="flex justify-between items-center">
+            <h2 class="text-xl font-semibold text-text">{{ qa.question }}</h2>
+            <svg class="w-6 h-6 text-primary transition-transform duration-300" [ngClass]="{'rotate-180': qa.isOpen}"
+              fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </div>
+        </button>
+        <div class="px-6 pb-6" [ngClass]="{'hidden': !qa.isOpen, 'block': qa.isOpen}">
+          <p class="text-text-light">{{ qa.answer }}</p>
+        </div>
+      </div>
+      }
+    </div>
+
+    <div class="mt-12 text-center">
+      <p class="text-text mb-4">Didn't find the answer you were looking for?</p>
+      <a href="mailto:info@fritfest.com"
+        class="inline-block bg-primary text-text font-bold py-3 px-6 rounded-full hover:bg-opacity-90 transition-all duration-300 transform hover:translate-y-[-3px] hover:shadow-lg">
+        Contact Us
+      </a>
+    </div>
+  </div>
+</div>
