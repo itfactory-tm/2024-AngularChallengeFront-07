@@ -108,20 +108,20 @@
   <!--Timetable -->
   <div class="relative z-10 bg-secondary">
     <!-- scroll buttons -->
-    <div class="absolute left-0 top-0 flex items-center z-20 bg-white">
+    <div class="relative bg-gray-800 flex items-center justify-center z-20">
       <button (click)="scrollLeft()"
-        class="text-white text-3xl bg-gray-800 hover:bg-primary h-full px-12 py-6 shadow-lg">
-        &larr;
+        class="text-white text-3xl font-bold bg-gray-800 hover:bg-primary shadow-lg w-full">
+        &larr; Left
       </button>
       <button (click)="scrollRight()"
-        class="text-white text-3xl bg-gray-800 hover:bg-primary h-full px-12 py-6 shadow-lg">
-        &rarr;
+        class="text-white text-3xl font-bold bg-gray-800 hover:bg-primary shadow-lg w-full">
+        &rarr; Right
       </button>
     </div>
     <!-- Scrollable-->
     <div #scrollContainer class="overflow-x-auto">
       <div class="grid grid-cols-{{stages.length+1}} gap-1 relative right-14">
-        <div class=""></div>
+        <div></div>
         @for (stage of stages; track $index) {
           <div class="text-center font-bold text-3xl bg-primary text-white py-6">{{stage.name}}</div>
         }
