@@ -1,0 +1,10 @@
+<div class="container">
+    <h2>Your Top Tracks</h2>
+    <ul *ngIf="topTracks.length > 0">
+      <li *ngFor="let track of topTracks">
+        {{ track.name }} by {{ track.artists.map(artist => artist.name).join(', ') }}
+      </li>
+    </ul>
+    <div *ngIf="topTracks.length === 0">Loading tracks...</div>
+  </div>
+  
