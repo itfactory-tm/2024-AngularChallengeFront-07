@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Artist } from '../artist';
+import { Artist } from '../interfaces/artist';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
@@ -13,9 +13,9 @@ import { CommonModule } from '@angular/common';
 export class ArtistComponent implements OnInit {
   @Input() artist!: Artist;
   @Input() isDetail: boolean = false;
-  
+
   constructor(private router: Router) { }
-  
+
   ngOnInit(): void {
   }
 

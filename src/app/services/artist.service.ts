@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Artist } from './artist';
+import { Artist } from '../interfaces/artist';
 
 @Injectable({
   providedIn: 'root'
@@ -78,6 +78,6 @@ export class ArtistService {
   getArtistById(id: number) : Artist | null {
     return this.artists.find(a=>a.id === id) ?? null; //find = JavaScript method on arrays!
   }
-  
+
 }
 
