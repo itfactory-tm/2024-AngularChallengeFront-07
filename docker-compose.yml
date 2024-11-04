@@ -1,0 +1,11 @@
+services:
+  fritfest-front:
+    build: .
+    container_name: fritfest-front
+    restart: always
+    networks:
+      - wlinetwork
+
+networks:
+  wlinetwork:
+    external: true

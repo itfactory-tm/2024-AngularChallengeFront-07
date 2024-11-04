@@ -1,14 +1,311 @@
+@switch (view) {
+@case ("artists") {
 <div class="flex-col justify-center text-center">
-    <h1 class="text-5xl font-extrabold text-yellow-500 tracking-widest m-10">Line-up</h1>
-    <div class="bg-secondary shadow-md p-6">
-        <h2 class="text-3xl font-extrabold text-blue-600 tracking-widest mb-5">Vrijdag</h2>
-        <div class="flex flex-wrap justify-center gap-20">
-            @for (artist of artists; track $index) {
-                <app-artist [artist]="artist"></app-artist>
-            }
-        </div>
+  <div class="bg-secondary shadow-md p-6 pt-16">
+    <!-- buttons to change the content on the page -->
+    <ul class="text-3xl font-extrabold text-blue-600 tracking-widest mb-5 flex flex-wrap justify-left gap-10">
+      <li class="hover:text-primary hover:bg-secondary-dark hover:scale-105 transition-all duration-300 ease-in-out">
+        <button (click)="changeView('artists')">Artiesten</button>
+      </li>
+      <li class="hover:text-primary hover:bg-secondary-dark hover:scale-105 transition-all duration-300 ease-in-out">
+        <button (click)="changeView('lineup')">Line-up</button>
+      </li>
+    </ul>
+    <hr>
+    <!-- filter functions for the artists -->
+    <ul class="text-3xl font-extrabold text-blue-600 tracking-widest mb-5 flex flex-wrap justify-left gap-10">
+      <li class="hover:text-primary hover:bg-secondary-dark hover:scale-105 transition-all duration-300 ease-in-out">
+        <button (click)="sortByList()">Lijst</button>
+      </li>
+      <li class="hover:text-primary hover:bg-secondary-dark hover:scale-105 transition-all duration-300 ease-in-out">
+        <button (click)="sortByAz()">A-Z</button>
+      </li>
+      <li class="hover:text-primary hover:bg-secondary-dark hover:scale-105 transition-all duration-300 ease-in-out">
+        <button (click)="sortByGenre()">Genre</button>
+      </li>
+    </ul>
+    <hr>
+  </div>
+  <div class="bg-secondary shadow-md p-6">
+    <div class="flex flex-wrap justify-center gap-20">
+      @for (artist of artists; track $index) {
+      <app-artist [artist]="artist"></app-artist>
+      }
     </div>
+  </div>
+</div>
+}
+@case ("lineup") {
+<!-- Content for small screens -->
+<div class="flex-col justify-center lg:hidden bg-secondary p-6">
+  <div>
+    <ul class="text-3xl font-extrabold text-blue-600 tracking-widest mb-5 flex flex-wrap justify-left gap-10">
+      <!-- buttons to change page content -->
+      <li>
+        <button (click)="changeView('artists')">Artiesten</button>
+      </li>
+      <li>
+        <button (click)="changeView('lineup')">Line-up</button>
+      </li>
+    </ul>
+    <hr>
+    <!-- filter functions for the time table -->
+    <ul class="text-3xl font-extrabold text-blue-600 tracking-widest mb-5 flex flex-wrap justify-left gap-10">
+      <li class="hover:text-primary hover:bg-secondary-dark hover:scale-105 transition-all duration-300 ease-in-out">
+        <button (click)="sortByDay('vrijdag')">Vrij</button>
+      </li>
+      <li class="hover:text-primary hover:bg-secondary-dark hover:scale-105 transition-all duration-300 ease-in-out">
+        <button (click)="sortByDay('Zaterdag')">Za</button>
+      </li>
+      <li class="hover:text-primary hover:bg-secondary-dark hover:scale-105 transition-all duration-300 ease-in-out">
+        <button (click)="sortByDay('zondag')">Zo</button>
+      </li>
+    </ul>
+    <hr>
+  </div>
+  @for (stage of stages; track $index) {
+    <section class="my-4">
+      <h4 class="font-bold text-3xl text-center bg-gray-800 text-primary py-4 mb-0.5">{{stage.name}}</h4>
+      <ul>
+        @for (artist of artists; track $index) {
+        <li class="bg-gray-800 text-white py-2 px-4 mb-0.5">
+          <span class="text-2xl font-bold">{{artist.name}}</span> <br>
+           12:00 - 13:00 <!--replace with the time the artists will be playing on stage (stage.artists.playtime)-->
+        </li>
+        }
+      </ul>
+    </section>
+  }
 </div>
 
+<!-- Content for medium and large screens -->
+<div class="flex-col justify-center text-center hidden lg:flex">
+  <div class="bg-secondary shadow-md p-6 pt-16">
+    <ul class="text-3xl font-extrabold text-blue-600 tracking-widest mb-5 flex flex-wrap justify-left gap-10">
+      <!-- buttons to change page content -->
+      <li>
+        <button (click)="changeView('artists')">Artiesten</button>
+      </li>
+      <li>
+        <button (click)="changeView('lineup')">Line-up</button>
+      </li>
+    </ul>
+    <hr>
+    <!-- filter functions for the time table -->
+    <ul class="text-3xl font-extrabold text-blue-600 tracking-widest mb-5 flex flex-wrap justify-left gap-10">
+      <li class="hover:text-primary hover:bg-secondary-dark hover:scale-105 transition-all duration-300 ease-in-out">
+        <button (click)="sortByDay('vrijdag')">Vrijdag</button>
+      </li>
+      <li class="hover:text-primary hover:bg-secondary-dark hover:scale-105 transition-all duration-300 ease-in-out">
+        <button (click)="sortByDay('zaterdag')">Zaterdag</button>
+      </li>
+      <li class="hover:text-primary hover:bg-secondary-dark hover:scale-105 transition-all duration-300 ease-in-out">
+        <button (click)="sortByDay('zondag')">Zondag</button>
+      </li>
+    </ul>
+    <hr>
+  </div>
+  <!--Timetable -->
+  <div class="relative z-10 right-44 -mr-44 bg-secondary">
+    <!-- scroll buttons -->
+    <div class="relative bg-gray-800 flex items-center justify-center z-20">
+      <button (click)="scrollLeft()"
+        class="text-white text-3xl font-bold bg-gray-800 hover:bg-primary shadow-lg w-full">
+        &larr; Left
+      </button>
+      <button (click)="scrollRight()"
+        class="text-white text-3xl font-bold bg-gray-800 hover:bg-primary shadow-lg w-full">
+        &rarr; Right
+      </button>
+    </div>
+    <!-- Scrollable-->
+    <div #scrollContainer class="overflow-x-auto">
+      <div class="grid grid-cols-{{stages.length+1}} min-w-[200rem] gap-1">
+        <div></div>
+        @for (stage of stages; track $index) {
+          <div class="text-center font-bold text-3xl bg-primary text-white py-6">{{stage.name}}</div>
+        }
 
+        <!-- Time Column -->
+        <div class="flex flex-col">
+          <div class="text-center text-blue-600 mt-[100px]">
+            <div class="absolute top-1px left-36 h-px w-full bg-white -z-10"></div>
+            <p>11:00</p>
+          </div>
+          <div class="text-center text-blue-600 mt-[100px]">
+            <div class="absolute top-1px left-36 h-px w-full bg-white -z-10"></div>
+            <p>12:00</p>
+          </div>
+          <div class="text-center text-blue-600 mt-[100px]">
+            <div class="absolute top-1px left-36 h-px w-full bg-white -z-10"></div>
+            <p>13:00</p>
+          </div>
+          <div class="text-center text-blue-600 mt-[100px]">
+            <div class="absolute top-1px left-36 h-px w-full bg-white -z-10"></div>
+            <p>14:00</p>
+          </div>
+          <div class="text-center text-blue-600 mt-[100px]">
+            <div class="absolute top-1px left-36 h-px w-full bg-white -z-10"></div>
+            <p>15:00</p>
+          </div>
+          <div class="text-center text-blue-600 mt-[100px]">
+            <div class="absolute top-1px left-36 h-px w-full bg-white -z-10"></div>
+            <p>16:00</p>
+          </div>
+          <div class="text-center text-blue-600 mt-[100px]">
+            <div class="absolute top-1px left-36 h-px w-full bg-white -z-10"></div>
+            <p>17:00</p>
+          </div>
+          <div class="text-center text-blue-600 mt-[100px]">
+            <div class="absolute top-1px left-36 h-px w-full bg-white -z-10"></div>
+            <p>18:00</p>
+          </div>
+          <div class="text-center text-blue-600 mt-[100px]">
+            <div class="absolute top-1px left-36 h-px w-full bg-white -z-10"></div>
+            <p>19:00</p>
+          </div>
+          <div class="text-center text-blue-600 mt-[100px]">
+            <div class="absolute top-1px left-36 h-px w-full bg-white -z-10"></div>
+            <p>20:00</p>
+          </div>
+          <div class="text-center text-blue-600 mt-[100px]">
+            <div class="absolute top-1px left-36 h-px w-full bg-white -z-10"></div>
+            <p>21:00</p>
+          </div>
+          <div class="text-center text-blue-600 mt-[100px]">
+            <div class="absolute top-1px left-36 h-px w-full bg-white -z-10"></div>
+            <p>22:00</p>
+          </div>
+          <div class="text-center text-blue-600 mt-[100px]">
+            <div class="absolute top-1px left-36 h-px w-full bg-white -z-10"></div>
+            <p>23:00</p>
+          </div>
+          <div class="text-center text-blue-600 mt-[100px]">
+            <div class="absolute top-1px left-36 h-px w-full bg-white -z-10"></div>
+            <p>24:00</p>
+          </div>
+          <div class="text-center text-blue-600 mt-[100px]">
+            <div class="absolute top-1px left-36 h-px w-full bg-white -z-10"></div>
+            <p>01:00</p>
+          </div>
+          <div class="text-center text-blue-600 mt-[100px]">
+            <div class="absolute top-1px left-36 h-px w-full bg-white -z-10"></div>
+            <p>02:00</p>
+          </div>
+          <div class="text-center text-blue-600 mt-[100px]">
+            <div class="absolute top-1px left-36 h-px w-full bg-white -z-10"></div>
+            <p>03:00</p>
+          </div>
+          <div class="text-center text-blue-600 mt-[100px]">
+            <div class="absolute top-1px left-36 h-px w-full bg-white -z-10"></div>
+            <p>04:00</p>
+          </div>
+        </div>
+        <!-- stages: replace with @for stage in stages -->
+        <!--Stage Column 1 -->
+        <div class="pt-[6.5rem]">
+          <!-- @for time in times @if yes act @esle empty -->
+          <!-- 116px = 1u  240px = 2u later height replace later vervangen door berekening op tijdscheme-->
+          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[116px]">Katastroof <br> 11:00
+            - 12:00</div>
+          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[116px]">Katastroof <br> 12:00
+            - 13:00</div>
+          <div class=" mb-2 h-[116px]"></div>
+          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[116px]">Katastroof <br> 14:00
+            - 15:00</div>
+          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[240px]">Bitterbalbierbak <br>
+            15:00 - 17:00</div>
+          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[116px]">Piet Piraat <br> 17:00
+            - 18:00</div>
+          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[116px]">Katastroof <br> 11:00
+            - 12:00</div>
+          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[116px]">Katastroof <br> 12:00
+            - 13:00</div>
+          <div class=" mb-2 h-[116px]"></div>
+          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[116px]">Katastroof <br> 14:00
+            - 15:00</div>
+          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[240px]">Bitterbalbierbak <br>
+            15:00 - 17:00</div>
+          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[116px]">Piet Piraat <br> 17:00
+            - 18:00</div>
+        </div>
 
+        <!--Stage Column 2 -->
+        <div class="pt-[6.5rem]">
+          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[116px]">Katastroof <br> 11:00
+            - 12:00</div>
+          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[116px]">Katastroof <br> 12:00
+            - 13:00</div>
+          <div class=" mb-2 h-[116px]"></div>
+          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[116px]">Katastroof <br> 14:00
+            - 15:00</div>
+          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[240px]">Bitterbalbierbak <br>
+            15:00 - 17:00</div>
+          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[116px]">Piet Piraat <br> 17:00
+            - 18:00</div>
+        </div>
+
+        <!--Stage Column 3 -->
+        <div class="pt-[6.5rem]">
+          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[116px]">Katastroof <br> 11:00
+            - 12:00</div>
+          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[116px]">Katastroof <br> 12:00
+            - 13:00</div>
+          <div class=" mb-2 h-[116px]"></div>
+          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[116px]">Katastroof <br> 14:00
+            - 15:00</div>
+          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[240px]">Bitterbalbierbak <br>
+            15:00 - 17:00</div>
+          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[116px]">Piet Piraat <br> 17:00
+            - 18:00</div>
+        </div>
+
+        <!--Stage Column 4 -->
+        <div class="pt-[6.5rem]">
+          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[116px]">Katastroof <br> 11:00
+            - 12:00</div>
+          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[116px]">Katastroof <br> 12:00
+            - 13:00</div>
+          <div class=" mb-2 h-[116px]"></div>
+          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[116px]">Katastroof <br> 14:00
+            - 15:00</div>
+          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[240px]">Bitterbalbierbak <br>
+            15:00 - 17:00</div>
+          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[116px]">Piet Piraat <br> 17:00
+            - 18:00</div>
+        </div>
+
+        <!--Stage Column 5 -->
+        <div class="pt-[6.5rem]">
+          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[116px]">Katastroof <br> 11:00
+            - 12:00</div>
+          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[116px]">Katastroof <br> 12:00
+            - 13:00</div>
+          <div class=" mb-2 h-[116px]"></div>
+          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[116px]">Katastroof <br> 14:00
+            - 15:00</div>
+          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[240px]">Bitterbalbierbak <br>
+            15:00 - 17:00</div>
+          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[116px]">Piet Piraat <br> 17:00
+            - 18:00</div>
+        </div>
+        <!--Stage Column 6 -->
+        <div class="pt-[6.5rem]">
+          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[116px]">Katastroof <br> 11:00
+            - 12:00</div>
+          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[116px]">Katastroof <br> 12:00
+            - 13:00</div>
+          <div class=" mb-2 h-[116px]"></div>
+          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[116px]">Katastroof <br> 14:00
+            - 15:00</div>
+          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[240px]">Bitterbalbierbak <br>
+            15:00 - 17:00</div>
+          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[116px]">Piet Piraat <br> 17:00
+            - 18:00</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+}
+}
