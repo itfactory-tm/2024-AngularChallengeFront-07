@@ -6,11 +6,12 @@ import { ArtistComponent } from '../artist/artist.component';
 import { Router } from '@angular/router';
 import { StageService } from '../services/stage.service';
 import { CommonModule } from '@angular/common';
+import { TimeScheduleComponent } from '../time-schedule/time-schedule.component';
 
 @Component({
   selector: 'app-line-up',
   standalone: true,
-  imports: [ArtistComponent, CommonModule],
+  imports: [ArtistComponent, TimeScheduleComponent, CommonModule],
   templateUrl: './line-up.component.html',
   styleUrl: './line-up.component.css'
 })

@@ -205,34 +205,11 @@
         </div>
         <!-- stages: replace with @for stage in stages -->
         <!--Stage Column 1 -->
-        <div class="pt-[6.5rem]">
-          <!-- @for time in times @if yes act @esle empty -->
-          <!-- 116px = 1u  240px = 2u later height replace later vervangen door berekening op tijdscheme-->
-          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[116px]">Katastroof <br> 11:00
-            - 12:00</div>
-          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[116px]">Katastroof <br> 12:00
-            - 13:00</div>
-          <div class=" mb-2 h-[116px]"></div>
-          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[116px]">Katastroof <br> 14:00
-            - 15:00</div>
-          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[240px]">Bitterbalbierbak <br>
-            15:00 - 17:00</div>
-          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[116px]">Piet Piraat <br> 17:00
-            - 18:00</div>
-          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[116px]">Katastroof <br> 11:00
-            - 12:00</div>
-          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[116px]">Katastroof <br> 12:00
-            - 13:00</div>
-          <div class=" mb-2 h-[116px]"></div>
-          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[116px]">Katastroof <br> 14:00
-            - 15:00</div>
-          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[240px]">Bitterbalbierbak <br>
-            15:00 - 17:00</div>
-          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[116px]">Piet Piraat <br> 17:00
-            - 18:00</div>
-        </div>
-
-        <!--Stage Column 2 -->
+        @for (stage of stages; track $index) {
+            <app-time-schedule></app-time-schedule>
+            
+        }
+        <!-- Stage Column 2
         <div class="pt-[6.5rem]">
           <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[116px]">Katastroof <br> 11:00
             - 12:00</div>
@@ -245,66 +222,7 @@
             15:00 - 17:00</div>
           <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[116px]">Piet Piraat <br> 17:00
             - 18:00</div>
-        </div>
-
-        <!--Stage Column 3 -->
-        <div class="pt-[6.5rem]">
-          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[116px]">Katastroof <br> 11:00
-            - 12:00</div>
-          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[116px]">Katastroof <br> 12:00
-            - 13:00</div>
-          <div class=" mb-2 h-[116px]"></div>
-          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[116px]">Katastroof <br> 14:00
-            - 15:00</div>
-          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[240px]">Bitterbalbierbak <br>
-            15:00 - 17:00</div>
-          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[116px]">Piet Piraat <br> 17:00
-            - 18:00</div>
-        </div>
-
-        <!--Stage Column 4 -->
-        <div class="pt-[6.5rem]">
-          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[116px]">Katastroof <br> 11:00
-            - 12:00</div>
-          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[116px]">Katastroof <br> 12:00
-            - 13:00</div>
-          <div class=" mb-2 h-[116px]"></div>
-          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[116px]">Katastroof <br> 14:00
-            - 15:00</div>
-          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[240px]">Bitterbalbierbak <br>
-            15:00 - 17:00</div>
-          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[116px]">Piet Piraat <br> 17:00
-            - 18:00</div>
-        </div>
-
-        <!--Stage Column 5 -->
-        <div class="pt-[6.5rem]">
-          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[116px]">Katastroof <br> 11:00
-            - 12:00</div>
-          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[116px]">Katastroof <br> 12:00
-            - 13:00</div>
-          <div class=" mb-2 h-[116px]"></div>
-          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[116px]">Katastroof <br> 14:00
-            - 15:00</div>
-          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[240px]">Bitterbalbierbak <br>
-            15:00 - 17:00</div>
-          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[116px]">Piet Piraat <br> 17:00
-            - 18:00</div>
-        </div>
-        <!--Stage Column 6 -->
-        <div class="pt-[6.5rem]">
-          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[116px]">Katastroof <br> 11:00
-            - 12:00</div>
-          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[116px]">Katastroof <br> 12:00
-            - 13:00</div>
-          <div class=" mb-2 h-[116px]"></div>
-          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[116px]">Katastroof <br> 14:00
-            - 15:00</div>
-          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[240px]">Bitterbalbierbak <br>
-            15:00 - 17:00</div>
-          <div class="text-2xl bg-gray-800 text-blue-600 font-extrabold mb-2 h-[116px]">Piet Piraat <br> 17:00
-            - 18:00</div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
