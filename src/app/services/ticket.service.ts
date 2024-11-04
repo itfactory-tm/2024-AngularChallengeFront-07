@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Ticket } from './ticket';
+import { Ticket } from '../interfaces/ticket';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +8,7 @@ export class TicketService {
 
   private tickets: Ticket[] = [];
 
-  constructor() { 
+  constructor() {
 
     let ticket1: Ticket = {
       ticketId: 1,

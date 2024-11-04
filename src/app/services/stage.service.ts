@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Stage } from './stage';
+import { Stage } from '../interfaces/stage';
 
 @Injectable({
   providedIn: 'root'

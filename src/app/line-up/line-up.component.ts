@@ -1,10 +1,10 @@
 import { Component,ElementRef, ViewChild, Input, OnInit } from '@angular/core';
-import { Artist } from '../artist';
-import {Stage} from '../stage';
-import { ArtistService } from '../artist.service';
+import { Artist } from '../interfaces/artist';
+import {Stage} from '../interfaces/stage';
+import { ArtistService } from '../services/artist.service';
 import { ArtistComponent } from '../artist/artist.component';
 import { Router } from '@angular/router';
-import { StageService } from '../stage.service';
+import { StageService } from '../services/stage.service';
 
 @Component({
   selector: 'app-line-up',

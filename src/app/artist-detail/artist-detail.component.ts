@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { ArtistService } from '../artist.service';
+import { ArtistService } from '../services/artist.service';
 import { ArtistComponent } from '../artist/artist.component';
-import { Artist } from '../artist';
+import { Artist } from '../interfaces/artist';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({

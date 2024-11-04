@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { Stage } from '../stage';
-import { StageService } from '../stage.service';
+import { Stage } from '../interfaces/stage';
+import { StageService } from '../services/stage.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
