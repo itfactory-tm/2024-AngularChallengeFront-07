@@ -120,7 +120,9 @@
     </div>
     <!-- Scrollable-->
     <div #scrollContainer class="overflow-x-auto">
-      <div class="grid grid-cols-{{stages.length+1}} min-w-[200rem] gap-1">
+      <div class="grid min-w-[200rem] gap-1" [ngStyle]="{'grid-template-columns': 'repeat(' + (stages.length + 1) + ', minmax(0, 1fr))'}">
+
+
         <div></div>
         @for (stage of stages; track $index) {
           <div class="text-center font-bold text-3xl bg-primary text-white py-6">{{stage.name}}</div>

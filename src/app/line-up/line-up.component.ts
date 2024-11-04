@@ -5,11 +5,12 @@ import { ArtistService } from '../services/artist.service';
 import { ArtistComponent } from '../artist/artist.component';
 import { Router } from '@angular/router';
 import { StageService } from '../services/stage.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-line-up',
   standalone: true,
-  imports: [ArtistComponent],
+  imports: [ArtistComponent, CommonModule],
   templateUrl: './line-up.component.html',
   styleUrl: './line-up.component.css'
 })
