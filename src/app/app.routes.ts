@@ -18,9 +18,8 @@ export const routes: Routes = [
   { path: 'q-and-a', component: QAndAComponent },
   { path: 'stage-list', component: StageListComponent },
   { path: 'tickets', component: TicketsComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'artist', component: ArtistComponent },
   { path: 'artist/:id', component: ArtistDetailComponent },
-  { path: 'privacy', component: PrivacyComponent },
-  { path: 'terms', component: TermsComponent },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '**', redirectTo: '/home' },
 ];
