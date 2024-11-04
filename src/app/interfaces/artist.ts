@@ -4,4 +4,5 @@ export interface Artist {
     genre: string;
     biography: string;
     imageUrl: string;
+    spotifyId: string;
 }
