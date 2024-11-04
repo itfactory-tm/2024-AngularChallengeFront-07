@@ -16,8 +16,8 @@ export const routes: Routes = [
   { path: 'q-and-a', component: QAndAComponent },
   { path: 'stage-list', component: StageListComponent },
   { path: 'tickets', component: TicketsComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  // { path: '**', redirectTo: '/home' }, // Add this line for wildcard route
   { path: 'artist', component: ArtistComponent },
   { path: 'artist/:id', component: ArtistDetailComponent },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '**', redirectTo: '/home' },
 ];
