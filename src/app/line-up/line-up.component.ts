@@ -19,6 +19,11 @@ export class LineUpComponent {
   view: String = "artists";
   artists: Artist[] = [];
   stages: Stage[] = [];
+  times: string[] = [
+    '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', 
+    '19:00', '20:00', '21:00', '22:00', '23:00', '24:00', '01:00', '02:00', 
+    '03:00', '04:00'
+  ];
   @ViewChild('scrollContainer', { static: false }) scrollContainer!: ElementRef;
 
   constructor(private router: Router, private artistService: ArtistService, private stageService: StageService) { }

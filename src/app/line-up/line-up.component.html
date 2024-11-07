@@ -130,79 +130,14 @@
 
         <!-- Time Column -->
         <div class="flex flex-col">
-          <div class="text-center text-blue-600 mt-[100px]">
-            <div class="absolute top-1px left-36 h-px w-full bg-white -z-10"></div>
-            <p>11:00</p>
-          </div>
-          <div class="text-center text-blue-600 mt-[100px]">
-            <div class="absolute top-1px left-36 h-px w-full bg-white -z-10"></div>
-            <p>12:00</p>
-          </div>
-          <div class="text-center text-blue-600 mt-[100px]">
-            <div class="absolute top-1px left-36 h-px w-full bg-white -z-10"></div>
-            <p>13:00</p>
-          </div>
-          <div class="text-center text-blue-600 mt-[100px]">
-            <div class="absolute top-1px left-36 h-px w-full bg-white -z-10"></div>
-            <p>14:00</p>
-          </div>
-          <div class="text-center text-blue-600 mt-[100px]">
-            <div class="absolute top-1px left-36 h-px w-full bg-white -z-10"></div>
-            <p>15:00</p>
-          </div>
-          <div class="text-center text-blue-600 mt-[100px]">
-            <div class="absolute top-1px left-36 h-px w-full bg-white -z-10"></div>
-            <p>16:00</p>
-          </div>
-          <div class="text-center text-blue-600 mt-[100px]">
-            <div class="absolute top-1px left-36 h-px w-full bg-white -z-10"></div>
-            <p>17:00</p>
-          </div>
-          <div class="text-center text-blue-600 mt-[100px]">
-            <div class="absolute top-1px left-36 h-px w-full bg-white -z-10"></div>
-            <p>18:00</p>
-          </div>
-          <div class="text-center text-blue-600 mt-[100px]">
-            <div class="absolute top-1px left-36 h-px w-full bg-white -z-10"></div>
-            <p>19:00</p>
-          </div>
-          <div class="text-center text-blue-600 mt-[100px]">
-            <div class="absolute top-1px left-36 h-px w-full bg-white -z-10"></div>
-            <p>20:00</p>
-          </div>
-          <div class="text-center text-blue-600 mt-[100px]">
-            <div class="absolute top-1px left-36 h-px w-full bg-white -z-10"></div>
-            <p>21:00</p>
-          </div>
-          <div class="text-center text-blue-600 mt-[100px]">
-            <div class="absolute top-1px left-36 h-px w-full bg-white -z-10"></div>
-            <p>22:00</p>
-          </div>
-          <div class="text-center text-blue-600 mt-[100px]">
-            <div class="absolute top-1px left-36 h-px w-full bg-white -z-10"></div>
-            <p>23:00</p>
-          </div>
-          <div class="text-center text-blue-600 mt-[100px]">
-            <div class="absolute top-1px left-36 h-px w-full bg-white -z-10"></div>
-            <p>24:00</p>
-          </div>
-          <div class="text-center text-blue-600 mt-[100px]">
-            <div class="absolute top-1px left-36 h-px w-full bg-white -z-10"></div>
-            <p>01:00</p>
-          </div>
-          <div class="text-center text-blue-600 mt-[100px]">
-            <div class="absolute top-1px left-36 h-px w-full bg-white -z-10"></div>
-            <p>02:00</p>
-          </div>
-          <div class="text-center text-blue-600 mt-[100px]">
-            <div class="absolute top-1px left-36 h-px w-full bg-white -z-10"></div>
-            <p>03:00</p>
-          </div>
-          <div class="text-center text-blue-600 mt-[100px]">
-            <div class="absolute top-1px left-36 h-px w-full bg-white -z-10"></div>
-            <p>04:00</p>
-          </div>
+          @for (time of times; track $index) {
+            <div class="text-center text-blue-600 mt-[100px]">
+              <div class="absolute top-1px left-36 h-px w-full bg-white -z-10"></div>
+              <p>{{time}}</p>
+            </div>
+          }
         </div>
+
         <!-- stages: replace with @for stage in stages -->
         <!--Stage Column 1 -->
         @for (stage of stages; track $index) {
