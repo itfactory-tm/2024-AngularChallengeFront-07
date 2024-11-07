@@ -19,6 +19,7 @@ export class LineUpComponent {
   view: String = "artists";
   artists: Artist[] = [];
   stages: Stage[] = [];
+  selectedDay: string = 'vrijdag';
   times: string[] = [
     '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', 
     '19:00', '20:00', '21:00', '22:00', '23:00', '24:00', '01:00', '02:00', 
@@ -46,18 +47,9 @@ export class LineUpComponent {
   sortByList(){}
   sortByAz(){}
   sortByGenre(){}
-  sortByDay(day: String){
-    switch(day){
-      case "vrijdag":
-        this.artists = this.artistService.getArtists(); //change to use timeservice and filter artists by day
-      break;
-      case "zaterdag":
-        this.artists = this.artistService.getArtists();
-      break;
-      case "zondag":
-        this.artists = this.artistService.getArtists();
-      break;
-    }
+
+  setDay(day:string){
+    this.selectedDay = day;
   }
   detail(id: number) {
     this.router.navigate(['/artist', id]);

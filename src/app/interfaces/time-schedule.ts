@@ -4,4 +4,5 @@ export interface TimeSchedule {
     stageId : number;
     startSet: string;
     endSet: string;
+    day: string;
 }
