@@ -8,6 +8,7 @@ import { TicketsComponent } from './tickets/tickets.component';
 import { ArtistDetailComponent } from './artist-detail/artist-detail.component';
 import { ArtistComponent } from './artist/artist.component';
 import { StageListComponent } from './stage-list/stage-list.component';
+import { StageDetailComponent } from './stage-detail/stage-detail.component';
 import { PrivacyComponent } from './privacy/privacy.component';
 import { TermsComponent } from './terms/terms.component';
 
@@ -20,6 +21,7 @@ export const routes: Routes = [
   { path: 'tickets', component: TicketsComponent },
   { path: 'artist', component: ArtistComponent },
   { path: 'artist/:id', component: ArtistDetailComponent },
+  { path: 'stage/:id', component: StageDetailComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', redirectTo: '/home' },
 ];

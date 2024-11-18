@@ -6,22 +6,22 @@
       <div *ngFor="let qa of qaList" class="bg-white bg-opacity-20 backdrop-blur-md rounded-xl shadow-lg">
         <button class="w-full flex justify-between items-center p-5 focus:outline-none"
           (click)="qa.isOpen = !qa.isOpen">
-          <span class="text-xl font-semibold text-red-400">{{ qa.question }}</span>
-          <svg class="w-6 h-6 text-red-400 transition-transform duration-300" [class.rotate-180]="qa.isOpen"
+          <span class="text-xl font-semibold text-quaternary">{{ qa.question }}</span>
+          <svg class="w-6 h-6 text-tertiary transition-transform duration-300" [class.rotate-180]="qa.isOpen"
             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
           </svg>
         </button>
-        <div *ngIf="qa.isOpen" class="px-5 pb-5 text-red-200">
+        <div *ngIf="qa.isOpen" class="px-5 pb-5 text-white">
           {{ qa.answer }}
         </div>
       </div>
     </div>
 
     <div class="mt-14 text-center">
-      <p class="text-red-300 mb-4 text-lg">Didn't find what you were looking for?</p>
+      <p class="text-white mb-4 text-lg">Didn't find what you were looking for?</p>
       <a href="mailto:info@fritfest.com"
-        class="inline-block bg-red-500 text-secondary font-semibold py-3 px-6 rounded-full shadow hover:bg-red-600 transition">
+        class="inline-block bg-primary text-white font-semibold py-3 px-6 rounded-full shadow hover:bg-tertiary transition">
         Contact Us
       </a>
     </div>
