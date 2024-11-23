@@ -1,115 +1,21 @@
-<div class="flex-col justify-center text-center bg-secondary shadow-md p-6">
-    <h1 class="text-5xl font-extrabold text-blue-600 tracking-widest mb-5">Tickets</h1>
-    <div>
-        <h2 class="text-3xl font-extrabold text-blue-400 tracking-widest mb-5">Vrijdag</h2>
-        <div class="flex flex-wrap justify-center gap-8 p-6"> 
-            @for (ticket of tickets; track $index) {
-            <!-- Card -->
-            <div class="card bg-white shadow-lg p-6 rounded-lg w-full" style="max-width: 400px;">
-                <div class="flex justify-between items-start">
-                    <!-- Left Side: Title and Description -->
-                    <div class="flex-grow mr-4">
-                    <h5 class="text-xl font-semibold mb-2 text-left">+Ticket Type + - + TicketDayList+</h5>
-                    <p class="text-gray-500 text-left">Prijs</p>
-                    </div>
-            
-                    <!-- Right Side: Icon and Amount Input -->
-                    <div class="flex items-center">
-                    <input 
-                        type="number" 
-                        class="w-24 h-16 border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-400" 
-                        placeholder="Qty" 
-                        min="1">
-                    </div>
-                </div>
-            </div>
-            }
+@if(ticket) {
+<!-- Card -->
+<div class="card bg-white shadow-lg p-6 rounded-lg w-full" style="max-width: 400px;">
+    <div class="flex justify-between items-start">
+        <!-- Left Side: Title and Description -->
+        <div class="flex-grow mr-4">
+        <h5 class="text-xl font-semibold mb-2 text-left">{{ticketType?.naam}} Ticket</h5>
+        <p class="text-gray-500 text-left">€ {{ticketType?.prijs}}</p>
         </div>
-    </div>
-    <div>
-        <h2 class="text-3xl font-extrabold text-blue-400 tracking-widest mb-5">Zaterdag</h2>
-        <div class="flex flex-wrap justify-center gap-8 p-6"> 
-            @for (ticket of tickets; track $index) {
-                <!-- Card -->
-                <div class="card bg-white shadow-lg p-6 rounded-lg w-full" style="max-width: 400px;">
-                    <div class="flex justify-between items-start">
-                        <!-- Left Side: Title and Description -->
-                        <div class="flex-grow mr-4">
-                        <h5 class="text-xl font-semibold mb-2 text-left">+Ticket Type + - + TicketDayList+</h5>
-                        <p class="text-gray-500 text-left">Prijs</p>
-                        </div>
-                
-                        <!-- Right Side: Icon and Amount Input -->
-                        <div class="flex items-center">
-                        <input 
-                            type="number" 
-                            class="w-24 h-16 border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-400" 
-                            placeholder="Qty" 
-                            min="1">
-                        </div>
-                    </div>
-                </div>
-                }
-        </div>
-    </div>
-    <div>
-        <h2 class="text-3xl font-extrabold text-blue-400 tracking-widest mb-5">Zondag</h2>
-        <div class="flex flex-wrap justify-center gap-8 p-6"> 
-            @for (ticket of tickets; track $index) {
-                <!-- Card -->
-                <div class="card bg-white shadow-lg p-6 rounded-lg w-full" style="max-width: 400px;">
-                    <div class="flex justify-between items-start">
-                        <!-- Left Side: Title and Description -->
-                        <div class="flex-grow mr-4">
-                        <h5 class="text-xl font-semibold mb-2 text-left">+Ticket Type + - + TicketDayList+</h5>
-                        <p class="text-gray-500 text-left">Prijs</p>
-                        </div>
-                
-                        <!-- Right Side: Icon and Amount Input -->
-                        <div class="flex items-center">
-                        <input 
-                            type="number" 
-                            class="w-24 h-16 border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-400" 
-                            placeholder="Qty" 
-                            min="1">
-                        </div>
-                    </div>
-                </div>
-                }
-        </div>
-    </div>
-    <div>
-        <h2 class="text-3xl font-extrabold text-blue-400 tracking-widest mb-5">Weekend</h2>
-        <div class="flex flex-wrap justify-center gap-8 p-6"> 
-            @for (ticket of tickets; track $index) {
-                <!-- Card -->
-                <div class="card bg-white shadow-lg p-6 rounded-lg w-full" style="max-width: 400px;">
-                    <div class="flex justify-between items-start">
-                        <!-- Left Side: Title and Description -->
-                        <div class="flex-grow mr-4">
-                        <h5 class="text-xl font-semibold mb-2 text-left">+Ticket Type + - + TicketDayList+</h5>
-                        <p class="text-gray-500 text-left">Prijs</p>
-                        </div>
-                
-                        <!-- Right Side: Icon and Amount Input -->
-                        <div class="flex items-center">
-                        <input 
-                            type="number" 
-                            class="w-24 h-16 border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-400" 
-                            placeholder="Qty" 
-                            min="1">
-                        </div>
-                    </div>
-                </div>
-                }
-        </div>
-    </div>
 
-    <div class="mt-16 text-center">
-        <a routerLink="/" class="ticket-button group relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white transition-all duration-300 ease-in-out bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 rounded-full overflow-hidden shadow-2xl hover:shadow-lg">
-          <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-purple-600 via-pink-500 to-red-500"></span>
-          <span class="absolute bottom-0 right-0 block w-64 h-64 mb-32 mr-4 transition duration-500 origin-bottom-left transform rotate-45 translate-x-24 bg-pink-500 opacity-30 group-hover:rotate-90 ease"></span>
-          <span class="relative">Bestellen en betalen</span>
-        </a>
-      </div>
+        <!-- Right Side: Icon and Amount Input -->
+        <div class="flex items-center">
+        <input 
+            type="number" 
+            class="w-24 h-16 border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-400" 
+            placeholder="Qty" 
+            min="1">
+        </div>
+    </div>
 </div>
+}
