@@ -16,6 +16,7 @@ export class TicketService {
       amountTickets : 200,
       typeId : 1,
       editieId : 1,
+      dagId: 1,
     };
 
     let ticket2: Ticket = {
@@ -24,6 +25,7 @@ export class TicketService {
       amountTickets : 200,
       typeId : 2,
       editieId : 1,
+      dagId: 1,
     };
 
     let ticket3: Ticket = {
@@ -32,6 +34,7 @@ export class TicketService {
       amountTickets : 200,
       typeId : 3,
       editieId : 1,
+      dagId: 1,
     };
 
     let ticket4: Ticket = {
@@ -40,6 +43,7 @@ export class TicketService {
       amountTickets : 200,
       typeId : 1,
       editieId : 1,
+      dagId: 2,
     };
 
     let ticket5: Ticket = {
@@ -48,6 +52,7 @@ export class TicketService {
       amountTickets : 200,
       typeId : 2,
       editieId : 1,
+      dagId: 2,
     };
 
     let ticket6: Ticket = {
@@ -56,6 +61,7 @@ export class TicketService {
       amountTickets : 200,
       typeId : 3,
       editieId : 1,
+      dagId: 2,
     };
 
     let ticket7: Ticket = {
@@ -64,6 +70,7 @@ export class TicketService {
       amountTickets : 200,
       typeId : 1,
       editieId : 1,
+      dagId: 3,
     };
 
     let ticket8: Ticket = {
@@ -72,6 +79,7 @@ export class TicketService {
       amountTickets : 200,
       typeId : 2,
       editieId : 1,
+      dagId: 3,
     };
 
     let ticket9: Ticket = {
@@ -80,6 +88,7 @@ export class TicketService {
       amountTickets : 200,
       typeId : 3,
       editieId : 1,
+      dagId: 3,
     };
 
     let ticket10: Ticket = {
@@ -88,6 +97,7 @@ export class TicketService {
       amountTickets : 200,
       typeId : 1,
       editieId : 1,
+      dagId: 4,
     };
 
     let ticket11: Ticket = {
@@ -96,6 +106,7 @@ export class TicketService {
       amountTickets : 200,
       typeId : 2,
       editieId : 1,
+      dagId: 4,
     };
 
     let ticket12: Ticket = {
@@ -104,6 +115,7 @@ export class TicketService {
       amountTickets : 200,
       typeId : 3,
       editieId : 1,
+      dagId: 4,
     };
 
     this.tickets.push(ticket1);

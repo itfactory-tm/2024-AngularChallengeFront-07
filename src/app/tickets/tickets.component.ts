@@ -2,21 +2,22 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Ticket } from '../ticket';
 import { TicketService } from '../ticket.service';
 import { ActivatedRoute } from '@angular/router';
+import { CommonModule } from '@angular/common';
+
+
 
 @Component({
-  selector: 'app-tickets',
+  selector: 'app-ticket',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './tickets.component.html',
   styleUrl: './tickets.component.css'
 })
-export class TicketsComponent {
-  tickets: Ticket[] = [];
+export class TicketsComponent implements OnInit{
+  @Input() ticket!: Ticket;
 
-  constructor(private ticketService: TicketService, private route: ActivatedRoute) {}
+  constructor() {}
 
-  ngOnInit(): void{
-    this.tickets = this.ticketService.getTickets();
-  }
+  ngOnInit(): void{}
 
 }

@@ -4,4 +4,5 @@ export interface Ticket{
     amountTickets : number;
     typeId: number;
     editieId: number;
+    dagId: number;
 }
