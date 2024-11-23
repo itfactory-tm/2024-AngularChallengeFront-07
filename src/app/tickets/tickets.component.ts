@@ -24,6 +24,19 @@ export class TicketsComponent implements OnInit{
 
   ngOnInit(): void{
     this.ticketType = this.ticketTypeService.getTicketTypeById(this.ticket.typeId)
-  }
 
+    if (this.ticket.dagId === 4){
+      const OldPrice = this.ticketType?.prijs
+      if (OldPrice !== undefined) {
+        // Apply the calculation (multiply by 1.8)
+        const newPrice = OldPrice * 1.8;
+  
+        // Update the ticket type's price with the new price
+        if (this.ticketType) {
+          this.ticketType.prijs = newPrice;
+        }
+  
+    }
+  }
+}
 }
