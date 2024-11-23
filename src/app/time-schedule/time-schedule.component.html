@@ -1,0 +1,8 @@
+@for (schedule of timeSchedules; track $index) {
+<div [ngStyle]="{
+        'top.px': calculateElementPositionAndHeight(schedule.startSet, schedule.endSet).top,
+        'height.px': calculateElementPositionAndHeight(schedule.startSet, schedule.endSet).height
+      }" class="sticky text-2xl bg-gray-800 text-blue-600 font-extrabold">
+    {{ artists[$index].name }} <br> {{ schedule.startSet }} - {{ schedule.endSet }}
+</div>
+}

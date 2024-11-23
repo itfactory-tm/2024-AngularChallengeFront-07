@@ -1,32 +1,20 @@
-<!-- @if(stage) {
-    <div class="flex flex-col justify-between h-full bg-white border-gray-200 border-2 p-6 shadow">
-        <h1 class="text-4xl my-3">{{stage.name}}</h1>
-        <h4 class="text-xl my-3">{{stage.size}}</h4>
-        <figure class="self-center my-3">
-            <img class="max-w-full h-auto" src="{{stage.imageUrl}}" alt="{{stage.imageCaption}}">
-            <figcaption class="italic text-center">{{stage.imageCaption}}</figcaption>
-        </figure>
-        <p class="text-justify my-3">
-            {{stage.description}}
-        </p>
-    </div>
-    } -->
-    @if(stage) {
-        <div class="flex flex-col justify-between h-full bg-gradient-to-br from-yellow-100 via-red-100 to-pink-200 border-2 border-yellow-300 rounded-xl p-6 mx-2 shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
-            <h1 class="text-4xl font-bold text-center text-purple-700 my-3">
-                {{stage.name}}
-            </h1>
-            <h4 class="text-2xl text-center font-semibold text-pink-600 my-2">
-                {{stage.size}}
-            </h4>
-            <figure class="self-center my-4">
-                <img class="max-w-full h-auto rounded-lg shadow-md border-4 border-pink-400" src="{{stage.imageUrl}}" alt="{{stage.imageCaption}}">
-                <figcaption class="italic text-center text-purple-600 mt-2">
-                    {{stage.imageCaption}}
-                </figcaption>
-            </figure>
-            <p class="text-justify text-gray-800 my-4 leading-relaxed font-medium">
-                {{stage.description}}
-            </p>
+@if(stage) {
+    <div class="bg-background rounded-3xl overflow-hidden shadow-xl h-[calc(100vh-4rem)] flex flex-col transition-all duration-300 ease-in-out hover:shadow-2xl hover:scale-102 group">
+        <div class="relative h-2/5 overflow-hidden">
+            <img class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" [src]="stage.imageUrl" [alt]="stage.imageCaption">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+            <h2 class="absolute bottom-6 left-6 text-4xl font-bold text-white drop-shadow-lg">{{stage.name}}</h2>
         </div>
-        }
+        <div class="p-8 flex-grow flex flex-col justify-between">
+            <div>
+                <p class="text-primary text-2xl font-semibold mb-4">{{getStageSize()}} Stage</p>
+                <p class="text-text-light text-lg mb-6">{{stage.description}}</p>
+            </div>
+            <div class="mt-auto">
+                <button class="w-full bg-primary text-white font-bold py-5 px-6 rounded-xl text-xl hover:bg-opacity-90 transition-all duration-300 transform hover:translate-y-[-3px] hover:shadow-lg">
+                    View Schedule
+                </button>
+            </div>
+        </div>
+    </div>
+}
