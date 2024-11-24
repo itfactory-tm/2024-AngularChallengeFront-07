@@ -25,5 +25,5 @@ export class ArtistComponent implements OnInit {
 
   goBack() {
     window.history.back();
-}
+  }
 }

@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { Ticket } from '../ticket';
+import { Ticket } from '../interfaces/ticket';
 import { Dag } from '../dag';
 import { DagService } from '../dag.service';
 import { TicketsComponent } from '../tickets/tickets.component';
-import { TicketService } from '../ticket.service';
+import { TicketService } from '../services/ticket.service';
 import { CommonModule } from '@angular/common';
 
 
