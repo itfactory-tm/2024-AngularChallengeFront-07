@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { TicketType } from './ticketType';
-import { Ticket } from './ticket';
+import { Ticket } from './interfaces/ticket';
 
 @Injectable({
     providedIn: 'root'
