@@ -1,8 +1,8 @@
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter, withHashLocation } from '@angular/router';
+import { provideRouter, withHashLocation, withEnabledBlockingInitialNavigation } from '@angular/router';
 import { routes } from './app.routes';
-import { provideHttpClient } from '@angular/common/http';
-import { provideAuth0 } from '@auth0/auth0-angular';
+import { provideHttpClient, HTTP_INTERCEPTORS, withInterceptorsFromDi } from '@angular/common/http';
+import { provideAuth0, AuthHttpInterceptor } from '@auth0/auth0-angular';
 import { environment } from '../environments/environment';
 
 const domain = environment.AUTH0_DOMAIN;
@@ -12,6 +12,8 @@ export const appConfig: ApplicationConfig = {
   providers: [[provideZoneChangeDetection({ eventCoalescing: true }),
   provideRouter(routes, withHashLocation()),
   provideHttpClient(),
+  { provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true },
+  provideHttpClient(withInterceptorsFromDi()),
   provideAuth0({
     domain: domain,
     clientId: clientId,
