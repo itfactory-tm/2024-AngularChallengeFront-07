@@ -10,7 +10,7 @@ const clientId = environment.AUTH0_CLIENT_ID;
 
 export const appConfig: ApplicationConfig = {
   providers: [[provideZoneChangeDetection({ eventCoalescing: true }),
-  provideRouter(routes, withHashLocation()),
+  provideRouter(routes, withEnabledBlockingInitialNavigation()), //this ensures all asynchronous guards are loaded before showing the view
   provideHttpClient(),
   { provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true },
   provideHttpClient(withInterceptorsFromDi()),
@@ -19,6 +19,9 @@ export const appConfig: ApplicationConfig = {
     clientId: clientId,
     authorizationParams: {
       redirect_uri: environment.redirectUri
+    },
+    httpInterceptor: {
+      allowedList: [`${environment.api_url}`] //List of URI links that need to be checked for authorisation
     }
   }),]]
 };
