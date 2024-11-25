@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Dag } from './dag';
+import { Dag } from '../interfaces/dag';
 
 @Injectable({
   providedIn: 'root'

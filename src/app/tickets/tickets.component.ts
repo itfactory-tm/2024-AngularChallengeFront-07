@@ -3,8 +3,8 @@ import { Ticket } from '../interfaces/ticket';
 import { TicketService } from '../services/ticket.service';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { TicketType } from '../ticketType';
-import { TicketTypeService } from '../ticketType.service';
+import { TicketType } from '../interfaces/ticketType';
+import { TicketTypeService } from '../services/ticketType.service';
 
 
 
@@ -23,20 +23,15 @@ export class TicketsComponent implements OnInit{
   constructor(private ticketTypeService: TicketTypeService) {}
 
   ngOnInit(): void{
-    this.ticketType = this.ticketTypeService.getTicketTypeById(this.ticket.typeId)
+    this.ticketType = this.ticketTypeService.getTicketTypeById(this.ticket.typeId);
 
-    if (this.ticket.dagId === 4){
-      const OldPrice = this.ticketType?.prijs
-      if (OldPrice !== undefined) {
-        // Apply the calculation (multiply by 1.8)
-        const newPrice = OldPrice * 1.8;
+    // if (this.ticketType && this.ticket.dagId === 4) {
+    //   const oldPrice = this.ticketType.prijs;
+    //   if (oldPrice !== undefined) {
+    //     const newPrice = oldPrice * 1.8;
+    //     this.ticketType.prijs = newPrice;
+    //   }
+    // }
   
-        // Update the ticket type's price with the new price
-        if (this.ticketType) {
-          this.ticketType.prijs = newPrice;
-        }
-  
-    }
   }
-}
 }
