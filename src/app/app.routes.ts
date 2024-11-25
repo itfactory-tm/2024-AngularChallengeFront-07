@@ -23,11 +23,8 @@ export const routes: Routes = [
   { path: 'stage-list', component: StageListComponent },
   { path: 'stage/:id', component: StageDetailComponent },
   { path: 'tickets', component: DayListComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  // admin routes
   { path: 'admin/artist', component: ArtistListComponent },
   { path: 'admin/artist/form', component: ArtistFormComponent },
-  // { path: '**', redirectTo: '/home' }, // Add this line for wildcard route
   { path: 'privacy', component: PrivacyComponent },
   { path: 'terms', component: TermsComponent },
   { path: 'artist', component: ArtistComponent },
