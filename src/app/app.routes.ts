@@ -16,7 +16,7 @@ import { ArtistListComponent } from './admin/artist-list/artist-list.component';
 import { ArtistFormComponent } from './admin/artist-form/artist-form.component';
 
 export const routes: Routes = [
-  { path: 'home', component: HomeComponent },
+  { path: '', component: HomeComponent },
   { path: 'info', component: InfoComponent },
   { path: 'line-up', component: LineUpComponent },
   { path: 'q-and-a', component: QAndAComponent },
@@ -28,8 +28,8 @@ export const routes: Routes = [
   { path: 'admin/artist', component: ArtistListComponent },
   { path: 'admin/artist/form', component: ArtistFormComponent },
   // { path: '**', redirectTo: '/home' }, // Add this line for wildcard route
+  { path: 'privacy', component: PrivacyComponent },
+  { path: 'terms', component: TermsComponent },
   { path: 'artist', component: ArtistComponent },
   { path: 'artist/:id', component: ArtistDetailComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: '**', redirectTo: '/home' },
 ];
