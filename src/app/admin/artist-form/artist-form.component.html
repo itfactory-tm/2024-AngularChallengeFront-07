@@ -5,11 +5,40 @@
     }
     <form (ngSubmit)="onSubmit()" #artistForm="ngForm">
         <div class="mb-6">
-            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 ">Name</label>
+            <label for="name" class="block mb-2 text-sm font-medium text-primary ">Name</label>
             <input type="name" id="name" name="name"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                class="bg-gray-50 border border-gray-300 text-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="Name" required [(ngModel)]="artist.name" #name="ngModel">
             <div [hidden]="name.valid || name.pristine" class="text-red-500 mt-2">Name is required</div>
+        </div>
+        
+        <div class="mb-6">
+            <label for="genre" class="block mb-2 text-sm font-medium text-primary ">Genre</label>
+            <input type="genre" id="genre" name="genre"
+                class="bg-gray-50 border border-gray-300 text-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                placeholder="Genre" required [(ngModel)]="artist.genre" #genre="ngModel">
+            <div [hidden]="genre.valid || genre.pristine" class="text-red-500 mt-2">genre is required</div>
+        </div>
+        <div class="mb-6">
+            <label for="biography" class="block mb-2 text-sm font-medium text-primary ">Biography</label>
+            <input type="biography" id="biography" name="biography"
+                class="bg-gray-50 border border-gray-300 text-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                placeholder="biography" required [(ngModel)]="artist.biography" #biography="ngModel">
+            <div [hidden]="biography.valid || biography.pristine" class="text-red-500 mt-2">Biography is required</div>
+        </div>
+        <div class="mb-6">
+            <label for="imageUrl" class="block mb-2 text-sm font-medium text-primary ">ImageUrl</label>
+            <input type="imageUrl" id="imageUrl" name="imageUrl"
+                class="bg-gray-50 border border-gray-300 text-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                placeholder="ImageUrl" required [(ngModel)]="artist.imageUrl" #imageUrl="ngModel">
+            <div [hidden]="imageUrl.valid || imageUrl.pristine" class="text-red-500 mt-2">ImageUrl is required</div>
+        </div>
+        <div class="mb-6">
+            <label for="spotifyId" class="block mb-2 text-sm font-medium text-primary ">SpotifyId</label>
+            <input type="spotifyId" id="spotifyId" name="spotifyId"
+                class="bg-gray-50 border border-gray-300 text-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                placeholder="SpotifyId" required [(ngModel)]="artist.spotifyId" #spotifyId="ngModel">
+            <div [hidden]="spotifyId.valid || spotifyId.pristine" class="text-red-500 mt-2">SpotifyId is required</div>
         </div>
     
         @if(isAdd) {

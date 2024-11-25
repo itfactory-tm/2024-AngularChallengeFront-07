@@ -14,6 +14,7 @@ import { AsyncPipe } from '@angular/common';
 })
 export class ArtistListComponent implements OnInit {
   artists$!: Observable<Artist[]>;
+  artists: Artist[] = [];
   errorMessage: string = '';
 
   constructor(private artistService: ArtistService, private router: Router) {
@@ -24,7 +25,7 @@ export class ArtistListComponent implements OnInit {
   }
 
   getArtists() {
-    this.artists$ = this.artistService.getArtistsApi(); //naam van methode vervangen bij connecteren met API
+    this.artists = this.artistService.getArtists(); //naam van methode vervangen bij connecteren met API
   }
 
   add() {

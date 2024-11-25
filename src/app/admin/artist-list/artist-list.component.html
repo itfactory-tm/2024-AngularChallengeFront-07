@@ -12,39 +12,79 @@
         </div>
     </div>
     <div class="overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
-        <div class="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 shadow sm:rounded-lg">
+        <div class="inline-block min-w-full overflow-hidden align-middle border-b border-primary shadow sm:rounded-lg">
             <table class="min-w-full">
                 <thead>
                     <tr>
                         <th
-                            class="px-6 py-3 text-xs font-medium text-left text-gray-500 border-b border-gray-200 bg-gray-50">
-                            #</th>
+                            class="px-6 py-3 text-md font-bold text-left text-secondary border-b border-primary bg-primary">
+                            #
+                        </th>
                         <th
-                            class="px-6 py-3 text-xs font-medium text-left text-gray-500 border-b border-gray-200 bg-gray-50">
-                            Name</th>
-                        <th class="px-6 py-3 text-xs text-center text-gray-500 border-b border-gray-200 bg-gray-50">
-                            &nbsp;</th>
+                            class="px-6 py-3 text-md font-bold text-left text-secondary border-b border-primary bg-primary">
+                            Name
+                        </th>
+                        <th
+                            class="px-6 py-3 text-md font-bold text-left text-secondary border-b border-primary bg-primary">
+                            Genre
+                        </th>
+                        <th
+                            class="px-6 py-3 text-md font-bold text-left text-secondary border-b border-primary bg-primary">
+                            Biography
+                        </th>
+                        <th
+                            class="px-6 py-3 text-md font-bold text-left text-secondary border-b border-primary bg-primary">
+                            ImageUrl
+                        </th>
+                        <th
+                            class="px-6 py-3 text-md font-bold text-left text-secondary border-b border-primary bg-primary">
+                            SpotifyId
+                        </th>
+                        <th class="px-6 py-3 text-md text-center text-secondary border-b border-primary bg-primary">
+                            &nbsp;
+                        </th>
                     </tr>
                 </thead>
 
-                <tbody class="bg-white">
-                    @for (artist of artists$ | async; track artist.id) {
+                <tbody class="bg-secondary">
+                    <!-- @for (artist of artists$ | async; track artist.id) { -->
+                    @for (artist of artists; track artist.id) { 
                     <tr>
-                        <td class="px-6 py-4 border-b border-gray-200">
+                        <td class="px-6 py-4 border-b border-primary">
                             <div class="flex items-center">
                                 {{artist.id}}
                             </div>
-
                         </td>
 
-                        <td class="px-6 py-4 border-b border-gray-200">
-                            <div class="text-sm text-gray-900">{{artist.name}}
+                        <td class="px-6 py-4 border-b border-primary">
+                            <div class="text-sm text-text">{{artist.name}}
                             </div>
                         </td>
 
-                        <td class="text-sm font-medium border-b border-gray-200">
+                        <td class="px-6 py-4 border-b border-primary">
+                            <div class="text-sm text-text">{{artist.genre}}
+                            </div>
+                        </td>
+
+                        <td class="px-6 py-4 border-b border-primary">
+                            <div class="text-sm text-text">{{artist.biography}}
+                            </div>
+                        </td>
+
+                        <td class="px-6 py-4 border-b border-primary">
+                            <div class="text-sm text-text">{{artist.imageUrl}}
+                            </div>
+                        </td>
+
+                        <td class="px-6 py-4 border-b border-primary">
+                            <div class="text-sm text-text">{{artist.spotifyId}}
+                            </div>
+                        </td>
+
+                        <td class="text-sm font-bold border-b border-primary">
                             <div class="flex justify-end gap-4">
-                                <a (click)="edit(artist.id)" class="text-indigo-600 hover:text-indigo-900 cursor-pointer">
+                                <a (click)="edit(artist.id)"
+                                    class="text-indigo-600 hover:text-indigo-900 cursor-pointer">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
                                         viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
