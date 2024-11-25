@@ -1,0 +1,47 @@
+import { Component, OnInit } from '@angular/core';
+import { ArtistService } from '../../services/artist.service';
+import { Observable } from 'rxjs';
+import { Artist } from '../../interfaces/artist';
+import { Router } from '@angular/router';
+import { AsyncPipe } from '@angular/common';
+
+@Component({
+  selector: 'app-artist-list',
+  standalone: true,
+  imports: [AsyncPipe],
+  templateUrl: './artist-list.component.html',
+  styleUrl: './artist-list.component.css'
+})
+export class ArtistListComponent implements OnInit {
+  artists$!: Observable<Artist[]>;
+  errorMessage: string = '';
+
+  constructor(private artistService: ArtistService, private router: Router) {
+  }
+
+  ngOnInit(): void {
+    this.getArtists();
+  }
+
+  getArtists() {
+    this.artists$ = this.artistService.getArtistsApi(); //naam van methode vervangen bij connecteren met API
+  }
+
+  add() {
+    //Navigate to form in add mode
+    this.router.navigate(['admin/artist/form'], { state: { mode: 'add' } });
+  }
+
+  edit(id: number) {
+    //Navigate to form in edit mode
+    this.router.navigate(['admin/artist/form'], { state: { id: id, mode: 'edit' } });
+  }
+
+  delete(id: number) {
+    this.artistService.deleteArtist(id).subscribe({
+      next: (v) => this.getArtists(),
+      error: (e) => this.errorMessage = e.message
+    });
+  }
+}
+

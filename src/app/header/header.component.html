@@ -47,7 +47,7 @@
           <div id="dropdownNavbar" (mouseleave)="closeAdminDropDown()" class="fixed w-44 font-bold shadow bg-secondary">
             <ul class="py-1 text-sm text-gray-700 " aria-labelledby="dropdownLargeButton">
               <li>
-                <a (click)="navigateTo('admin/artists')"
+                <a routerLink="/admin/artist" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
                   class="block py-2 px-4 font-semibold text-text-light cursor-pointer hover:text-primary hover:underline hover:scale-105 transition-transform duration-300 ease-in-out">Artists</a>
               </li>
               <li>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { Router, RouterModule} from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '@auth0/auth0-angular';
 
@@ -13,7 +13,7 @@ import { AuthService } from '@auth0/auth0-angular';
   styleUrls: []
 })
 export class HeaderComponent {
-  adminDropdownOpen = true;
+  adminDropdownOpen = false;
 
   constructor(private auth: AuthService, private router:Router) { }
 
