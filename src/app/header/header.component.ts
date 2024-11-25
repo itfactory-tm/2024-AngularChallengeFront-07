@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '@auth0/auth0-angular';
+
+
 
 @Component({
   selector: 'app-header',
@@ -10,6 +13,19 @@ import { CommonModule } from '@angular/common';
   styleUrls: []
 })
 export class HeaderComponent {
+  constructor(private auth: AuthService) {}
+
+  handleLogin(): void {
+    this.auth.loginWithRedirect({
+      appState: {
+        target: '/',
+      },
+      authorizationParams: {
+        prompt: 'login',
+      },
+    });
+  }
+
   leftPages = [
     { path: '/home', name: 'Home' },
     { path: '/line-up', name: 'Line-up' },
