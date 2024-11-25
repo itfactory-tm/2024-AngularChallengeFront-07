@@ -1,27 +1,30 @@
-<div class="flex-col justify-center text-center bg-secondary shadow-md p-6">
-    <h1 class="text-5xl font-extrabold text-quaternary tracking-widest mb-5">Tickets</h1>
+<div class="flex flex-col items-center justify-center min-h-screen p-6">
+    <h1 class="text-5xl font-extrabold text-white tracking-widest mb-10">Tickets</h1>
     <div 
     id="sticky-bar" 
-    class="sticky-bar transition-all duration-300 ease-in-out bg-secondary">
-    <div class="my-8 text-center">
-        <a routerLink="/tickets"
-          class="ticket-button group relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white transition-all duration-300 ease-in-out bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 rounded-full overflow-hidden shadow-2xl hover:shadow-lg">
-          <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-purple-600 via-pink-500 to-red-500"></span>
-          <span class="relative">Bestellen en betalen</span>
-        </a>
-      </div>
-  </div>
+    class="sticky top-0 w-full shadow-lg py-4">
+        <div class="text-center">
+            <a routerLink="/tickets"
+              class="ticket-button group relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white transition-all duration-300 ease-in-out bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 rounded-full overflow-hidden shadow-2xl hover:shadow-lg">
+              <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 opacity-75 group-hover:opacity-100 transition-opacity duration-300"></span>
+              <span class="relative">Bestellen en betalen</span>
+            </a>
+        </div>
+    </div>
 
-
-    @for (dag of dagen; track $index) {
-        <div>
-            <h2 class="text-3xl font-extrabold text-tertiary tracking-widest mb-5">{{dag.naam}}</h2>
-            <div class="flex flex-wrap justify-center gap-8 p-6"> 
-                @for (tick of ticketsByDag[dag.dagId]; track $index){
-                    <app-ticket [ticket]="tick"></app-ticket>
+    <div class="w-full max-w-6xl mt-10">
+        @for (dag of dagen; track $index) {
+            <div class="day-section shadow-lg rounded-lg p-6 mb-8">
+                <h2 class="text-4xl font-extrabold text-tertiary tracking-widest mb-5 text-center">{{dag.naam}}</h2>
+                <div class="flex flex-wrap justify-center gap-8 p-6"> 
+                    @for (tick of ticketsByDag[dag.dagId]; track $index){
+                        <app-ticket [ticket]="tick"></app-ticket>
+                    }
+                </div>
+                @if($index < dagen.length - 1) {
+                    <hr class="border-t-2 border-tertiary my-8">
                 }
             </div>
-        </div>
-    }
-    
+        }
+    </div>
 </div>
