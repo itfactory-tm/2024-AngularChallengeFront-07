@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './privacy.component.html',
   styleUrls: ['./privacy.component.css']
 })
-export class PrivacyComponent {
+export class PrivacyComponent implements OnInit {
   sections = [
     {
       title: '1. Information We Collect',
@@ -31,4 +31,8 @@ export class PrivacyComponent {
       content: 'You have the right to access, correct, or delete your personal information. To exercise these rights, please contact us at privacy@fritfest.com.'
     }
   ];
+
+  ngOnInit(): void {
+    window.scrollTo(0, 0);
+  }
 }

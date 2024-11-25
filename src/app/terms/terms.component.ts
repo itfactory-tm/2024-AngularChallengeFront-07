@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './terms.component.html',
   styleUrls: ['./terms.component.css']
 })
-export class TermsComponent {
+export class TermsComponent implements OnInit {
   sections = [
     {
       title: '1. Acceptance of Terms',
@@ -35,4 +35,8 @@ export class TermsComponent {
       content: 'We reserve the right to modify these Terms at any time. We will notify you of any changes by posting the new Terms on this page. For any questions, please contact us at terms@fritfest.com.'
     }
   ];
+
+  ngOnInit(): void {
+    window.scrollTo(0, 0);
+  }
 }
