@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '@auth0/auth0-angular';
 
@@ -13,7 +13,9 @@ import { AuthService } from '@auth0/auth0-angular';
   styleUrls: []
 })
 export class HeaderComponent {
-  constructor(private auth: AuthService) {}
+  adminDropdownOpen = true;
+
+  constructor(private auth: AuthService, private router:Router) { }
 
   handleLogin(): void {
     this.auth.loginWithRedirect({
@@ -42,5 +44,17 @@ export class HeaderComponent {
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
+  }
+  onAdminDropDownClick() {
+    this.adminDropdownOpen = !this.adminDropdownOpen;
+  }
+
+  closeAdminDropDown() {
+    this.adminDropdownOpen = false;
+  }
+
+  navigateTo(path: string) {
+    this.closeAdminDropDown();
+    this.router.navigate([path]);
   }
 }
