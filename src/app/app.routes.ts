@@ -14,7 +14,7 @@ import { TermsComponent } from './terms/terms.component';
 import { StageDetailComponent } from './stage-detail/stage-detail.component';
 
 export const routes: Routes = [
-  { path: 'home', component: HomeComponent },
+  { path: '', component: HomeComponent },
   { path: 'info', component: InfoComponent },
   { path: 'line-up', component: LineUpComponent },
   { path: 'q-and-a', component: QAndAComponent },
@@ -23,10 +23,6 @@ export const routes: Routes = [
   { path: 'tickets', component: DayListComponent },
   { path: 'privacy', component: PrivacyComponent },
   { path: 'terms', component: TermsComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  // { path: '**', redirectTo: '/home' }, // Add this line for wildcard route
   { path: 'artist', component: ArtistComponent },
   { path: 'artist/:id', component: ArtistDetailComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: '**', redirectTo: '/home' },
 ];
