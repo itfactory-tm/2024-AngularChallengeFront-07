@@ -12,7 +12,7 @@ import { TicketTypeService } from '../services/ticketType.service';
 export class TicketsComponent implements OnInit {
   @Input() ticket!: Ticket;
   ticketType: TicketType | undefined;
-  quantity: number = 1;
+  quantity: number = 0;
 
   constructor(private ticketTypeService: TicketTypeService) {}
 
@@ -25,7 +25,7 @@ export class TicketsComponent implements OnInit {
   }
 
   decreaseQuantity(): void {
-    if (this.quantity > 1) {
+    if (this.quantity > 0) {
       this.quantity--;
     }
   }
