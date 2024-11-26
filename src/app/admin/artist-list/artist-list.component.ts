@@ -12,20 +12,18 @@ import { AsyncPipe } from '@angular/common';
   templateUrl: './artist-list.component.html',
   styleUrl: './artist-list.component.css'
 })
-export class ArtistListComponent implements OnInit {
-  artists$!: Observable<Artist[]>;
-  artists: Artist[] = [];
+export class ArtistListComponent implements OnInit{
+  artists$: Observable<Artist[]> = new Observable<Artist[]>();
   errorMessage: string = '';
 
   constructor(private artistService: ArtistService, private router: Router) {
   }
-
   ngOnInit(): void {
-    this.getArtists();
+   this.getArtistsApi();
   }
 
-  getArtists() {
-    this.artists = this.artistService.getArtists(); //naam van methode vervangen bij connecteren met API
+  getArtistsApi() {
+    this.artists$ = this.artistService.getArtistsApi();
   }
 
   add() {
@@ -40,7 +38,7 @@ export class ArtistListComponent implements OnInit {
 
   delete(id: number) {
     this.artistService.deleteArtist(id).subscribe({
-      next: (v) => this.getArtists(),
+      next: (v) => this.getArtistsApi(),
       error: (e) => this.errorMessage = e.message
     });
   }

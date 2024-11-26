@@ -73,16 +73,17 @@ export class ArtistService {
     this.artists.push(artist6);
 
   }
-  getArtists(): Artist[] {
-    return this.artists;
-  }
+   getArtists(): Artist[] {
+     return this.artists;
+   }
 
   getArtistById(id: number): Artist | null {
     return this.artists.find(a => a.id === id) ?? null; //find = JavaScript method on arrays!
   }
 
   getArtistsApi(): Observable<Artist[]> {
-    return this.httpClient.get<Artist[]>("http://localhost:3000/artists");
+    return this.httpClient.get<Artist[]>("http://localhost:8080/api/Artiests");
+    //http://localhost:5283/api/Artiests
   }
 
   getArtistByIdApi(id: number): Observable<Artist> {
