@@ -12,19 +12,18 @@ import { AsyncPipe } from '@angular/common';
   templateUrl: './artist-list.component.html',
   styleUrl: './artist-list.component.css'
 })
-export class ArtistListComponent implements OnInit {
-  artists$!: Observable<Artist[]>;
+export class ArtistListComponent implements OnInit{
+  artists$: Observable<Artist[]> = new Observable<Artist[]>();
   errorMessage: string = '';
 
   constructor(private artistService: ArtistService, private router: Router) {
   }
-
   ngOnInit(): void {
-    this.getArtists();
+   this.getArtists();
   }
 
   getArtists() {
-    this.artists$ = this.artistService.getArtistsApi(); //naam van methode vervangen bij connecteren met API
+    this.artists$ = this.artistService.getArtists();
   }
 
   add() {

@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { TimeSchedule } from '../interfaces/time-schedule';
 import { ArtistService } from '../services/artist.service';
 import { Artist } from '../interfaces/artist';
+import { forkJoin, Observable } from 'rxjs';
 
 
 @Component({
@@ -15,6 +16,7 @@ import { Artist } from '../interfaces/artist';
 })
 export class TimeScheduleComponent implements OnInit, OnChanges {
   timeSchedules: TimeSchedule[] = [];
+  artists$: Observable<Artist[]> = new Observable<Artist[]>();
   artists: Artist[] = [];
   
   @Input() selectedDay: string = 'vrijdag';
@@ -37,9 +39,11 @@ export class TimeScheduleComponent implements OnInit, OnChanges {
 
   updateScheduleAndArtists(): void {
     this.timeSchedules = this.timeScheduleService.getScheduleByDay(this.selectedDay);
-    this.artists = this.timeSchedules.map(t => 
-      this.artistService.getArtistById(t.artistId)!
-    );
+    forkJoin(
+      this.timeSchedules.map(t => this.artistService.getArtistById(t.artistId)!)
+    ).subscribe(artists => {
+      this.artists = artists;
+    });
   }
 
   parseTime(time: string): number {
