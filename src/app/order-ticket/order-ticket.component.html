@@ -1,0 +1,63 @@
+<div class="ticket-list-container p-8 bg-gray-100">
+    <h1 class="text-4xl font-bold mb-6">Vul de namen van de ticket houders in</h1>
+  
+    <form (ngSubmit)="onSubmit()" class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg space-y-8">
+        <h2 class="text-3xl font-extrabold text-gray-900 text-center">Ticket Purchase</h2>
+      
+        <!-- Buyer Information Section -->
+        <div class="space-y-4">
+          <h3 class="text-2xl font-semibold text-gray-700">Fill in your information</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label for="name" class="block text-sm font-medium text-gray-700">Name of Buyer</label>
+              <input type="text" id="name" name="name"
+                     class="mt-2 block w-full px-4 py-2 rounded-lg border border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                     placeholder="John Doe" required />
+            </div>
+            <div>
+              <label for="email" class="block text-sm font-medium text-gray-700">Email of Buyer</label>
+              <input type="email" id="email" name="email"
+                     class="mt-2 block w-full px-4 py-2 rounded-lg border border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                     placeholder="john.doe@example.com" required />
+            </div>
+          </div>
+        </div>
+      
+        <!-- Ticket Holder Information Section -->
+        <div class="space-y-4">
+          <h3 class="text-2xl font-semibold text-gray-700">Fill in the ticket holders' details</h3>
+          @for(tick of selectedticket; track $index){
+            <div class="space-y-4">
+                <!-- Single Label or Paragraph Above Fields -->
+                <p class="text-lg font-semibold text-gray-500">Ticket Holder Information</p>
+              
+                <!-- Ticket Holder Name and Email Fields Side by Side -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <!-- Ticket Holder Name Field -->
+                  <div>
+                    <input type="text" id="ticket-holder-name"
+                           class="mt-2 block w-full px-4 py-2 rounded-lg border border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                           placeholder="Ticket Holder Name" required />
+                  </div>
+                  <!-- Ticket Holder Email Field -->
+                  <div>
+                    <input type="email" id="ticket-holder-email"
+                           class="mt-2 block w-full px-4 py-2 rounded-lg border border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                           placeholder="ticket@example.com" required />
+                  </div>
+                </div>
+              </div>
+        }
+        </div>
+      
+        <!-- Submit Button -->
+        <div class="text-center">
+          <button type="submit"
+                  class="w-full sm:w-auto bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:opacity-80 focus:outline-none focus:ring-4 focus:ring-blue-300 transition duration-300 ease-in-out">
+            Buy Tickets
+          </button>
+        </div>
+      </form>
+      
+  </div>
+

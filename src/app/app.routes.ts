@@ -12,6 +12,7 @@ import { DayListComponent } from './day-list/day-list.component';
 import { PrivacyComponent } from './privacy/privacy.component';
 import { TermsComponent } from './terms/terms.component';
 import { StageDetailComponent } from './stage-detail/stage-detail.component';
+import { OrderTicketComponent } from './order-ticket/order-ticket.component';
 
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -27,6 +28,7 @@ export const routes: Routes = [
   // { path: '**', redirectTo: '/home' }, // Add this line for wildcard route
   { path: 'artist', component: ArtistComponent },
   { path: 'artist/:id', component: ArtistDetailComponent },
+  { path: 'order-ticket', component: OrderTicketComponent},
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', redirectTo: '/home' },
 ];

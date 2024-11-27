@@ -8,6 +8,8 @@ export class TicketService {
 
   private tickets: Ticket[] = [];
 
+  private selectedTickets: Ticket[] = [];
+
   constructor() {
 
     let ticket1: Ticket = {
@@ -130,11 +132,22 @@ export class TicketService {
     this.tickets.push(ticket10);
     this.tickets.push(ticket11);
     this.tickets.push(ticket12);
+
+    this.selectedTickets.push(ticket1);
+    this.selectedTickets.push(ticket1);
+    this.selectedTickets.push(ticket2);
   }
 
   getTickets(): Ticket[] {
     return this.tickets;
   }
 
+  getSelectedTickets(): Ticket[]{
+    return this.selectedTickets;
+  }
+
+  setSelectedTickets(tickets: Ticket[]): void {
+    this.selectedTickets = tickets;
+  }
 
 }

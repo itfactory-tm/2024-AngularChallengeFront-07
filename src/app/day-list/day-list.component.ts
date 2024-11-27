@@ -5,12 +5,13 @@ import { DagService } from '../services/dag.service';
 import { TicketsComponent } from '../tickets/tickets.component';
 import { TicketService } from '../services/ticket.service';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 
 @Component({
   selector: 'app-day-list',
   standalone: true,
-  imports: [TicketsComponent, CommonModule],
+  imports: [TicketsComponent, CommonModule, RouterModule],
   templateUrl: './day-list.component.html',
   styleUrl: './day-list.component.css'
 })
