@@ -23,8 +23,12 @@ export class ArtistFormComponent {
     email: '',
     beschrijving: '',
     spotifyLink: '',
+    genre: '',
     apiCode: '',
-    genreId: ''
+    spotifyPopularity: null,
+    spotifyFollowers: null,
+    spotifyPhoto: '',
+    edities: []
   };
 
   isSubmitted: boolean = false;

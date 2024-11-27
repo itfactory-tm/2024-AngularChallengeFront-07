@@ -5,5 +5,9 @@ export interface Artist {
     beschrijving: string;
     spotifyLink: string;
     apiCode: string;
-    genreId: string;
+    spotifyPopularity: number | null;
+    spotifyFollowers: number | null;
+    spotifyPhoto: string;
+    genre: string;
+    edities: string[];
 }
