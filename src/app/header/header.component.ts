@@ -1,21 +1,22 @@
 import { Component } from '@angular/core';
-import { Router, RouterModule} from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '@auth0/auth0-angular';
-
-
+import { AuthService, User } from '@auth0/auth0-angular';
+import { AuthButtonComponent } from '../auth-button/auth-button.component';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterModule, CommonModule],
+  imports: [RouterModule, CommonModule, AuthButtonComponent],
   templateUrl: './header.component.html',
-  styleUrls: []
+  styleUrls: [],
 })
 export class HeaderComponent {
   adminDropdownOpen = false;
+  isMenuOpen = false;
+  // Store the logged-in user
 
-  constructor(private auth: AuthService, private router:Router) { }
+  constructor(public auth: AuthService, private router: Router) {}
 
   handleLogin(): void {
     this.auth.loginWithRedirect({
@@ -28,6 +29,12 @@ export class HeaderComponent {
     });
   }
 
+  handleLogout(): void {
+    this.auth.logout({
+      logoutParams: { returnTo: window.location.origin },
+    });
+  }
+
   leftPages = [
     { path: '/', name: 'Home' },
     { path: '/line-up', name: 'Line-up' },
@@ -37,14 +44,13 @@ export class HeaderComponent {
   rightPages = [
     { path: '/tickets', name: 'Tickets' },
     { path: '/info', name: 'Info' },
-    { path: '/q-and-a', name: 'Q&A' }
+    { path: '/q-and-a', name: 'Q&A' },
   ];
-
-  isMenuOpen = false;
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
   }
+
   onAdminDropDownClick() {
     this.adminDropdownOpen = !this.adminDropdownOpen;
   }
