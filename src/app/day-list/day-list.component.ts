@@ -5,7 +5,8 @@ import { DagService } from '../services/dag.service';
 import { TicketsComponent } from '../tickets/tickets.component';
 import { TicketService } from '../services/ticket.service';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
+import { tick } from '@angular/core/testing';
 
 
 @Component({
@@ -22,9 +23,12 @@ export class DayListComponent {
 
   ticketsByDag: { [key: number]: Ticket[] } = {};
 
+  resultArray: Ticket[] = [];
+
+
   isSticky: boolean = false;
 
-  constructor(private dagService: DagService, private ticketService: TicketService){}
+  constructor(private dagService: DagService, private ticketService: TicketService, private router: Router){}
 
   ngOnInit(): void {
     this.dagen = this.dagService.getDays();
@@ -35,6 +39,30 @@ export class DayListComponent {
     });
 
   }
+
+  //Submit tickets for buying
+  addTickets(ticket: Ticket, amount: number): void {
+    for (let i = 0; i < amount; i++) {
+      this.resultArray.push(ticket);  // Add the ticket 'amount' times to the result array
+    }
+  }
+
+  // Submit the selected tickets
+  submitTickets(): void {
+    this.resultArray = []; // Reset result array
+    this.tickets.forEach(ticket => {
+      const inputElement = document.getElementById(`ticket-input-${ticket.ticketId}`) as HTMLInputElement;
+      const amount = parseInt(inputElement.value, 10) || 0;  // Get the input value or default to 0
+      this.addTickets(ticket, amount);  // Add ticket that many times
+    });
+    this.ticketService.setSelectedTickets(this.resultArray); // Display the selected tickets
+    console.log(this.ticketService.getSelectedTickets());
+    this.router.navigate(['/order-ticket']);
+
+  }
+
+
+
 
   @HostListener('window:scroll', [])
   onWindowScroll(): void {

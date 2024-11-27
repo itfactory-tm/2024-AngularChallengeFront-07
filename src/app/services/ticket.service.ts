@@ -133,13 +133,14 @@ export class TicketService {
     this.tickets.push(ticket11);
     this.tickets.push(ticket12);
 
-    this.selectedTickets.push(ticket1);
-    this.selectedTickets.push(ticket1);
-    this.selectedTickets.push(ticket2);
   }
 
   getTickets(): Ticket[] {
     return this.tickets;
+  }
+
+  getTicketById(i: number): Ticket {
+    return this.tickets[i]
   }
 
   getSelectedTickets(): Ticket[]{

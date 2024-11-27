@@ -6,8 +6,6 @@ import { CommonModule } from '@angular/common';
 import { TicketType } from '../interfaces/ticketType';
 import { TicketTypeService } from '../services/ticketType.service';
 
-
-
 @Component({
   selector: 'app-ticket',
   standalone: true,
