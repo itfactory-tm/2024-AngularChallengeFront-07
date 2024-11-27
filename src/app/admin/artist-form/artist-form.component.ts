@@ -18,12 +18,13 @@ export class ArtistFormComponent {
   artistId: number = 0;
 
   artist: Artist = {
-    id: 0,
-    name: '',
-    genre: '',
-    biography: '',
-    imageUrl: '',
-    spotifyId: ''
+    artiestId: 0,
+    naam: '',
+    email: '',
+    beschrijving: '',
+    spotifyLink: '',
+    apiCode: '',
+    genreId: ''
   };
 
   isSubmitted: boolean = false;
@@ -40,7 +41,7 @@ export class ArtistFormComponent {
     }
 
     if (this.artistId != null && this.artistId > 0) {
-      this.artistService.getArtistByIdApi(this.artistId).subscribe(result => {
+      this.artistService.getArtistById(this.artistId).subscribe(result => {
         this.artist = result;
       });
     }

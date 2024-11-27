@@ -17,34 +17,36 @@
                     <tr>
                         <th class="px-6 py-3 text-md font-bold text-left">#</th>
                         <th class="px-6 py-3 text-md font-bold text-left">Name</th>
-                        <th class="px-6 py-3 text-md font-bold text-left">Genre</th>
-                        <th class="px-6 py-3 text-md font-bold text-left">Biography</th>
-                        <th class="px-6 py-3 text-md font-bold text-left">Image URL</th>
-                        <th class="px-6 py-3 text-md font-bold text-left">Spotify ID</th>
+                        <th class="px-6 py-3 text-md font-bold text-left">Email</th>
+                        <th class="px-6 py-3 text-md font-bold text-left">Description</th>
+                        <th class="px-6 py-3 text-md font-bold text-left">Spotify Link</th>
+                        <th class="px-6 py-3 text-md font-bold text-left">Api code</th>
+                        <th class="px-6 py-3 text-md font-bold text-left">genre</th>
                         <th class="px-6 py-3 text-md text-center">&nbsp;</th>
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-300">
-                    @for (artist of artists$ | async; track artist.id) {
+                    @for (artist of artists$ | async; track artist.artiestId) {
                     <tr class="hover:bg-gray-100 transition ease-in-out">
-                        <td class="px-6 py-4 text-sm font-medium text-gray-700">{{artist.id}}</td>
-                        <td class="px-6 py-4 text-sm text-gray-600">{{artist.name}}</td>
+                        <td class="px-6 py-4 text-sm font-medium text-gray-700">{{artist.artiestId}}</td>
+                        <td class="px-6 py-4 text-sm text-gray-600">{{artist.naam}}</td>
                         <td class="px-6 py-4 text-sm text-gray-600">
                             <span
-                                class="px-2 py-1 rounded-md bg-blue-100 text-blue-800 font-semibold">{{artist.genre}}</span>
+                                class="px-2 py-1 rounded-md bg-blue-100 text-blue-800 font-semibold">{{artist.email}}</span>
                         </td>
                         <td class="px-6 py-4 text-sm text-gray-600 truncate max-w-sm">
-                            <div class="tooltip" title="{{artist.biography}}">{{artist.biography}}</div>
+                            <div class="tooltip" title="{{artist.beschrijving}}">{{artist.beschrijving}}</div>
                         </td>
                         <td class="px-6 py-4 text-sm text-blue-600 truncate max-w-xs">
-                            <a href="{{artist.imageUrl}}" target="_blank"
-                                class="hover:underline">{{artist.imageUrl}}</a>
+                            <a href="{{artist.spotifyLink}}" target="_blank"
+                                class="hover:underline">{{artist.spotifyLink}}</a>
                         </td>
-                        <td class="px-6 py-4 text-sm text-gray-600">{{artist.spotifyId}}</td>
+                        <td class="px-6 py-4 text-sm text-gray-600">{{artist.apiCode}}</td>
+                        <td class="px-6 py-4 text-sm text-gray-600">{{artist.genreId}}</td>
                         <td class="px-6 py-4 text-sm font-bold text-center">
                             <div class="flex justify-end gap-4">
                                 <!-- Edit Button -->
-                                <button (click)="edit(artist.id)" title="Edit" aria-label="Edit"
+                                <button (click)="edit(artist.artiestId)" title="Edit" aria-label="Edit"
                                     class="flex items-center gap-2 px-3 py-2 rounded-md bg-blue-100 text-blue-800 hover:bg-blue-200 transition ease-in-out">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none"
                                         viewBox="0 0 24 24" stroke="currentColor">
@@ -55,7 +57,7 @@
                                 </button>
 
                                 <!-- Delete Button -->
-                                <button (click)="delete(artist.id)" title="Delete" aria-label="Delete"
+                                <button (click)="delete(artist.artiestId)" title="Delete" aria-label="Delete"
                                     class="flex items-center gap-2 px-3 py-2 rounded-md bg-red-100 text-red-800 hover:bg-red-200 transition ease-in-out">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none"
                                         viewBox="0 0 24 24" stroke="currentColor">

@@ -1,8 +1,9 @@
 export interface Artist {
-    id: number;
-    name: string;
-    genre: string;
-    biography: string;
-    imageUrl: string;
-    spotifyId: string;
+    artiestId: number;
+    naam: string;
+    email: string;
+    beschrijving: string;
+    spotifyLink: string;
+    apiCode: string;
+    genreId: string;
 }
