@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { StageService } from '../services/stage.service';
 import { CommonModule } from '@angular/common';
 import { TimeScheduleComponent } from '../time-schedule/time-schedule.component';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-line-up',
@@ -16,6 +17,7 @@ import { TimeScheduleComponent } from '../time-schedule/time-schedule.component'
   styleUrl: './line-up.component.css'
 })
 export class LineUpComponent {
+  artists$: Observable<Artist[]> = new Observable<Artist[]>();
   view: String = "artists";
   artists: Artist[] = [];
   stages: Stage[] = [];
@@ -27,10 +29,11 @@ export class LineUpComponent {
   ];
   @ViewChild('scrollContainer', { static: false }) scrollContainer!: ElementRef;
 
-  constructor(private router: Router, private artistService: ArtistService, private stageService: StageService) { }
+  constructor(private router: Router, private artistService: ArtistService, private stageService: StageService) {}
 
   ngOnInit(): void {
-    this.artists = this.artistService.getArtists();
+    
+    this.artists$ = this.artistService.getArtists();
     this.stages = this.stageService.getStages();
   }
 

@@ -1,52 +1,54 @@
 @if(isSubmitted && errorMessage) {
-    <div class="rounded p-4 mb-4 text-lg bg-red-200 text-red-800 border-2 border-red-300">
-        {{errorMessage}}
+<div class="rounded p-4 mb-4 text-lg bg-red-200 text-red-800 border-2 border-red-300">
+    {{errorMessage}}
+</div>
+}
+<form (ngSubmit)="onSubmit()" #artistForm="ngForm">
+    <div class="mb-6">
+        <label for="name" class="block mb-2 text-sm font-medium text-primary ">Name</label>
+        <input type="name" id="name" name="name"
+            class="bg-gray-50 border border-gray-300 text-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            placeholder="Name" required [(ngModel)]="artist.naam" #name="ngModel">
+        <div [hidden]="name.valid || name.pristine" class="text-red-500 mt-2">Name is required</div>
     </div>
+
+    <div class="mb-6">
+        <label for="email" class="block mb-2 text-sm font-medium text-primary ">Email</label>
+        <input type="email" id="email" name="email"
+            class="bg-gray-50 border border-gray-300 text-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            placeholder="Email" required [(ngModel)]="artist.email" #email="ngModel">
+        <div [hidden]="email.valid || email.pristine" class="text-red-500 mt-2">email is required</div>
+    </div>
+    <div class="mb-6">
+        <label for="beschrijving" class="block mb-2 text-sm font-medium text-primary ">Beschrijving</label>
+        <input type="beschrijving" id="beschrijving" name="beschrijving"
+            class="bg-gray-50 border border-gray-300 text-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            placeholder="Beschrijving" required [(ngModel)]="artist.beschrijving" #beschrijving="ngModel">
+        <div [hidden]="beschrijving.valid || beschrijving.pristine" class="text-red-500 mt-2">Beschrijving is required
+        </div>
+    </div>
+    <div class="mb-6">
+        <label for="spotifyLink" class="block mb-2 text-sm font-medium text-primary ">SpotifyLink</label>
+        <input type="spotifyLink" id="spotifyLink" name="spotifyLink"
+            class="bg-gray-50 border border-gray-300 text-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            placeholder="SpotifyLink" required [(ngModel)]="artist.spotifyLink" #spotifyLink="ngModel">
+        <div [hidden]="spotifyLink.valid || spotifyLink.pristine" class="text-red-500 mt-2">SpotifyLink is required
+        </div>
+    </div>
+    <div class="mb-6">
+        <label for="apiCode" class="block mb-2 text-sm font-medium text-primary ">Api Code</label>
+        <input type="apiCode" id="apiCode" name="apiCode"
+            class="bg-gray-50 border border-gray-300 text-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            placeholder="ApiCode" required [(ngModel)]="artist.apiCode" #apiCode="ngModel">
+        <div [hidden]="apiCode.valid || apiCode.pristine" class="text-red-500 mt-2">Api code is required</div>
+    </div>
+
+    @if(isAdd) {
+    <button type="submit" [disabled]="!artistForm.form.valid || isSubmitted"
+        class="text-white bg-blue-700 enabled:hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center disabled:opacity-75">Add</button>
     }
-    <form (ngSubmit)="onSubmit()" #artistForm="ngForm">
-        <div class="mb-6">
-            <label for="name" class="block mb-2 text-sm font-medium text-primary ">Name</label>
-            <input type="name" id="name" name="name"
-                class="bg-gray-50 border border-gray-300 text-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                placeholder="Name" required [(ngModel)]="artist.name" #name="ngModel">
-            <div [hidden]="name.valid || name.pristine" class="text-red-500 mt-2">Name is required</div>
-        </div>
-        
-        <div class="mb-6">
-            <label for="genre" class="block mb-2 text-sm font-medium text-primary ">Genre</label>
-            <input type="genre" id="genre" name="genre"
-                class="bg-gray-50 border border-gray-300 text-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                placeholder="Genre" required [(ngModel)]="artist.genre" #genre="ngModel">
-            <div [hidden]="genre.valid || genre.pristine" class="text-red-500 mt-2">genre is required</div>
-        </div>
-        <div class="mb-6">
-            <label for="biography" class="block mb-2 text-sm font-medium text-primary ">Biography</label>
-            <input type="biography" id="biography" name="biography"
-                class="bg-gray-50 border border-gray-300 text-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                placeholder="biography" required [(ngModel)]="artist.biography" #biography="ngModel">
-            <div [hidden]="biography.valid || biography.pristine" class="text-red-500 mt-2">Biography is required</div>
-        </div>
-        <div class="mb-6">
-            <label for="imageUrl" class="block mb-2 text-sm font-medium text-primary ">ImageUrl</label>
-            <input type="imageUrl" id="imageUrl" name="imageUrl"
-                class="bg-gray-50 border border-gray-300 text-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                placeholder="ImageUrl" required [(ngModel)]="artist.imageUrl" #imageUrl="ngModel">
-            <div [hidden]="imageUrl.valid || imageUrl.pristine" class="text-red-500 mt-2">ImageUrl is required</div>
-        </div>
-        <div class="mb-6">
-            <label for="spotifyId" class="block mb-2 text-sm font-medium text-primary ">SpotifyId</label>
-            <input type="spotifyId" id="spotifyId" name="spotifyId"
-                class="bg-gray-50 border border-gray-300 text-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                placeholder="SpotifyId" required [(ngModel)]="artist.spotifyId" #spotifyId="ngModel">
-            <div [hidden]="spotifyId.valid || spotifyId.pristine" class="text-red-500 mt-2">SpotifyId is required</div>
-        </div>
-    
-        @if(isAdd) {
-        <button type="submit" [disabled]="!artistForm.form.valid || isSubmitted"
-            class="text-white bg-blue-700 enabled:hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center disabled:opacity-75">Add</button>
-        }
-        @if(isEdit) {
-        <button type="submit" [disabled]="!artistForm.form.valid || isSubmitted"
-            class="text-white bg-blue-700 enabled:hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center disabled:opacity-75">Save</button>
-        }
-    </form>
+    @if(isEdit) {
+    <button type="submit" [disabled]="!artistForm.form.valid || isSubmitted"
+        class="text-white bg-blue-700 enabled:hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center disabled:opacity-75">Save</button>
+    }
+</form>

@@ -19,11 +19,11 @@ export class ArtistListComponent implements OnInit{
   constructor(private artistService: ArtistService, private router: Router) {
   }
   ngOnInit(): void {
-   this.getArtistsApi();
+   this.getArtists();
   }
 
-  getArtistsApi() {
-    this.artists$ = this.artistService.getArtistsApi();
+  getArtists() {
+    this.artists$ = this.artistService.getArtists();
   }
 
   add() {
@@ -38,7 +38,7 @@ export class ArtistListComponent implements OnInit{
 
   delete(id: number) {
     this.artistService.deleteArtist(id).subscribe({
-      next: (v) => this.getArtistsApi(),
+      next: (v) => this.getArtists(),
       error: (e) => this.errorMessage = e.message
     });
   }

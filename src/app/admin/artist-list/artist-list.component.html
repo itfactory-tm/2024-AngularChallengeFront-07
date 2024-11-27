@@ -21,14 +21,14 @@
                         <th class="px-6 py-3 text-md font-bold text-left">Description</th>
                         <th class="px-6 py-3 text-md font-bold text-left">Spotify Link</th>
                         <th class="px-6 py-3 text-md font-bold text-left">Api code</th>
-                        <th class="px-6 py-3 text-md font-bold text-left">genre</th>
+                        <th class="px-6 py-3 text-md font-bold text-left">Genre</th>
                         <th class="px-6 py-3 text-md text-center">&nbsp;</th>
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-300">
                     @for (artist of artists$ | async; track artist.artiestId) {
                     <tr class="hover:bg-gray-100 transition ease-in-out">
-                        <td class="px-6 py-4 text-sm font-medium text-gray-700">{{artist.artiestId}}</td>
+                        <td class="px-6 py-4 text-sm font-medium text-gray-700">{{$index +1}}</td>
                         <td class="px-6 py-4 text-sm text-gray-600">{{artist.naam}}</td>
                         <td class="px-6 py-4 text-sm text-gray-600">
                             <span
