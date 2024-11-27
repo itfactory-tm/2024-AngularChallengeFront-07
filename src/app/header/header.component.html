@@ -49,72 +49,78 @@
         }
         <li>
           @if (auth.isAuthenticated$ | async) {
-          <button
-            class="font-semibold text-lg text-text-light hover:text-primary hover:underline hover:scale-105 transition-transform duration-300 ease-in-out"
-            (click)="handleLogout()"
-          >
-            Logout
-          </button>
-          } @else {<app-auth-button></app-auth-button>}
-        </li>
-        <li>
-          <button
-            id="dropdownNavbarLink"
-            (click)="onAdminDropDownClick()"
-            class="flex justify-between items-center font-semibold text-lg text-text-light hover:text-primary hover:underline hover:scale-105 transition-transform duration-300 ease-in-out"
-          >
-            Admin
-            <svg
-              class="ml-1 w-5 h-5"
-              aria-hidden="true"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
+          <div class="flex items-center space-x-4">
+            <!-- Logout Button -->
+            <button
+              class="font-semibold text-lg text-text-light hover:text-primary hover:underline hover:scale-105 transition-transform duration-300 ease-in-out"
+              (click)="handleLogout()"
             >
-              <path
-                fill-rule="evenodd"
-                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                clip-rule="evenodd"
-              ></path>
-            </svg>
-          </button>
-          <!-- Dropdown menu -->
-          @if (adminDropdownOpen) {
-          <div
-            id="dropdownNavbar"
-            (mouseleave)="closeAdminDropDown()"
-            class="fixed w-44 font-bold shadow bg-secondary"
-          >
-            <ul
-              class="py-1 text-sm text-gray-700"
-              aria-labelledby="dropdownLargeButton"
-            >
-              <li>
-                <a
-                  routerLink="/admin/artist"
-                  routerLinkActive="active"
-                  [routerLinkActiveOptions]="{ exact: true }"
-                  class="block py-2 px-4 font-semibold text-text-light cursor-pointer hover:text-primary hover:underline hover:scale-105 transition-transform duration-300 ease-in-out"
-                  >Artists</a
+              Logout
+            </button>
+
+            <!-- Admin Dropdown -->
+            <div class="relative">
+              <button
+                id="dropdownNavbarLink"
+                (click)="onAdminDropDownClick()"
+                class="flex justify-between items-center font-semibold text-lg text-text-light hover:text-primary hover:underline hover:scale-105 transition-transform duration-300 ease-in-out"
+              >
+                Admin
+                <svg
+                  class="ml-1 w-5 h-5"
+                  aria-hidden="true"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
                 >
-              </li>
-              <li>
-                <a
-                  (click)="navigateTo('admin/stages')"
-                  class="block py-2 px-4 font-semibold text-text-light cursor-pointer hover:text-primary hover:underline hover:scale-105 transition-transform duration-300 ease-in-out"
-                  >Stages</a
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </button>
+
+              <!-- Dropdown menu -->
+              @if (adminDropdownOpen) {
+              <div
+                id="dropdownNavbar"
+                (mouseleave)="closeAdminDropDown()"
+                class="absolute right-0 w-44 font-bold shadow bg-secondary"
+              >
+                <ul
+                  class="py-1 text-sm text-gray-700"
+                  aria-labelledby="dropdownLargeButton"
                 >
-              </li>
-              <li>
-                <a
-                  (click)="navigateTo('admin/tickets')"
-                  class="block py-2 px-4 font-semibold text-text-light cursor-pointer hover:text-primary hover:underline hover:scale-105 transition-transform duration-300 ease-in-out"
-                  >Tickets</a
-                >
-              </li>
-            </ul>
+                  <li>
+                    <a
+                      routerLink="/admin/artist"
+                      routerLinkActive="active"
+                      [routerLinkActiveOptions]="{ exact: true }"
+                      class="block py-2 px-4 font-semibold text-text-light cursor-pointer hover:text-primary hover:underline hover:scale-105 transition-transform duration-300 ease-in-out"
+                      >Artists</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      (click)="navigateTo('admin/stages')"
+                      class="block py-2 px-4 font-semibold text-text-light cursor-pointer hover:text-primary hover:underline hover:scale-105 transition-transform duration-300 ease-in-out"
+                      >Stages</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      (click)="navigateTo('admin/tickets')"
+                      class="block py-2 px-4 font-semibold text-text-light cursor-pointer hover:text-primary hover:underline hover:scale-105 transition-transform duration-300 ease-in-out"
+                      >Tickets</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              }
+            </div>
           </div>
-          }
+          } @else {<app-auth-button></app-auth-button>}
         </li>
       </ul>
     </nav>
