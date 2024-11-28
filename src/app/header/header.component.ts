@@ -1,37 +1,31 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService, User } from '@auth0/auth0-angular';
-import { AuthButtonComponent } from '../auth-button/auth-button.component';
+import { LoginButtonComponent } from '../login-button/login-button.component';
+import { LogoutButtonComponent } from '../logout-button/logout-button.component';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterModule, CommonModule, AuthButtonComponent],
+  imports: [
+    RouterModule,
+    CommonModule,
+    LoginButtonComponent,
+    LogoutButtonComponent,
+  ],
   templateUrl: './header.component.html',
   styleUrls: [],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
   adminDropdownOpen = false;
   isMenuOpen = false;
-  // Store the logged-in user
+  isAuthenticated = signal(false);
 
-  constructor(public auth: AuthService, private router: Router) {}
-
-  handleLogin(): void {
-    this.auth.loginWithRedirect({
-      appState: {
-        target: '/',
-      },
-      authorizationParams: {
-        prompt: 'login',
-      },
-    });
-  }
-
-  handleLogout(): void {
-    this.auth.logout({
-      logoutParams: { returnTo: window.location.origin },
+  constructor(private auth: AuthService, private router: Router) {
+    this.auth.isAuthenticated$.subscribe((auth) => {
+      this.isAuthenticated.set(auth);
     });
   }
 

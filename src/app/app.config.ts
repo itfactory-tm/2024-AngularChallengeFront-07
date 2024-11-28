@@ -1,3 +1,4 @@
+import { environmentDev } from '../environments/environment.development';
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import {
   provideRouter,
@@ -11,10 +12,9 @@ import {
   withInterceptorsFromDi,
 } from '@angular/common/http';
 import { provideAuth0, AuthHttpInterceptor } from '@auth0/auth0-angular';
-import { environment } from '../environments/environment';
 
-const domain = environment.AUTH0_DOMAIN;
-const clientId = environment.AUTH0_CLIENT_ID;
+const domain = environmentDev.AUTH0_DOMAIN;
+const clientId = environmentDev.AUTH0_CLIENT_ID;
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -32,10 +32,11 @@ export const appConfig: ApplicationConfig = {
         domain: domain,
         clientId: clientId,
         authorizationParams: {
-          redirect_uri: environment.redirectUri,
+          audience: environmentDev.AUTH0_AUDIENCE,
+          redirect_uri: environmentDev.redirectUri,
         },
         httpInterceptor: {
-          allowedList: [`${environment.api_url}`], //List of URI links that need to be checked for authorisation
+          allowedList: [`${environmentDev.api_url}/*`], //List of URI links that need to be checked for authorisation
         },
       }),
     ],

@@ -48,15 +48,10 @@
         </li>
         }
         <li>
-          @if (auth.isAuthenticated$ | async) {
+          @if (isAuthenticated()) {
           <div class="flex items-center space-x-4">
             <!-- Logout Button -->
-            <button
-              class="font-semibold text-lg text-text-light hover:text-primary hover:underline hover:scale-105 transition-transform duration-300 ease-in-out"
-              (click)="handleLogout()"
-            >
-              Logout
-            </button>
+            <app-logout-button></app-logout-button>
 
             <!-- Admin Dropdown -->
             <div class="relative">
@@ -120,7 +115,7 @@
               }
             </div>
           </div>
-          } @else {<app-auth-button></app-auth-button>}
+          } @else {<app-login-button></app-login-button>}
         </li>
       </ul>
     </nav>
