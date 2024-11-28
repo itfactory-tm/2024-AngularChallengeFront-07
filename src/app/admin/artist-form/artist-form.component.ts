@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [FormsModule],
   templateUrl: './artist-form.component.html',
-  styleUrl: './artist-form.component.css'
+  styleUrl: './artist-form.component.css',
 })
 export class ArtistFormComponent {
   isAdd: boolean = false;
@@ -28,11 +28,11 @@ export class ArtistFormComponent {
     spotifyPopularity: null,
     spotifyFollowers: null,
     spotifyPhoto: '',
-    edities: []
+    edities: [],
   };
 
   isSubmitted: boolean = false;
-  errorMessage: string = "";
+  errorMessage: string = '';
 
   constructor(private router: Router, private artistService: ArtistService) {
     const state = this.router.getCurrentNavigation()?.extras.state || {};
@@ -45,7 +45,7 @@ export class ArtistFormComponent {
     }
 
     if (this.artistId != null && this.artistId > 0) {
-      this.artistService.getArtistById(this.artistId).subscribe(result => {
+      this.artistService.getArtistById(this.artistId).subscribe((result) => {
         this.artist = result;
       });
     }
@@ -55,14 +55,14 @@ export class ArtistFormComponent {
     this.isSubmitted = true;
     if (this.isAdd) {
       this.artistService.postArtist(this.artist).subscribe({
-        next: (v) => this.router.navigateByUrl("/admin/artist"),
-        error: (e) => this.errorMessage = e.message
+        next: (v) => this.router.navigateByUrl('/admin/artist'),
+        error: (e) => (this.errorMessage = e.message),
       });
     }
     if (this.isEdit) {
       this.artistService.putArtist(this.artistId, this.artist).subscribe({
-        next: (v) => this.router.navigateByUrl("/admin/artist"),
-        error: (e) => this.errorMessage = e.message
+        next: (v) => this.router.navigateByUrl('/admin/artist'),
+        error: (e) => (this.errorMessage = e.message),
       });
     }
   }
