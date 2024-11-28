@@ -37,8 +37,7 @@ export const appConfig: ApplicationConfig = {
         },
         httpInterceptor: {
           allowedList: [
-            `${environment.api_url}/Artiests`,
-            `${environment.api_url}/Artiests/*`,
+            `${environment.api_url}/*`,
           ], //List of URI links that need to be checked for authorisation
         },
       }),
