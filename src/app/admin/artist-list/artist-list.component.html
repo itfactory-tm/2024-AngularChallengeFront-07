@@ -20,7 +20,7 @@
                         <th class="px-6 py-3 text-md font-bold text-left">Email</th>
                         <th class="px-6 py-3 text-md font-bold text-left">Description</th>
                         <th class="px-6 py-3 text-md font-bold text-left">Spotify Link</th>
-                        <th class="px-6 py-3 text-md font-bold text-left">Api code</th>
+                        <th class="px-6 py-3 text-md font-bold text-left">Edities</th>
                         <th class="px-6 py-3 text-md font-bold text-left">Genre</th>
                         <th class="px-6 py-3 text-md text-center">&nbsp;</th>
                     </tr>
@@ -37,11 +37,14 @@
                         <td class="px-6 py-4 text-sm text-gray-600 truncate max-w-sm">
                             <div class="tooltip" title="{{artist.beschrijving}}">{{artist.beschrijving}}</div>
                         </td>
-                        <td class="px-6 py-4 text-sm text-blue-600 truncate max-w-xs">
-                            <a href="{{artist.spotifyLink}}" target="_blank"
-                                class="hover:underline">{{artist.spotifyLink}}</a>
+                        <td class="px-6 py-4 text-sm max-w-xs">
+                            @if (artist.apiCode) {
+                            <a href="{{artist.spotifyLink}}" target="_blank" class="hover:underline text-blue-600">{{artist.naam}}</a>
+                            }@else {
+                            <p>No Spotify link available</p>
+                            }
                         </td>
-                        <td class="px-6 py-4 text-sm text-gray-600">{{artist.apiCode}}</td>
+                        <td class="px-6 py-4 text-sm text-gray-600">{{artist.edities}}</td>
                         <td class="px-6 py-4 text-sm text-gray-600">{{artist.genre}}</td>
                         <td class="px-6 py-4 text-sm font-bold text-center">
                             <div class="flex justify-end gap-4">
