@@ -22,7 +22,7 @@ export class ArtistDetailComponent {
   ngOnInit(): void {
     const artistId = this.route.snapshot.paramMap.get('id');
     if (artistId != null) {
-      let artistTemp = this.artistService.getArtistById(+artistId) ?? null;
+      let artistTemp = this.artistService.getArtistById(artistId) ?? null;
       if (artistTemp != null) {
         this.artists$ = artistTemp;
       }

@@ -14,24 +14,20 @@ export class ArtistService {
     //http://localhost:5283/api/Artiests
   }
 
-  getArtistById(id: number): Observable<Artist> {
+  getArtistById(id: string): Observable<Artist> {
     return this.httpClient.get<Artist>(
-      'http://localhost:8080/api/Artists/' + id
+      'http://localhost:8080/api/Artiests/' + id
     );
   }
 
   postArtist(artist: Artist): Observable<Artist> {
-    let headers = new HttpHeaders();
-    headers = headers.set('Content-Type', 'application/json; charset=utf-8'); //vervangen en headers in de api call meegeven
-
     return this.httpClient.post<Artist>(
       'http://localhost:8080/api/Artiests',
-      artist,
-      { headers: headers }
+      artist
     );
   }
 
-  putArtist(id: number, artist: Artist): Observable<Artist> {
+  putArtist(id: string, artist: Artist): Observable<Artist> {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8'); //vervangen en headers in de api call meegeven
 
@@ -42,9 +38,9 @@ export class ArtistService {
     );
   }
 
-  deleteArtist(id: number): Observable<Artist> {
+  deleteArtist(id: string): Observable<Artist> {
     return this.httpClient.delete<Artist>(
-      'http://localhost:8080/api/artists/' + id
+      'http://localhost:8080/api/Artiests/' + id
     );
   }
 }

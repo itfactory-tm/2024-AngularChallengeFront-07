@@ -1,6 +1,6 @@
 export interface TimeSchedule {
     timeId: number;
-    artistId: number;
+    artistId: string;
     stageId : number;
     startSet: string;
     endSet: string;

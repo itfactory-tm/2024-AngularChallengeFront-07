@@ -31,12 +31,12 @@ export class ArtistListComponent implements OnInit{
     this.router.navigate(['admin/artist/form'], { state: { mode: 'add' } });
   }
 
-  edit(id: number) {
+  edit(id: string) {
     //Navigate to form in edit mode
     this.router.navigate(['admin/artist/form'], { state: { id: id, mode: 'edit' } });
   }
 
-  delete(id: number) {
+  delete(id: string) {
     this.artistService.deleteArtist(id).subscribe({
       next: (v) => this.getArtists(),
       error: (e) => this.errorMessage = e.message
