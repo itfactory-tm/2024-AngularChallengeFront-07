@@ -15,7 +15,7 @@ import { AsyncPipe } from '@angular/common';
   templateUrl: './artist-form.component.html',
   styleUrl: './artist-form.component.css',
 })
-export class ArtistFormComponent implements OnInit{
+export class ArtistFormComponent implements OnInit {
   isAdd: boolean = false;
   isEdit: boolean = false;
   artistId: string = '';
@@ -38,7 +38,11 @@ export class ArtistFormComponent implements OnInit{
   isSubmitted: boolean = false;
   errorMessage: string = '';
 
-  constructor(private router: Router, private artistService: ArtistService, private editionService: EditionService) {
+  constructor(
+    private router: Router,
+    private artistService: ArtistService,
+    private editionService: EditionService
+  ) {
     const state = this.router.getCurrentNavigation()?.extras.state || {};
     this.isAdd = state['mode'] === 'add';
     this.isEdit = state['mode'] === 'edit';
@@ -47,8 +51,6 @@ export class ArtistFormComponent implements OnInit{
     if (!this.isAdd && !this.isEdit) {
       this.isAdd = true;
     }
-
-
   }
   ngOnInit(): void {
     this.editions$ = this.editionService.getEditions();
@@ -57,7 +59,7 @@ export class ArtistFormComponent implements OnInit{
         this.artist = result;
       });
     }
-   }
+  }
 
   onSubmit() {
     this.isSubmitted = true;

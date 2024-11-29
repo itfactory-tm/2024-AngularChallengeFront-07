@@ -10,16 +10,15 @@ import { AsyncPipe } from '@angular/common';
   standalone: true,
   imports: [AsyncPipe],
   templateUrl: './artist-list.component.html',
-  styleUrl: './artist-list.component.css'
+  styleUrl: './artist-list.component.css',
 })
-export class ArtistListComponent implements OnInit{
+export class ArtistListComponent implements OnInit {
   artists$: Observable<Artist[]> = new Observable<Artist[]>();
   errorMessage: string = '';
 
-  constructor(private artistService: ArtistService, private router: Router) {
-  }
+  constructor(private artistService: ArtistService, private router: Router) {}
   ngOnInit(): void {
-   this.getArtists();
+    this.getArtists();
   }
 
   getArtists() {
@@ -33,14 +32,15 @@ export class ArtistListComponent implements OnInit{
 
   edit(id: string) {
     //Navigate to form in edit mode
-    this.router.navigate(['admin/artist/form'], { state: { id: id, mode: 'edit' } });
+    this.router.navigate(['admin/artist/form'], {
+      state: { id: id, mode: 'edit' },
+    });
   }
 
   delete(id: string) {
     this.artistService.deleteArtist(id).subscribe({
       next: (v) => this.getArtists(),
-      error: (e) => this.errorMessage = e.message
+      error: (e) => (this.errorMessage = e.message),
     });
   }
 }
-

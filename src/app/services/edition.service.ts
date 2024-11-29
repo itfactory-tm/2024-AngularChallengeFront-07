@@ -10,6 +10,6 @@ export class EditionService {
   constructor(private httpClient: HttpClient) {}
 
   getEditions(): Observable<Edition[]> {
-    return this.httpClient.get<Edition[]>('http://localhost:8080/api/Editie');
+    return this.httpClient.get<Edition[]>('http://localhost:8080/api/Edition');
   }
 }
