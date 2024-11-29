@@ -8,7 +8,7 @@ export class TimeScheduleService {
   private timeSchedules: TimeSchedule[] = [
     {
       timeId: 1,
-      artistId: 1,
+      artistId: "1",
       stageId: 1,
       startSet: "11:00",
       endSet: "12:00",
@@ -16,7 +16,7 @@ export class TimeScheduleService {
     },
     {
       timeId: 2,
-      artistId: 2,
+      artistId: "2",
       stageId: 1,
       startSet: "13:00",
       endSet: "14:00",
@@ -24,7 +24,7 @@ export class TimeScheduleService {
     },
     {
       timeId: 3,
-      artistId: 3,
+      artistId: "3",
       stageId: 1,
       startSet: "14:30",
       endSet: "16:00",
@@ -32,7 +32,7 @@ export class TimeScheduleService {
     },
     {
       timeId: 4,
-      artistId: 3,
+      artistId: "4",
       stageId: 2,
       startSet: "20:00",
       endSet: "23:00",

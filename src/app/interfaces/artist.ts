@@ -1,5 +1,5 @@
 export interface Artist {
-    artiestId: number;
+    artiestId: string;
     naam: string;
     email: string;
     beschrijving: string;
