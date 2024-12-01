@@ -1,53 +1,168 @@
-<header class="bg-secondary text-text-light fixed top-0 left-0 w-full z-50 shadow-lg h-24">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+<header
+  class="bg-secondary text-text-light fixed top-0 left-0 w-full z-50 shadow-lg h-24"
+>
+  <div
+    class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center"
+  >
     <nav class="hidden md:block flex-1 justify-end">
       <ul class="flex space-x-6 justify-end">
-        <li *ngFor="let page of leftPages">
-          <a [routerLink]="page.path" routerLinkActive="text-primary"
-            class="font-semibold text-lg text-text-light hover:text-primary hover:underline hover:scale-105 transition-transform duration-300 ease-in-out">
+        <!-- Left pages -->
+        @for (page of leftPages; track $index) {
+        <li>
+          <a
+            [routerLink]="page.path"
+            routerLinkActive="text-primary"
+            class="font-semibold text-lg text-text-light hover:text-primary hover:underline hover:scale-105 transition-transform duration-300 ease-in-out"
+          >
             {{ page.name }}
           </a>
         </li>
+        }
       </ul>
     </nav>
     <div class="flex flex-col items-center flex-shrink-0 mx-8">
-      <h1
-        class="text-4xl font-bold text-primary tracking-wide hover:text-accent transition-colors duration-300 ease-in-out">
-        FritFest</h1>
-      <p class="text-accent font-medium hover:text-primary transition-colors duration-300 ease-in-out">Food Truck
-        Festival</p>
+      <a
+        [routerLink]="'/'"
+        class="text-4xl font-bold text-primary tracking-wide hover:text-accent transition-colors duration-300 ease-in-out"
+      >
+        FritFest
+      </a>
+      <p
+        class="text-accent font-medium hover:text-primary transition-colors duration-300 ease-in-out"
+      >
+        Food Truck Festival
+      </p>
     </div>
     <nav class="hidden md:block flex-1 justify-start">
       <ul class="flex space-x-6 justify-start">
-        <li *ngFor="let page of rightPages">
-          <a [routerLink]="page.path" routerLinkActive="text-primary"
-            class="font-semibold text-lg text-text-light hover:text-primary hover:underline hover:scale-105 transition-transform duration-300 ease-in-out">
+        <!-- Right pages -->
+        @for (page of rightPages; track $index) {
+        <li>
+          <a
+            [routerLink]="page.path"
+            routerLinkActive="text-primary"
+            class="font-semibold text-lg text-text-light hover:text-primary hover:underline hover:scale-105 transition-transform duration-300 ease-in-out"
+          >
             {{ page.name }}
           </a>
         </li>
+        }
         <li>
-          <button
-            class="font-semibold text-lg text-text-light hover:text-primary hover:underline hover:scale-105 transition-transform duration-300 ease-in-out"
-            (click)="handleLogin()">Login</button>
+          @if (isAuthenticated()) {
+          <div class="flex items-center space-x-4">
+            <!-- Logout Button -->
+            <app-logout-button></app-logout-button>
+
+            <!-- Admin Dropdown -->
+            <div class="relative">
+              <button
+                id="dropdownNavbarLink"
+                (click)="onAdminDropDownClick()"
+                class="flex justify-between items-center font-semibold text-lg text-text-light hover:text-primary hover:underline hover:scale-105 transition-transform duration-300 ease-in-out"
+              >
+                Admin
+                <svg
+                  class="ml-1 w-5 h-5"
+                  aria-hidden="true"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </button>
+
+              <!-- Dropdown menu -->
+              @if (adminDropdownOpen) {
+              <div
+                id="dropdownNavbar"
+                (mouseleave)="closeAdminDropDown()"
+                class="absolute right-0 w-44 font-bold shadow bg-secondary"
+              >
+                <ul
+                  class="py-1 text-sm text-gray-700"
+                  aria-labelledby="dropdownLargeButton"
+                >
+                  <li>
+                    <a
+                      routerLink="/admin/artist"
+                      routerLinkActive="active"
+                      [routerLinkActiveOptions]="{ exact: true }"
+                      class="block py-2 px-4 font-semibold text-text-light cursor-pointer hover:text-primary hover:underline hover:scale-105 transition-transform duration-300 ease-in-out"
+                      >Artists</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      routerLink="/admin/stage"
+                      routerLinkActive="active"
+                      [routerLinkActiveOptions]="{ exact: true }"
+                      class="block py-2 px-4 font-semibold text-text-light cursor-pointer hover:text-primary hover:underline hover:scale-105 transition-transform duration-300 ease-in-out"
+                      >Stages</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      routerLink="/admin/ticket"
+                      routerLinkActive="active"
+                      [routerLinkActiveOptions]="{ exact: true }"
+                      class="block py-2 px-4 font-semibold text-text-light cursor-pointer hover:text-primary hover:underline hover:scale-105 transition-transform duration-300 ease-in-out"
+                      >Tickets</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      routerLink="/admin/sponsor"
+                      routerLinkActive="active"
+                      [routerLinkActiveOptions]="{ exact: true }"
+                      class="block py-2 px-4 font-semibold text-text-light cursor-pointer hover:text-primary hover:underline hover:scale-105 transition-transform duration-300 ease-in-out"
+                    >
+                      Sponsors</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              }
+            </div>
+          </div>
+          } @else {<app-login-button></app-login-button>}
         </li>
       </ul>
     </nav>
     <button class="md:hidden text-text-light" (click)="toggleMenu()">
-      <svg xmlns="http://www.w3.org/2000/svg"
-        class="h-6 w-6 hover:text-primary transition-colors duration-300 ease-in-out" fill="none" viewBox="0 0 24 24"
-        stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-6 w-6 hover:text-primary transition-colors duration-300 ease-in-out"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+          d="M4 6h16M4 12h16M4 18h16"
+        />
       </svg>
     </button>
   </div>
-  <nav class="md:hidden" [ngClass]="{'hidden': !isMenuOpen}">
+  <nav class="md:hidden" [ngClass]="{ hidden: !isMenuOpen }">
     <ul class="flex flex-col items-center py-4">
-      <li *ngFor="let page of leftPages.concat(rightPages)" class="w-full">
-        <a [routerLink]="page.path" routerLinkActive="text-primary"
-          class="block font-semibold text-lg text-text-light hover:text-primary hover:bg-secondary-dark hover:scale-105 transition-all duration-300 ease-in-out py-2 px-4 text-center">
+      @for (page of leftPages.concat(rightPages); track $index) {
+      <li class="w-full">
+        <a
+          [routerLink]="page.path"
+          routerLinkActive="text-primary"
+          class="block font-semibold text-lg text-text-light hover:text-primary hover:bg-secondary-dark hover:scale-105 transition-all duration-300 ease-in-out py-2 px-4 text-center"
+        >
           {{ page.name }}
         </a>
       </li>
+      }
     </ul>
   </nav>
 </header>

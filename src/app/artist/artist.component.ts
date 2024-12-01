@@ -19,7 +19,7 @@ export class ArtistComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  detail(id: number) {
+  detail(id: string) {
     this.router.navigate(['/artist', id]);
   }
 

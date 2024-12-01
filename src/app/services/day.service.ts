@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Day } from '../interfaces/day';
+import { Observable } from 'rxjs';
+import { ApiService } from './api.service';
+
 
 @Injectable({
   providedIn: 'root'
@@ -52,3 +55,4 @@ export class DayService {
     return this.day[i]
   }
 }
+

@@ -1,33 +1,36 @@
-import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '@auth0/auth0-angular';
-
-
+import { AuthService, User } from '@auth0/auth0-angular';
+import { LoginButtonComponent } from '../login-button/login-button.component';
+import { LogoutButtonComponent } from '../logout-button/logout-button.component';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterModule, CommonModule],
+  imports: [
+    RouterModule,
+    CommonModule,
+    LoginButtonComponent,
+    LogoutButtonComponent,
+  ],
   templateUrl: './header.component.html',
-  styleUrls: []
+  styleUrls: [],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
-  constructor(private auth: AuthService) {}
+  adminDropdownOpen = false;
+  isMenuOpen = false;
+  isAuthenticated = signal(false);
 
-  handleLogin(): void {
-    this.auth.loginWithRedirect({
-      appState: {
-        target: '/',
-      },
-      authorizationParams: {
-        prompt: 'login',
-      },
+  constructor(private auth: AuthService, private router: Router) {
+    this.auth.isAuthenticated$.subscribe((auth) => {
+      this.isAuthenticated.set(auth);
     });
   }
 
   leftPages = [
-    { path: '/home', name: 'Home' },
+    { path: '/', name: 'Home' },
     { path: '/line-up', name: 'Line-up' },
     { path: '/stage-list', name: 'Stages' },
   ];
@@ -35,12 +38,23 @@ export class HeaderComponent {
   rightPages = [
     { path: '/tickets', name: 'Tickets' },
     { path: '/info', name: 'Info' },
-    { path: '/q-and-a', name: 'Q&A' }
+    { path: '/q-and-a', name: 'Q&A' },
   ];
-
-  isMenuOpen = false;
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  onAdminDropDownClick() {
+    this.adminDropdownOpen = !this.adminDropdownOpen;
+  }
+
+  closeAdminDropDown() {
+    this.adminDropdownOpen = false;
+  }
+
+  navigateTo(path: string) {
+    this.closeAdminDropDown();
+    this.router.navigate([path]);
   }
 }
