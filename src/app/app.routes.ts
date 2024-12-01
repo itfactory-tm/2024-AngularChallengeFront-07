@@ -15,6 +15,8 @@ import { StageDetailComponent } from './stage-detail/stage-detail.component';
 import { ArtistListComponent } from './admin/artist-list/artist-list.component';
 import { ArtistFormComponent } from './admin/artist-form/artist-form.component';
 import { AuthGuard } from '@auth0/auth0-angular';
+import { SponsorListComponent } from './admin/sponsor-list/sponsor-list.component';
+import { SponsorFormComponent } from './admin/sponsor-form/sponsor-form.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -38,4 +40,14 @@ export const routes: Routes = [
   { path: 'terms', component: TermsComponent },
   { path: 'artist', component: ArtistComponent },
   { path: 'artist/:id', component: ArtistDetailComponent },
+  {
+    path: 'admin/sponsor',
+    component: SponsorListComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'admin/sponsor/form',
+    component: SponsorFormComponent,
+    canActivate: [AuthGuard],
+  },
 ];

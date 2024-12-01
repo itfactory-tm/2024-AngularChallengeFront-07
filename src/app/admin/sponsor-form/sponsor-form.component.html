@@ -15,12 +15,12 @@
   </div>
   }
 
-  <form (ngSubmit)="onSubmit()" #artistForm="ngForm" class="px-4">
+  <form (ngSubmit)="onSubmit()" #sponsorForm="ngForm" class="px-4">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <!-- Naam -->
       <div>
         <label for="name" class="block mb-2 text-sm font-medium text-primary"
-          >Name</label
+          >Sponsor name</label
         >
         <input
           type="text"
@@ -29,7 +29,7 @@
           class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
           placeholder="Name"
           required
-          [(ngModel)]="artist.name"
+          [(ngModel)]="sponsor.sponsorName"
           #name="ngModel"
         />
         <div [hidden]="name.valid || name.pristine" class="text-red-500 mt-2">
@@ -40,7 +40,7 @@
       <!-- Email -->
       <div>
         <label for="mail" class="block mb-2 text-sm font-medium text-primary"
-          >Mail</label
+          >Sponsor Mail</label
         >
         <input
           type="email"
@@ -49,7 +49,7 @@
           class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
           placeholder="Mail"
           required
-          [(ngModel)]="artist.mail"
+          [(ngModel)]="sponsor.sponsorMail"
           #mail="ngModel"
         />
         <div [hidden]="mail.valid || mail.pristine" class="text-red-500 mt-2">
@@ -57,26 +57,43 @@
         </div>
       </div>
 
-      <!-- Beschrijving -->
+      <!-- Amount -->
       <div class="col-span-2">
-        <label
-          for="description"
-          class="block mb-2 text-sm font-medium text-primary"
-          >Description</label
+        <label for="amount" class="block mb-2 text-sm font-medium text-primary"
+          >Amount</label
         >
         <textarea
-          id="description"
-          name="description"
+          id="amount"
+          name="amount"
           class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-          placeholder="Description"
+          placeholder="Amount"
           required
-          [(ngModel)]="artist.description"
-          #description="ngModel"
+          [(ngModel)]="sponsor.amount"
+          #amount="ngModel"
         ></textarea>
         <div
-          [hidden]="description.valid || description.pristine"
+          [hidden]="amount.valid || amount.pristine"
           class="text-red-500 mt-2"
         >
+          Description is required
+        </div>
+      </div>
+
+      <!-- Item -->
+      <div class="col-span-2">
+        <label for="amount" class="block mb-2 text-sm font-medium text-primary"
+          >Item</label
+        >
+        <textarea
+          id="item"
+          name="item"
+          class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          placeholder="Item"
+          required
+          [(ngModel)]="sponsor.sponsoredItem"
+          #item="ngModel"
+        ></textarea>
+        <div [hidden]="item.valid || item.pristine" class="text-red-500 mt-2">
           Description is required
         </div>
       </div>
@@ -101,7 +118,7 @@
       @if(isAdd) {
       <button
         type="submit"
-        [disabled]="!artistForm.form.valid || isSubmitted"
+        [disabled]="!sponsorForm.form.valid || isSubmitted"
         class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center disabled:opacity-75"
       >
         Add
@@ -109,7 +126,7 @@
       } @if(isEdit) {
       <button
         type="submit"
-        [disabled]="!artistForm.form.valid || isSubmitted"
+        [disabled]="!sponsorForm.form.valid || isSubmitted"
         class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center disabled:opacity-75"
       >
         Save
