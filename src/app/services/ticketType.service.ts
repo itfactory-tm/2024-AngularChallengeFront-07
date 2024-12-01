@@ -1,43 +1,66 @@
 import { Injectable } from '@angular/core';
 import { TicketType } from '../interfaces/ticketType';
-import { Ticket } from '../interfaces/ticket';
+import { Observable } from 'rxjs';
+import { ApiService } from './api.service';
 
 @Injectable({
-    providedIn: 'root'
-})export class TicketTypeService {
+  providedIn: 'root',
+})
+export class TicketTypeService {
+  constructor(private apiService: ApiService) {}
 
-private ticketType: TicketType[] = [];
+  getTicketTypes(): Observable<TicketType[]> {
+    return this.apiService.get<TicketType[]>('TicketTypes');
+  }
 
-constructor() { 
+  getTicketTypeById(id: string): Observable<TicketType> {
+    return this.apiService.getById<TicketType>('TicketTypes', id);
+  }
 
-    let regular : TicketType = {
-        typeId: 1,
-        naam: "Regular",
-        prijs: 10
-    };
+  postTicketType(ticketType: TicketType): Observable<TicketType> {
+    return this.apiService.post<TicketType>('TicketTypes', ticketType);
+  }
 
-    let ploes : TicketType = {
-        typeId: 2,
-        naam: "Ploes",
-        prijs: 12
-    };
+  putTicketType(id: string, ticketType: TicketType): Observable<TicketType> {
+    return this.apiService.put<TicketType>('TicketTypes', id, ticketType);
+  }
 
-    let VIP : TicketType = {
-        typeId: 3,
-        naam: "VIP",
-        prijs: 15
-    };
-
-    this.ticketType.push(regular);
-    this.ticketType.push(ploes);
-    this.ticketType.push(VIP);
+  deleteTicketType(id: string): Observable<TicketType> {
+    return this.apiService.delete<TicketType>('TicketTypes', id);
+  }
 }
 
-    getTicketTypes(): TicketType[] {
-        return this.ticketType;
-    }
+// private ticketType: TicketType[] = [];
+
+// constructor() { 
+
+//     let regular : TicketType = {
+//         typeId: 1,
+//         naam: "Regular",
+//         prijs: 10
+//     };
+
+//     let ploes : TicketType = {
+//         typeId: 2,
+//         naam: "Ploes",
+//         prijs: 12
+//     };
+
+//     let VIP : TicketType = {
+//         typeId: 3,
+//         naam: "VIP",
+//         prijs: 15
+//     };
+
+//     this.ticketType.push(regular);
+//     this.ticketType.push(ploes);
+//     this.ticketType.push(VIP);
+// }
+
+//     getTicketTypes(): TicketType[] {
+//         return this.ticketType;
+//     }
     
-    getTicketTypeById(id: number): TicketType | undefined{
-        return this.ticketType.find(ticketType => ticketType.typeId === id);
-    }
-}
+//     getTicketTypeById(id: number): TicketType | undefined{
+//         return this.ticketType.find(ticketType => ticketType.typeId === id);
+//     }

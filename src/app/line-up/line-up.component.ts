@@ -18,6 +18,7 @@ import { Observable } from 'rxjs';
 })
 export class LineUpComponent {
   artists$: Observable<Artist[]> = new Observable<Artist[]>();
+  stages$: Observable<Stage[]> = new Observable<Stage[]>();
   view: String = "artists";
   artists: Artist[] = [];
   stages: Stage[] = [];
@@ -34,7 +35,7 @@ export class LineUpComponent {
   ngOnInit(): void {
     
     this.artists$ = this.artistService.getArtists();
-    this.stages = this.stageService.getStages();
+    this.stages$ = this.stageService.getStages();
   }
 
   changeView(changeViewTo: String){

@@ -13,14 +13,14 @@
     </div>
 
     <div class="w-full max-w-6xl mt-10">
-        @for (dag of dagen; track $index) {
+        @for (day of days$ | async; track $index) {
             <div class="day-section shadow-lg rounded-lg p-6 mb-8 bg-gray-800 bg-opacity-90">
-                <h2 class="text-5xl font-extrabold text-purple-400 mb-5 text-center">{{dag.naam}}</h2>
+                <h2 class="text-5xl font-extrabold text-purple-400 mb-5 text-center">{{day.name}}</h2>
                 <p class="text-lg text-gray-400 text-center mb-4"></p>
                 <div class="flex flex-wrap justify-center gap-8 p-6"> 
-                    @for (tick of ticketsByDag[dag.dagId]; track $index){
+                    <!-- @for (tick of ticketsByDag[day.dagId]; track $index){
                         <app-ticket [ticket]="tick"></app-ticket>
-                    }
+                    } -->
                 </div>
             </div>
         }

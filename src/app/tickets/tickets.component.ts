@@ -17,7 +17,17 @@ export class TicketsComponent implements OnInit {
   constructor(private ticketTypeService: TicketTypeService) {}
 
   ngOnInit(): void {
-    this.ticketType = this.ticketTypeService.getTicketTypeById(this.ticket.typeId);
+    if (this.ticket && this.ticket.ticketTypeId) {
+      // Fetch the TicketType asynchronously
+      this.ticketTypeService.getTicketTypeById(this.ticket.ticketTypeId).subscribe({
+        next: (ticketType) => {
+          this.ticketType = ticketType; // Assign the fetched TicketType
+        },
+        error: (err) => {
+          console.error('Error fetching ticket type', err); // Handle error gracefully
+        }
+      });
+    }
   }
 
   increaseQuantity(): void {
