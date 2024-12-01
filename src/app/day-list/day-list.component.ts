@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Ticket } from '../interfaces/ticket';
-import { Dag } from '../dag';
-import { DagService } from '../dag.service';
+import { Day } from '../day';
+import { DayService } from '../day.service';
 import { TicketsComponent } from '../tickets/tickets.component';
 import { TicketService } from '../services/ticket.service';
 import { CommonModule } from '@angular/common';
@@ -16,19 +16,19 @@ import { CommonModule } from '@angular/common';
 })
 export class DayListComponent {
 
-  dagen: Dag[] = [];
+  dagen: Day[] = [];
   tickets : Ticket[] = [];
 
   ticketsByDag: { [key: number]: Ticket[] } = {};
 
-  constructor(private dagService: DagService, private ticketService: TicketService){}
+  constructor(private dayService: DayService, private ticketService: TicketService){}
 
   ngOnInit(): void {
-    this.dagen = this.dagService.getDays();
+    this.dagen = this.dayService.getDays();
     this.tickets = this.ticketService.getTickets();
 
     this.dagen.forEach(dag => {
-      this.ticketsByDag[dag.dagId] = this.tickets.filter(ticket => ticket.dagId === dag.dagId);
+      this.ticketsByDag[dag.dayId] = this.tickets.filter(ticket => ticket.dagId === dag.dayId);
     });
 
   }

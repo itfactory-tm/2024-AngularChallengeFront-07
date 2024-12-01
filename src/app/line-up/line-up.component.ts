@@ -7,6 +7,8 @@ import { Router } from '@angular/router';
 import { StageService } from '../services/stage.service';
 import { CommonModule } from '@angular/common';
 import { TimeScheduleComponent } from '../time-schedule/time-schedule.component';
+import { Day } from '../day';
+import { DayService } from '../day.service';
 
 @Component({
   selector: 'app-line-up',
@@ -20,6 +22,7 @@ export class LineUpComponent {
   artists: Artist[] = [];
   stages: Stage[] = [];
   selectedDay: string = 'vrijdag';
+  days: Day[] = [];
   times: string[] = [
     '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', 
     '19:00', '20:00', '21:00', '22:00', '23:00', '24:00', '01:00', '02:00', 

@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
 export class ArtistComponent implements OnInit {
   @Input() artist!: Artist;
   @Input() isDetail: boolean = false;
+  @Input() day: string = '';  
 
   constructor(private router: Router) { }
 
