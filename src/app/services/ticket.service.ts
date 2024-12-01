@@ -134,8 +134,7 @@ export class TicketService {
     this.tickets.push(ticket12);
 
     this.selectedTickets.push(ticket1);
-    this.selectedTickets.push(ticket3);
-    this.selectedTickets.push(ticket5);
+    this.selectedTickets.push(ticket4);
 
   }
 
