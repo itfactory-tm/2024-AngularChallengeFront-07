@@ -17,6 +17,8 @@ import { ArtistFormComponent } from './admin/artist-form/artist-form.component';
 import { AuthGuard } from '@auth0/auth0-angular';
 import { SponsorListComponent } from './admin/sponsor-list/sponsor-list.component';
 import { SponsorFormComponent } from './admin/sponsor-form/sponsor-form.component';
+import {FoodtruckListComponent} from "./admin/foodtruck-list/foodtruck-list.component";
+import {FoodtruckFormComponent} from "./foodtruck-form/foodtruck-form.component";
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -50,4 +52,14 @@ export const routes: Routes = [
     component: SponsorFormComponent,
     canActivate: [AuthGuard],
   },
+  {
+    path: 'admin/foodtruck',
+    component: FoodtruckListComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'admin/foodtruck/form',
+    component: FoodtruckFormComponent,
+    canActivate: [AuthGuard],
+  }
 ];
