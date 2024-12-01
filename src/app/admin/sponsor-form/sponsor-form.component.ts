@@ -6,11 +6,12 @@ import { Router } from '@angular/router';
 import { SponsorService } from '../../services/sponsor.service';
 import { FormsModule } from '@angular/forms';
 import { AsyncPipe } from '@angular/common';
+import {info} from "autoprefixer";
 
 @Component({
   selector: 'app-sponsor-form',
   standalone: true,
-  imports: [FormsModule, AsyncPipe],
+  imports: [FormsModule],
   templateUrl: './sponsor-form.component.html',
   styleUrl: './sponsor-form.component.css',
 })
