@@ -1,10 +1,11 @@
 import { Component, HostListener } from '@angular/core';
 import { Ticket } from '../interfaces/ticket';
-import { Dag } from '../interfaces/dag';
-import { DagService } from '../services/day.service';
+import { Day } from '../interfaces/day';
+import { DayService } from '../services/day.service';
 import { TicketsComponent } from '../tickets/tickets.component';
 import { TicketService } from '../services/ticket.service';
 import { CommonModule } from '@angular/common';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-day-list',
@@ -14,27 +15,28 @@ import { CommonModule } from '@angular/common';
   styleUrl: './day-list.component.css',
 })
 export class DayListComponent {
-  dagen: Dag[] = [];
-  tickets: Ticket[] = [];
+  days$: Observable<Day[]> = new Observable<Day[]>();
+  tickets$: Observable<Ticket[]> = new Observable<Ticket[]>();
+
 
   ticketsByDag: { [key: number]: Ticket[] } = {};
 
   isSticky: boolean = false;
 
   constructor(
-    private dagService: DagService,
+    private dayService: DayService,
     private ticketService: TicketService
   ) {}
 
   ngOnInit(): void {
-    this.dagen = this.dagService.getDays();
-    this.tickets = this.ticketService.getTickets();
+    this.days$ = this.dayService.getDays();
+    this.tickets$ = this.ticketService.getTickets();
 
-    this.dagen.forEach((dag) => {
-      this.ticketsByDag[dag.dagId] = this.tickets.filter(
-        (ticket) => ticket.dagId === dag.dagId
-      );
-    });
+    // this.days$.forEach((day) => {
+    //   this.ticketsByDag[day.dayId] = this.tickets.filter(
+    //     (ticket) => ticket.dayId === day.dayId
+    //   );
+    // });
   }
 
   @HostListener('window:scroll', [])

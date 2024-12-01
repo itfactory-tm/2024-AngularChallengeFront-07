@@ -1,8 +1,9 @@
 export interface Ticket{
-    ticketId: number;
-    prijs: number;
-    amountTickets : number;
-    typeId: number;
-    editieId: number;
-    dagId: number;
+    ticketId: string;
+    editionId: string;
+    editionName: string;
+    ticketTypeId : string;
+    ticketPrice: number;
+    dayId: string;
+    dayName: string;
 }
