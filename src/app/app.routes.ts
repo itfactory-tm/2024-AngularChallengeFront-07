@@ -17,6 +17,9 @@ import { ArtistFormComponent } from './admin/artist-form/artist-form.component';
 import { AuthGuard } from '@auth0/auth0-angular';
 import { SponsorListComponent } from './admin/sponsor-list/sponsor-list.component';
 import { SponsorFormComponent } from './admin/sponsor-form/sponsor-form.component';
+import { StageFormComponent } from './admin/stage-form/stage-form.component';
+import { StageAdminListComponent } from './admin/stageAdmin-list/stageAdmin-list.component';
+
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -36,6 +39,17 @@ export const routes: Routes = [
     component: ArtistFormComponent,
     canActivate: [AuthGuard],
   },
+  {
+    path: 'admin/stage',
+    component: StageAdminListComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'admin/stage/form',
+    component: StageFormComponent,
+    canActivate: [AuthGuard],
+  },
+  
   { path: 'privacy', component: PrivacyComponent },
   { path: 'terms', component: TermsComponent },
   { path: 'artist', component: ArtistComponent },

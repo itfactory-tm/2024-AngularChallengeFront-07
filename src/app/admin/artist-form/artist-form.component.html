@@ -1,13 +1,8 @@
 <div class="container mx-auto p-6 max-w-4xl">
-  @if (isAdd) {
   <h1 class="text-2xl font-bold text-yellow-200 mb-6 text-center">
-    Add an artist
+    {{ isAdd ? 'Add a Stage' : 'Edit a Stage' }}
   </h1>
-  } @if (isEdit) {
-  <h1 class="text-2xl font-bold text-yellow-200 mb-6 text-center">
-    Edit an artist
-  </h1>
-  } @if(isSubmitted && errorMessage) {
+  @if(isSubmitted && errorMessage) {
   <div
     class="rounded p-4 mb-4 text-lg bg-red-200 text-red-800 border-2 border-red-300"
   >
@@ -17,7 +12,7 @@
 
   <form (ngSubmit)="onSubmit()" #artistForm="ngForm" class="px-4">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <!-- Naam -->
+      <!-- name -->
       <div>
         <label for="name" class="block mb-2 text-sm font-medium text-primary"
           >Name</label
@@ -37,7 +32,7 @@
         </div>
       </div>
 
-      <!-- Email -->
+      <!-- mail -->
       <div>
         <label for="mail" class="block mb-2 text-sm font-medium text-primary"
           >Mail</label
@@ -57,7 +52,7 @@
         </div>
       </div>
 
-      <!-- Beschrijving -->
+      <!-- description -->
       <div class="col-span-2">
         <label
           for="description"
@@ -80,6 +75,23 @@
           Description is required
         </div>
       </div>
+          <!-- SpotifyLink -->
+          <div class="col-span-1">
+            <label
+              for="description"
+              class="block mb-2 text-sm font-medium text-primary"
+              >Spotify Link</label
+            >
+            <textarea
+              id="spotifyLink"
+              name="spotifyLink"
+              class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+              placeholder="spotifyLink"
+              [(ngModel)]="artist.spotifyLink"
+              #spotifyLink="ngModel"
+            ></textarea>
+          </div>
+      
 
       <!-- Edities
             <div class="col-span-2">

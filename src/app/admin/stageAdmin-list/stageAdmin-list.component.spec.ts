@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { StageListComponent } from './stage-list.component';
+import { StageAdminListComponent } from './stageAdmin-list.component';
 
 describe('StageListComponent', () => {
-  let component: StageListComponent;
-  let fixture: ComponentFixture<StageListComponent>;
+  let component: StageAdminListComponent;
+  let fixture: ComponentFixture<StageAdminListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [StageListComponent]
+      imports: [StageAdminListComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(StageListComponent);
+    fixture = TestBed.createComponent(StageAdminListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
