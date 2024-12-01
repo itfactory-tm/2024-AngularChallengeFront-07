@@ -12,20 +12,20 @@ constructor() {
 
     let regular : TicketType = {
         typeId: 1,
-        naam: "Regular",
-        prijs: 10
+        name: "Regular",
+        price: 10
     };
 
     let ploes : TicketType = {
         typeId: 2,
-        naam: "Ploes",
-        prijs: 12
+        name: "Ploes",
+        price: 12
     };
 
     let VIP : TicketType = {
         typeId: 3,
-        naam: "VIP",
-        prijs: 15
+        name: "VIP",
+        price: 15
     };
 
     this.ticketType.push(regular);

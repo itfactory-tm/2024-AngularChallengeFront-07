@@ -1,8 +1,8 @@
 export interface Ticket{
     ticketId: number;
-    prijs: number;
+    price: number;
     amountTickets : number;
     typeId: number;
-    editieId: number;
-    dagId: number;
+    editionId: number;
+    dayId: number;
 }

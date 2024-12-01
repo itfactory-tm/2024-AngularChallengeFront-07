@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DagService } from './services/dag.service';
+import { DagService } from './services/day.service';
 
 describe('DagService', () => {
   let service: DagService;

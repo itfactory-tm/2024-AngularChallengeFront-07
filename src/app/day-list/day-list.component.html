@@ -20,11 +20,11 @@
   </div>
 
 
-    @for (dag of dagen; track $index) {
+    @for (day of days; track $index) {
         <div>
-            <h2 class="text-3xl font-extrabold text-tertiary tracking-widest mb-5">{{dag.naam}}</h2>
+            <h2 class="text-3xl font-extrabold text-tertiary tracking-widest mb-5">{{day.name}}</h2>
             <div class="flex flex-wrap justify-center gap-8 p-6"> 
-                @for (tick of ticketsByDag[dag.dagId]; track $index){
+                @for (tick of ticketsByDay[day.dayId]; track $index){
                     <app-ticket [ticket]="tick"></app-ticket>
                 }
             </div>

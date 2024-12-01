@@ -28,7 +28,7 @@
           @for(tick of selectedticket; track $index){
             <div class="space-y-4">
                 <!-- Single Label or Paragraph Above Fields -->
-                <p class="text-lg font-semibold text-gray-500">Ticket Holder Information</p>
+                <p class="text-lg font-semibold text-gray-500">Ticket Holder Information: {{getTypeForTicket(tick.typeId)?.name}} Ticket - {{getDagForTicket(tick.dayId)?.name}} </p>
               
                 <!-- Ticket Holder Name and Email Fields Side by Side -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
