@@ -1,46 +1,33 @@
 import { Injectable } from '@angular/core';
 import { Artist } from '../interfaces/artist';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { ApiService } from './api.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ArtistService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(private apiService: ApiService) {}
 
   getArtists(): Observable<Artist[]> {
-    return this.httpClient.get<Artist[]>('http://localhost:8080/api/Artiests');
+    // return this.httpClient.get<Artist[]>('http://localhost:8080/api/Artists');
+    return this.apiService.get<Artist[]>('Artists');
     //http://localhost:5283/api/Artiests
   }
 
   getArtistById(id: string): Observable<Artist> {
-    return this.httpClient.get<Artist>(
-      'http://localhost:8080/api/Artiests/' + id
-    );
+    return this.apiService.getById<Artist>('Artists', id);
   }
 
   postArtist(artist: Artist): Observable<Artist> {
-    return this.httpClient.post<Artist>(
-      'http://localhost:8080/api/Artiests',
-      artist
-    );
+    return this.apiService.post<Artist>('Artists', artist);
   }
 
   putArtist(id: string, artist: Artist): Observable<Artist> {
-    let headers = new HttpHeaders();
-    headers = headers.set('Content-Type', 'application/json; charset=utf-8'); //vervangen en headers in de api call meegeven
-
-    return this.httpClient.put<Artist>(
-      'http://localhost:8080/api/Artiests/' + id,
-      artist,
-      { headers: headers }
-    );
+    return this.apiService.put<Artist>('Artists', id, artist);
   }
 
   deleteArtist(id: string): Observable<Artist> {
-    return this.httpClient.delete<Artist>(
-      'http://localhost:8080/api/Artiests/' + id
-    );
+    return this.apiService.delete<Artist>('Artists', id);
   }
 }
