@@ -22,15 +22,13 @@ export class ArtistFormComponent implements OnInit {
   editions$: Observable<Edition[]> = new Observable<Edition[]>();
 
   artist: Artist = {
-    artiestId: '',
-    naam: '',
-    email: '',
-    beschrijving: '',
+    artistId: '',
+    name: '',
+    mail: '',
+    description: '',
     spotifyLink: '',
     genre: '',
     apiCode: '',
-    spotifyPopularity: null,
-    spotifyFollowers: null,
     spotifyPhoto: '',
     edities: [],
   };
