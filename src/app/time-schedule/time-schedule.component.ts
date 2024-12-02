@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { TimeScheduleService } from '../services/time-schedule.service';
+import { TimeSlotService } from '../services/timeSlot.service';
 import { CommonModule } from '@angular/common';
-import { TimeSchedule } from '../interfaces/time-schedule';
+import { TimeSlot } from '../interfaces/timeSlot';
 import { ArtistService } from '../services/artist.service';
 import { Artist } from '../interfaces/artist';
 import { forkJoin, Observable } from 'rxjs';
@@ -14,8 +14,8 @@ import { forkJoin, Observable } from 'rxjs';
   templateUrl: './time-schedule.component.html',
   styleUrl: './time-schedule.component.css'
 })
-export class TimeScheduleComponent implements OnInit, OnChanges {
-  timeSchedules: TimeSchedule[] = [];
+export class TimeComponent implements OnInit {
+  timeSchedules: TimeSlot[] = [];
   artists$: Observable<Artist[]> = new Observable<Artist[]>();
   artists: Artist[] = [];
   
@@ -23,28 +23,28 @@ export class TimeScheduleComponent implements OnInit, OnChanges {
   stage: number = 1;
 
   constructor(
-    private timeScheduleService: TimeScheduleService, 
+    private timeSlotService: TimeSlotService, 
     private artistService: ArtistService
   ) {}
 
   ngOnInit(): void {
-    this.updateScheduleAndArtists();
+    // this.updateScheduleAndArtists();
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['selectedDay']) {
-      this.updateScheduleAndArtists();
-    }
-  }
+  // ngOnChanges(changes: SimpleChanges): void {
+  //   if (changes['selectedDay']) {
+  //     this.updateScheduleAndArtists();
+  //   }
+  // }
 
-  updateScheduleAndArtists(): void {
-    this.timeSchedules = this.timeScheduleService.getScheduleByDay(this.selectedDay);
-    forkJoin(
-      this.timeSchedules.map(t => this.artistService.getArtistById(t.artistId)!)
-    ).subscribe(artists => {
-      this.artists = artists;
-    });
-  }
+  // updateScheduleAndArtists(): void {
+  //   this.timeSchedules = this.timeSlotService.getScheduleByDay(this.selectedDay);
+  //   forkJoin(
+  //     this.timeSchedules.map(t => this.artistService.getArtistById(t.artistId)!)
+  //   ).subscribe(artists => {
+  //     this.artists = artists;
+  //   });
+  // }
 
   parseTime(time: string): number {
     const [hours, minutes] = time.split(':').map(Number);

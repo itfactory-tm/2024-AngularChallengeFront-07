@@ -103,8 +103,8 @@ export const routes: Routes = [
   { path: 'artist', component: ArtistComponent },
   { path: 'artist/:id', component: ArtistDetailComponent },
   { path: 'order-ticket', component: OrderTicketComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: '**', redirectTo: '/home' },
+  // { path: '', redirectTo: '/home', pathMatch: 'full' },
+  // { path: '**', redirectTo: '/home' },
   {
     path: 'admin/sponsor',
     component: SponsorListComponent,
