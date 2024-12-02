@@ -12,6 +12,7 @@ import { DayListComponent } from './day-list/day-list.component';
 import { PrivacyComponent } from './privacy/privacy.component';
 import { TermsComponent } from './terms/terms.component';
 import { StageDetailComponent } from './stage-detail/stage-detail.component';
+import { OrderTicketComponent } from './order-ticket/order-ticket.component';
 import { ArtistListComponent } from './admin/artist-list/artist-list.component';
 import { ArtistFormComponent } from './admin/artist-form/artist-form.component';
 import { AuthGuard } from '@auth0/auth0-angular';
@@ -21,7 +22,6 @@ import { StageFormComponent } from './admin/stage-form/stage-form.component';
 import { StageAdminListComponent } from './admin/stageAdmin-list/stageAdmin-list.component';
 import { TicketFormComponent } from './admin/ticket-form/ticket-form.component';
 import { TicketListComponent } from './admin/ticket-list/ticket-list.component';
-
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -66,6 +66,9 @@ export const routes: Routes = [
   { path: 'terms', component: TermsComponent },
   { path: 'artist', component: ArtistComponent },
   { path: 'artist/:id', component: ArtistDetailComponent },
+  { path: 'order-ticket', component: OrderTicketComponent},
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '**', redirectTo: '/home' },
   {
     path: 'admin/sponsor',
     component: SponsorListComponent,

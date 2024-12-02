@@ -1,7 +1,6 @@
 export interface Day{
-    dayId: string,
+    dayId: number,
     name: string,
     startDate: Date,
-    endDate: Date,
-    ticketCount: number
+    endDate: Date
 }
