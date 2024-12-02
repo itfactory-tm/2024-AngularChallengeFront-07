@@ -8,6 +8,7 @@ import { Ticket } from '../interfaces/ticket';
 import { Day } from '../interfaces/day';
 import { TicketType } from '../interfaces/ticketType';
 import { BoughtTicketService } from '../services/bought-ticket.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-order-ticket',
@@ -21,6 +22,8 @@ export class OrderTicketComponent implements OnInit {
   holderNames: { [key: number]: string } = {};
   days: Day[] = [];
   types: TicketType[] = [];
+
+  types$: Observable<TicketType[]> = new Observable<TicketType[]>();
 
   // Reactive form for adding tickets
   addingTicketForm = new FormGroup({
@@ -41,7 +44,7 @@ export class OrderTicketComponent implements OnInit {
   ngOnInit(): void {
     this.selectedticket = this.ticketService.getSelectedTickets();
     this.days = this.dayService.getDays();
-    this.types = this.ticketTypeService.getTicketTypes();
+    this.types$ = this.ticketTypeService.getTicketTypes();
 
     this.initializeTicketForms();  // Initialize form controls for tickets
   }
@@ -96,11 +99,11 @@ export class OrderTicketComponent implements OnInit {
     }
   }
 
-  getDagForTicket(dayId: number): Day | undefined {
+  getDagForTicket(dayId: string): Day | undefined {
     return this.days.find(dag => dag.dayId === dayId);
   }
 
-  getTypeForTicket(typeId: number): TicketType | undefined {
+  getTypeForTicket(typeId: string): TicketType | undefined {
     return this.types.find(type => type.typeId === typeId);
   }
 }
