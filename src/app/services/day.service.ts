@@ -14,28 +14,28 @@ export class DayService {
   constructor() { 
 
     let Friday : Day = {
-      dayId: 1,
+      dayId: "1",
       name: "Friday",
       startDate: new Date('2024-10-25T10:30:00'),
       endDate: new Date('2024-10-25T10:30:00'),
     };
 
     let Saturday : Day = {
-      dayId: 2,
+      dayId: "2",
       name: "Saturday",
       startDate: new Date('2024-10-26T10:30:00'),
       endDate: new Date('2024-10-26T10:30:00')
     };
 
     let Sunday : Day = {
-      dayId: 3,
+      dayId: "3",
       name: "Sunday",
       startDate: new Date('2024-10-27T10:30:00'),
       endDate: new Date('2024-10-27T10:30:00')
     };
 
     let Weekend : Day = {
-      dayId: 4,
+      dayId: "4",
       name: "Weekend",
       startDate: new Date('2024-10-25T10:30:00'),
       endDate: new Date('2024-10-27T10:30:00')

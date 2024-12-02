@@ -23,7 +23,7 @@ export class DayListComponent {
   days: Day[] = [];
   tickets : Ticket[] = [];
 
-  ticketsByDay: { [key: number]: Ticket[] } = {};
+  ticketsByDay: { [key: string]: Ticket[] } = {};
 
   resultArray: Ticket[] = [];
 
@@ -35,7 +35,7 @@ export class DayListComponent {
 
   ngOnInit(): void {
     this.days = this.dayService.getDays();
-    this.tickets = this.ticketService.getTickets();
+    this.tickets$ = this.ticketService.getTickets();
 
     this.days.forEach(dag => {
       this.ticketsByDay[dag.dayId] = this.tickets.filter(ticket => ticket.dayId === dag.dayId);

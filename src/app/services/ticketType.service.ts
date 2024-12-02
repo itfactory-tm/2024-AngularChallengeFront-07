@@ -7,21 +7,24 @@ import { ApiService } from './api.service';
   providedIn: 'root',
 })
 export class TicketTypeService {
+
+  private ticketType: TicketType[] = [];
+
   constructor(private apiService: ApiService) {
       let regular : TicketType = {
-        typeId: 1,
+        typeId: "1",
         name: "Regular",
         price: 10
     };
 
     let ploes : TicketType = {
-        typeId: 2,
+        typeId: "2",
         name: "Ploes",
         price: 12
     };
 
     let VIP : TicketType = {
-        typeId: 3,
+        typeId: "3",
         name: "VIP",
         price: 15
     };
@@ -51,7 +54,6 @@ export class TicketTypeService {
   }
 }
 
-// private ticketType: TicketType[] = [];
 
 // constructor() { 
 

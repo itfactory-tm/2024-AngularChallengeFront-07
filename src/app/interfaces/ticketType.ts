@@ -1,5 +1,5 @@
 export interface TicketType {
-    typeId: number;
+    typeId: string;
     name: string;
     price: number;
 }

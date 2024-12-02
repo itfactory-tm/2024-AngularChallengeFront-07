@@ -1,5 +1,5 @@
 export interface Day{
-    dayId: number,
+    dayId: string,
     name: string,
     startDate: Date,
     endDate: Date

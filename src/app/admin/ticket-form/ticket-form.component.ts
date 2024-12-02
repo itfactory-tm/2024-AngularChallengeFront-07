@@ -29,6 +29,7 @@ export class TicketFormComponent implements OnInit {
     ticketPrice: 0,
     dayId: '',
     dayName: '',
+    amountTickets: 0,
   };
 
   isSubmitted: boolean = false;
