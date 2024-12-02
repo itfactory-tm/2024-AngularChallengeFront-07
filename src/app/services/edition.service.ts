@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Edition } from '../interfaces/edition';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {map, Observable} from 'rxjs';
 import { v4 as uuidv4 } from 'uuid'; // Import the uuid function
 
 @Injectable({
@@ -39,4 +39,7 @@ export class EditionService {
   deleteEdition(id: string): Observable<Edition> {
     return this.httpClient.delete<Edition>(`${this.apiUrl}/${id}`);
   }
+
+
+
 }

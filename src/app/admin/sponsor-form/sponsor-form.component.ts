@@ -29,9 +29,10 @@ export class SponsorFormComponent implements OnInit {
     sponsoredItem: '',
     amount: 0,
     sponsorLogo: '',
+    editionId: '',
+    editionName: '',
   };
 
-  selectedEditionId: string = ''; // The selected edition's ID
   selectedFile: File | null = null; // The selected file
 
   isSubmitted: boolean = false;
@@ -52,24 +53,18 @@ export class SponsorFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.editionService.getEditions().subscribe((editions)=>{
+      this.editions$ = editions;
+    })
     if (this.sponsorId != null) {
       this.sponsorService.getSponsorById(this.sponsorId).subscribe((result) => {
         this.sponsor = result;
       });
     }
-    this.editionService.getEditions().subscribe((result) => {
-      this.editions$ = result;
-    });
+
   }
 
-  // onEditionChange() {
-  //   const selectedEdition = this.editions$.find(
-  //     (edition) => edition.editionId === this.selectedEditionId
-  //   );
-  //   if (selectedEdition) {
-  //     this.sponsor.editions = [selectedEdition];
-  //   }
-  // }
+
 
   onFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;

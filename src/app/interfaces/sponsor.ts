@@ -7,4 +7,6 @@ export interface Sponsor {
   sponsorMail: string;
   amount: number;
   sponsoredItem: string;
+  editionId: string;
+  editionName: string;
 }

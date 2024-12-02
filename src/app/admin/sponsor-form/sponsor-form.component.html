@@ -99,22 +99,22 @@
           Item is required
         </div>
       </div>
-      <!-- <div class="col-span-2">
-        <label for="edition" class="block mb-2 text-sm font-medium text-primary"
-          >Select edition:</label
-        >
-        <select
-          id="edition"
-          class="form-control"
-          [(ngModel)]="selectedEditionId"
-          (change)="onEditionChange()"
-        >
-          <option *ngFor="let edition of editions$" [value]="edition.editionId">
-            {{ edition.editionName }}
-          </option>
-        </select>
-      </div> -->
-
+      <div class="col-span-2">
+      <!-- Dropdown for Editions -->
+      <label for="edition" class="block mb-2 text-sm font-medium text-primary">Select Edition:</label>
+      <select
+        id="edition"
+        [(ngModel)]="sponsor.editionId"
+        name="edition"
+        class="form-control"
+        required
+      >
+        @for (edition of editions$; track edition){
+        <option [value]="edition.editionId">
+          {{ edition.editionName }}
+        </option>}
+      </select>
+      </div>
       <div>
         <label
           for="sponsorLogo"
