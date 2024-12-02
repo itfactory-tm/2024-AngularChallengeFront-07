@@ -1,6 +1,6 @@
 <div class="container mx-auto p-6 max-w-4xl">
   <h1 class="text-2xl font-bold text-yellow-200 mb-6 text-center">
-    {{ isAdd ? "Add a Stage" : "Edit a Stage" }}
+    {{ isAdd ? "Add an Artist" : "Edit an Artist" }}
   </h1>
   @if(isSubmitted && errorMessage) {
   <div
@@ -13,7 +13,7 @@
   <form (ngSubmit)="onSubmit()" #artistForm="ngForm" class="px-4">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <!-- name -->
-      <div>
+      <div [hidden]="!isEdit">
         <label for="name" class="block mb-2 text-sm font-medium text-primary"
           >Name</label
         >
