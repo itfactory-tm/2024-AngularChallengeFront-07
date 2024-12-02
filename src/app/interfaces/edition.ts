@@ -1,4 +1,5 @@
 export interface Edition {
+
   editionId: string;
   editionName: string;
   adres: string;
@@ -14,3 +15,4 @@ export interface Edition {
   sponsorNames: string[];
   foodtruckNames: string[];
 }
+

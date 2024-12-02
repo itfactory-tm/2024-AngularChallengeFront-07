@@ -20,12 +20,20 @@ import { SponsorListComponent } from './admin/sponsor-list/sponsor-list.componen
 import { SponsorFormComponent } from './admin/sponsor-form/sponsor-form.component';
 import { FoodtruckListComponent } from './admin/foodtruck-list/foodtruck-list.component';
 import { FoodtruckFormComponent } from './admin/foodtruck-form/foodtruck-form.component';
+
 import { StageFormComponent } from './admin/stage-form/stage-form.component';
 import { StageAdminListComponent } from './admin/stageAdmin-list/stageAdmin-list.component';
 import { TicketFormComponent } from './admin/ticket-form/ticket-form.component';
 import { TicketListComponent } from './admin/ticket-list/ticket-list.component';
+
 import {LocationListComponent} from "./admin/location-list/location-list.component";
 import {LocationFormComponent} from "./admin/location-form/location-form.component";
+
+import { EditionListComponent } from './admin/edition-list/edition-list.component';
+import { EditionFormComponent } from './admin/edition-form/edition-form.component';
+import { ArticleListComponent } from './admin/article-list/article-list.component';
+import { ArticleFormComponent } from './admin/article-form/article-form.component';
+
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -63,6 +71,26 @@ export const routes: Routes = [
   {
     path: 'admin/ticket/form',
     component: TicketFormComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'admin/edition',
+    component: EditionListComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'admin/edition/form',
+    component: EditionFormComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'admin/article',
+    component: ArticleListComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'admin/article/form',
+    component: ArticleFormComponent,
     canActivate: [AuthGuard],
   },
   {

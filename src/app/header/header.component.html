@@ -87,6 +87,15 @@
                   class="py-1 text-sm text-gray-700"
                   aria-labelledby="dropdownLargeButton"
                 >
+                <li>
+                  <a
+                    routerLink="/admin/article"
+                    routerLinkActive="active"
+                    [routerLinkActiveOptions]="{ exact: true }"
+                    class="block py-2 px-4 font-semibold text-text-light cursor-pointer hover:text-primary hover:underline hover:scale-105 transition-transform duration-300 ease-in-out"
+                    >Articles</a
+                  >
+                </li>
                   <li>
                     <a
                       routerLink="/admin/artist"
@@ -112,6 +121,15 @@
                       [routerLinkActiveOptions]="{ exact: true }"
                       class="block py-2 px-4 font-semibold text-text-light cursor-pointer hover:text-primary hover:underline hover:scale-105 transition-transform duration-300 ease-in-out"
                       >Tickets</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      routerLink="/admin/edition"
+                      routerLinkActive="active"
+                      [routerLinkActiveOptions]="{ exact: true }"
+                      class="block py-2 px-4 font-semibold text-text-light cursor-pointer hover:text-primary hover:underline hover:scale-105 transition-transform duration-300 ease-in-out"
+                      >Editions</a
                     >
                   </li>
                   <li>

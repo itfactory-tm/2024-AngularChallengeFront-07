@@ -1,19 +1,24 @@
 import { Injectable } from '@angular/core';
 import { Edition } from '../interfaces/edition';
+
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {map, Observable} from 'rxjs';
 import { v4 as uuidv4 } from 'uuid'; // Import the uuid function
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class EditionService {
   constructor(private httpClient: HttpClient) {}
-  private apiUrl = 'https://localhost:7005/api/Edition';
 
-  getEditions(): Observable<Edition[]> {
+  private apiUrl2 = 'https://localhost:7005/api/Edition';
+  private apiUrl = 'http://localhost:8080/api/Edition';
+
+  getEditions(): Observable<Edition[]>{
     return this.httpClient.get<Edition[]>(this.apiUrl);
   }
+
 
   getEditionById(id: string): Observable<Edition> {
     return this.httpClient.get<Edition>(`${this.apiUrl}/${id}`);
