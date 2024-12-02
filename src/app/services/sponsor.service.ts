@@ -24,7 +24,6 @@ export class SponsorService {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
 
-    // sponsor.editions = sponsor.editions || [];
 
     return this.httpClient.post<Sponsor>(`${this.apiUrl}/`, sponsor, {
       headers: headers,
@@ -35,7 +34,6 @@ export class SponsorService {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
 
-    // sponsor.editions = sponsor.editions || [];
 
     return this.httpClient.put<Sponsor>(`${this.apiUrl}/${id}`, sponsor, {
       headers: headers,

@@ -19,7 +19,7 @@ import { AuthGuard } from '@auth0/auth0-angular';
 import { SponsorListComponent } from './admin/sponsor-list/sponsor-list.component';
 import { SponsorFormComponent } from './admin/sponsor-form/sponsor-form.component';
 import { FoodtruckListComponent } from './admin/foodtruck-list/foodtruck-list.component';
-import { FoodtruckFormComponent } from './foodtruck-form/foodtruck-form.component';
+import { FoodtruckFormComponent } from './admin/foodtruck-form/foodtruck-form.component';
 import { StageFormComponent } from './admin/stage-form/stage-form.component';
 import { StageAdminListComponent } from './admin/stageAdmin-list/stageAdmin-list.component';
 import { TicketFormComponent } from './admin/ticket-form/ticket-form.component';
