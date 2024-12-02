@@ -18,6 +18,8 @@ import { ArtistFormComponent } from './admin/artist-form/artist-form.component';
 import { AuthGuard } from '@auth0/auth0-angular';
 import { SponsorListComponent } from './admin/sponsor-list/sponsor-list.component';
 import { SponsorFormComponent } from './admin/sponsor-form/sponsor-form.component';
+import {FoodtruckListComponent} from "./admin/foodtruck-list/foodtruck-list.component";
+import {FoodtruckFormComponent} from "./foodtruck-form/foodtruck-form.component";
 import { StageFormComponent } from './admin/stage-form/stage-form.component';
 import { StageAdminListComponent } from './admin/stageAdmin-list/stageAdmin-list.component';
 import { TicketFormComponent } from './admin/ticket-form/ticket-form.component';
@@ -79,4 +81,14 @@ export const routes: Routes = [
     component: SponsorFormComponent,
     canActivate: [AuthGuard],
   },
+  {
+    path: 'admin/foodtruck',
+    component: FoodtruckListComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'admin/foodtruck/form',
+    component: FoodtruckFormComponent,
+    canActivate: [AuthGuard],
+  }
 ];
