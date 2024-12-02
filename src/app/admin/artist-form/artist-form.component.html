@@ -1,6 +1,6 @@
 <div class="container mx-auto p-6 max-w-4xl">
   <h1 class="text-2xl font-bold text-yellow-200 mb-6 text-center">
-    {{ isAdd ? 'Add a Stage' : 'Edit a Stage' }}
+    {{ isAdd ? "Add an Artist" : "Edit an Artist" }}
   </h1>
   @if(isSubmitted && errorMessage) {
   <div
@@ -13,7 +13,7 @@
   <form (ngSubmit)="onSubmit()" #artistForm="ngForm" class="px-4">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <!-- name -->
-      <div>
+      <div [hidden]="!isEdit">
         <label for="name" class="block mb-2 text-sm font-medium text-primary"
           >Name</label
         >
@@ -23,7 +23,6 @@
           name="name"
           class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
           placeholder="Name"
-          required
           [(ngModel)]="artist.name"
           #name="ngModel"
         />
@@ -75,37 +74,22 @@
           Description is required
         </div>
       </div>
-          <!-- SpotifyLink -->
-          <div class="col-span-1">
-            <label
-              for="description"
-              class="block mb-2 text-sm font-medium text-primary"
-              >Spotify Link</label
-            >
-            <textarea
-              id="spotifyLink"
-              name="spotifyLink"
-              class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-              placeholder="spotifyLink"
-              [(ngModel)]="artist.spotifyLink"
-              #spotifyLink="ngModel"
-            ></textarea>
-          </div>
-      
-
-      <!-- Edities
-            <div class="col-span-2">
-                <label for="edities" class="block mb-2 text-sm font-medium text-primary">Edities</label>
-                <select id="edities" name="edities" multiple
-                    class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                    required [(ngModel)]="artist.edities" #edities="ngModel">
-                    @for (editie of editions$ | async; track $index) {
-                        <option [value]="editie">{{ editie }}</option>
-                    }
-                </select>
-                <div [hidden]="edities.valid || edities.pristine" class="text-red-500 mt-2">At least one editie is
-                    required</div>
-            </div> -->
+      <!-- SpotifyLink -->
+      <div class="col-span-1">
+        <label
+          for="description"
+          class="block mb-2 text-sm font-medium text-primary"
+          >Spotify Link</label
+        >
+        <textarea
+          id="spotifyLink"
+          name="spotifyLink"
+          class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          placeholder="spotifyLink"
+          [(ngModel)]="artist.spotifyLink"
+          #spotifyLink="ngModel"
+        ></textarea>
+      </div>
     </div>
 
     <!-- Buttons -->

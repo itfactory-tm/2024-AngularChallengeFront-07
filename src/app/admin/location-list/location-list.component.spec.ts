@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FoodtruckFormComponent } from './foodtruck-form.component';
+import { LocationListComponent } from './location-list.component';
 
-describe('FoodtruckFormComponent', () => {
-  let component: FoodtruckFormComponent;
-  let fixture: ComponentFixture<FoodtruckFormComponent>;
+describe('LocationListComponent', () => {
+  let component: LocationListComponent;
+  let fixture: ComponentFixture<LocationListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FoodtruckFormComponent]
+      imports: [LocationListComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(FoodtruckFormComponent);
+    fixture = TestBed.createComponent(LocationListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

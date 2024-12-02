@@ -62,8 +62,8 @@
               <p>No Spotify link available</p>
               }
             </td>
-            <td class="px-6 py-4 text-sm text-gray-600">
-              {{ artist.edities }}
+            <td class="px-6 py-4 text-sm text-gray-600 truncate max-w-sm">
+              <img src="{{ artist.spotifyPhoto }}" alt="{{ artist.name }}" />
             </td>
             <td class="px-6 py-4 text-sm text-gray-600">{{ artist.genre }}</td>
             <td class="px-6 py-4 text-sm font-bold text-center">
