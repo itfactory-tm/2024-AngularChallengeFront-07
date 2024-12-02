@@ -9,7 +9,7 @@ import {Foodtruck} from "../interfaces/foodtruck";
 export class FoodtruckService {
 
   constructor(private httpClient: HttpClient) { }
-  private apiUrl = 'https://localhost:7005/api/Foodtrucks';
+  private apiUrl = 'http://localhost:8080/api/Foodtrucks';
 
   getFoodtrucks(): Observable<Foodtruck[]>{
     return this.httpClient.get<Foodtruck[]>(this.apiUrl);

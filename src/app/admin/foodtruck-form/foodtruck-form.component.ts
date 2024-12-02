@@ -32,7 +32,7 @@ export class FoodtruckFormComponent implements OnInit{
   constructor(
     private router: Router,
     private foodtruckService: FoodtruckService,
-    private locationService: LocationService
+
   ){const state = this.router.getCurrentNavigation()?.extras.state || {};
     this.isAdd = state['mode'] === 'add';
     this.isEdit = state['mode'] === 'edit';
@@ -44,7 +44,7 @@ export class FoodtruckFormComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.locations$ = this.locationService.getLocations();
+    // this.locations$ = this.locationService.getLocations();
     if (this.foodtruckId != null) {
       this.foodtruckService.getFoodtruckById(this.foodtruckId).subscribe((result) => {
         this.foodtruck = result;

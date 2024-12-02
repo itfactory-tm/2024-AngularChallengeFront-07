@@ -36,7 +36,7 @@ export const appConfig: ApplicationConfig = {
           redirect_uri: environmentDev.redirectUri,
         },
         httpInterceptor: {
-          allowedList: [`${environmentDev.api_url}/*`], //List of URI links that need to be checked for authorisation
+          allowedList: [`${environmentDev.api_url}/admin`,`${environmentDev.api_url}/admin/*`], //List of URI links that need to be checked for authorisation
         },
       }),
     ],

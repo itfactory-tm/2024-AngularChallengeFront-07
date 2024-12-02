@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { SponsorService } from '../../services/sponsor.service';
 import { FormsModule } from '@angular/forms';
 import { AsyncPipe } from '@angular/common';
-import {info} from "autoprefixer";
+import { info } from 'autoprefixer';
 
 @Component({
   selector: 'app-sponsor-form',
@@ -48,6 +48,18 @@ export class SponsorFormComponent implements OnInit {
       this.sponsorService.getSponsorById(this.sponsorId).subscribe((result) => {
         this.sponsor = result;
       });
+    }
+  }
+
+  onLogoSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+
+    if (input?.files && input.files.length > 0) {
+      const file = input.files[0];
+      const fileName = file.name;
+
+      // Simulate storing the file in public/images/sponsors
+      this.sponsor.sponsorLogo = `public/images/sponsors/${fileName}`;
     }
   }
 

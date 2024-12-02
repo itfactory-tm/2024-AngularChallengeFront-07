@@ -49,11 +49,11 @@ export class FoodtruckListComponent implements OnInit {
   }
 
   add(){
-    this.router.navigate(['/admin/foodtruck/form'], {state: {mode: 'add'}}).then(r => this.getFoodtrucks());
+    this.router.navigate(['/admin/foodtruck/form'], {state: {mode: 'add'}});
   }
 
   edit(id: string){
-    this.router.navigate(['/admin/foodtruck/form'], {state: {id: id, mode: 'edit'}}).then(r => this.getFoodtrucks());
+    this.router.navigate(['/admin/foodtruck/form'], {state: {id: id, mode: 'edit'}});
   }
 
   delete(id: string){

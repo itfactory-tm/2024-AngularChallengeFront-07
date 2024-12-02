@@ -6,4 +6,5 @@ export const environmentDev = {
   api_url: 'http://localhost:8080/api',
   home_url: 'http://localhost:4200',
   AUTH0_AUDIENCE: 'http://localhost:8080', //nog aanvullen, te vinden op Auth0 site,
+  MAP_BOX_ACCESS_TOKEN: 'pk.eyJ1IjoicjA5Mjk0NDYiLCJhIjoiY200NnR5MGduMTRhdzJpczR1eXQ3ZzhjayJ9.McQwp-LkU0ReOZeosheoDg'
 };

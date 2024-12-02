@@ -33,6 +33,7 @@ export const routes: Routes = [
   { path: 'stage-list', component: StageListComponent },
   { path: 'stage/:id', component: StageDetailComponent },
   { path: 'tickets', component: DayListComponent },
+
   {
     path: 'admin/artist',
     component: ArtistListComponent,
@@ -63,14 +64,14 @@ export const routes: Routes = [
     component: TicketFormComponent,
     canActivate: [AuthGuard],
   },
-  
+
   { path: 'privacy', component: PrivacyComponent },
   { path: 'terms', component: TermsComponent },
   { path: 'artist', component: ArtistComponent },
   { path: 'artist/:id', component: ArtistDetailComponent },
   { path: 'order-ticket', component: OrderTicketComponent},
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: '**', redirectTo: '/home' },
+  // { path: '', redirectTo: '/home', pathMatch: 'full' },
+  // { path: '**', redirectTo: '/home' },
   {
     path: 'admin/sponsor',
     component: SponsorListComponent,

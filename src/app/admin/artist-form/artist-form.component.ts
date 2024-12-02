@@ -11,7 +11,7 @@ import { AsyncPipe } from '@angular/common';
 @Component({
   selector: 'app-artist-form',
   standalone: true,
-  imports: [FormsModule, AsyncPipe],
+  imports: [FormsModule],
   templateUrl: './artist-form.component.html',
   styleUrl: './artist-form.component.css',
 })
@@ -28,9 +28,6 @@ export class ArtistFormComponent implements OnInit {
     description: '',
     spotifyLink: '',
     genre: '',
-    apiCode: '',
-    spotifyPhoto: '',
-    edities: [],
   };
 
   isSubmitted: boolean = false;

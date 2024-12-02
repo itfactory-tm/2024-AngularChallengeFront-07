@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Artist } from '../../interfaces/artist';
 import { Router } from '@angular/router';
 import { AsyncPipe } from '@angular/common';
+import { Edition } from '../../interfaces/edition';
 
 @Component({
   selector: 'app-artist-list',
@@ -14,6 +15,7 @@ import { AsyncPipe } from '@angular/common';
 })
 export class ArtistListComponent implements OnInit {
   artists$: Observable<Artist[]> = new Observable<Artist[]>();
+  editions$: Observable<Edition[]> = new Observable<Edition[]>();
   errorMessage: string = '';
 
   constructor(private artistService: ArtistService, private router: Router) {}

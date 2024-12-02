@@ -8,7 +8,7 @@ import {Observable} from "rxjs";
 export class LocationService {
 
   constructor(private httpClient: HttpClient) { }
-  private apiUrl = "https://localhost:7005/api/Locations";
+  private apiUrl = "http://localhost:8080/api/Locations";
 
   getLocations(): Observable<Location[]>{
     return this.httpClient.get<Location[]>(this.apiUrl);

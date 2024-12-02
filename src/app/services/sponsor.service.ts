@@ -11,19 +11,19 @@ export class SponsorService {
 
   getSponsors(): Observable<Sponsor[]> {
     return this.httpClient.get<Sponsor[]>(
-      'https://localhost:7005/api/Sponsors'
+      'http://localhost:8080/api/Sponsors'
     );
   }
 
   getSponsorById(id: string): Observable<Sponsor> {
     return this.httpClient.get<Sponsor>(
-      'https://localhost:7005/api/Sponsors/' + id
+      'http://localhost:8080/api/Sponsors/' + id
     );
   }
 
   postSponsor(sponsor: Sponsor): Observable<Sponsor> {
     return this.httpClient.post<Sponsor>(
-      'https://localhost:7005/api/Sponsors',
+      'http://localhost:8080/api/Sponsors',
       sponsor
     );
   }
@@ -33,7 +33,7 @@ export class SponsorService {
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
 
     return this.httpClient.put<Sponsor>(
-      'https://localhost:7005/api/Sponsors/' + id,
+      'http://localhost:8080/api/Sponsors/' + id,
       sponsor,
       { headers: headers }
     );
@@ -41,7 +41,7 @@ export class SponsorService {
 
   deleteSponsor(id: string): Observable<Sponsor> {
     return this.httpClient.delete<Sponsor>(
-      'https://localhost:7005/api/Sponsors/' + id
+      'http://localhost:8080/api/Sponsors/' + id
     );
   }
 }

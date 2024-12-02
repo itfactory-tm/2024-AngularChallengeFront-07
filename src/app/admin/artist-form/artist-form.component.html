@@ -1,6 +1,6 @@
 <div class="container mx-auto p-6 max-w-4xl">
   <h1 class="text-2xl font-bold text-yellow-200 mb-6 text-center">
-    {{ isAdd ? 'Add a Stage' : 'Edit a Stage' }}
+    {{ isAdd ? "Add a Stage" : "Edit a Stage" }}
   </h1>
   @if(isSubmitted && errorMessage) {
   <div
@@ -23,7 +23,6 @@
           name="name"
           class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
           placeholder="Name"
-          required
           [(ngModel)]="artist.name"
           #name="ngModel"
         />
@@ -52,7 +51,7 @@
         </div>
       </div>
 
-      <!-- description -->
+      description
       <div class="col-span-2">
         <label
           for="description"
@@ -75,23 +74,24 @@
           Description is required
         </div>
       </div>
-          <!-- SpotifyLink -->
-          <div class="col-span-1">
-            <label
-              for="description"
-              class="block mb-2 text-sm font-medium text-primary"
-              >Spotify Link</label
-            >
-            <textarea
-              id="spotifyLink"
-              name="spotifyLink"
-              class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-              placeholder="spotifyLink"
-              [(ngModel)]="artist.spotifyLink"
-              #spotifyLink="ngModel"
-            ></textarea>
-          </div>
-      
+
+      <!-- SpotifyLink -->
+
+      <div class="col-span-1">
+        <label
+          for="description"
+          class="block mb-2 text-sm font-medium text-primary"
+          >Spotify Link</label
+        >
+        <textarea
+          id="spotifyLink"
+          name="spotifyLink"
+          class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          placeholder="spotifyLink"
+          [(ngModel)]="artist.spotifyLink"
+          #spotifyLink="ngModel"
+        ></textarea>
+      </div>
 
       <!-- Edities
             <div class="col-span-2">
