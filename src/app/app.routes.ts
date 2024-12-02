@@ -33,6 +33,8 @@ import { EditionListComponent } from './admin/edition-list/edition-list.componen
 import { EditionFormComponent } from './admin/edition-form/edition-form.component';
 import { ArticleListComponent } from './admin/article-list/article-list.component';
 import { ArticleFormComponent } from './admin/article-form/article-form.component';
+import { TimeSlotListComponent } from './admin/time-slot-list/time-slot-list.component';
+import { TimeSlotFormComponent } from './admin/time-slot-form/time-slot-form.component';
 
 
 export const routes: Routes = [
@@ -91,6 +93,16 @@ export const routes: Routes = [
   {
     path: 'admin/article/form',
     component: ArticleFormComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'admin/timeSlot',
+    component: TimeSlotListComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'admin/timeSlot/form',
+    component: TimeSlotFormComponent,
     canActivate: [AuthGuard],
   },
   {
