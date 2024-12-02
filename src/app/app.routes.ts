@@ -24,6 +24,8 @@ import { StageFormComponent } from './admin/stage-form/stage-form.component';
 import { StageAdminListComponent } from './admin/stageAdmin-list/stageAdmin-list.component';
 import { TicketFormComponent } from './admin/ticket-form/ticket-form.component';
 import { TicketListComponent } from './admin/ticket-list/ticket-list.component';
+import {LocationListComponent} from "./admin/location-list/location-list.component";
+import {LocationFormComponent} from "./admin/location-form/location-form.component";
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -81,6 +83,16 @@ export const routes: Routes = [
   {
     path: 'admin/foodtruck/form',
     component: FoodtruckFormComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'admin/location',
+    component: LocationListComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'admin/location/form',
+    component: LocationFormComponent,
     canActivate: [AuthGuard],
   },
 

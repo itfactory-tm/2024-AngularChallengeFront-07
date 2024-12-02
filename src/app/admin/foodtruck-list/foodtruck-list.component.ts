@@ -41,7 +41,7 @@ export class FoodtruckListComponent implements OnInit {
       if (foodtruck.locationId && !this.locations[foodtruck.locationId]) {
         // Fetch the location details for each food truck using LocationService
         this.locationService.getLocationById(foodtruck.locationId).subscribe((location) => {
-          // @ts-ignore
+
           this.locations[foodtruck.locationId] = location;
         });
       }
