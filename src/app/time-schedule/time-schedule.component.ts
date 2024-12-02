@@ -14,7 +14,7 @@ import { forkJoin, Observable } from 'rxjs';
   templateUrl: './time-schedule.component.html',
   styleUrl: './time-schedule.component.css'
 })
-export class TimeComponent implements OnInit {
+export class TimeScheduleComponent implements OnInit {
   timeSchedules: TimeSlot[] = [];
   artists$: Observable<Artist[]> = new Observable<Artist[]>();
   artists: Artist[] = [];

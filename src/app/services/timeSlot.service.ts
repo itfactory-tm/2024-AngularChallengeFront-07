@@ -7,37 +7,27 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class TimeSlotService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) { }
+  private apiUrl = "http://localhost:8080/api/TimeSlots";
+  private apiUrl2 = "https://localhost:7005/api/Locations";
 
   getTimeSlots(): Observable<TimeSlot[]> {
-    return this.httpClient.get<TimeSlot[]>(
-      'https://localhost:7005/api/TimeSlots'
-    );
+    return this.httpClient.get<TimeSlot[]>(this.apiUrl);
   }
 
   getTimeSlotById(id: string): Observable<TimeSlot> {
-    return this.httpClient.get<TimeSlot>(
-      'https://localhost:7005/api/TimeSlots/' + id
-    );
+    return this.httpClient.get<TimeSlot>(this.apiUrl + id);
   }
 
   postTimeSlot(timeSlot: TimeSlot): Observable<TimeSlot> {
-    return this.httpClient.post<TimeSlot>(
-      'https://localhost:7005/api/TimeSlots',
-      timeSlot
-    );
+    return this.httpClient.post<TimeSlot>(this.apiUrl, timeSlot);
   }
 
   putTimeSlot(id: string, timeSlot: TimeSlot): Observable<TimeSlot> {
-    return this.httpClient.put<TimeSlot>(
-      'https://localhost:7005/api/TimeSlots/' + id,
-      timeSlot,
-    );
+    return this.httpClient.put<TimeSlot>(this.apiUrl + id, timeSlot,);
   }
 
   deleteTimeSlot(id: string): Observable<TimeSlot> {
-    return this.httpClient.delete<TimeSlot>(
-      'https://localhost:7005/api/TimeSlots/' + id
-    );
+    return this.httpClient.delete<TimeSlot>(this.apiUrl + id);
   }
 }
