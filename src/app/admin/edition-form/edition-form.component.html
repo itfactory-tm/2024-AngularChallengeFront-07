@@ -1,0 +1,217 @@
+<div class="container mx-auto p-6 max-w-4xl">
+    <h1 class="text-2xl font-bold text-yellow-200 mb-6 text-center">
+      {{ isAdd ? 'Add an Edition' : 'Edit an Edition' }}
+    </h1>
+    @if(isSubmitted && errorMessage) {
+    <div
+      class="rounded p-4 mb-4 text-lg bg-red-200 text-red-800 border-2 border-red-300"
+    >
+      {{ errorMessage }}
+    </div>
+    }
+  
+    <form (ngSubmit)="onSubmit()" #editionForm="ngForm" class="px-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- name -->
+        <div>
+          <label for="editionName" class="block mb-2 text-sm font-medium text-primary"
+            >Name</label
+          >
+          <input
+            type="text"
+            id="editionName"
+            name="editionName"
+            class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            placeholder="Name"
+            required
+            [(ngModel)]="edition.editionName"
+            #editionName="ngModel"
+          />
+          <div [hidden]="editionName.valid || editionName.pristine" class="text-red-500 mt-2">
+            Name is required
+          </div>
+        </div>
+  
+        <!-- address -->
+        <div>
+          <label for="adres" class="block mb-2 text-sm font-medium text-primary"
+            >address</label
+          >
+          <input
+            type="email"
+            id="adres"
+            name="adres"
+            class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            placeholder="address"
+            required
+            [(ngModel)]="edition.adres"
+            #adres="ngModel"
+          />
+          <div [hidden]="adres.valid || adres.pristine" class="text-red-500 mt-2">
+            Address is required
+          </div>
+        </div>
+  
+        <!-- zipcode -->
+        <div class="col-span-2">
+          <label
+            for="zipCode"
+            class="block mb-2 text-sm font-medium text-primary"
+            >Zipcode</label
+          >
+          <textarea
+            id="zipCode"
+            name="zipCode"
+            class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            placeholder="Zipcode"
+            required
+            [(ngModel)]="edition.zipCode"
+            #zipCode="ngModel"
+          ></textarea>
+          <div
+            [hidden]="zipCode.valid || zipCode.pristine"
+            class="text-red-500 mt-2"
+          >
+            Zipcode is required
+          </div>
+        </div>
+                <!-- Muncipality -->
+                <div class="col-span-2">
+                    <label
+                      for="municipality"
+                      class="block mb-2 text-sm font-medium text-primary"
+                      >Muncipality</label
+                    >
+                    <textarea
+                      id="municipality"
+                      name="municipality"
+                      class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                      placeholder="Muncipality"
+                      required
+                      [(ngModel)]="edition.municipality"
+                      #municipality="ngModel"
+                    ></textarea>
+                    <div
+                      [hidden]="municipality.valid || municipality.pristine"
+                      class="text-red-500 mt-2"
+                    >
+                    Muncipality is required
+                    </div>
+                  </div>
+        <!-- Phone number -->
+        <div class="col-span-2">
+            <label
+              for="phoneNr"
+              class="block mb-2 text-sm font-medium text-primary"
+              >Phone number</label
+            >
+            <textarea
+              id="phoneNr"
+              name="phoneNr"
+              class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+              placeholder="Phone number"
+              required
+              [(ngModel)]="edition.phoneNr"
+              #phoneNr="ngModel"
+            ></textarea>
+            <div
+              [hidden]="phoneNr.valid || phoneNr.pristine"
+              class="text-red-500 mt-2"
+            >
+            Phone number is required
+            </div>
+          </div>
+                  <!-- Mail -->
+        <div class="col-span-2">
+            <label
+              for="zipCode"
+              class="block mb-2 text-sm font-medium text-primary"
+              >Mail</label
+            >
+            <textarea
+              id="mail"
+              name="mail"
+              class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+              placeholder="Mail"
+              required
+              [(ngModel)]="edition.mail"
+              #mail="ngModel"
+            ></textarea>
+            <div
+              [hidden]="mail.valid || mail.pristine"
+              class="text-red-500 mt-2"
+            >
+            Mail is required
+            </div>
+          </div>
+                            <!-- Year -->
+        <div class="col-span-2">
+            <label
+              for="zipCode"
+              class="block mb-2 text-sm font-medium text-primary"
+              >Year</label
+            >
+            <textarea
+              id="year"
+              name="year"
+              class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+              placeholder="Year"
+              required
+              [(ngModel)]="edition.year"
+              #year="ngModel"
+            ></textarea>
+            <div
+              [hidden]="year.valid || year.pristine"
+              class="text-red-500 mt-2"
+            >
+            Year is required
+            </div>
+          </div>
+                            <!-- Ticket Count -->
+        <div class="col-span-2">
+            <label
+              for="zipCode"
+              class="block mb-2 text-sm font-medium text-primary"
+              >Ticket Count</label
+            >
+            <textarea
+              id="ticketCount"
+              name="ticketCount"
+              class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+              placeholder="Ticket Count"
+              required
+              [(ngModel)]="edition.ticketCount"
+              #ticketCount="ngModel"
+            ></textarea>
+            <div
+              [hidden]="ticketCount.valid || ticketCount.pristine"
+              class="text-red-500 mt-2"
+            >
+            Ticket Count is required
+            </div>
+          </div>
+      </div>
+  
+      <!-- Buttons -->
+      <div class="flex space-x-4 mt-6">
+        @if(isAdd) {
+        <button
+          type="submit"
+          [disabled]="!editionForm.form.valid || isSubmitted"
+          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center disabled:opacity-75"
+        >
+          Add
+        </button>
+        } @if(isEdit) {
+        <button
+          type="submit"
+          [disabled]="!editionForm.form.valid || isSubmitted"
+          class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center disabled:opacity-75"
+        >
+          Save
+        </button>
+        }
+      </div>
+    </form>
+  </div>
+  

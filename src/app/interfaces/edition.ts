@@ -1,16 +1,16 @@
 export interface Edition {
-    editieId: string;
-    editieNaam: string;
+    editionId: string;
+    editionName: string;
     adres: string;
-    postcode: string;
-    gemeente: string;
-    telNr: string;
-    email: string;
-    jaar: number;
+    zipCode: string;
+    municipality: string;
+    phoneNr: string;
+    mail: string;
+    year: number;
     ticketCount: number;
-    artiestNamen: string[];
-    fotos: string[];
-    artikelNamen: string[]; 
-    sponsorNamen: string[]; 
-    foodtruckNamen: string[]; 
+    artistsNames: string[];
+    photos: string[];
+    articleNames: string[]; 
+    sponsorNames: string[]; 
+    foodtruckNames: string[]; 
 }
