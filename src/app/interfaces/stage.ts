@@ -1,12 +1,8 @@
 export interface Stage {
-  id: number;
+  stageId: string;
   name: string;
-  location: {
-    latitude: number;
-    longitude: number;
-  };
-  size: number;
-  imageUrl: string;
-  imageCaption: string;
-  description: string;
+  locationId: string;
+  locationName: string;
+  timeSlots: Date[];
+  photos: string[];
 }

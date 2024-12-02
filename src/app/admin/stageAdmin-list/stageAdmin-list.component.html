@@ -7,12 +7,12 @@
   </div>
   }
   <div class="mb-6 flex flex-col md:flex-row items-center justify-between">
-    <h1 class="text-4xl font-bold text-yellow-200">Manage Sponsors</h1>
+    <h1 class="text-4xl font-bold text-yellow-200">Manage Stages</h1>
     <button
       class="mt-4 md:mt-0 px-5 py-3 rounded-md bg-primary text-white font-semibold hover:bg-sky-700 transition duration-300 ease-in-out"
       (click)="add()"
     >
-      Create Sponsor
+      Create Stage
     </button>
   </div>
   <div class="overflow-x-auto">
@@ -24,47 +24,38 @@
           <tr>
             <th class="px-6 py-3 text-md font-bold text-left">#</th>
             <th class="px-6 py-3 text-md font-bold text-left">Name</th>
-            <th class="px-6 py-3 text-md font-bold text-left">Email</th>
-            <th class="px-6 py-3 text-md font-bold text-left">Logo</th>
-            <th class="px-6 py-3 text-md font-bold text-left">Item</th>
-            <th class="px-6 py-3 text-md font-bold text-left">Amount</th>
+            <th class="px-6 py-3 text-md font-bold text-left">Location</th>
+            <th class="px-6 py-3 text-md font-bold text-left">TimeSlots</th>
+            <th class="px-6 py-3 text-md font-bold text-left">Photos</th>
             <th class="px-6 py-3 text-md text-center">&nbsp;</th>
           </tr>
         </thead>
         <tbody class="bg-white divide-y divide-gray-300">
-          @for (sponsor of sponsors$ | async; track sponsor.sponsorId) {
+          @for (stage of stages$ | async; track stage.stageId) {
           <tr class="hover:bg-gray-100 transition ease-in-out">
             <td class="px-6 py-4 text-sm font-medium text-gray-700">
               {{ $index + 1 }}
             </td>
-            <td class="px-6 py-4 text-sm text-gray-600">
-              {{ sponsor.sponsorName }}
-            </td>
+            <td class="px-6 py-4 text-sm text-gray-600">{{ stage.name }}</td>
             <td class="px-6 py-4 text-sm text-gray-600">
               <span
                 class="px-2 py-1 rounded-md bg-blue-100 text-blue-800 font-semibold"
-                >{{ sponsor.sponsorMail }}</span
+                >{{ stage.locationName }}</span
               >
             </td>
-
             <td class="px-6 py-4 text-sm text-gray-600 truncate max-w-sm">
-              <img
-                src="{{ sponsor.sponsorLogo }}"
-                alt="{{ sponsor.sponsorName }}"
-              />
-            </td>
-
-            <td class="px-6 py-4 text-sm text-gray-600">
-              {{ sponsor.sponsoredItem }}
+              <div class="tooltip" title="{{ stage.timeSlots }}">
+                {{ stage.timeSlots }}
+              </div>
             </td>
             <td class="px-6 py-4 text-sm text-gray-600">
-              €{{ sponsor.amount }}
+              {{ stage.photos }}
             </td>
             <td class="px-6 py-4 text-sm font-bold text-center">
               <div class="flex justify-end gap-4">
                 <!-- Edit Button -->
                 <button
-                  (click)="edit(sponsor.sponsorId)"
+                  (click)="edit(stage.stageId)"
                   title="Edit"
                   aria-label="Edit"
                   class="flex items-center gap-2 px-3 py-2 rounded-md bg-blue-100 text-blue-800 hover:bg-blue-200 transition ease-in-out"
@@ -88,7 +79,7 @@
 
                 <!-- Delete Button -->
                 <button
-                  (click)="delete(sponsor.sponsorId)"
+                  (click)="delete(stage.stageId)"
                   title="Delete"
                   aria-label="Delete"
                   class="flex items-center gap-2 px-3 py-2 rounded-md bg-red-100 text-red-800 hover:bg-red-200 transition ease-in-out"

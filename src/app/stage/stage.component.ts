@@ -17,15 +17,15 @@ export class StageComponent {
 
   constructor(private stageService: StageService, private router: Router) {}
 
-  getStageSize(): string {
-    return this.stageService.getStageSize(this.stage.size);
-  }
+  // getStageSize(): string {
+  //   return this.stageService.getStageSize(this.stage.size);
+  // }
 
-  getStageHeight(): string {
-    return this.stageService.getStageHeight(this.stage.size);
-  }
+  // getStageHeight(): string {
+  //   return this.stageService.getStageHeight(this.stage.size);
+  // }
 
-  detail(id: number) {
+  detail(id: string) {
     this.router.navigate(['/stage', id]);
   }
 
