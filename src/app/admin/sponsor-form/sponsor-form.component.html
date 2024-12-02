@@ -72,7 +72,10 @@
           [(ngModel)]="sponsor.amount"
           #amount="ngModel"
         />
-        <div [hidden]="amount.valid || amount.pristine" class="text-red-500 mt-2">
+        <div
+          [hidden]="amount.valid || amount.pristine"
+          class="text-red-500 mt-2"
+        >
           Amount is required
         </div>
       </div>
@@ -91,56 +94,40 @@
           required
           [(ngModel)]="sponsor.sponsoredItem"
           #item="ngModel"
-        >
+        />
         <div [hidden]="item.valid || item.pristine" class="text-red-500 mt-2">
-          Description is required
+          Item is required
         </div>
       </div>
-
-<!--      &lt;!&ndash; Sponsor Logo &ndash;&gt;-->
-<!--      @if(isAdd || isEdit) {-->
-<!--        <div class="col-span-2">-->
-<!--          <label for="logo" class="block mb-2 text-sm font-medium text-primary">-->
-<!--            Sponsor Logo-->
-<!--          </label>-->
-<!--          <input-->
-<!--            type="file"-->
-<!--            id="logo"-->
-<!--            name="logo"-->
-<!--            accept="image/*"-->
-<!--            class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"-->
-
-<!--            #logoInput-->
-<!--          />-->
-<!--          <div class="mt-2">-->
-<!--            @if(sponsor.sponsorLogo) {-->
-<!--              <img-->
-<!--                [src]="sponsor.sponsorLogo"-->
-<!--                alt="Sponsor Logo"-->
-<!--                class="max-h-32 object-contain border rounded"-->
-<!--              />-->
-<!--            } @else {-->
-<!--              <p class="text-gray-500 text-sm">-->
-<!--                No logo uploaded yet.-->
-<!--              </p>-->
-<!--            }-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      }-->
-
-      <!-- Edities
-            <div class="col-span-2">
-                <label for="edities" class="block mb-2 text-sm font-medium text-primary">Edities</label>
-                <select id="edities" name="edities" multiple
-                    class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                    required [(ngModel)]="artist.edities" #edities="ngModel">
-                    @for (editie of editions$ | async; track $index) {
-                        <option [value]="editie">{{ editie }}</option>
-                    }
-                </select>
-                <div [hidden]="edities.valid || edities.pristine" class="text-red-500 mt-2">At least one editie is
-                    required</div>
-            </div> -->
+      <div class="col-span-2">
+      <!-- Dropdown for Editions -->
+      <label for="edition" class="block mb-2 text-sm font-medium text-primary">Select Edition:</label>
+      <select
+        id="edition"
+        [(ngModel)]="sponsor.editionId"
+        name="edition"
+        class="form-control"
+        required
+      >
+        @for (edition of editions$; track edition){
+        <option [value]="edition.editionId">
+          {{ edition.editionName }}
+        </option>}
+      </select>
+      </div>
+      <div>
+        <label
+          for="sponsorLogo"
+          class="block mb-2 text-sm font-medium text-primary"
+          >Sponsor Logo:</label
+        >
+        <input
+          type="file"
+          id="sponsorLogo"
+          class="form-control"
+          (change)="onFileSelected($event)"
+        />
+      </div>
     </div>
 
     <!-- Buttons -->

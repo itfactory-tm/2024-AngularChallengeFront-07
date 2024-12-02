@@ -1,13 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Edition } from '../interfaces/edition';
-import {HttpClient} from "@angular/common/http";
-import { Observable } from 'rxjs';
+
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {map, Observable} from 'rxjs';
+import { v4 as uuidv4 } from 'uuid'; // Import the uuid function
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class EditionService {
   constructor(private httpClient: HttpClient) {}
+
   private apiUrl2 = 'https://localhost:7005/api/Edition';
   private apiUrl = 'http://localhost:8080/api/Edition';
 
@@ -15,19 +19,32 @@ export class EditionService {
     return this.httpClient.get<Edition[]>(this.apiUrl);
   }
 
+
   getEditionById(id: string): Observable<Edition> {
     return this.httpClient.get<Edition>(`${this.apiUrl}/${id}`);
   }
 
   postEdition(edition: Edition): Observable<Edition> {
-    return this.httpClient.post<Edition>(`${this.apiUrl}/`, edition);
+    edition.editionId = uuidv4(); // Generate a new UUID
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json; charset=utf-8');
+    return this.httpClient.post<Edition>(`${this.apiUrl}/`, edition, {
+      headers: headers,
+    });
   }
 
   putEdition(id: string, edition: Edition): Observable<Edition> {
-    return this.httpClient.put<Edition>(`${this.apiUrl}/${id}`, edition);
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json; charset=utf-8');
+    return this.httpClient.put<Edition>(`${this.apiUrl}/${id}`, edition, {
+      headers: headers,
+    });
   }
 
   deleteEdition(id: string): Observable<Edition> {
     return this.httpClient.delete<Edition>(`${this.apiUrl}/${id}`);
   }
+
+
+
 }

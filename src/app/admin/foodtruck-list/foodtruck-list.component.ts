@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AsyncPipe} from "@angular/common";
-import {Foodtruck} from "../../interfaces/foodtruck";
+import {FoodTruck} from "../../interfaces/foodTruck";
 import {Location} from "../../interfaces/location";
 import {Observable} from "rxjs";
 import {FoodtruckService} from "../../services/foodtruck.service";
@@ -15,7 +15,7 @@ import {LocationService} from "../../services/location.service";
   styleUrl: './foodtruck-list.component.css'
 })
 export class FoodtruckListComponent implements OnInit {
-  foodtrucks$: Observable<Foodtruck[]> = new Observable<Foodtruck[]>();
+  foodtrucks$: Observable<FoodTruck[]> = new Observable<FoodTruck[]>();
   errorMessage: string = '';
   locations: {[key: string]: Location} = {};
 
@@ -36,12 +36,12 @@ export class FoodtruckListComponent implements OnInit {
     })
   }
 
-  loadLocations(foodtrucks: Foodtruck[]): void {
+  loadLocations(foodtrucks: FoodTruck[]): void {
     foodtrucks.forEach((foodtruck) => {
       if (foodtruck.locationId && !this.locations[foodtruck.locationId]) {
         // Fetch the location details for each food truck using LocationService
         this.locationService.getLocationById(foodtruck.locationId).subscribe((location) => {
-          // @ts-ignore
+
           this.locations[foodtruck.locationId] = location;
         });
       }
@@ -49,11 +49,11 @@ export class FoodtruckListComponent implements OnInit {
   }
 
   add(){
-    this.router.navigate(['/admin/foodtruck/form'], {state: {mode: 'add'}}).then(r => this.getFoodtrucks());
+    this.router.navigate(['/admin/foodtruck/form'], {state: {mode: 'add'}});
   }
 
   edit(id: string){
-    this.router.navigate(['/admin/foodtruck/form'], {state: {id: id, mode: 'edit'}}).then(r => this.getFoodtrucks());
+    this.router.navigate(['/admin/foodtruck/form'], {state: {id: id, mode: 'edit'}});
   }
 
   delete(id: string){
@@ -63,10 +63,5 @@ export class FoodtruckListComponent implements OnInit {
         error: (e) => (this.errorMessage = e.message),
       }
     );
-  }
-
-  getLocationName(locationId: string):string{
-    const location = this.locations[locationId];
-    return location? location.name : 'Location not found';
   }
 }

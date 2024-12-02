@@ -6,7 +6,8 @@ import { Router } from '@angular/router';
 import { SponsorService } from '../../services/sponsor.service';
 import { FormsModule } from '@angular/forms';
 import { AsyncPipe } from '@angular/common';
-import {info} from "autoprefixer";
+import { info } from 'autoprefixer';
+import { EditionService } from '../../services/edition.service';
 
 @Component({
   selector: 'app-sponsor-form',
@@ -19,7 +20,7 @@ export class SponsorFormComponent implements OnInit {
   isAdd: boolean = false;
   isEdit: boolean = false;
   sponsorId: string = '';
-  editions$: Observable<Edition[]> = new Observable<Edition[]>();
+  editions$: Edition[] = [];
 
   sponsor: Sponsor = {
     sponsorId: '',
@@ -28,12 +29,20 @@ export class SponsorFormComponent implements OnInit {
     sponsoredItem: '',
     amount: 0,
     sponsorLogo: '',
+    editionId: '',
+    editionName: '',
   };
+
+  selectedFile: File | null = null; // The selected file
 
   isSubmitted: boolean = false;
   errorMessage: string = '';
 
-  constructor(private router: Router, private sponsorService: SponsorService) {
+  constructor(
+    private router: Router,
+    private sponsorService: SponsorService,
+    private editionService: EditionService
+  ) {
     const state = this.router.getCurrentNavigation()?.extras.state || {};
     this.isAdd = state['mode'] === 'add';
     this.isEdit = state['mode'] === 'edit';
@@ -44,10 +53,24 @@ export class SponsorFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.editionService.getEditions().subscribe((editions)=>{
+      this.editions$ = editions;
+    })
     if (this.sponsorId != null) {
       this.sponsorService.getSponsorById(this.sponsorId).subscribe((result) => {
         this.sponsor = result;
       });
+    }
+
+  }
+
+
+
+  onFileSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.selectedFile = input.files[0];
+      this.sponsor.sponsorLogo = `public/images/sponsors/${this.selectedFile.name}`;
     }
   }
 
