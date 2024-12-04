@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { ApiService } from './api.service';
 import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
-import { environmentDev } from '../../environments/environment.development';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +15,7 @@ export class TicketService {
 
   private selectedTickets: Ticket[] = [];
 
-  private ApiUrl = `${environmentDev.api_url}/tickets`;
+  private ApiUrl = `${environment.api_url}/tickets`;
 
   constructor(private apiService: ApiService, private httpClient: HttpClient) {}
 
