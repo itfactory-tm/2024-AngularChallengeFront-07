@@ -2,14 +2,16 @@ import { Injectable } from '@angular/core';
 import { Article } from '../interfaces/article';
 import {HttpClient} from "@angular/common/http";
 import { Observable } from 'rxjs';
+import {environmentDev} from "../../environments/environment.development";
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class ArticleService {
   constructor(private httpClient: HttpClient) {}
-  private apiUrl2 = 'https://localhost:7005/api/Articles';
-  private apiUrl = 'http://localhost:8080/api/Articles';
+
+  private apiUrl = `${environmentDev.api_url}/api/Articles`;
 
   getArticles(): Observable<Article[]>{
     return this.httpClient.get<Article[]>(this.apiUrl);
