@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { BoughtTickets } from "../interfaces/bought-tickets";
 import { Observable } from "rxjs";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { environment } from "../../environments/environment";
 
 @Injectable({
     providedIn: 'root'
@@ -9,7 +10,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 export class BoughtTicketService {
     private boughtTicket: BoughtTickets[] = [];
 
-    private ApiUrl = "http://localhost:8080/api/boughtTickets";
+    private ApiUrl = `${environment.api_url}/boughtTickets`;
 
     constructor(private httpClient: HttpClient) {
 

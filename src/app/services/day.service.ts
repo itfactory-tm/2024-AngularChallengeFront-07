@@ -3,6 +3,7 @@ import { Day } from '../interfaces/day';
 import { Observable } from 'rxjs';
 import { ApiService } from './api.service';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 
 @Injectable({
@@ -12,7 +13,7 @@ export class DayService {
 
   private day: Day[] = [];
 
-  private ApiUrl = 'http://localhost:8080/api/days';
+  private ApiUrl = `${environment.api_url}/api/days`;
 
   constructor(private httpClient: HttpClient) { 
 
