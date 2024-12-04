@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
-import { environmentDev } from '../../environments/environment.development';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-logout-button',
@@ -16,7 +16,7 @@ export class LogoutButtonComponent {
   handleLogout(): void {
     this.auth.logout({
       logoutParams: {
-        returnTo: environmentDev.home_url,
+        returnTo: environment.home_url,
       },
     });
   }
