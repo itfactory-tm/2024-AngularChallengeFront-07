@@ -18,15 +18,17 @@ const clientId = environmentDev.AUTH0_CLIENT_ID;
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    [
-      provideZoneChangeDetection({ eventCoalescing: true }),
-      provideRouter(routes, withEnabledBlockingInitialNavigation()), //this ensures all asynchronous guards are loaded before showing the view
-      provideHttpClient(),
-      {
-        provide: HTTP_INTERCEPTORS,
-        useClass: AuthHttpInterceptor,
-        multi: true,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true },
+    provideHttpClient(withInterceptorsFromDi()),
+    provideRouter(routes, withEnabledBlockingInitialNavigation()),
+    provideAuth0({
+      domain: domain,
+      clientId: clientId,
+      authorizationParams: {
+        audience: environment.AUTH0_AUDIENCE,
+        redirect_uri: environment.redirectUri
       },
+
       provideHttpClient(withInterceptorsFromDi()),
       provideAuth0({
         domain: domain,
@@ -36,9 +38,10 @@ export const appConfig: ApplicationConfig = {
           redirect_uri: environmentDev.redirectUri,
         },
         httpInterceptor: {
-          allowedList: [`${environmentDev.api_url}/admin/*`], //List of URI links that need to be checked for authorisation
+          allowedList: [`${environmentDev.api_url}/admin/*`, allowAnonymous:true], //List of URI links that need to be checked for authorisation
         },
       }),
     ],
+
   ],
 };

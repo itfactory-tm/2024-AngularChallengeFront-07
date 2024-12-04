@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Edition } from '../interfaces/edition';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 import { Observable } from 'rxjs';
 import { v4 as uuidv4 } from 'uuid'; // Import the uuid function
 import { environmentDev } from '../../environments/environment.development'; // Import environment
+
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +14,9 @@ export class EditionService {
   constructor(private httpClient: HttpClient) { }
   private apiUrl = `${environmentDev.api_url}/Edition`; // Use environment variable
 
-  getEditions(): Observable<Edition[]> {
+
+  getEditions(): Observable<Edition[]>{
+
     return this.httpClient.get<Edition[]>(this.apiUrl);
   }
 
