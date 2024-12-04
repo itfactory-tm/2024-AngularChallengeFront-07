@@ -20,14 +20,19 @@
   </div>
 
 
-    @for (day of days; track $index) {
-        <div>
-            <h2 class="text-3xl font-extrabold text-tertiary tracking-widest mb-5">{{day.name}}</h2>
-            <div class="flex flex-wrap justify-center gap-8 p-6"> 
-                @for (tick of ticketsByDay[day.dayId]; track $index){
-                  <app-ticket [ticket]="tick"></app-ticket>
-                }
-            </div>
-          </div>
-        }
+    @for (day of days$ | async; track $index) {
+      <div class="text-center">
+        <!-- Title with additional margin and letter spacing -->
+        <h2 class="text-3xl font-extrabold text-tertiary tracking-widest mb-8">
+            {{day.name}}
+        </h2>
+    
+        <!-- Flex container for tickets -->
+        <div class="flex flex-wrap justify-center gap-8 p-6">
+            @for (tick of (filteredTicketsMap.get(day.dayId) | async); track $index){
+                <app-ticket [ticket]="tick"></app-ticket>
+            }
+        </div>
+    </div>
+    }
 </div>

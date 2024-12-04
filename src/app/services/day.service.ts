@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Day } from '../interfaces/day';
 import { Observable } from 'rxjs';
 import { ApiService } from './api.service';
+import { HttpClient } from '@angular/common/http';
 
 
 @Injectable({
@@ -11,7 +12,9 @@ export class DayService {
 
   private day: Day[] = [];
 
-  constructor() { 
+  private ApiUrl = 'http://localhost:8080/api/days';
+
+  constructor(private httpClient: HttpClient) { 
 
     let Friday : Day = {
       dayId: "1",
@@ -47,8 +50,8 @@ export class DayService {
     this.day.push(Weekend);
   }
 
-  getDays(): Day[] {
-    return this.day;
+  getDays(): Observable<Day[]> {
+    return this.httpClient.get<Day[]>(`${this.ApiUrl}`);
   }
 
   getDayById(i: number): Day {
