@@ -1,10 +1,10 @@
-export interface Ticket{
+export interface Ticket {
     ticketId: string;
     editionId: string;
-    editionName?: string;
-    ticketTypeId : string;
-    ticketPrice?: number;
+    editionName: string;
+    ticketTypeId: string;
+    ticketPrice: number;
     dayId: string;
-    dayName?: string;
+    dayName: string;
     amountTickets: number;
 }
