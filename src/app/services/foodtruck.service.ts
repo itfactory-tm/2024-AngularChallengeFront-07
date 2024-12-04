@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {FoodTruck} from "../interfaces/foodTruck";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { FoodTruck } from "../interfaces/foodTruck";
 import { v4 as uuidv4 } from 'uuid'; // Import the uuid function
+import { environment } from '../../environments/environment'; // Import environment
 
 @Injectable({
   providedIn: 'root'
@@ -10,9 +11,9 @@ import { v4 as uuidv4 } from 'uuid'; // Import the uuid function
 export class FoodtruckService {
 
   constructor(private httpClient: HttpClient) { }
-  private apiUrl = 'https://localhost:7005/api/Foodtrucks';
+  private apiUrl = `${environment.api_url}/Foodtrucks`;
 
-  getFoodtrucks(): Observable<FoodTruck[]>{
+  getFoodtrucks(): Observable<FoodTruck[]> {
     return this.httpClient.get<FoodTruck[]>(this.apiUrl);
   }
 
@@ -31,7 +32,7 @@ export class FoodtruckService {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
 
-    return this.httpClient.put<FoodTruck>(`${this.apiUrl}/${id}`, foodtruck,{headers: headers});
+    return this.httpClient.put<FoodTruck>(`${this.apiUrl}/${id}`, foodtruck, { headers: headers });
   }
 
   deleteFoodtruck(id: string): Observable<FoodTruck> {

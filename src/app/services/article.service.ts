@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Article } from '../interfaces/article';
-import {HttpClient} from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment'; // Import environment
 
 @Injectable({
   providedIn: 'root',
 })
 export class ArticleService {
-  constructor(private httpClient: HttpClient) {}
-  private apiUrl2 = 'https://localhost:7005/api/Articles';
-  private apiUrl = 'http://localhost:8080/api/Articles';
+  constructor(private httpClient: HttpClient) { }
+  private apiUrl = `${environment.api_url}/Articles`; // Use environment variable
 
-  getArticles(): Observable<Article[]>{
+  getArticles(): Observable<Article[]> {
     return this.httpClient.get<Article[]>(this.apiUrl);
   }
 
