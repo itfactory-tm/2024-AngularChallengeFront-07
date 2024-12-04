@@ -13,7 +13,7 @@ import {environment} from "../../environments/environment"; // Import the uuid f
 })
 export class EditionService {
   constructor(private httpClient: HttpClient) { }
-  private apiUrl = `${environment.api_url}/Edition`; // Use environment variable
+  private apiUrl = `${environment.api_url}/api/Edition`; // Use environment variable
 
 
   getEditions(): Observable<Edition[]>{

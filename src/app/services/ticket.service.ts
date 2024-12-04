@@ -15,7 +15,7 @@ export class TicketService {
 
   private selectedTickets: Ticket[] = [];
 
-  private ApiUrl = `${environment.api_url}/tickets`;
+  private ApiUrl = `${environment.api_url}/api/tickets`;
 
   constructor(private apiService: ApiService, private httpClient: HttpClient) {}
 

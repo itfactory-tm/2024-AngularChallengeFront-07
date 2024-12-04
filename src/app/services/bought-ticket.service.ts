@@ -10,7 +10,7 @@ import { environment } from "../../environments/environment";
 export class BoughtTicketService {
     private boughtTicket: BoughtTickets[] = [];
 
-    private ApiUrl = `${environment.api_url}/boughtTickets`;
+    private ApiUrl = `${environment.api_url}/api/boughtTickets`;
 
     constructor(private httpClient: HttpClient) {
 

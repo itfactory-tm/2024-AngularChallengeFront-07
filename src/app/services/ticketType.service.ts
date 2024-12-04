@@ -10,7 +10,7 @@ import { environment } from '../../environments/environment';
 })
 export class TicketTypeService {
 
-  private ApiUrl = `${environment.api_url}/ticketTypes`;
+  private ApiUrl = `${environment.api_url}/api/ticketTypes`;
 
   private ticketType: TicketType[] = [];
 
