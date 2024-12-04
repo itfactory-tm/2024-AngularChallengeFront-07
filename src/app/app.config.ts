@@ -25,12 +25,12 @@ export const appConfig: ApplicationConfig = {
       domain: domain,
       clientId: clientId,
       authorizationParams: {
-        audience: environmentDev.AUTH0_AUDIENCE,
-        redirect_uri: environmentDev.redirectUri
+        audience: environment.AUTH0_AUDIENCE,
+        redirect_uri: environment.redirectUri
       },
 
       httpInterceptor: {
-        allowedList: [{uri: `${environmentDev.api_url}/*`, allowAnonymous: true}]
+        allowedList: [{uri: `${environment.api_url}/*`, allowAnonymous: true}]
       }
     }),
 

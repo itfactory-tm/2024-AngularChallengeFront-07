@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import {map, Observable} from 'rxjs';
 import { v4 as uuidv4 } from 'uuid';
-import {environmentDev} from "../../environments/environment.development"; // Import the uuid function
+import {environment} from "../../environments/environment"; // Import the uuid function
 
 
 
@@ -15,9 +15,6 @@ export class EditionService {
   constructor(private httpClient: HttpClient) { }
   private apiUrl = `${environment.api_url}/Edition`; // Use environment variable
 
-
-  private apiUrl2 = 'https://localhost:7005/api/Edition';
-  private apiUrl = `${environmentDev.api_url}/api/Edition`;
 
   getEditions(): Observable<Edition[]>{
 
