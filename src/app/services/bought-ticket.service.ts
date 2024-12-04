@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { BoughtTickets } from "../interfaces/bought-tickets";
 import { Observable } from "rxjs";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { environmentDev } from "../../environments/environment.development";
+import { environment } from "../../environments/environment";
 
 @Injectable({
     providedIn: 'root'
@@ -10,7 +10,7 @@ import { environmentDev } from "../../environments/environment.development";
 export class BoughtTicketService {
     private boughtTicket: BoughtTickets[] = [];
 
-    private ApiUrl = `${environmentDev.api_url}/boughtTickets`;
+    private ApiUrl = `${environment.api_url}/boughtTickets`;
 
     constructor(private httpClient: HttpClient) {
 
