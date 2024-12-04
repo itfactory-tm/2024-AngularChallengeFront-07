@@ -1,4 +1,4 @@
-name = "Fritfest"
+name = "fritfest"
 pages_build_output_dir = "dist/fritfest"
 
 [vars]
