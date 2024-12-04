@@ -2,10 +2,12 @@ import {Component, OnInit} from '@angular/core';
 import {FormsModule} from "@angular/forms";
 import {Observable} from "rxjs";
 import {Location} from "../../interfaces/location";
-import {Foodtruck} from "../../interfaces/foodtruck";
+import {FoodTruck} from "../../interfaces/foodTruck";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FoodtruckService} from "../../services/foodtruck.service";
 import {LocationService} from "../../services/location.service";
+import {Edition} from "../../interfaces/edition";
+import {EditionService} from "../../services/edition.service";
 
 @Component({
   selector: 'app-foodtruck-form',
@@ -18,12 +20,16 @@ export class FoodtruckFormComponent implements OnInit{
   isAdd: boolean = false;
   isEdit: boolean = false;
   foodtruckId: string = '';
-  locations$: Observable<Location[]> = new Observable<Location[]>();
+  locations$: Location[] = [];
+  editions$: Edition[] = [];
 
-  foodtruck : Foodtruck = {
-    foodtruckId: '',
+  foodtruck : FoodTruck = {
+    foodTruckId: '',
     name:'',
-    locationId: ''
+    locationId: '',
+    locationName: '',
+    editionId: '',
+    editionName: ''
   };
 
   isSubmitted: boolean = false;
@@ -32,7 +38,8 @@ export class FoodtruckFormComponent implements OnInit{
   constructor(
     private router: Router,
     private foodtruckService: FoodtruckService,
-    private locationService: LocationService
+    private locationService: LocationService,
+    private editionService: EditionService
   ){const state = this.router.getCurrentNavigation()?.extras.state || {};
     this.isAdd = state['mode'] === 'add';
     this.isEdit = state['mode'] === 'edit';
@@ -44,7 +51,12 @@ export class FoodtruckFormComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.locations$ = this.locationService.getLocations();
+    this.editionService.getEditions().subscribe((editions)=>{
+      this.editions$ = editions;
+    })
+    this.locationService.getLocations().subscribe((locations)=>{
+      this.locations$ = locations;
+    })
     if (this.foodtruckId != null) {
       this.foodtruckService.getFoodtruckById(this.foodtruckId).subscribe((result) => {
         this.foodtruck = result;

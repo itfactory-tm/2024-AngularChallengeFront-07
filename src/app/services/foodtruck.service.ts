@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {Foodtruck} from "../interfaces/foodtruck";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { FoodTruck } from "../interfaces/foodTruck";
+import { v4 as uuidv4 } from 'uuid'; // Import the uuid function
+import { environment } from '../../environments/environment'; // Import environment
 
 @Injectable({
   providedIn: 'root'
@@ -9,28 +11,31 @@ import {Foodtruck} from "../interfaces/foodtruck";
 export class FoodtruckService {
 
   constructor(private httpClient: HttpClient) { }
-  private apiUrl = 'https://localhost:7005/api/Foodtrucks';
+  private apiUrl = `${environment.api_url}/Foodtrucks`;
 
-  getFoodtrucks(): Observable<Foodtruck[]>{
-    return this.httpClient.get<Foodtruck[]>(this.apiUrl);
+  getFoodtrucks(): Observable<FoodTruck[]> {
+    return this.httpClient.get<FoodTruck[]>(this.apiUrl);
   }
 
-  getFoodtruckById(id: string): Observable<Foodtruck> {
-    return this.httpClient.get<Foodtruck>(`${this.apiUrl}/${id}`);
+  getFoodtruckById(id: string): Observable<FoodTruck> {
+    return this.httpClient.get<FoodTruck>(`${this.apiUrl}/${id}`);
   }
 
-  postFoodtruck(foodtruck: Foodtruck): Observable<Foodtruck> {
-    return this.httpClient.post<Foodtruck>(`${this.apiUrl}/`, foodtruck);
+  postFoodtruck(foodtruck: FoodTruck): Observable<FoodTruck> {
+    foodtruck.foodTruckId = uuidv4();
+    let headers = new HttpHeaders();
+    headers = headers.set('Content-Type', 'application/json; charset=utf-8');
+    return this.httpClient.post<FoodTruck>(`${this.apiUrl}/`, foodtruck, { headers: headers });
   }
 
-  putFoodtruck(id: string, foodtruck: Foodtruck): Observable<Foodtruck> {
+  putFoodtruck(id: string, foodtruck: FoodTruck): Observable<FoodTruck> {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
 
-    return this.httpClient.put<Foodtruck>(`${this.apiUrl}/${id}`, foodtruck,{headers: headers});
+    return this.httpClient.put<FoodTruck>(`${this.apiUrl}/${id}`, foodtruck, { headers: headers });
   }
 
-  deleteFoodtruck(id: string): Observable<Foodtruck> {
-    return this.httpClient.delete<Foodtruck>(`${this.apiUrl}/${id}`);
+  deleteFoodtruck(id: string): Observable<FoodTruck> {
+    return this.httpClient.delete<FoodTruck>(`${this.apiUrl}/${id}`);
   }
 }

@@ -28,6 +28,7 @@
             <th class="px-6 py-3 text-md font-bold text-left">Logo</th>
             <th class="px-6 py-3 text-md font-bold text-left">Item</th>
             <th class="px-6 py-3 text-md font-bold text-left">Amount</th>
+            <th class="px-6 py-3 text-md font-bold text-left">Edition</th>
             <th class="px-6 py-3 text-md text-center">&nbsp;</th>
           </tr>
         </thead>
@@ -58,7 +59,10 @@
               {{ sponsor.sponsoredItem }}
             </td>
             <td class="px-6 py-4 text-sm text-gray-600">
-              €{{ sponsor.amount }}
+              {{ sponsor.amount }}
+            </td>
+            <td class="px-6 py-4 text-sm text-gray-600">
+              {{ sponsor.editionName}}
             </td>
             <td class="px-6 py-4 text-sm font-bold text-center">
               <div class="flex justify-end gap-4">

@@ -18,12 +18,24 @@ import { ArtistFormComponent } from './admin/artist-form/artist-form.component';
 import { AuthGuard } from '@auth0/auth0-angular';
 import { SponsorListComponent } from './admin/sponsor-list/sponsor-list.component';
 import { SponsorFormComponent } from './admin/sponsor-form/sponsor-form.component';
-import {FoodtruckListComponent} from "./admin/foodtruck-list/foodtruck-list.component";
-import {FoodtruckFormComponent} from "./foodtruck-form/foodtruck-form.component";
+import { FoodtruckListComponent } from './admin/foodtruck-list/foodtruck-list.component';
+import { FoodtruckFormComponent } from './admin/foodtruck-form/foodtruck-form.component';
+
 import { StageFormComponent } from './admin/stage-form/stage-form.component';
 import { StageAdminListComponent } from './admin/stageAdmin-list/stageAdmin-list.component';
 import { TicketFormComponent } from './admin/ticket-form/ticket-form.component';
 import { TicketListComponent } from './admin/ticket-list/ticket-list.component';
+
+import {LocationListComponent} from "./admin/location-list/location-list.component";
+import {LocationFormComponent} from "./admin/location-form/location-form.component";
+
+import { EditionListComponent } from './admin/edition-list/edition-list.component';
+import { EditionFormComponent } from './admin/edition-form/edition-form.component';
+import { ArticleListComponent } from './admin/article-list/article-list.component';
+import { ArticleFormComponent } from './admin/article-form/article-form.component';
+import { TimeSlotListComponent } from './admin/time-slot-list/time-slot-list.component';
+import { TimeSlotFormComponent } from './admin/time-slot-form/time-slot-form.component';
+
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -63,14 +75,36 @@ export const routes: Routes = [
     component: TicketFormComponent,
     canActivate: [AuthGuard],
   },
-  
-  { path: 'privacy', component: PrivacyComponent },
-  { path: 'terms', component: TermsComponent },
-  { path: 'artist', component: ArtistComponent },
-  { path: 'artist/:id', component: ArtistDetailComponent },
-  { path: 'order-ticket', component: OrderTicketComponent},
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: '**', redirectTo: '/home' },
+  {
+    path: 'admin/edition',
+    component: EditionListComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'admin/edition/form',
+    component: EditionFormComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'admin/article',
+    component: ArticleListComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'admin/article/form',
+    component: ArticleFormComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'admin/timeSlot',
+    component: TimeSlotListComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'admin/timeSlot/form',
+    component: TimeSlotFormComponent,
+    canActivate: [AuthGuard],
+  },
   {
     path: 'admin/sponsor',
     component: SponsorListComponent,
@@ -90,5 +124,23 @@ export const routes: Routes = [
     path: 'admin/foodtruck/form',
     component: FoodtruckFormComponent,
     canActivate: [AuthGuard],
-  }
+  },
+  {
+    path: 'admin/location',
+    component: LocationListComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'admin/location/form',
+    component: LocationFormComponent,
+    canActivate: [AuthGuard],
+  },
+
+  { path: 'privacy', component: PrivacyComponent },
+  { path: 'terms', component: TermsComponent },
+  { path: 'artist', component: ArtistComponent },
+  { path: 'artist/:id', component: ArtistDetailComponent },
+  { path: 'order-ticket', component: OrderTicketComponent },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '**', redirectTo: '/home' },
 ];

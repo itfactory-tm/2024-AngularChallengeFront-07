@@ -11,7 +11,7 @@ import { AsyncPipe } from '@angular/common';
 @Component({
   selector: 'app-artist-form',
   standalone: true,
-  imports: [FormsModule, AsyncPipe],
+  imports: [FormsModule],
   templateUrl: './artist-form.component.html',
   styleUrl: './artist-form.component.css',
 })
@@ -19,7 +19,6 @@ export class ArtistFormComponent implements OnInit {
   isAdd: boolean = false;
   isEdit: boolean = false;
   artistId: string = '';
-  editions$: Observable<Edition[]> = new Observable<Edition[]>();
 
   artist: Artist = {
     artistId: '',
@@ -30,7 +29,6 @@ export class ArtistFormComponent implements OnInit {
     genre: '',
     apiCode: '',
     spotifyPhoto: '',
-    edities: [],
   };
 
   isSubmitted: boolean = false;
@@ -51,7 +49,6 @@ export class ArtistFormComponent implements OnInit {
     }
   }
   ngOnInit(): void {
-    this.editions$ = this.editionService.getEditions();
     if (this.artistId != null) {
       this.artistService.getArtistById(this.artistId).subscribe((result) => {
         this.artist = result;
