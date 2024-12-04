@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { FoodTruck } from "../interfaces/foodTruck";
 import { v4 as uuidv4 } from 'uuid'; // Import the uuid function
-import { environment } from '../../environments/environment'; // Import environment
+import { environmentDev } from '../../environments/environment.development'; // Import environment
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ import { environment } from '../../environments/environment'; // Import environm
 export class FoodtruckService {
 
   constructor(private httpClient: HttpClient) { }
-  private apiUrl = `${environment.api_url}/Foodtrucks`;
+  private apiUrl = `${environmentDev.api_url}/Foodtrucks`;
 
   getFoodtrucks(): Observable<FoodTruck[]> {
     return this.httpClient.get<FoodTruck[]>(this.apiUrl);

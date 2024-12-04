@@ -3,14 +3,14 @@ import { TicketType } from '../interfaces/ticketType';
 import { Observable } from 'rxjs';
 import { ApiService } from './api.service';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../environments/environment';
+import { environmentDev } from '../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TicketTypeService {
 
-  private ApiUrl = `${environment.api_url}/ticketTypes`;
+  private ApiUrl = `${environmentDev.api_url}/ticketTypes`;
 
   private ticketType: TicketType[] = [];
 

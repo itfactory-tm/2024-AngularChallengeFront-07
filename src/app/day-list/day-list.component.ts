@@ -43,6 +43,8 @@ export class DayListComponent {
     this.days$ = this.dayService.getDays();
     this.tickets$ = this.ticketService.getTickets();
 
+    console.log(this.tickets$)
+
     this.days$.subscribe((days: Day[]) => {
       // Populate the map with filtered tickets observables for each dayId
       days.forEach(dag => {
