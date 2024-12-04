@@ -1,5 +1,5 @@
 name = "fritfest"
-pages_build_output_dir = "dist/fritfest"
+pages_build_output_dir = "dist/fritfest/browser"
 
 [vars]
 NODE_VERSION = "18.19.1"
