@@ -1,12 +1,12 @@
-import {Component, OnInit} from '@angular/core';
-import {Location} from "../../interfaces/location";
-import {FoodTruck} from "../../interfaces/foodTruck";
-import {FoodtruckService} from "../../services/foodtruck.service";
-import {LocationService} from "../../services/location.service";
-import {StageService} from "../../services/stage.service";
-import {Router} from "@angular/router";
-import {AsyncPipe} from "@angular/common";
-import {Observable} from "rxjs";
+import { Component, OnInit } from '@angular/core';
+import { Location } from "../../interfaces/location";
+import { FoodTruck } from "../../interfaces/foodTruck";
+import { FoodtruckService } from "../../services/foodtruck.service";
+import { LocationService } from "../../services/location.service";
+import { StageService } from "../../services/stage.service";
+import { Router } from "@angular/router";
+import { AsyncPipe } from "@angular/common";
+import { Observable } from "rxjs";
 
 @Component({
   selector: 'app-location-list',
@@ -18,22 +18,18 @@ import {Observable} from "rxjs";
 export class LocationListComponent implements OnInit {
   locations$: Observable<Location[]> = new Observable<Location[]>();
   errorMessage: string = '';
-  foodTrucks: {[key: string]: FoodTruck} = {};
+  foodTrucks: { [key: string]: FoodTruck } = {};
 
   constructor(
     private locationService: LocationService,
     private foodtruckService: FoodtruckService,
     private stageService: StageService,
     private router: Router
-    ) {
+  ) {
   }
-
-  ngOnInit():void {
-    this.getLocations();
+  ngOnInit(): void {
+    this.locations$ = this.locationService.getLocations();
   }
-  // to avoid repeated fetching, you can fetch all food trucks once and then filter them for each location:
-  // getLocations(){
-  //   this.locations$ = this.locationService.getLocations();
   //   this.locations$.subscribe(location => {
   //     this.loadFoodtrucks(location);
   //   })
@@ -51,18 +47,18 @@ export class LocationListComponent implements OnInit {
   //   });
   // }
 
-  add(){
-    this.router.navigate(['/admin/location/form'], {state: {mode: 'add'}});
+  add() {
+    this.router.navigate(['/admin/location/form'], { state: { mode: 'add' } });
   }
 
-  edit(id: string){
-    this.router.navigate(['/admin/location/form'], {state: {id: id, mode: 'edit'}});
+  edit(id: string) {
+    this.router.navigate(['/admin/location/form'], { state: { id: id, mode: 'edit' } });
   }
 
-  delete(id: string){
+  delete(id: string) {
     this.foodtruckService.deleteFoodtruck(id).subscribe(
       {
-        next: (v) => this.loadLocationsAndFoodTrucks(),
+        next: (v) => this.locations$ = this.locationService.getLocations(),
         error: (e) => (this.errorMessage = e.message),
       }
     );
