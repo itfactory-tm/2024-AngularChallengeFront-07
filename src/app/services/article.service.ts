@@ -3,7 +3,7 @@ import { Article } from '../interfaces/article';
 import { HttpClient } from "@angular/common/http";
 import { Observable } from 'rxjs';
 
-import { environmentDev } from '../../environments/environment.development'; // Import environment
+import { environment } from '../../environments/environment'; // Import environment
 
 
 @Injectable({
@@ -12,7 +12,7 @@ import { environmentDev } from '../../environments/environment.development'; // 
 export class ArticleService {
 
   constructor(private httpClient: HttpClient) { }
-  private apiUrl = `${environmentDev.api_url}/Articles`; // Use environment variable
+  private apiUrl = `${environment.api_url}/Articles`; // Use environment variable
 
 
   getArticles(): Observable<Article[]> {
