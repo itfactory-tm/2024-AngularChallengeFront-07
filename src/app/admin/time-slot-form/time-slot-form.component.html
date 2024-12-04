@@ -1,0 +1,103 @@
+<div class="container mx-auto p-6 max-w-4xl">
+    <h1 class="text-2xl font-bold text-yellow-200 mb-6 text-center">
+      {{ isAdd ? 'Add a Time slot' : 'Edit a Time slot' }}
+    </h1>
+    @if(isSubmitted && errorMessage) {
+    <div
+      class="rounded p-4 mb-4 text-lg bg-red-200 text-red-800 border-2 border-red-300"
+    >
+      {{ errorMessage }}
+    </div>
+    }
+  
+    <form (ngSubmit)="onSubmit()" #timeSlotForm="ngForm" class="px-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Time -->
+        <div>
+          <label for="time" class="block mb-2 text-sm font-medium text-primary"
+            >Time</label
+          >
+          <input
+            type="time"
+            id="time"
+            name="time"
+            class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            placeholder="time"
+            required
+            [(ngModel)]="timeSlot.time"
+            #time="ngModel"
+          />
+          <div [hidden]="time.valid || time.pristine" class="text-red-500 mt-2">
+            Time is required
+          </div>
+        </div>
+  
+        <!-- ArtistName -->
+        <div>
+          <label for="artistName" class="block mb-2 text-sm font-medium text-primary"
+            >Artist name</label
+          >
+          <input
+            type="text"
+            id="artistName"
+            name="artistName"
+            class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            placeholder="Artist Name"
+            required
+            [(ngModel)]="timeSlot.artistName"
+            #artistName="ngModel"
+          />
+          <div [hidden]="artistName.valid || artistName.pristine" class="text-red-500 mt-2">
+            Artist name is required
+          </div>
+        </div>
+  
+        <!-- Stage Name -->
+        <div class="col-span-2">
+          <label
+            for="stageName"
+            class="block mb-2 text-sm font-medium text-primary"
+            >Stage name</label
+          >
+          <input
+            type="text"
+            id="stageName"
+            name="stageName"
+            class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            placeholder="Stage name"
+            required
+            [(ngModel)]="timeSlot.stageName"
+            #stageName="ngModel"
+          >
+          <div
+            [hidden]="stageName.valid || stageName.pristine"
+            class="text-red-500 mt-2"
+          >
+          Stage name is required
+          </div>
+        </div>
+      </div>
+  
+      <!-- Buttons -->
+      <div class="flex space-x-4 mt-6">
+        @if(isAdd) {
+        <button
+          type="submit"
+          [disabled]="!timeSlotForm.form.valid || isSubmitted"
+          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center disabled:opacity-75"
+        >
+          Add
+        </button>
+        } @if(isEdit) {
+        <button
+          type="submit"
+          [disabled]="!timeSlotForm.form.valid || isSubmitted"
+          class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center disabled:opacity-75"
+        >
+          Save
+        </button>
+        }
+      </div>
+    </form>
+  </div>
+  
