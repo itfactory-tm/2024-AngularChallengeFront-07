@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { TimeSlot } from '../interfaces/timeSlot';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { environmentDev } from '../../environments/environment.development'; // Import environment
+import { environment } from '../../environments/environment'; // Import environment
 
 @Injectable({
   providedIn: 'root',
 })
 export class TimeSlotService {
   constructor(private httpClient: HttpClient) { }
-  private apiUrl = `${environmentDev.api_url}/TimeSlots`; // Use environment variable
+  private apiUrl = `${environment.api_url}/TimeSlots`; // Use environment variable
 
   getTimeSlots(): Observable<TimeSlot[]> {
     return this.httpClient.get<TimeSlot[]>(this.apiUrl);
