@@ -2,14 +2,15 @@ import { Injectable } from '@angular/core';
 import { Artist } from '../interfaces/artist';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { v4 as uuidv4 } from 'uuid'; // Import the uuid function
+import { v4 as uuidv4 } from 'uuid';
+import {environment} from "../../environments/environment"; // Import the uuid function
 
 @Injectable({
   providedIn: 'root',
 })
 export class ArtistService {
   constructor(private httpClient: HttpClient) {}
-  private apiUrl = 'https://localhost:7005/api/Artists';
+  private apiUrl = `${environment.api_url}/Artist`;
   getArtists(): Observable<Artist[]> {
     return this.httpClient.get<Artist[]>(this.apiUrl);
   }

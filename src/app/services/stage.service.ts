@@ -1,32 +1,39 @@
 import { Injectable } from '@angular/core';
 import { Stage } from '../interfaces/stage';
 import { Observable } from 'rxjs';
-import { ApiService } from './api.service';
+import {environment} from "../../environments/environment";
+import {v4 as uuidv4} from "uuid";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root',
 })
 export class StageService {
-  constructor(private apiService: ApiService) {}
-
+  constructor(private httpClient : HttpClient) {}
+  private apiUrl = `${environment.api_url}/Stages`;
   getStages(): Observable<Stage[]> {
-    return this.apiService.get<Stage[]>('Stages');
+    return this.httpClient.get<Stage[]>(this.apiUrl);
   }
 
   getStageById(id: string): Observable<Stage> {
-    return this.apiService.getById<Stage>('Stages', id);
+    return this.httpClient.get<Stage>(`${this.apiUrl}/${id}`);
   }
 
   postStage(stage: Stage): Observable<Stage> {
-    return this.apiService.post<Stage>('Stages', stage);
+    stage.stageId = uuidv4(); // Generate a new UUID
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json; charset=utf-8');
+    return this.httpClient.post<Stage>(`${this.apiUrl}/`, stage, {headers: headers});
   }
 
   putStage(id: string, stage: Stage): Observable<Stage> {
-    return this.apiService.put<Stage>('Stages', id, stage);
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json; charset=utf-8');
+    return this.httpClient.put<Stage>(`${this.apiUrl}/${id}`, stage, {headers: headers});
   }
 
   deleteStage(id: string): Observable<Stage> {
-    return this.apiService.delete<Stage>('Stages', id);
+    return this.httpClient.delete<Stage>(`${this.apiUrl}/${id}`);
   }
 }
 // getStages(): Stage[] {

@@ -1,140 +1,140 @@
 import { Injectable } from '@angular/core';
 import { Ticket } from '../interfaces/ticket';
 import { Observable } from 'rxjs';
-import { ApiService } from './api.service';
+import {v4 as uuidv4} from "uuid";
+import {environment} from "../../environments/environment";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root',
 })
 export class TicketService {
-  constructor(private apiService: ApiService) {
-    let ticket1: Ticket = {
-    ticketId: "1",
-    amountTickets : 200,
-    ticketTypeId : "1",
-    editionId : "1",
-    dayId: "1",
-  };
-
-  let ticket2: Ticket = {
-    ticketId: "2",
-    amountTickets : 200,
-    ticketTypeId : "2",
-    editionId : "1",
-    dayId: "1",
-  };
-
-  let ticket3: Ticket = {
-    ticketId: "3",
-    amountTickets : 200,
-    ticketTypeId : "3",
-    editionId : "1",
-    dayId: "1",
-  };
-
-  let ticket4: Ticket = {
-    ticketId: "4",
-    amountTickets : 200,
-    ticketTypeId : "1",
-    editionId : "1",
-    dayId: "2",
-  };
-
-  let ticket5: Ticket = {
-    ticketId: "5",
-    amountTickets : 200,
-    ticketTypeId : "2",
-    editionId : "1",
-    dayId: "2",
-  };
-
-  let ticket6: Ticket = {
-    ticketId: "6",
-    amountTickets : 200,
-    ticketTypeId : "3",
-    editionId : "1",
-    dayId: "2",
-  };
-
-  let ticket7: Ticket = {
-    ticketId: "7",
-    amountTickets : 200,
-    ticketTypeId : "1",
-    editionId : "1",
-    dayId: "3",
-  };
-
-  let ticket8: Ticket = {
-    ticketId: "8",
-    amountTickets : 200,
-    ticketTypeId : "2",
-    editionId : "1",
-    dayId: "3",
-  };
-
-  let ticket9: Ticket = {
-    ticketId: "9",
-    amountTickets : 200,
-    ticketTypeId : "3",
-    editionId : "1",
-    dayId: "3",
-  };
-
-  let ticket10: Ticket = {
-    ticketId: "10",
-    amountTickets : 200,
-    ticketTypeId : "1",
-    editionId : "1",
-    dayId: "4",
-  };
-
-  let ticket11: Ticket = {
-    ticketId: "11",
-    amountTickets : 200,
-    ticketTypeId : "2",
-    editionId : "1",
-    dayId: "4",
-  };
-
-  let ticket12: Ticket = {
-    ticketId: "12",
-    amountTickets : 200,
-    ticketTypeId : "3",
-    editionId : "1",
-    dayId: "4",
-  };
-
-  this.tickets.push(ticket1);
-  this.tickets.push(ticket2);
-  this.tickets.push(ticket3);
-  this.tickets.push(ticket4);
-  this.tickets.push(ticket5);
-  this.tickets.push(ticket6);
-  this.tickets.push(ticket7);
-  this.tickets.push(ticket8);
-  this.tickets.push(ticket9);
-  this.tickets.push(ticket10);
-  this.tickets.push(ticket11);
-  this.tickets.push(ticket12);
-
-  this.selectedTickets.push(ticket1);
-  this.selectedTickets.push(ticket4);}
+  constructor(private httpClient: HttpClient) {
+  //   let ticket1: Ticket = {
+  //   ticketId: "1",
+  //   amountTickets : 200,
+  //   ticketTypeId : "1",
+  //   editionId : "1",
+  //   dayId: "1",
+  // };
+  //
+  // let ticket2: Ticket = {
+  //   ticketId: "2",
+  //   amountTickets : 200,
+  //   ticketTypeId : "2",
+  //   editionId : "1",
+  //   dayId: "1",
+  // };
+  //
+  // let ticket3: Ticket = {
+  //   ticketId: "3",
+  //   amountTickets : 200,
+  //   ticketTypeId : "3",
+  //   editionId : "1",
+  //   dayId: "1",
+  // };
+  //
+  // let ticket4: Ticket = {
+  //   ticketId: "4",
+  //   amountTickets : 200,
+  //   ticketTypeId : "1",
+  //   editionId : "1",
+  //   dayId: "2",
+  // };
+  //
+  // let ticket5: Ticket = {
+  //   ticketId: "5",
+  //   amountTickets : 200,
+  //   ticketTypeId : "2",
+  //   editionId : "1",
+  //   dayId: "2",
+  // };
+  //
+  // let ticket6: Ticket = {
+  //   ticketId: "6",
+  //   amountTickets : 200,
+  //   ticketTypeId : "3",
+  //   editionId : "1",
+  //   dayId: "2",
+  // };
+  //
+  // let ticket7: Ticket = {
+  //   ticketId: "7",
+  //   amountTickets : 200,
+  //   ticketTypeId : "1",
+  //   editionId : "1",
+  //   dayId: "3",
+  // };
+  //
+  // let ticket8: Ticket = {
+  //   ticketId: "8",
+  //   amountTickets : 200,
+  //   ticketTypeId : "2",
+  //   editionId : "1",
+  //   dayId: "3",
+  // };
+  //
+  // let ticket9: Ticket = {
+  //   ticketId: "9",
+  //   amountTickets : 200,
+  //   ticketTypeId : "3",
+  //   editionId : "1",
+  //   dayId: "3",
+  // };
+  //
+  // let ticket10: Ticket = {
+  //   ticketId: "10",
+  //   amountTickets : 200,
+  //   ticketTypeId : "1",
+  //   editionId : "1",
+  //   dayId: "4",
+  // };
+  //
+  // let ticket11: Ticket = {
+  //   ticketId: "11",
+  //   amountTickets : 200,
+  //   ticketTypeId : "2",
+  //   editionId : "1",
+  //   dayId: "4",
+  // };
+  //
+  // let ticket12: Ticket = {
+  //   ticketId: "12",
+  //   amountTickets : 200,
+  //   ticketTypeId : "3",
+  //   editionId : "1",
+  //   dayId: "4",
+  // };
+  //
+  // this.tickets.push(ticket1);
+  // this.tickets.push(ticket2);
+  // this.tickets.push(ticket3);
+  // this.tickets.push(ticket4);
+  // this.tickets.push(ticket5);
+  // this.tickets.push(ticket6);
+  // this.tickets.push(ticket7);
+  // this.tickets.push(ticket8);
+  // this.tickets.push(ticket9);
+  // this.tickets.push(ticket10);
+  // this.tickets.push(ticket11);
+  // this.tickets.push(ticket12);
+  //
+  // this.selectedTickets.push(ticket1);
+  // this.selectedTickets.push(ticket4);
+  }
 
   private tickets: Ticket[] = [];
 
   private selectedTickets: Ticket[] = [];
+  private apiUrl = `${environment.api_url}/Tickets`;
 
   getTickets(): Observable<Ticket[]> {
-    return this.apiService.get<Ticket[]>('Tickets');
+    return this.httpClient.get<Ticket[]>(this.apiUrl);
   }
 
   getTicketById(id: string): Observable<Ticket> {
-    return this.apiService.getById<Ticket>('Tickets', id);
+    return this.httpClient.get<Ticket>(`${this.apiUrl}/${id}`);
   }
-
-  // getTicketById(i: number): Ticket {
-  //   return this.tickets[i]
-  // }
 
   getSelectedTickets(): Ticket[]{
     return this.selectedTickets;
@@ -144,15 +144,20 @@ export class TicketService {
     this.selectedTickets = tickets;
   }
   postTicket(ticket: Ticket): Observable<Ticket> {
-    return this.apiService.post<Ticket>('Tickets', ticket);
+    ticket.ticketId = uuidv4();
+    let headers = new HttpHeaders()
+    headers.append('Content-Type', 'application/json; charset=utf-8');
+    return this.httpClient.post<Ticket>(`${this.apiUrl}/`, ticket, {headers: headers});
   }
 
   putTicket(id: string, ticket: Ticket): Observable<Ticket> {
-    return this.apiService.put<Ticket>('Tickets', id, ticket);
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json; charset=utf-8');
+    return this.httpClient.put<Ticket>(`${this.apiUrl}/${id}`, ticket, {headers: headers});
   }
 
   deleteTicket(id: string): Observable<Ticket> {
-    return this.apiService.delete<Ticket>('Tickets', id);
+    return this.httpClient.delete<Ticket>(`${this.apiUrl}/${id}`);
   }
 }
 

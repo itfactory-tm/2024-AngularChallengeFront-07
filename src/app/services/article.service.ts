@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Article } from '../interfaces/article';
 import {HttpClient} from "@angular/common/http";
 import { Observable } from 'rxjs';
-import {environmentDev} from "../../environments/environment.development";
+import {environment} from "../../environments/environment";
 
 
 @Injectable({
@@ -11,7 +11,7 @@ import {environmentDev} from "../../environments/environment.development";
 export class ArticleService {
   constructor(private httpClient: HttpClient) {}
 
-  private apiUrl = `${environmentDev.api_url}/api/Articles`;
+  private apiUrl = `${environment.api_url}/Articles`;
 
   getArticles(): Observable<Article[]>{
     return this.httpClient.get<Article[]>(this.apiUrl);

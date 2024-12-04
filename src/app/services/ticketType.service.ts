@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { TicketType } from '../interfaces/ticketType';
 import { Observable } from 'rxjs';
-import { ApiService } from './api.service';
+import {v4 as uuidv4} from "uuid";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root',
@@ -9,8 +11,9 @@ import { ApiService } from './api.service';
 export class TicketTypeService {
 
   private ticketType: TicketType[] = [];
+  private apiUrl = `${environment.api_url}/ticketType`;
 
-  constructor(private apiService: ApiService) {
+  constructor(private httpClient: HttpClient) {
       let regular : TicketType = {
         typeId: "1",
         name: "Regular",
@@ -34,28 +37,33 @@ export class TicketTypeService {
     this.ticketType.push(VIP);}
 
   getTicketTypes(): Observable<TicketType[]> {
-    return this.apiService.get<TicketType[]>('TicketTypes');
+    return this.httpClient.get<TicketType[]>(this.apiUrl);
   }
 
   getTicketTypeById(id: string): Observable<TicketType> {
-    return this.apiService.getById<TicketType>('TicketTypes', id);
+    return this.httpClient.get<TicketType>(`${this.apiUrl}/${id}`);
   }
 
   postTicketType(ticketType: TicketType): Observable<TicketType> {
-    return this.apiService.post<TicketType>('TicketTypes', ticketType);
+    ticketType.typeId = uuidv4();
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json; charset=utf-8');
+    return this.httpClient.post<TicketType>(`${this.apiUrl}/`, ticketType, {headers: headers});
   }
 
   putTicketType(id: string, ticketType: TicketType): Observable<TicketType> {
-    return this.apiService.put<TicketType>('TicketTypes', id, ticketType);
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json; charset=utf-8');
+    return this.httpClient.put<TicketType>(`${this.apiUrl}/${id}`, ticketType, {headers: headers});
   }
 
   deleteTicketType(id: string): Observable<TicketType> {
-    return this.apiService.delete<TicketType>('TicketTypes', id);
+    return this.httpClient.delete<TicketType>(`${this.apiUrl}/${id}`);
   }
 }
 
 
-// constructor() { 
+// constructor() {
 
 //     let regular : TicketType = {
 //         typeId: 1,
@@ -83,7 +91,7 @@ export class TicketTypeService {
 //     getTicketTypes(): TicketType[] {
 //         return this.ticketType;
 //     }
-    
+
 //     getTicketTypeById(id: number): TicketType | undefined{
 //         return this.ticketType.find(ticketType => ticketType.typeId === id);
 //     }
