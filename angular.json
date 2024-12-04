@@ -46,7 +46,8 @@
                 }
               ],
               "outputHashing": "all",
-              "baseHref": "/"
+              "baseHref": "/",
+              "deployUrl": "https://fritfest.pages.dev/"
             },
             "development": {
               "optimization": false,
