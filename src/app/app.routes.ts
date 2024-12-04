@@ -36,6 +36,7 @@ import { ArticleFormComponent } from './admin/article-form/article-form.componen
 import { TimeSlotListComponent } from './admin/time-slot-list/time-slot-list.component';
 import { TimeSlotFormComponent } from './admin/time-slot-form/time-slot-form.component';
 import {LocationListComponent} from "./admin/location-list/location-list.component";
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
 
 
 export const routes: Routes = [
@@ -46,6 +47,11 @@ export const routes: Routes = [
   { path: 'stage-list', component: StageListComponent },
   { path: 'stage/:id', component: StageDetailComponent },
   { path: 'tickets', component: DayListComponent },
+  {
+    path: 'admin/dashboard',
+    component: DashboardComponent,
+    canActivate: [AuthGuard],
+  },
   {
     path: 'admin/artist',
     component: ArtistListComponent,
