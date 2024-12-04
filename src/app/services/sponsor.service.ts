@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Sponsor } from '../interfaces/sponsor';
 
 import { v4 as uuidv4 } from 'uuid'; // Import the uuid function
-import { environmentDev } from '../../environments/environment.development'; // Import environment
+import { environment} from '../../environments/environment'; // Import environment
 
 
 @Injectable({
@@ -13,7 +13,7 @@ import { environmentDev } from '../../environments/environment.development'; // 
 export class SponsorService {
 
   constructor(private httpClient: HttpClient) { }
-  private apiUrl = `${environmentDev.api_url}/Sponsors`; // Use environment variable
+  private apiUrl = `${environment.api_url}/Sponsors`; // Use environment variable
 
 
   getSponsors(): Observable<Sponsor[]> {
