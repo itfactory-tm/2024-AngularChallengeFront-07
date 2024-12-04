@@ -1,4 +1,4 @@
-import { environmentDev } from '../environments/environment.development';
+import { environment } from '../environments/environment';
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import {
   provideRouter,
@@ -13,8 +13,8 @@ import {
 } from '@angular/common/http';
 import { provideAuth0, AuthHttpInterceptor } from '@auth0/auth0-angular';
 
-const domain = environmentDev.AUTH0_DOMAIN;
-const clientId = environmentDev.AUTH0_CLIENT_ID;
+const domain = environment.AUTH0_DOMAIN;
+const clientId = environment.AUTH0_CLIENT_ID;
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -28,9 +28,11 @@ export const appConfig: ApplicationConfig = {
         audience: environmentDev.AUTH0_AUDIENCE,
         redirect_uri: environmentDev.redirectUri
       },
+
       httpInterceptor: {
         allowedList: [{uri: `${environmentDev.api_url}/*`, allowAnonymous: true}]
       }
     }),
+
   ],
 };

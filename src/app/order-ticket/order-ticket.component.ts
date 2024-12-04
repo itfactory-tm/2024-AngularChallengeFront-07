@@ -9,6 +9,8 @@ import { Day } from '../interfaces/day';
 import { TicketType } from '../interfaces/ticketType';
 import { BoughtTicketService } from '../services/bought-ticket.service';
 import { Observable } from 'rxjs';
+import { v4 as uuidv4 } from 'uuid';
+
 
 @Component({
   selector: 'app-order-ticket',
@@ -23,6 +25,7 @@ export class OrderTicketComponent implements OnInit {
   days: Day[] = [];
   types: TicketType[] = [];
 
+  days$: Observable<Day[]> = new Observable<Day[]>();
   types$: Observable<TicketType[]> = new Observable<TicketType[]>();
 
   // Reactive form for adding tickets
@@ -43,8 +46,18 @@ export class OrderTicketComponent implements OnInit {
 
   ngOnInit(): void {
     this.selectedticket = this.ticketService.getSelectedTickets();
-    this.days = this.dayService.getDays();
+    this.days$ = this.dayService.getDays();
     this.types$ = this.ticketTypeService.getTicketTypes();
+
+    console.log(this.selectedticket)
+
+    this.days$.subscribe((days) => {
+      this.days = days; // Store days in local variable
+    });
+
+    this.types$.subscribe((types) => {
+      this.types = types
+    });
 
     this.initializeTicketForms();  // Initialize form controls for tickets
   }
@@ -75,24 +88,35 @@ export class OrderTicketComponent implements OnInit {
 
       // Prepare the JSON structure
       const ticketData = formValues.tickets?.map((ticket: any) => ({
-        boughtTicketId: ticket.ticketId,   // Ticket purchase ID
+        boughtTicketId: uuidv4(),   // Ticket purchase ID
         buyerName: formValues.nameOfBuyer,    // Shared buyer info
-        buyerEmail: formValues.emailOfBuyer,  // Shared buyer info
+        buyerMail: formValues.emailOfBuyer,  // Shared buyer info
         holderName: ticket.nameOfHolder,      // Ticket holder info
-        holderEmail: ticket.emailOfHolder,    // Ticket holder info
+        holderMail: ticket.emailOfHolder,    // Ticket holder info
         ticketId: ticket.ticketId,          // Specific ticket ID
-        payed: formValues.payed                  // Payment status
+        payed: formValues.payed,                  // Payment status
       }));
 
       const tickets = ticketData;
+      console.log(tickets)
     
       tickets?.forEach((ticket: any) => {
         // Each ticket will be added individually to the service
-        this.boughtTicketService.addTickets(ticket);
-        console.log('Ticket added:', ticket);  // You can log each ticket if needed
+        console.log(ticket)
+        this.boughtTicketService.postTicket(ticket).subscribe(
+          response => {
+            console.log('Ticket created successfully', response);
+          },
+          error => {
+            console.error('Error creating ticket:', error);
+            if (error.status === 400) {
+              // Handle bad request errors
+              console.log('Bad Request Error:', error.error);
+            }
+          });        
       });
 
-      console.log(this.boughtTicketService.getTickets());
+      //console.log(this.boughtTicketService.getTickets());
 
     } else {
       console.log('Form is invalid', this.addingTicketForm.value);
@@ -100,10 +124,10 @@ export class OrderTicketComponent implements OnInit {
   }
 
   getDagForTicket(dayId: string): Day | undefined {
-    return this.days.find(dag => dag.dayId === dayId);
+    return this.days.find(d => d.dayId === dayId);
   }
 
   getTypeForTicket(typeId: string): TicketType | undefined {
-    return this.types.find(type => type.typeId === typeId);
+    return this.types.find(t => t.ticketTypeId === typeId);
   }
 }
