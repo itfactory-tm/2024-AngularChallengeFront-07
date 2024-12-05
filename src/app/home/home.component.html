@@ -1,30 +1,30 @@
-<div class="relative min-h-screen bg-gray-900">
-  <div class="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-50 transition-opacity duration-1000"
+<div class="relative min-h-screen bg-gradient-to-r from-green-400 via-blue-500 to-purple-600">
+  <div class="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-70 transition-opacity duration-1000"
     [ngStyle]="{'background-image': 'url(' + backgroundImage + ')'}" #bgImage></div>
-  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <div class="text-center mb-12">
-      <h1 class="text-6xl font-extrabold text-text mt-24">Welcome to FritFest</h1>
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="text-center mb-16">
+      <h1 class="text-7xl font-extrabold text-white mt-24 drop-shadow-lg" style="-webkit-text-stroke: 1px black;">Welcome to FritFest</h1>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
       @for (card of cards; track $index) {
         <div
-        class="bg-black bg-opacity-80 rounded-xl shadow-lg p-6 transform hover:scale-105 transition-all duration-300"
+        class="bg-white bg-opacity-90 rounded-2xl shadow-2xl p-8 transform hover:scale-110 transition-transform duration-500"
         [attr.id]="'card-' + $index">
-        <i [class]="'fas ' + card.icon + ' text-4xl text-blue-400 mb-4'"></i>
-        <h3 class="text-2xl font-semibold text-blue-300 mb-4">{{ card.title }}</h3>
-        <p class="text-gray-200">{{ card.description }}</p>
+        <i [class]="'fas ' + card.icon + ' text-5xl text-purple-500 mb-6'"></i>
+        <h3 class="text-3xl font-bold text-purple-600 mb-4">{{ card.title }}</h3>
+        <p class="text-gray-700">{{ card.description }}</p>
       </div>
       }
     </div>
-    <div class="mt-16 text-center">
+    <div class="mt-20 text-center">
       <a routerLink="/tickets"
-        class="ticket-button group relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white transition-all duration-300 ease-in-out bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 rounded-full overflow-hidden shadow-2xl hover:shadow-lg">
-        <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-purple-600 via-pink-500 to-red-500"></span>
+        class="ticket-button group relative inline-flex items-center justify-center px-10 py-5 text-xl font-bold text-white transition-all duration-500 ease-in-out bg-gradient-to-r from-yellow-500 via-red-500 to-pink-500 rounded-full overflow-hidden shadow-2xl hover:shadow-xl">
+        <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-yellow-500 via-red-500 to-pink-500"></span>
         <span
-          class="absolute bottom-0 right-0 block w-64 h-64 mb-32 mr-4 transition duration-500 origin-bottom-left transform rotate-45 translate-x-24 bg-pink-500 opacity-30 group-hover:rotate-90 ease"></span>
+          class="absolute bottom-0 right-0 block w-72 h-72 mb-36 mr-6 transition duration-700 origin-bottom-left transform rotate-45 translate-x-28 bg-red-500 opacity-40 group-hover:rotate-90 ease"></span>
         <span class="relative">Get Your Tickets</span>
         <svg
-          class="relative w-5 h-5 ml-2 transition-transform duration-300 ease-out transform group-hover:translate-x-1"
+          class="relative w-6 h-6 ml-3 transition-transform duration-500 ease-out transform group-hover:translate-x-2"
           fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
         </svg>
