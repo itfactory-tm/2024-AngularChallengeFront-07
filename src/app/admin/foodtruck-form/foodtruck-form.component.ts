@@ -29,7 +29,9 @@ export class FoodtruckFormComponent implements OnInit{
     locationId: '',
     locationName: '',
     editionId: '',
-    editionName: ''
+    editionName: '',
+    menuItems: [],
+
   };
 
   isSubmitted: boolean = false;
@@ -53,6 +55,7 @@ export class FoodtruckFormComponent implements OnInit{
   ngOnInit(): void {
     this.editionService.getEditions().subscribe((editions)=>{
       this.editions$ = editions;
+      console.log(this.editions$);
     })
     this.locationService.getLocations().subscribe((locations)=>{
       this.locations$ = locations;

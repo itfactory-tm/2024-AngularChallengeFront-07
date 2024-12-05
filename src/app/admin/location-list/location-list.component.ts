@@ -29,7 +29,7 @@ export class LocationListComponent implements OnInit {
   }
 
   ngOnInit():void {
-    this.getLocations();
+    // this.getLocations();
   }
   // to avoid repeated fetching, you can fetch all food trucks once and then filter them for each location:
   // getLocations(){
@@ -60,11 +60,11 @@ export class LocationListComponent implements OnInit {
   }
 
   delete(id: string){
-    this.foodtruckService.deleteFoodtruck(id).subscribe(
-      {
-        next: (v) => this.loadLocationsAndFoodTrucks(),
-        error: (e) => (this.errorMessage = e.message),
-      }
-    );
+    // this.foodtruckService.deleteFoodtruck(id).subscribe(
+    //   {
+    //     next: (v) => this.loadLocationsAndFoodTrucks(),
+    //     error: (e) => (this.errorMessage = e.message),
+    //   }
+    // );
   }
 }

@@ -3,7 +3,8 @@ import { Edition } from '../interfaces/edition';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {map, Observable} from 'rxjs';
-import { v4 as uuidv4 } from 'uuid'; // Import the uuid function
+import { v4 as uuidv4 } from 'uuid';
+import {environment} from "../../environments/environment"; // Import the uuid function
 
 
 @Injectable({
@@ -12,8 +13,7 @@ import { v4 as uuidv4 } from 'uuid'; // Import the uuid function
 export class EditionService {
   constructor(private httpClient: HttpClient) {}
 
-  private apiUrl2 = 'https://localhost:7005/api/Edition';
-  private apiUrl = 'http://localhost:8080/api/Edition';
+  private apiUrl = `${environment.api_url}/Edition`;
 
   getEditions(): Observable<Edition[]>{
     return this.httpClient.get<Edition[]>(this.apiUrl);

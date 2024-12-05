@@ -33,6 +33,7 @@ export class HeaderComponent {
     { path: '/', name: 'Home' },
     { path: '/line-up', name: 'Line-up' },
     { path: '/stage-list', name: 'Stages' },
+    {path: '/food', name: 'Food and drinks'}
   ];
 
   rightPages = [

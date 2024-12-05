@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import { Location } from '../interfaces/location';
-import { v4 as uuidv4 } from 'uuid'; // Import the uuid function
+import { v4 as uuidv4 } from 'uuid';
+import {environment} from "../../environments/environment"; // Import the uuid function
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,8 @@ import { v4 as uuidv4 } from 'uuid'; // Import the uuid function
 export class LocationService {
 
   constructor(private httpClient: HttpClient) { }
-  private apiUrl = "https://localhost:7005/api/Locations";
+
+  private apiUrl = `${environment.api_url}/Locations`;
 
   getLocations(): Observable<Location[]>{
     return this.httpClient.get<Location[]>(this.apiUrl);
