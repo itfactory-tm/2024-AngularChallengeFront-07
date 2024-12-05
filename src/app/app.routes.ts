@@ -37,6 +37,9 @@ import { TimeSlotListComponent } from './admin/time-slot-list/time-slot-list.com
 import { TimeSlotFormComponent } from './admin/time-slot-form/time-slot-form.component';
 import {LocationListComponent} from "./admin/location-list/location-list.component";
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import {MenuItemsFormComponent} from "./admin/menu-items-form/menu-items-form.component";
+import {MenuItemsListComponent} from "./admin/menu-items-list/menu-items-list.component";
+import {FoodDrinksComponent} from "./food-drinks/food-drinks.component";
 
 
 export const routes: Routes = [
@@ -47,6 +50,7 @@ export const routes: Routes = [
   { path: 'stage-list', component: StageListComponent },
   { path: 'stage/:id', component: StageDetailComponent },
   { path: 'tickets', component: DayListComponent },
+  {path: 'food', component: FoodDrinksComponent},
   {
     path: 'admin/dashboard',
     component: DashboardComponent,
@@ -140,6 +144,16 @@ export const routes: Routes = [
   {
     path: 'admin/location/form',
     component: LocationFormComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'admin/menuItems',
+    component: MenuItemsListComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'admin/menuItems/form',
+    component: MenuItemsFormComponent,
     canActivate: [AuthGuard],
   },
 

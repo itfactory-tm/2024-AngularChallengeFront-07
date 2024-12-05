@@ -1,3 +1,5 @@
+import {MenuItems} from "./menu-items";
+
 export interface FoodTruck {
   foodTruckId: string;
   name: string;
@@ -5,4 +7,5 @@ export interface FoodTruck {
   locationName: string;
   editionId: string;
   editionName: string;
+  menuItems?: MenuItems[];
 }
