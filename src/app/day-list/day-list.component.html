@@ -18,6 +18,12 @@
     </div>
   </div>
 
+  <!-- Full-page Loading Overlay -->
+  @if(isLoading) {
+  <div class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-75 z-50">
+    <p class="text-white text-2xl">Loading...</p>
+  </div>
+  } @else {
   @for (day of days$ | async; track $index) {
   <div class="text-center">
     <!-- Title with additional margin and letter spacing -->
@@ -32,5 +38,6 @@
       }
     </div>
   </div>
+  }
   }
 </div>

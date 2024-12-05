@@ -6,7 +6,7 @@ import { TicketsComponent } from '../tickets/tickets.component';
 import { TicketService } from '../services/ticket.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
-import { Observable, map } from 'rxjs';
+import { Observable, map, forkJoin, BehaviorSubject, of } from 'rxjs';
 
 @Component({
   selector: 'app-day-list',
@@ -16,8 +16,8 @@ import { Observable, map } from 'rxjs';
   styleUrl: './day-list.component.css',
 })
 export class DayListComponent {
-  days$: Observable<Day[]> = new Observable<Day[]>();
-  tickets$: Observable<Ticket[]> = new Observable<Ticket[]>();
+  days$: BehaviorSubject<Day[]> = new BehaviorSubject<Day[]>([]);
+  tickets$: BehaviorSubject<Ticket[]> = new BehaviorSubject<Ticket[]>([]);
   filteredTicketsMap: Map<string, Observable<Ticket[]>> = new Map();
 
   resultArray: Ticket[] = [];
@@ -26,35 +26,53 @@ export class DayListComponent {
   totalSelectedTickets: number = 0;
   selectedTicketQuantities: Map<string, number> = new Map();
 
-  constructor(private dayService: DayService, private ticketService: TicketService, private router: Router) { }
+  // Unified loading state flag
+  isLoading: boolean = true;
+
+  constructor(
+    private dayService: DayService,
+    private ticketService: TicketService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
-    this.days$ = this.dayService.getDays();
-    this.tickets$ = this.ticketService.getTickets();
+    // Use forkJoin to load days and tickets concurrently
+    forkJoin({
+      days: this.dayService.getDays(),
+      tickets: this.ticketService.getTickets()
+    }).subscribe({
+      next: ({ days, tickets }) => {
+        this.isLoading = false; // Data has been loaded
+        this.days$.next(days);
+        this.tickets$.next(tickets);
 
-    this.days$.subscribe((days: Day[]) => {
-      // Populate the map with filtered tickets observables for each dayId
-      days.forEach(dag => {
-        this.filteredTicketsMap.set(dag.dayId, this.getTicketsByDay(dag.dayId));
-      });
+        // Populate the filteredTicketsMap
+        days.forEach(day => {
+          const filtered = tickets.filter(ticket => ticket.dayId === day.dayId);
+          this.filteredTicketsMap.set(day.dayId, of(filtered));
+        });
+      },
+      error: (err) => {
+        console.error('Error loading data', err);
+        this.isLoading = false;
+        // Optionally, handle the error state here
+      }
     });
   }
 
   getTicketsByDay(dayId: string): Observable<Ticket[]> {
-    return this.tickets$.pipe(
-      map(tickets => tickets.filter(ticket => ticket.dayId === dayId))
-    );
+    return this.filteredTicketsMap.get(dayId) || of([]);
   }
 
   // Submit tickets for buying
   addTickets(ticket: Ticket, amount: number): void {
     for (let i = 0; i < amount; i++) {
-      console.log(ticket)
-      this.resultArray.push(ticket);  // Add the ticket 'amount' times to the result array
+      console.log(ticket);
+      this.resultArray.push(ticket); // Add the ticket 'amount' times to the result array
     }
   }
 
-  onTicketQuantityChange(event: { ticketId: string, quantity: number }): void {
+  onTicketQuantityChange(event: { ticketId: string; quantity: number }): void {
     if (event.quantity > 0) {
       this.selectedTicketQuantities.set(event.ticketId, event.quantity);
     } else {
@@ -81,12 +99,11 @@ export class DayListComponent {
 
     this.selectedTicketQuantities.forEach((quantity, ticketId) => {
       // Find the ticket by ticketId
-      this.tickets$.subscribe((tickets: Ticket[]) => {
-        const ticket = tickets.find(t => t.ticketId === ticketId);
-        if (ticket) {
-          this.addTickets(ticket, quantity);
-        }
-      });
+      const tickets = this.tickets$.getValue();
+      const ticket = tickets.find(t => t.ticketId === ticketId);
+      if (ticket) {
+        this.addTickets(ticket, quantity);
+      }
     });
 
     this.ticketService.setSelectedTickets(this.resultArray); // Display the selected tickets
