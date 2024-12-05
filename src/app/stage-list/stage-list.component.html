@@ -1,7 +1,8 @@
-<div class="bg-secondary min-h-screen w-full p-4 sm:p-8 flex items-start justify-center overflow-y-auto">
-  <div class="w-full max-w-8xl grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 auto-rows-min">
-    @for (stage of stages$ | async; track $index) {
-      <app-stage [stage]="stage"></app-stage>
-    }
-  </div>
+<div class="text-center m-5 text-5xl font-extrabold text-quaternary">
+  <h1>Stages</h1>
 </div>
+<div class="flex flex-wrap justify-center gap-20 m-5"> 
+  @for (stage of stages$ | async; track $index) {
+    <app-stage [stage]="stage" class="w-full sm:w-auto"></app-stage>
+  }
+</div> 

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Day } from '../interfaces/day';
 import { Observable } from 'rxjs';
-import { ApiService } from './api.service';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { environment } from '../../environments/environment';
+import {v4 as uuidv4} from 'uuid';
 
 
 @Injectable({
@@ -16,47 +16,31 @@ export class DayService {
   private ApiUrl = `${environment.api_url}/days`;
 
   constructor(private httpClient: HttpClient) {
-
-    let Friday: Day = {
-      dayId: "1",
-      name: "Friday",
-      startDate: new Date('2024-10-25T10:30:00'),
-      endDate: new Date('2024-10-25T10:30:00'),
-    };
-
-    let Saturday: Day = {
-      dayId: "2",
-      name: "Saturday",
-      startDate: new Date('2024-10-26T10:30:00'),
-      endDate: new Date('2024-10-26T10:30:00')
-    };
-
-    let Sunday: Day = {
-      dayId: "3",
-      name: "Sunday",
-      startDate: new Date('2024-10-27T10:30:00'),
-      endDate: new Date('2024-10-27T10:30:00')
-    };
-
-    let Weekend: Day = {
-      dayId: "4",
-      name: "Weekend",
-      startDate: new Date('2024-10-25T10:30:00'),
-      endDate: new Date('2024-10-27T10:30:00')
-    };
-
-    this.day.push(Friday);
-    this.day.push(Saturday);
-    this.day.push(Sunday);
-    this.day.push(Weekend);
   }
 
   getDays(): Observable<Day[]> {
     return this.httpClient.get<Day[]>(`${this.ApiUrl}`);
   }
 
-  getDayById(i: number): Day {
-    return this.day[i]
+  getDayById(id: string): Observable<Day> {
+    return this.httpClient.get<Day>(`${this.ApiUrl}/${id}`);
+  }
+
+  postDay(day: Day): Observable<Day> {
+    day.dayId = uuidv4();
+    let headers = new HttpHeaders();
+    headers = headers.set('Content-Type', 'application/json; charset=utf-8');
+    return this.httpClient.post<Day>(`${this.ApiUrl}/`,day, { headers: headers });
+  }
+
+  putDay(id: string, day: Day): Observable<Day> {
+    let headers = new HttpHeaders();
+    headers = headers.set('Content-Type', 'application/json; charset=utf-8');
+    return this.httpClient.put<Day>(`${this.ApiUrl}/${id}`, day, { headers: headers });
+  }
+
+  deleteDay(id: string): Observable<Day> {
+    return this.httpClient.delete<Day>(`${this.ApiUrl}/${id}`);
   }
 }
 

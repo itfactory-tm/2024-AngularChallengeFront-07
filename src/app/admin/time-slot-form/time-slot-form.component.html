@@ -18,14 +18,14 @@
             >Start time</label
           >
           <input
-            type="time"
+            type="startTime"
             id="startTime"
             name="startTime"
             class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            placeholder="Start time"
+            placeholder="startTime"
             required
             [(ngModel)]="timeSlot.startTime"
-            #startTime="ngModel"
+            #time="ngModel"
           />
           <div [hidden]="startTime.valid || startTime.pristine" class="text-red-500 mt-2">
             Start time is required
