@@ -8,7 +8,9 @@
       <h5 class="text-2xl font-bold text-white mb-4" style="min-height: 4rem;">
         {{ ticketType?.name || 'Unknown Ticket' }} Ticket {{ ticket.dayName }}
       </h5>
-      <p class="text-lg text-gray-200">€ {{ ticketType?.price || 'N/A' }}</p>
+      <div class="inline-block bg-gradient-to-r from-purple-600 to-purple-400 text-white px-3 py-1 rounded-full text-2xl font-bold shadow-md transform -rotate-3">
+        € {{ ticketType?.price || 'N/A' }}
+      </div>
     </div>
 
     @if(quantity === 0) {

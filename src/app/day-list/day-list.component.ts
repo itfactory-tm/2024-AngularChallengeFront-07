@@ -57,7 +57,13 @@ export class DayListComponent {
 
         // Populate the filteredTicketsMap
         days.forEach(day => {
-          const filtered = tickets.filter(ticket => ticket.dayId === day.dayId);
+          const filtered = tickets
+            .filter(ticket => ticket.dayId === day.dayId)
+            .sort((a, b) => {
+              const priceA = this.ticketTypeMap.get(a.ticketTypeId)?.price || 0;
+              const priceB = this.ticketTypeMap.get(b.ticketTypeId)?.price || 0;
+              return priceA - priceB;
+            });
           this.filteredTicketsMap.set(day.dayId, of(filtered));
         });
 

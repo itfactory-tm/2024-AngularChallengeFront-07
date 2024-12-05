@@ -34,8 +34,10 @@
 
     <!-- Flex container for tickets -->
     <div class="flex flex-wrap justify-center gap-8 p-6">
-      @for (tick of (filteredTicketsMap.get(day.dayId) | async); track $index){
-      <app-ticket [ticket]="tick" [ticketType]="ticketTypeMap.get(tick.ticketTypeId)!"
+      @for (tick of (filteredTicketsMap.get(day.dayId) | async)!; track $index) {
+      <app-ticket 
+        [ticket]="tick" 
+        [ticketType]="ticketTypeMap.get(tick.ticketTypeId)!"
         (quantityChange)="onTicketQuantityChange($event)">
       </app-ticket>
       }
