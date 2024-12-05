@@ -33,31 +33,24 @@
       </div>
 
       <!-- locationName -->
-      <div>
-        <label
-          for="locationName"
-          class="block mb-2 text-sm font-medium text-primary"
-          >Location Name</label
-        >
-        <input
-          type="text"
-          id="locationName"
-          name="locationName"
-          class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-          placeholder="Location Name"
+      <div class="col-span-2">
+        <!-- Dropdown for Location -->
+        <label for="location" class="block mb-2 text-sm font-medium text-primary">Select location:</label>
+        <select
+          id="location"
+          [(ngModel)]="stage.locationId"
+          name="location"
+          class="form-control"
           required
-          [(ngModel)]="stage.locationName"
-          #locationName="ngModel"
-        />
-        <div
-          [hidden]="locationName.valid || locationName.pristine"
-          class="text-red-500 mt-2"
         >
-          Location Name is required
-        </div>
+          @for (location of locations$; track location){
+            <option [value]="location.locationId">
+              {{ location.name }}
+            </option>}
+        </select>
       </div>
       <!-- Timeslots -->
-      
+
       <!-- photos -->
     </div>
 

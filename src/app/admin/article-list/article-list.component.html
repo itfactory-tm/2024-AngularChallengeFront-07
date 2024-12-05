@@ -46,7 +46,7 @@
               </td>
               <td class="px-6 py-4 text-sm text-gray-600 truncate max-w-sm">
                 <div class="tooltip" title="{{ article.date }}">
-                  {{ article.date }}
+                  {{ article.date | date: 'dd-MM-yyyy' }}
                 </div>
               </td>
               <td class="px-6 py-4 text-sm font-bold text-center">
@@ -74,7 +74,7 @@
                     </svg>
                     <span>Edit</span>
                   </button>
-  
+
                   <!-- Delete Button -->
                   <button
                     (click)="delete(article.articleId)"
@@ -107,4 +107,3 @@
       </div>
     </div>
   </div>
-  

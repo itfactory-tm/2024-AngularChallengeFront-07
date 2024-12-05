@@ -1,12 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { Ticket } from '../../interfaces/ticket';
+import { TicketType } from '../../interfaces/ticketType';
 import { Router } from '@angular/router';
 import { TicketService } from '../../services/ticket.service';
 import { EditionService } from '../../services/edition.service';
 import { Observable } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 import { Edition } from '../../interfaces/edition';
+
 import { AsyncPipe } from '@angular/common';
+import {TicketTypeService} from "../../services/ticketType.service";
+import {Day} from "../../interfaces/day";
+import {DayService} from "../../services/day.service";
 
 @Component({
   selector: 'app-ticket-form',
@@ -19,7 +24,9 @@ export class TicketFormComponent implements OnInit {
   isAdd: boolean = false;
   isEdit: boolean = false;
   ticketId: string = '';
-  editions$: Observable<Edition[]> = new Observable<Edition[]>();
+  editions$: Edition[] = [];
+  ticketTypes$: TicketType[] = [];
+  days$: Day[] = []
 
   ticket: Ticket = {
     ticketId: '',
@@ -38,7 +45,9 @@ export class TicketFormComponent implements OnInit {
   constructor(
     private router: Router,
     private ticketService: TicketService,
-    private editionService: EditionService
+    private editionService: EditionService,
+    private ticketTypeService: TicketTypeService,
+    private dayService: DayService,
   ) {
     const state = this.router.getCurrentNavigation()?.extras.state || {};
     this.isAdd = state['mode'] === 'add';
@@ -50,10 +59,24 @@ export class TicketFormComponent implements OnInit {
     }
   }
   ngOnInit(): void {
-    this.editions$ = this.editionService.getEditions();
+    this.editionService.getEditions().subscribe((editions)=>{
+      this.editions$ = editions;
+    })
+    this.ticketTypeService.getTicketTypes().subscribe((ticketTypes)=>{
+      this.ticketTypes$ = ticketTypes;
+    })
+    this.dayService.getDays().subscribe((days)=>this.days$ = days);
     if (this.ticketId != null) {
       this.ticketService.getTicketById(this.ticketId).subscribe((result) => {
         this.ticket = result;
+        if(this.isEdit){
+          this.ticket.editionId;
+          this.ticket.editionName;
+          this.ticket.ticketTypeId;
+          this.ticket.ticketPrice;
+          this.ticket.dayId;
+          this.ticket.dayName;
+        }
       });
     }
   }

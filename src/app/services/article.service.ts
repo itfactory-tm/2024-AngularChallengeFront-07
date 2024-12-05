@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Article } from '../interfaces/article';
-import { HttpClient } from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import { Observable } from 'rxjs';
+import {v4 as uuidv4} from 'uuid';
 
 import { environment } from "../../environments/environment";
 
@@ -26,11 +27,16 @@ export class ArticleService {
   }
 
   postArticle(article: Article): Observable<Article> {
-    return this.httpClient.post<Article>(`${this.apiUrl}`, article);
+    article.articleId = uuidv4();
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json; charset=UTF-8');
+    return this.httpClient.post<Article>(`${this.apiUrl}`, article, { headers: headers });
   }
 
   putArticle(id: string, article: Article): Observable<Article> {
-    return this.httpClient.put<Article>(`${this.apiUrl}/${id}`, article);
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json; charset=UTF-8');
+    return this.httpClient.put<Article>(`${this.apiUrl}/${id}`, article, { headers: headers });
   }
 
   deleteArticle(id: string): Observable<Article> {

@@ -3,12 +3,12 @@ import { TimeSlotService } from '../../services/timeSlot.service';
 import { Observable } from 'rxjs';
 import { TimeSlot } from '../../interfaces/timeSlot';
 import { Router } from '@angular/router';
-import { AsyncPipe } from '@angular/common';
+import {AsyncPipe, DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-timeSlot-list',
   standalone: true,
-  imports: [AsyncPipe],
+  imports: [AsyncPipe, DatePipe],
   templateUrl: './time-slot-list.component.html',
   styleUrl: './time-slot-list.component.css',
 })

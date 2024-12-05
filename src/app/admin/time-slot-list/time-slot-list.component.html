@@ -39,8 +39,8 @@
               <td class="px-6 py-4 text-sm font-medium text-gray-700">
                 {{ $index + 1 }}
               </td>
-              <td class="px-6 py-4 text-sm text-gray-600">{{ timeSlot.startTime }}</td>
-              <td class="px-6 py-4 text-sm text-gray-600">{{ timeSlot.endTime }}</td>
+              <td class="px-6 py-4 text-sm text-gray-600">{{ timeSlot.startTime | date: "HH:mm" }}</td>
+              <td class="px-6 py-4 text-sm text-gray-600">{{ timeSlot.endTime | date: "HH:mm" }}</td>
 
               <td class="px-6 py-4 text-sm text-gray-600">
                 <span
@@ -78,7 +78,7 @@
                     </svg>
                     <span>Edit</span>
                   </button>
-  
+
                   <!-- Delete Button -->
                   <button
                     (click)="delete(timeSlot.timeSlotId)"
@@ -111,4 +111,3 @@
       </div>
     </div>
   </div>
-  
