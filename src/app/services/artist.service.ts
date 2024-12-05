@@ -10,7 +10,7 @@ import { environment } from '../../environments/environment'; // Import environm
 })
 export class ArtistService {
   constructor(private httpClient: HttpClient) { }
-  private apiUrl = `${environment.api_url}/api/Artists`; // Use environment variable
+  private apiUrl = `${environment.api_url}/Artists`; // Use environment variable
 
   getArtists(): Observable<Artist[]> {
     return this.httpClient.get<Artist[]>(this.apiUrl);

@@ -10,7 +10,7 @@ import { environment } from '../../environments/environment'; // Import environm
 })
 export class LocationService {
   constructor(private httpClient: HttpClient) { }
-  private apiUrl = `${environment.api_url}/api/Locations`; // Use environment variable
+  private apiUrl = `${environment.api_url}/Locations`; // Use environment variable
 
   getLocations(): Observable<Location[]> {
     return this.httpClient.get<Location[]>(this.apiUrl);

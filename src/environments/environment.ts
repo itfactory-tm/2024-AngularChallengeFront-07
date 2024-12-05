@@ -4,7 +4,7 @@ export const environment = {
   AUTH0_CLIENT_ID: 'G5bhYRxwS2RiN8SSByJLuF4cRZxyKODW',
   redirectUri: 'https://fritfest.com',
 
-  api_url: 'https://fritfestapi20241203213221.azurewebsites.net',
+  api_url: 'https://fritfestapi20241203213221.azurewebsites.net/api',
 
   home_url: 'https://fritfest.com',
   AUTH0_AUDIENCE: 'https://fritfestapi20241203213221.azurewebsites.net',

@@ -10,32 +10,33 @@ import { environment } from '../../environments/environment';
 })
 export class TicketTypeService {
 
-  private ApiUrl = `${environment.api_url}/api/ticketTypes`;
+  private ApiUrl = `${environment.api_url}/ticketTypes`;
 
   private ticketType: TicketType[] = [];
 
   constructor(private apiService: ApiService, private httpClient: HttpClient) {
-      let regular : TicketType = {
-        ticketTypeId: "1",
-        name: "Regular",
-        price: 10
+    let regular: TicketType = {
+      ticketTypeId: "1",
+      name: "Regular",
+      price: 10
     };
 
-    let ploes : TicketType = {
-        ticketTypeId: "2",
-        name: "Ploes",
-        price: 12
+    let ploes: TicketType = {
+      ticketTypeId: "2",
+      name: "Ploes",
+      price: 12
     };
 
-    let VIP : TicketType = {
-        ticketTypeId: "3",
-        name: "VIP",
-        price: 15
+    let VIP: TicketType = {
+      ticketTypeId: "3",
+      name: "VIP",
+      price: 15
     };
 
     this.ticketType.push(regular);
     this.ticketType.push(ploes);
-    this.ticketType.push(VIP);}
+    this.ticketType.push(VIP);
+  }
 
   getTicketTypes(): Observable<TicketType[]> {
     return this.httpClient.get<TicketType[]>(`${this.ApiUrl}`);
@@ -59,7 +60,7 @@ export class TicketTypeService {
 }
 
 
-// constructor() { 
+// constructor() {
 
 //     let regular : TicketType = {
 //         typeId: 1,
@@ -87,7 +88,7 @@ export class TicketTypeService {
 //     getTicketTypes(): TicketType[] {
 //         return this.ticketType;
 //     }
-    
+
 //     getTicketTypeById(id: number): TicketType | undefined{
 //         return this.ticketType.find(ticketType => ticketType.typeId === id);
 //     }

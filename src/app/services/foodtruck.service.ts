@@ -11,7 +11,7 @@ import { environment } from '../../environments/environment'; // Import environm
 export class FoodtruckService {
 
   constructor(private httpClient: HttpClient) { }
-  private apiUrl = `${environment.api_url}/api/Foodtrucks`;
+  private apiUrl = `${environment.api_url}/Foodtrucks`;
 
   getFoodtrucks(): Observable<FoodTruck[]> {
     return this.httpClient.get<FoodTruck[]>(this.apiUrl);

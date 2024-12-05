@@ -30,7 +30,7 @@ export const appConfig: ApplicationConfig = {
       },
 
       httpInterceptor: {
-        allowedList: [{uri: `${environment.api_url}/*`, allowAnonymous: true}]
+        allowedList: [{ uri: `${environment.api_url}/*`, allowAnonymous: true }]
       }
     }),
 
