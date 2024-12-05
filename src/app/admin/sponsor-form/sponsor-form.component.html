@@ -115,19 +115,7 @@
         </option>}
       </select>
       </div>
-      <div>
-        <label
-          for="sponsorLogo"
-          class="block mb-2 text-sm font-medium text-primary"
-          >Sponsor Logo:</label
-        >
-        <input
-          type="file"
-          id="sponsorLogo"
-          class="form-control"
-          (change)="onFileSelected($event)"
-        />
-      </div>
+      <app-image-upload-component (imageUploaded)="onImageUploaded($event)"></app-image-upload-component>
     </div>
 
     <!-- Buttons -->
