@@ -1,33 +1,33 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http'; // Import HttpClient
 import { Artist } from '../interfaces/artist';
 import { Observable } from 'rxjs';
-import { ApiService } from './api.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ArtistService {
-  constructor(private apiService: ApiService) {}
+  private apiUrl = 'http://localhost:8080/api/artists';
+
+  constructor(private httpClient: HttpClient) {} // Inject HttpClient
 
   getArtists(): Observable<Artist[]> {
-    // return this.httpClient.get<Artist[]>('http://localhost:8080/api/Artists');
-    return this.apiService.get<Artist[]>('Artists');
-    //http://localhost:5283/api/Artiests
+    return this.httpClient.get<Artist[]>(this.apiUrl);
   }
 
   getArtistById(id: string): Observable<Artist> {
-    return this.apiService.getById<Artist>('Artists', id);
+    return this.httpClient.get<Artist>(`${this.apiUrl}/${id}`);
   }
 
   postArtist(artist: Artist): Observable<Artist> {
-    return this.apiService.post<Artist>('Artists', artist);
+    return this.httpClient.post<Artist>(this.apiUrl, artist);
   }
 
   putArtist(id: string, artist: Artist): Observable<Artist> {
-    return this.apiService.put<Artist>('Artists', id, artist);
+    return this.httpClient.put<Artist>(`${this.apiUrl}/${id}`, artist);
   }
 
   deleteArtist(id: string): Observable<Artist> {
-    return this.apiService.delete<Artist>('Artists', id);
+    return this.httpClient.delete<Artist>(`${this.apiUrl}/${id}`);
   }
 }
