@@ -7,4 +7,5 @@ export interface Artist {
   apiCode: string;
   spotifyPhoto: string;
   genre: string;
+  edities: string[];
 }

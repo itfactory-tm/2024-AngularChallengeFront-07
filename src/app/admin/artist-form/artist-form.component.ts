@@ -29,6 +29,7 @@ export class ArtistFormComponent implements OnInit {
     genre: '',
     apiCode: '',
     spotifyPhoto: '',
+    edities: [],
   };
 
   isSubmitted: boolean = false;
