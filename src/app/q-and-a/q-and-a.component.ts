@@ -25,12 +25,12 @@ export class QAndAComponent implements OnInit {
       answer: "FritFest is held annually on the first weekend of July in Brussels Expo. The exact dates for this year are July 1-3, 2023."
     },
     {
-      question: "Is FritFest suitable for children?",
-      answer: "Absolutely! FritFest is designed to be fun for all ages. We have dedicated areas with activities for children, including fry-themed games, face painting, and kid-friendly food options."
+      question: "How much do tickets cost?",
+      answer: "For detailed information on ticket types and prices, please visit our tickets page. Please note that all ticket sales are final and non-refundable. There is no limit on the number of tickets you can purchase, so feel free to bring all your friends and family!"
     },
     {
-      question: "How much do tickets cost?",
-      answer: "Ticket prices vary depending on the type and duration. Single-day tickets start at €25 for adults and €15 for children (ages 5-12). Weekend passes and VIP options are also available. Children under 5 enter for free."
+      question: "Is FritFest suitable for children?",
+      answer: "Absolutely! FritFest is designed to be fun for all ages. We have dedicated areas with activities for children, including fry-themed games, face painting, and kid-friendly food options."
     },
     {
       question: "Can I bring my own food and drinks?",
