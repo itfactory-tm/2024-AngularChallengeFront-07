@@ -8,11 +8,12 @@ import { FormsModule } from '@angular/forms';
 import { AsyncPipe } from '@angular/common';
 import { info } from 'autoprefixer';
 import { EditionService } from '../../services/edition.service';
+import {ImageUploadComponentComponent} from "../../image-upload-component/image-upload-component.component";
 
 @Component({
   selector: 'app-sponsor-form',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule,ImageUploadComponentComponent],
   templateUrl: './sponsor-form.component.html',
   styleUrl: './sponsor-form.component.css',
 })
@@ -28,12 +29,11 @@ export class SponsorFormComponent implements OnInit {
     sponsorMail: '',
     sponsoredItem: '',
     amount: 0,
-    sponsorLogo: '',
+    sponsorLogoBase64: '',
     editionId: '',
     editionName: '',
   };
 
-  selectedFile: File | null = null; // The selected file
 
   isSubmitted: boolean = false;
   errorMessage: string = '';
@@ -66,16 +66,17 @@ export class SponsorFormComponent implements OnInit {
 
 
 
-  onFileSelected(event: Event) {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files.length > 0) {
-      this.selectedFile = input.files[0];
-      this.sponsor.sponsorLogo = `public/images/sponsors/${this.selectedFile.name}`;
+  onImageUploaded(base64Image: string): void {
+    if (base64Image) {
+      console.log('Image uploaded:', base64Image);
+      this.sponsor.sponsorLogoBase64 = base64Image;
+      console.log('Sponsor logo base64:', this.sponsor.sponsorLogoBase64);
     }
   }
 
   onSubmit() {
     this.isSubmitted = true;
+
     if (this.isAdd) {
       this.sponsorService.postSponsor(this.sponsor).subscribe({
         next: (v) => this.router.navigateByUrl('/admin/sponsor'),
