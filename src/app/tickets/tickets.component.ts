@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Ticket } from '../interfaces/ticket';
 import { TicketType } from '../interfaces/ticketType';
 import { TicketTypeService } from '../services/ticketType.service';
@@ -11,10 +11,12 @@ import { TicketTypeService } from '../services/ticketType.service';
 })
 export class TicketsComponent implements OnInit {
   @Input() ticket!: Ticket;
+  @Output() quantityChange = new EventEmitter<{ ticketId: string, quantity: number }>();
+
   ticketType: TicketType | undefined;
   quantity: number = 0;
 
-  constructor(private ticketTypeService: TicketTypeService) {}
+  constructor(private ticketTypeService: TicketTypeService) { }
 
   ngOnInit(): void {
     if (this.ticket && this.ticket.ticketTypeId) {
@@ -32,11 +34,13 @@ export class TicketsComponent implements OnInit {
 
   increaseQuantity(): void {
     this.quantity++;
+    this.quantityChange.emit({ ticketId: this.ticket.ticketId, quantity: this.quantity });
   }
 
   decreaseQuantity(): void {
     if (this.quantity > 0) {
       this.quantity--;
+      this.quantityChange.emit({ ticketId: this.ticket.ticketId, quantity: this.quantity });
     }
   }
 }
