@@ -19,7 +19,6 @@ export class LocationListComponent implements OnInit {
   // locations$: Observable<Location[]> = new Observable<Location[]>();
   errorMessage: string = '';
   foodTrucks: { [key: string]: FoodTruck } = {};
-  locations$: Observable<Location[]> = new Observable<Location[]>;
 
   constructor(
     private locationService: LocationService,
@@ -29,11 +28,10 @@ export class LocationListComponent implements OnInit {
   ) {
   }
 
+
   ngOnInit():void {
-    this.getLocations()
-  }
-  getLocations(){
-    this.locations$ = this.locationService.getLocations();
+    // this.getLocations();
+
   }
   //   this.locations$.subscribe(location => {
   //     this.loadFoodtrucks(location);
@@ -60,12 +58,14 @@ export class LocationListComponent implements OnInit {
     this.router.navigate(['/admin/location/form'], { state: { id: id, mode: 'edit' } });
   }
 
-  delete(id: string) {
-    this.foodtruckService.deleteFoodtruck(id).subscribe(
-      {
-        next: (v) => this.getLocations(),
-        error: (e) => (this.errorMessage = e.message),
-      }
-    );
-  }
+
+  // delete(id: string){
+  //   this.foodtruckService.deleteFoodtruck(id).subscribe(
+  //     {
+  //       next: (v) => this.loadLocationsAndFoodTrucks(),
+  //       error: (e) => (this.errorMessage = e.message),
+  //     }
+  //   );
+  // }
+
 }
