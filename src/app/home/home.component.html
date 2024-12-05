@@ -6,12 +6,15 @@
       <h1 class="text-6xl font-extrabold text-text mt-24">Welcome to FritFest</h1>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <div *ngFor="let card of cards"
-        class="bg-black bg-opacity-80 rounded-xl shadow-lg p-6 transform hover:scale-105 transition-all duration-300">
+      @for (card of cards; track $index) {
+        <div
+        class="bg-black bg-opacity-80 rounded-xl shadow-lg p-6 transform hover:scale-105 transition-all duration-300"
+        [attr.id]="'card-' + $index">
         <i [class]="'fas ' + card.icon + ' text-4xl text-blue-400 mb-4'"></i>
         <h3 class="text-2xl font-semibold text-blue-300 mb-4">{{ card.title }}</h3>
         <p class="text-gray-200">{{ card.description }}</p>
       </div>
+      }
     </div>
     <div class="mt-16 text-center">
       <a routerLink="/tickets"
