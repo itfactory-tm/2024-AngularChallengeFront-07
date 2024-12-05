@@ -26,7 +26,7 @@ export class ArticleService {
   }
 
   postArticle(article: Article): Observable<Article> {
-    return this.httpClient.post<Article>(`${this.apiUrl}/`, article);
+    return this.httpClient.post<Article>(`${this.apiUrl}`, article);
   }
 
   putArticle(id: string, article: Article): Observable<Article> {

@@ -9,11 +9,12 @@ import { RouterModule, Router } from '@angular/router';
 import { Observable, map, forkJoin, BehaviorSubject, of } from 'rxjs';
 import { TicketTypeService } from '../services/ticketType.service';
 import { TicketType } from '../interfaces/ticketType';
+import { LoaderComponent } from '../loader/loader.component';
 
 @Component({
   selector: 'app-day-list',
   standalone: true,
-  imports: [TicketsComponent, CommonModule, RouterModule],
+  imports: [TicketsComponent, CommonModule, RouterModule, LoaderComponent],
   templateUrl: './day-list.component.html',
   styleUrl: './day-list.component.css',
 })
@@ -45,9 +46,13 @@ export class DayListComponent {
     forkJoin({
       days: this.dayService.getDays(),
       tickets: this.ticketService.getTickets(),
-      ticketTypes: this.ticketTypeService.getAllTicketTypes()
+      ticketTypes: this.ticketTypeService.getTicketTypes()
     }).subscribe({
       next: ({ days, tickets, ticketTypes }) => {
+        // Sort days logically based on a predefined order
+        const dayOrder = ['Friday', 'Saturday', 'Sunday'];
+        days.sort((a, b) => dayOrder.indexOf(a.name) - dayOrder.indexOf(b.name));
+        
         this.days$.next(days);
         this.tickets$.next(tickets);
 
@@ -56,7 +61,13 @@ export class DayListComponent {
 
         // Populate the filteredTicketsMap
         days.forEach(day => {
-          const filtered = tickets.filter(ticket => ticket.dayId === day.dayId);
+          const filtered = tickets
+            .filter(ticket => ticket.dayId === day.dayId)
+            .sort((a, b) => {
+              const priceA = this.ticketTypeMap.get(a.ticketTypeId)?.price || 0;
+              const priceB = this.ticketTypeMap.get(b.ticketTypeId)?.price || 0;
+              return priceA - priceB;
+            });
           this.filteredTicketsMap.set(day.dayId, of(filtered));
         });
 

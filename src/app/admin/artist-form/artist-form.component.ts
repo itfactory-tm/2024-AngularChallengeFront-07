@@ -19,6 +19,7 @@ export class ArtistFormComponent implements OnInit {
   isAdd: boolean = false;
   isEdit: boolean = false;
   artistId: string = '';
+  editions$: Edition[] = [];
 
   artist: Artist = {
     artistId: '',
@@ -29,6 +30,8 @@ export class ArtistFormComponent implements OnInit {
     genre: '',
     apiCode: '',
     spotifyPhoto: '',
+    editionId: '',
+    editionName: ''
   };
 
   isSubmitted: boolean = false;
@@ -47,24 +50,36 @@ export class ArtistFormComponent implements OnInit {
     if (!this.isAdd && !this.isEdit) {
       this.isAdd = true;
     }
+
   }
   ngOnInit(): void {
+    this.editionService.getEditions().subscribe((editions) => {
+      this.editions$ = editions;
+    })
     if (this.artistId != null) {
       this.artistService.getArtistById(this.artistId).subscribe((result) => {
         this.artist = result;
+
+        if(this.isEdit){
+          this.artist.editionId = '';
+          this.artist.editionName = '';
+        }
       });
     }
+
   }
 
   onSubmit() {
     this.isSubmitted = true;
     if (this.isAdd) {
+      console.log(this.artist.editionName);
       this.artistService.postArtist(this.artist).subscribe({
         next: (v) => this.router.navigateByUrl('/admin/artist'),
         error: (e) => (this.errorMessage = e.message),
       });
     }
     if (this.isEdit) {
+      console.log(this.artist.editionName);
       this.artistService.putArtist(this.artistId, this.artist).subscribe({
         next: (v) => this.router.navigateByUrl('/admin/artist'),
         error: (e) => (this.errorMessage = e.message),
