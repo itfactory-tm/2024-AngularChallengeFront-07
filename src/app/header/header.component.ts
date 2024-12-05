@@ -38,8 +38,8 @@ export class HeaderComponent {
 
   rightPages = [
     { path: '/tickets', name: 'Tickets' },
-    {path: '/food', name: 'Food' },
-    { path: '/q-and-a', name: 'Q&A' },
+    { path: '/food', name: 'Food' },
+    { path: '/faq', name: 'FAQ' },
   ];
 
   toggleMenu() {

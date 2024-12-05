@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { InfoComponent } from './info/info.component';
 import { LineUpComponent } from './line-up/line-up.component';
-import { QAndAComponent } from './q-and-a/q-and-a.component';
+import { FaqComponent } from './faq/faq.component';
 import { StageComponent } from './stage/stage.component';
 import { TicketsComponent } from './tickets/tickets.component';
 import { ArtistDetailComponent } from './artist-detail/artist-detail.component';
@@ -27,7 +27,7 @@ import { TicketFormComponent } from './admin/ticket-form/ticket-form.component';
 import { TicketListComponent } from './admin/ticket-list/ticket-list.component';
 
 // import {LocationListComponent} from "./admin/location-list/location-list.component";
-import {LocationFormComponent} from "./admin/location-form/location-form.component";
+import { LocationFormComponent } from "./admin/location-form/location-form.component";
 
 import { EditionListComponent } from './admin/edition-list/edition-list.component';
 import { EditionFormComponent } from './admin/edition-form/edition-form.component';
@@ -35,22 +35,22 @@ import { ArticleListComponent } from './admin/article-list/article-list.componen
 import { ArticleFormComponent } from './admin/article-form/article-form.component';
 import { TimeSlotListComponent } from './admin/time-slot-list/time-slot-list.component';
 import { TimeSlotFormComponent } from './admin/time-slot-form/time-slot-form.component';
-import {LocationListComponent} from "./admin/location-list/location-list.component";
+import { LocationListComponent } from "./admin/location-list/location-list.component";
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
-import {MenuItemsFormComponent} from "./admin/menu-items-form/menu-items-form.component";
-import {MenuItemsListComponent} from "./admin/menu-items-list/menu-items-list.component";
-import {FoodDrinksComponent} from "./food-drinks/food-drinks.component";
+import { MenuItemsFormComponent } from "./admin/menu-items-form/menu-items-form.component";
+import { MenuItemsListComponent } from "./admin/menu-items-list/menu-items-list.component";
+import { FoodDrinksComponent } from "./food-drinks/food-drinks.component";
 
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'info', component: InfoComponent },
   { path: 'line-up', component: LineUpComponent },
-  { path: 'q-and-a', component: QAndAComponent },
+  { path: 'faq', component: FaqComponent },
   { path: 'stage-list', component: StageListComponent },
   { path: 'stage/:id', component: StageDetailComponent },
   { path: 'tickets', component: DayListComponent },
-  {path: 'food', component: FoodDrinksComponent},
+  { path: 'food', component: FoodDrinksComponent },
   {
     path: 'admin/dashboard',
     component: DashboardComponent,

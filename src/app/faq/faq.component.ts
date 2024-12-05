@@ -8,13 +8,13 @@ interface QA {
 }
 
 @Component({
-  selector: 'app-q-and-a',
+  selector: 'app-faq',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './q-and-a.component.html',
-  styleUrl: './q-and-a.component.css'
+  templateUrl: './faq.component.html',
+  styleUrl: './faq.component.css'
 })
-export class QAndAComponent implements OnInit {
+export class FaqComponent implements OnInit {
   qaList: QA[] = [
     {
       question: "What is FritFest?",
