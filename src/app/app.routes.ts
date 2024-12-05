@@ -40,6 +40,7 @@ import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { MenuItemsFormComponent } from "./admin/menu-items-form/menu-items-form.component";
 import { MenuItemsListComponent } from "./admin/menu-items-list/menu-items-list.component";
 import { FoodDrinksComponent } from "./food-drinks/food-drinks.component";
+import { TimeScheduleComponent } from './time-schedule/time-schedule.component';
 
 
 export const routes: Routes = [
@@ -51,6 +52,7 @@ export const routes: Routes = [
   { path: 'stage/:id', component: StageDetailComponent },
   { path: 'tickets', component: DayListComponent },
   { path: 'food', component: FoodDrinksComponent },
+  { path: 'time-schedule', component: TimeScheduleComponent },
   {
     path: 'admin/dashboard',
     component: DashboardComponent,

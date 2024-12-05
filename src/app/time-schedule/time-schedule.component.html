@@ -1,18 +1,114 @@
-@for (schedule of timeSchedules; track $index) {
-<!-- <div
-  [ngStyle]="{
-    'top.px': calculateElementPositionAndHeight(
-      schedule.startSet,
-      schedule.endSet
-    ).top,
-    'height.px': calculateElementPositionAndHeight(
-      schedule.startSet,
-      schedule.endSet
-    ).height
-  }"
-  class="sticky text-2xl bg-gray-800 text-blue-600 font-extrabold"
->
-  {{ artists[$index].name }} <br />
-  {{ schedule.startSet }} - {{ schedule.endSet }}
-</div> -->
-}
+<!-- Content for small screens -->
+<div class="flex-col justify-center lg:hidden bg-secondary p-6">
+  <div>
+    <hr>
+    <!-- filter functions for the time table -->
+    <ul class="text-3xl font-extrabold text-blue-600 tracking-widest mb-5 flex flex-wrap justify-left gap-10">
+      <li class="text-tertiary hover:text-primary hover:bg-secondary-dark hover:scale-105 transition-all duration-300 ease-in-out">
+        <button (click)="setDay('friday')">Friday</button>
+      </li>
+      <li class="text-tertiary hover:text-primary hover:bg-secondary-dark hover:scale-105 transition-all duration-300 ease-in-out">
+        <button (click)="setDay('saturday')">Saturday</button>
+      </li>
+      <li class="text-tertiary hover:text-primary hover:bg-secondary-dark hover:scale-105 transition-all duration-300 ease-in-out">
+        <button (click)="setDay('sunday')">Sunday</button>
+      </li>
+    </ul>
+    <hr>
+  </div>
+  <!-- Selected day -->
+  <div>
+    <h2 class="text-3xl text-quaternary font-extrabold text-center">Schedule on {{selectedDay}}</h2>
+  </div>
+
+  @for (stage of stagesWithArtists$ |async; track $index) {
+  <section class="my-4">
+    <h4 class="font-bold text-3xl text-center bg-gray-800 text-primary py-4 mb-0.5">{{stage.stage.name}}</h4>
+    <ul>
+      @for (artist of stage.artists; track $index) {
+      <li class="bg-gray-800 text-white py-2 px-4 mb-0.5">
+        <span class="text-2xl font-bold">{{artist.artist.name}}</span> <br>
+        {{artist.startTime | date: 'HH:mm'}} - {{artist.endTime | date: 'HH:mm'}}
+        
+      </li>
+      }
+    </ul>
+  </section>
+  }
+</div>
+
+<!-- Content for medium and large screens -->
+<div class="flex-col justify-center text-center hidden lg:flex">
+  <div class="bg-secondary shadow-md p-6 pt-16">
+    <hr>
+    <!-- filter functions for the time table -->
+    <ul class="text-3xl font-extrabold text-blue-600 tracking-widest mb-5 flex flex-wrap justify-left gap-10">
+      <li class="text-quaternary hover:text-primary hover:bg-secondary-dark hover:scale-105 transition-all duration-300 ease-in-out">
+        <button (click)="setDay('friday')">Friday</button>
+      </li>
+      <li class="text-quaternary hover:text-primary hover:bg-secondary-dark hover:scale-105 transition-all duration-300 ease-in-out">
+        <button (click)="setDay('saturday')">Saturday</button>
+      </li>
+      <li class="text-quaternary hover:text-primary hover:bg-secondary-dark hover:scale-105 transition-all duration-300 ease-in-out">
+        <button (click)="setDay('sunday')">Sunday</button>
+      </li>
+    </ul>
+    <hr>
+  </div>
+  <!-- Selected day -->
+  <div>
+    <h2 class="text-quaternary text-3xl font-extrabold pb-4">Schedule on {{selectedDay}}</h2>
+  </div>
+  <!--Timetable -->
+  <div class="relative z-10 right-44 -mr-44 bg-secondary">
+    <!-- scroll buttons -->
+    <div class="relative bg-gray-800 flex items-center justify-center z-20">
+      <button (click)="scrollLeft()"
+        class="text-white text-3xl font-bold bg-gray-800 hover:bg-primary shadow-lg w-full">
+        &larr; Left
+      </button>
+      <button (click)="scrollRight()"
+        class="text-white text-3xl font-bold bg-gray-800 hover:bg-primary shadow-lg w-full">
+        &rarr; Right
+      </button>
+    </div>
+    <!-- Scrollable-->
+    <div #scrollContainer class="overflow-x-auto">
+      <div class="grid min-w-[200rem] gap-1"
+      [ngStyle]="{'grid-template-columns': 'repeat(' + ((stages$| async)?.length ?? 0 + 1) + ', minmax(0, 1fr))'}">
+
+
+        <div></div>
+        @for (stage of stages$ |async; track $index) {
+        <div class="text-center font-bold text-3xl bg-primary text-white py-6">{{stage.name}}</div>
+        }
+
+        <!-- Time Column -->
+        <div class="flex flex-col">
+          @for (time of times; track $index) {
+          <div class="text-center text-blue-600 mt-[100px]">
+            <div class="absolute top-1px left-36 h-px w-full bg-white -z-10"></div>
+            <p>{{time}}</p>
+          </div>
+          }
+        </div>
+        <!-- Schedule items -->
+        @for (schedule of timeSchedules$ |async; track $index) {
+        <div [ngStyle]="{
+                'top.px': calculateElementPositionAndHeight(
+                  schedule.startTime,
+                  schedule.endTime
+                ).top,
+                'height.px': calculateElementPositionAndHeight(
+                  schedule.startTime,
+                  schedule.endTime
+                ).height
+              }" class="sticky text-2xl bg-gray-800 text-blue-600 font-extrabold">
+          {{ artists$}} <br />
+          {{ schedule.startTime }} - {{ schedule.endTime }}
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>
