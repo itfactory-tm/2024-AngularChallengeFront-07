@@ -22,6 +22,7 @@ export class DashboardComponent {
     { name: 'Sponsors', path: '/admin/sponsor', icon: 'assets/icons/sponsors.svg' },
     { name: 'Foodtrucks', path: '/admin/foodtruck', icon: 'assets/icons/foodtrucks.svg' },
     {name: 'Menu items', path: '/admin/menuItems', icon: 'assets/icons/menu.svg' },
+    {name: 'Locations', path: '/admin/location', icon: 'assets/icons/location.svg' },
   ];
 }
 

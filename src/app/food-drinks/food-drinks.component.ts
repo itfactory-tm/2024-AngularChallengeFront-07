@@ -22,10 +22,6 @@ export class FoodDrinksComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.menuItemService.getMenuItemsByFoodTruck('73141b15-e226-4826-bf4f-5548b8948043').subscribe(
-    //   (menuItems) => console.log(menuItems),
-    //   (error) => console.log(error)
-    // );
     this.getFoodTrucksWithMenuItems();
   }
 

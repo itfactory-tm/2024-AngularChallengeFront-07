@@ -6,7 +6,7 @@ import { LocationService } from "../../services/location.service";
 import { StageService } from "../../services/stage.service";
 import { Router } from "@angular/router";
 import { AsyncPipe } from "@angular/common";
-import { Observable } from "rxjs";
+import {catchError, forkJoin, map, Observable, of} from "rxjs";
 
 @Component({
   selector: 'app-location-list',
@@ -16,9 +16,9 @@ import { Observable } from "rxjs";
   styleUrl: './location-list.component.css'
 })
 export class LocationListComponent implements OnInit {
-  // locations$: Observable<Location[]> = new Observable<Location[]>();
+  locations$: Observable<Location[]> = new Observable<Location[]>();
   errorMessage: string = '';
-  foodTrucks: { [key: string]: FoodTruck } = {};
+
 
   constructor(
     private locationService: LocationService,
@@ -30,25 +30,33 @@ export class LocationListComponent implements OnInit {
 
 
   ngOnInit():void {
-    // this.getLocations();
+    this.getLocationsWithFoodTrucksAndStages()
 
   }
-  //   this.locations$.subscribe(location => {
-  //     this.loadFoodtrucks(location);
-  //   })
-  // }
 
-  // loadFoodtrucks(locations: Location[]): void {
-  //   locations.forEach((location) => {
-  //     if (location. && !this.locations[foodtruck.locationId]) {
-  //       // Fetch the location details for each food truck using LocationService
-  //       this.locationService.getLocationById(foodtruck.locationId).subscribe((location) => {
-  //
-  //         this.locations[foodtruck.locationId] = location;
-  //       });
-  //     }
-  //   });
-  // }
+  getLocationsWithFoodTrucksAndStages(){
+    this.locations$ = forkJoin({
+      locations: this.locationService.getLocations(),
+      foodTrucks: this.foodtruckService.getFoodtrucks(),
+      stages: this.stageService.getStages()
+    }).pipe(
+      map(({locations, foodTrucks, stages}) => {
+        return locations.map((location) => ({
+          ...location,
+          foodTrucks: foodTrucks.filter(
+            (location) => location.foodTruckId === location.foodTruckId
+          ),
+          stages: stages.filter(
+            (location) => location.stageId === location.stageId
+          )
+        }));
+      }),
+      catchError((err) => {
+        console.error('Error fetching data:', err);
+        return of([]); // Handle errors gracefully
+      })
+    )
+  }
 
   add() {
     this.router.navigate(['/admin/location/form'], { state: { mode: 'add' } });
@@ -59,13 +67,13 @@ export class LocationListComponent implements OnInit {
   }
 
 
-  // delete(id: string){
-  //   this.foodtruckService.deleteFoodtruck(id).subscribe(
-  //     {
-  //       next: (v) => this.loadLocationsAndFoodTrucks(),
-  //       error: (e) => (this.errorMessage = e.message),
-  //     }
-  //   );
-  // }
+  delete(id: string){
+    this.locationService.deleteLocation(id).subscribe(
+      {
+        next: (v) => this.getLocationsWithFoodTrucksAndStages(),
+        error: (e) => (this.errorMessage = e.message),
+      }
+    );
+  }
 
 }
