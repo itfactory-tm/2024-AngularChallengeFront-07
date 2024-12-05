@@ -24,13 +24,13 @@ export class LocationService {
     location.locationId = uuidv4();
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
-    return this.httpClient.post<Location>(`${this.apiUrl}/${location}`, location, { headers: headers });
+    return this.httpClient.post<Location>(`${this.apiUrl}/`, location, { headers: headers });
   }
 
-  putLocation(location: Location): Observable<Location> {
+  putLocation(id: string,location: Location): Observable<Location> {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
-    return this.httpClient.put<Location>(`${this.apiUrl}/${location}`, location, { headers: headers });
+    return this.httpClient.put<Location>(`${this.apiUrl}/${id}`, location, { headers: headers });
   }
 
   deleteLocation(id: string): Observable<Location> {

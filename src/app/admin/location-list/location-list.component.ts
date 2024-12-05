@@ -31,7 +31,6 @@ export class LocationListComponent implements OnInit {
 
   ngOnInit():void {
     this.getLocationsWithFoodTrucksAndStages()
-
   }
 
   getLocationsWithFoodTrucksAndStages(){

@@ -41,11 +41,7 @@
               <td class="px-6 py-4 text-sm text-gray-600">{{ location.latitude }}</td>
               <td class="px-6 py-4 text-sm text-gray-600">{{location.longitude}}</td>
               <td class="px-6 py-4 text-sm text-gray-600">{{location.foodTruckNames}}</td>
-              <td class="px-6 py-4 text-sm text-gray-600">@for(item of location.stageNames; track $index){
-                <li class="flex justify-between items-center text-gray-700 bg-gray-100 p-3 rounded-lg shadow-sm">
-                  <span class="text-lg">{{ item }}</span>
-
-                </li>}</td>
+              <td class="px-6 py-4 text-sm text-gray-600">{{location.stageNames}}</td>
               <td class="px-6 py-4 text-sm font-bold text-center">
                 <div class="flex justify-end gap-4">
                   <!-- Edit Button -->
