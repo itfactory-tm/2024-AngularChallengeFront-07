@@ -9,7 +9,7 @@ import {environment} from "../../environments/environment"; // Import the uuid f
   providedIn: 'root'
 })
 export class MenuItemsService {
-  private apiUrl = `${environment.api_url}/api/menuItems`;
+  private apiUrl = `${environment.api_url}/menuItems`;
   constructor(private httpClient: HttpClient) { }
 
   getMenuItems(): Observable<MenuItems[]>{
