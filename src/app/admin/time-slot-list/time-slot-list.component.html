@@ -23,9 +23,10 @@
           <thead class="bg-primary text-white">
             <tr>
               <th class="px-6 py-3 text-md font-bold text-left">#</th>
-              <th class="px-6 py-3 text-md font-bold text-left">Time</th>
-              <th class="px-6 py-3 text-md font-bold text-left">ArtistName</th>
-              <th class="px-6 py-3 text-md font-bold text-left">StageName</th>
+              <th class="px-6 py-3 text-md font-bold text-left">Start Time</th>
+              <th class="px-6 py-3 text-md font-bold text-left">End Time</th>
+              <th class="px-6 py-3 text-md font-bold text-left">Artist Name</th>
+              <th class="px-6 py-3 text-md font-bold text-left">Stage Name</th>
               <th class="px-6 py-3 text-md text-center">&nbsp;</th>
               <!-- public Guid TimeSlotId { get; set; }
               public Guid ArtistId { get; set; }
@@ -38,7 +39,8 @@
               <td class="px-6 py-4 text-sm font-medium text-gray-700">
                 {{ $index + 1 }}
               </td>
-              <td class="px-6 py-4 text-sm text-gray-600">{{ timeSlot.time }}</td>
+              <td class="px-6 py-4 text-sm text-gray-600">{{ timeSlot.startTime }}</td>
+              <td class="px-6 py-4 text-sm text-gray-600">{{ timeSlot.endTime }}</td>
               <td class="px-6 py-4 text-sm text-gray-600">
                 <span
                   class="px-2 py-1 rounded-md bg-blue-100 text-blue-800 font-semibold"

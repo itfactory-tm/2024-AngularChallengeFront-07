@@ -12,23 +12,42 @@
   
     <form (ngSubmit)="onSubmit()" #timeSlotForm="ngForm" class="px-4">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <!-- Time -->
+        <!-- Start Time -->
         <div>
           <label for="time" class="block mb-2 text-sm font-medium text-primary"
-            >Time</label
+            >Start time</label
           >
           <input
             type="time"
-            id="time"
-            name="time"
+            id="startTime"
+            name="startTime"
             class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            placeholder="time"
+            placeholder="Start time"
             required
-            [(ngModel)]="timeSlot.time"
-            #time="ngModel"
+            [(ngModel)]="timeSlot.startTime"
+            #startTime="ngModel"
           />
-          <div [hidden]="time.valid || time.pristine" class="text-red-500 mt-2">
-            Time is required
+          <div [hidden]="startTime.valid || startTime.pristine" class="text-red-500 mt-2">
+            Start time is required
+          </div>
+        </div>
+        <!-- End Time -->
+        <div>
+          <label for="time" class="block mb-2 text-sm font-medium text-primary"
+            >End time</label
+          >
+          <input
+            type="time"
+            id="endTime"
+            name="endTime"
+            class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            placeholder="End time"
+            required
+            [(ngModel)]="timeSlot.endTime"
+            #endTime="ngModel"
+          />
+          <div [hidden]="endTime.valid || endTime.pristine" class="text-red-500 mt-2">
+            End time is required
           </div>
         </div>
   
