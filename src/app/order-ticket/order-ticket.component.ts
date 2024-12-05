@@ -28,6 +28,8 @@ export class OrderTicketComponent implements OnInit {
   days$: Observable<Day[]> = new Observable<Day[]>();
   types$: Observable<TicketType[]> = new Observable<TicketType[]>();
 
+  //MailServer variables
+
   // Reactive form for adding tickets
   addingTicketForm = new FormGroup({
     nameOfBuyer: new FormControl(''),
@@ -116,7 +118,14 @@ export class OrderTicketComponent implements OnInit {
           });        
       });
 
-      //console.log(this.boughtTicketService.getTickets());
+      // this.mailService.sendEmail(this.mailTemplate).subscribe({
+      //   next: () => {
+      //     console.log('Email sent successfully!');
+      //   },
+      //   error: (err) => {
+      //     console.log('Failed to send email: ' + err.error?.message || err.message);
+      //   },
+      // });
 
     } else {
       console.log('Form is invalid', this.addingTicketForm.value);
