@@ -1,38 +1,45 @@
 <div class="flex flex-col items-center justify-center min-h-screen p-6 bg-gray-900">
-    <h1 class="text-6xl font-extrabold text-yellow-200 mb-10 drop-shadow-lg">Get your tickets now!</h1>
-    <div 
-    id="sticky-bar" 
-    class="sticky-bar transition-all duration-300 ease-in-out bg-secondary">
-    <div class="my-8 text-center" (click)="submitTickets()">
-        <div
-        class="ticket-button group relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white transition-all duration-300 ease-in-out bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 rounded-full overflow-hidden shadow-2xl hover:shadow-lg">
-        <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-purple-600 via-pink-500 to-red-500"></span>
+  <h1 class="text-6xl font-extrabold text-yellow-200 mb-10 drop-shadow-lg">Get your tickets now!</h1>
+  <div id="sticky-bar" class="sticky-bar transition-all duration-300 ease-in-out">
+    <div class="my-8 text-center">
+      <div
+        class="ticket-button group relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white transition-transform duration-300 ease-out transform hover:scale-105 hover:shadow-lg bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 rounded-full overflow-hidden shadow-2xl"
+        [class.cursor-not-allowed]="totalSelectedTickets === 0" [class.opacity-50]="totalSelectedTickets === 0"
+        (click)="submitTickets()" [attr.disabled]="totalSelectedTickets === 0 ? true : null">
         <span
-          class="absolute bottom-0 right-0 block w-64 h-64 mb-32 mr-4 transition duration-500 origin-bottom-left transform rotate-45 translate-x-24 bg-pink-500 opacity-30 group-hover:rotate-90 ease"></span>
-        <span class="relative">Get Your Tickets</span>
+          class="absolute inset-0 w-full h-full opacity-50 group-hover:opacity-75 transition-opacity duration-300 bg-gradient-to-r from-purple-600 via-pink-500 to-red-500"></span>
+        <span class="relative pointer-events-none select-none">Get Your Tickets</span>
         <svg
           class="relative w-5 h-5 ml-2 transition-transform duration-300 ease-out transform group-hover:translate-x-1"
           fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
         </svg>
-        </div>
       </div>
+    </div>
   </div>
 
+  <!-- Full-page Loading Overlay -->
+  @if(isLoading) {
+  <div class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-75 z-50">
+    <p class="text-white text-2xl">Loading...</p>
+  </div>
+  } @else {
+  @for (day of days$ | async; track $index) {
+  <div class="text-center">
+    <!-- Title with additional margin and letter spacing -->
+    <h2 class="text-3xl font-extrabold text-tertiary tracking-widest mb-8">
+      {{day.name}}
+    </h2>
 
-    @for (day of days$ | async; track $index) {
-      <div class="text-center">
-        <!-- Title with additional margin and letter spacing -->
-        <h2 class="text-3xl font-extrabold text-tertiary tracking-widest mb-8">
-            {{day.name}}
-        </h2>
-    
-        <!-- Flex container for tickets -->
-        <div class="flex flex-wrap justify-center gap-8 p-6">
-            @for (tick of (filteredTicketsMap.get(day.dayId) | async); track $index){
-                <app-ticket [ticket]="tick"></app-ticket>
-            }
-        </div>
+    <!-- Flex container for tickets -->
+    <div class="flex flex-wrap justify-center gap-8 p-6">
+      @for (tick of (filteredTicketsMap.get(day.dayId) | async); track $index){
+      <app-ticket [ticket]="tick" [ticketType]="ticketTypeMap.get(tick.ticketTypeId)!"
+        (quantityChange)="onTicketQuantityChange($event)">
+      </app-ticket>
+      }
     </div>
-    }
+  </div>
+  }
+  }
 </div>
