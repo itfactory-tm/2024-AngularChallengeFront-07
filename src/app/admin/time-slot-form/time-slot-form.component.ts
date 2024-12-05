@@ -23,8 +23,8 @@ export class TimeSlotFormComponent implements OnInit {
 
   timeSlot: TimeSlot = {
     timeSlotId: '',
-    startTime: '',
-    endTime: '',
+    startTime: new Date(),
+    endTime: new Date(),
     artistId: '',
     artistName: '',
     stageId: '',

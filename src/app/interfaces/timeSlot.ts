@@ -1,7 +1,7 @@
 export interface TimeSlot {
     timeSlotId: string;
-    startTime: string;
-    endTime: string;
+    startTime: Date;
+    endTime: Date;
     artistId : string;
     artistName: string;
     stageId: string;
