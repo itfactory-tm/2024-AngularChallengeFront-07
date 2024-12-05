@@ -1,0 +1,99 @@
+<div class="container mx-auto p-6 max-w-4xl">
+  @if (isAdd) {
+    <h1 class="text-2xl font-bold text-yellow-200 mb-6 text-center">
+      Add a Menu item
+    </h1>
+  } @if (isEdit) {
+  <h1 class="text-2xl font-bold text-yellow-200 mb-6 text-center">
+    Edit a Menu item
+  </h1>
+} @if(isSubmitted && errorMessage) {
+  <div
+    class="rounded p-4 mb-4 text-lg bg-red-200 text-red-800 border-2 border-red-300"
+  >
+    {{ errorMessage }}
+  </div>
+}
+
+  <form (ngSubmit)="onSubmit()" #menuItemForm="ngForm" class="px-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Naam -->
+      <div>
+        <label for="name" class="block mb-2 text-sm font-medium text-primary"
+        >Menu item name</label
+        >
+        <input
+          type="text"
+          id="name"
+          name="name"
+          class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          placeholder="Name"
+          required
+          [(ngModel)]="menuItem.name"
+          #name="ngModel"
+        />
+        <div [hidden]="name.valid || name.pristine" class="text-red-500 mt-2">
+          Name is required
+        </div>
+      </div>
+      <div>
+        <label for="name" class="block mb-2 text-sm font-medium text-primary"
+        >Price</label
+        >
+        <input
+          type="number"
+          id="price"
+          name="price"
+          class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          placeholder="Price"
+          required
+          [(ngModel)]="menuItem.price"
+          #price="ngModel"
+        />
+        <div [hidden]="price.valid || price.pristine" class="text-red-500 mt-2">
+          Price is required
+        </div>
+      </div>
+
+      <div class="col-span-2">
+        <!-- Dropdown for Editions -->
+        <label for="edition" class="block mb-2 text-sm font-medium text-primary">Select Foodtruck:</label>
+        <select
+          id="edition"
+          [(ngModel)]="menuItem.foodTruckId"
+          name="edition"
+          class="form-control"
+          required
+        >
+          @for (foodtruck of foodtrucks$; track foodtruck){
+            <option [value]="foodtruck.foodTruckId">
+              {{ foodtruck.name }}
+            </option>}
+        </select>
+      </div>
+
+
+    </div>
+
+    <!-- Buttons -->
+    <div class="flex space-x-4 mt-6">
+      @if(isAdd) {
+        <button
+          type="submit"
+          [disabled]="!menuItemForm.form.valid || isSubmitted"
+          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center disabled:opacity-75"
+        >
+          Add
+        </button>
+      } @if(isEdit) {
+      <button
+        type="submit"
+        [disabled]="!menuItemForm.form.valid || isSubmitted"
+        class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center disabled:opacity-75"
+      >
+        Save
+      </button>
+    }
+    </div>
+  </form>
+</div>

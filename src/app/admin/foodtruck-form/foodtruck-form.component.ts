@@ -29,7 +29,8 @@ export class FoodtruckFormComponent implements OnInit{
     locationId: '',
     locationName: '',
     editionId: '',
-    editionName: ''
+    editionName: '',
+    menuItems: []
   };
 
   isSubmitted: boolean = false;
