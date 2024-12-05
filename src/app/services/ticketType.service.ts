@@ -2,29 +2,33 @@ import { Injectable } from '@angular/core';
 import { TicketType } from '../interfaces/ticketType';
 import { Observable } from 'rxjs';
 import { ApiService } from './api.service';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TicketTypeService {
 
+  private ApiUrl = `${environment.api_url}/api/ticketTypes`;
+
   private ticketType: TicketType[] = [];
 
-  constructor(private apiService: ApiService) {
+  constructor(private apiService: ApiService, private httpClient: HttpClient) {
       let regular : TicketType = {
-        typeId: "1",
+        ticketTypeId: "1",
         name: "Regular",
         price: 10
     };
 
     let ploes : TicketType = {
-        typeId: "2",
+        ticketTypeId: "2",
         name: "Ploes",
         price: 12
     };
 
     let VIP : TicketType = {
-        typeId: "3",
+        ticketTypeId: "3",
         name: "VIP",
         price: 15
     };
@@ -34,7 +38,7 @@ export class TicketTypeService {
     this.ticketType.push(VIP);}
 
   getTicketTypes(): Observable<TicketType[]> {
-    return this.apiService.get<TicketType[]>('TicketTypes');
+    return this.httpClient.get<TicketType[]>(`${this.ApiUrl}`);
   }
 
   getTicketTypeById(id: string): Observable<TicketType> {

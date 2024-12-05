@@ -1,14 +1,15 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
-const BASE_URL2 = 'https://localhost:7005/api';
-const BASE_URL = 'http://localhost:8080/api';
+const BASE_URL = environment.api_url;
+
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) { }
 
   // Generic GET request for a resource (e.g., Artists, FoodTrucks)
   get<T>(endpoint: string): Observable<T> {

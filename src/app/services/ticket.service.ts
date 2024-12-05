@@ -2,134 +2,32 @@ import { Injectable } from '@angular/core';
 import { Ticket } from '../interfaces/ticket';
 import { Observable } from 'rxjs';
 import { ApiService } from './api.service';
+import { HttpClient } from '@angular/common/http';
+import { tap } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TicketService {
-  constructor(private apiService: ApiService) {
-    let ticket1: Ticket = {
-    ticketId: "1",
-    amountTickets : 200,
-    ticketTypeId : "1",
-    editionId : "1",
-    dayId: "1",
-  };
-
-  let ticket2: Ticket = {
-    ticketId: "2",
-    amountTickets : 200,
-    ticketTypeId : "2",
-    editionId : "1",
-    dayId: "1",
-  };
-
-  let ticket3: Ticket = {
-    ticketId: "3",
-    amountTickets : 200,
-    ticketTypeId : "3",
-    editionId : "1",
-    dayId: "1",
-  };
-
-  let ticket4: Ticket = {
-    ticketId: "4",
-    amountTickets : 200,
-    ticketTypeId : "1",
-    editionId : "1",
-    dayId: "2",
-  };
-
-  let ticket5: Ticket = {
-    ticketId: "5",
-    amountTickets : 200,
-    ticketTypeId : "2",
-    editionId : "1",
-    dayId: "2",
-  };
-
-  let ticket6: Ticket = {
-    ticketId: "6",
-    amountTickets : 200,
-    ticketTypeId : "3",
-    editionId : "1",
-    dayId: "2",
-  };
-
-  let ticket7: Ticket = {
-    ticketId: "7",
-    amountTickets : 200,
-    ticketTypeId : "1",
-    editionId : "1",
-    dayId: "3",
-  };
-
-  let ticket8: Ticket = {
-    ticketId: "8",
-    amountTickets : 200,
-    ticketTypeId : "2",
-    editionId : "1",
-    dayId: "3",
-  };
-
-  let ticket9: Ticket = {
-    ticketId: "9",
-    amountTickets : 200,
-    ticketTypeId : "3",
-    editionId : "1",
-    dayId: "3",
-  };
-
-  let ticket10: Ticket = {
-    ticketId: "10",
-    amountTickets : 200,
-    ticketTypeId : "1",
-    editionId : "1",
-    dayId: "4",
-  };
-
-  let ticket11: Ticket = {
-    ticketId: "11",
-    amountTickets : 200,
-    ticketTypeId : "2",
-    editionId : "1",
-    dayId: "4",
-  };
-
-  let ticket12: Ticket = {
-    ticketId: "12",
-    amountTickets : 200,
-    ticketTypeId : "3",
-    editionId : "1",
-    dayId: "4",
-  };
-
-  this.tickets.push(ticket1);
-  this.tickets.push(ticket2);
-  this.tickets.push(ticket3);
-  this.tickets.push(ticket4);
-  this.tickets.push(ticket5);
-  this.tickets.push(ticket6);
-  this.tickets.push(ticket7);
-  this.tickets.push(ticket8);
-  this.tickets.push(ticket9);
-  this.tickets.push(ticket10);
-  this.tickets.push(ticket11);
-  this.tickets.push(ticket12);
-
-  this.selectedTickets.push(ticket1);
-  this.selectedTickets.push(ticket4);}
 
   private tickets: Ticket[] = [];
 
   private selectedTickets: Ticket[] = [];
 
+  private ApiUrl = `${environment.api_url}/api/tickets`;
+
+  constructor(private apiService: ApiService, private httpClient: HttpClient) {}
+
   getTickets(): Observable<Ticket[]> {
-    return this.apiService.get<Ticket[]>('Tickets');
+    return this.httpClient.get<Ticket[]>(`${this.ApiUrl}`);
   }
 
   getTicketById(id: string): Observable<Ticket> {
-    return this.apiService.getById<Ticket>('Tickets', id);
+    const tijdelijk =  this.apiService.getById<Ticket>('Tickets', id);
+
+    console.log(tijdelijk);
+    return tijdelijk
   }
 
   // getTicketById(i: number): Ticket {

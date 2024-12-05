@@ -2,14 +2,19 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Sponsor } from '../interfaces/sponsor';
-import { v4 as uuidv4 } from 'uuid'; // Import the uuid function
+
+import { v4 as uuidv4 } from 'uuid';
+import {environment} from "../../environments/environment"; // Import the uuid function
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class SponsorService {
+
   constructor(private httpClient: HttpClient) {}
-  private apiUrl = 'https://localhost:7005/api/Sponsors';
+  private apiUrl = `${environment.api_url}/api/Sponsors`;
+
 
   getSponsors(): Observable<Sponsor[]> {
     return this.httpClient.get<Sponsor[]>(this.apiUrl);
@@ -24,7 +29,6 @@ export class SponsorService {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
 
-
     return this.httpClient.post<Sponsor>(`${this.apiUrl}/`, sponsor, {
       headers: headers,
     });
@@ -33,8 +37,6 @@ export class SponsorService {
   putSponsor(id: string, sponsor: Sponsor): Observable<Sponsor> {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
-
-
     return this.httpClient.put<Sponsor>(`${this.apiUrl}/${id}`, sponsor, {
       headers: headers,
     });

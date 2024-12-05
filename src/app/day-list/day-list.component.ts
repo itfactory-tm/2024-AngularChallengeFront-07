@@ -7,7 +7,10 @@ import { TicketService } from '../services/ticket.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 import { tick } from '@angular/core/testing';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
+import { of, from } from 'rxjs';
+import { concatMap, catchError } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-day-list',
@@ -19,9 +22,12 @@ import { Observable } from 'rxjs';
 export class DayListComponent {
   days$: Observable<Day[]> = new Observable<Day[]>();
   tickets$: Observable<Ticket[]> = new Observable<Ticket[]>();
+  filteredTickets$: Observable<Ticket[]> = new Observable<Ticket[]>();; 
+  filteredTicketsMap: Map<string, Observable<Ticket[]>> = new Map();
 
-  days: Day[] = [];
-  tickets : Ticket[] = [];
+
+  //days: Day[] = [];
+  //tickets : Ticket[] = [];
 
   ticketsByDay: { [key: string]: Ticket[] } = {};
 
@@ -34,18 +40,29 @@ export class DayListComponent {
   constructor(private dayService: DayService, private ticketService: TicketService, private router: Router){}
 
   ngOnInit(): void {
-    this.days = this.dayService.getDays();
+    this.days$ = this.dayService.getDays();
     this.tickets$ = this.ticketService.getTickets();
 
-    this.days.forEach(dag => {
-      this.ticketsByDay[dag.dayId] = this.tickets.filter(ticket => ticket.dayId === dag.dayId);
+    this.days$.subscribe((days: Day[]) => {
+      // Populate the map with filtered tickets observables for each dayId
+      days.forEach(dag => {
+        this.filteredTicketsMap.set(dag.dayId, this.getTicketsByDay(dag.dayId));
+      });
     });
-
+  
   }
+
+  getTicketsByDay(dayId: string): Observable<Ticket[]> {
+    return this.tickets$.pipe(
+      map(tickets => tickets.filter(ticket => ticket.dayId === dayId))
+    );
+  }
+  
 
   //Submit tickets for buying
   addTickets(ticket: Ticket, amount: number): void {
     for (let i = 0; i < amount; i++) {
+      console.log(ticket)
       this.resultArray.push(ticket);  // Add the ticket 'amount' times to the result array
     }
   }
@@ -53,19 +70,24 @@ export class DayListComponent {
   // Submit the selected tickets
   submitTickets(): void {
     this.resultArray = []; // Reset result array
-    this.tickets.forEach(ticket => {
-      const inputElement = document.getElementById(`ticket-input-${ticket.ticketId}`) as HTMLInputElement;
-      const amount = parseInt(inputElement.value, 10) || 0;  // Get the input value or default to 0
-      this.addTickets(ticket, amount);  // Add ticket that many times
-    });
-    this.ticketService.setSelectedTickets(this.resultArray); // Display the selected tickets
-    console.log(this.ticketService.getSelectedTickets());
-    this.router.navigate(['/order-ticket']);
 
+    this.tickets$.subscribe((tickets: Ticket[]) => {
+      // Iterate over the array of tickets directly inside the subscribe block
+      tickets.forEach(ticket => {
+        const inputElement = document.getElementById(`ticket-input-${ticket.ticketId}`) as HTMLInputElement;
+        if (inputElement) {
+          const amount = parseInt(inputElement.value, 10) || 0;
+          this.addTickets(ticket, amount);
+        }
+      });
+    
+      this.ticketService.setSelectedTickets(this.resultArray); // Display the selected tickets
+      this.router.navigate(['/order-ticket']); //Routing to the next page for entering the names
+    }, error => {
+      console.error('Error processing tickets', error);
+    });    
+    
   }
-
-
-
 
   @HostListener('window:scroll', [])
   onWindowScroll(): void {

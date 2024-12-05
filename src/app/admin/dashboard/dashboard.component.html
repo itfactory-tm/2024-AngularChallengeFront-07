@@ -1,0 +1,19 @@
+<div class="min-h-screen bg-background py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h1
+            class="text-4xl font-extrabold text-center text-transparent bg-clip-text bg-gradient-to-r from-primary via-quaternary to-tertiary shadow-lg tracking-wide mb-6 uppercase">
+            Your Dashboard
+        </h1>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            @for (link of adminLinks; track $index) {
+            <div class="bg-secondary hover:bg-primary text-text-light hover:text-text-light transition-all duration-300 ease-in-out shadow-xl rounded-xl p-6 flex flex-col items-center cursor-pointer transform hover:scale-105"
+                routerLink="{{link.path}}" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                <div class="mb-4 flex items-center justify-center w-16 h-16 bg-tertiary rounded-full shadow-inner">
+                    <img [src]="link.icon" alt="{{ link.name }}" class="w-10 h-10" />
+                </div>
+                <h3 class="text-lg text-quaternary font-semibold mt-2">{{ link.name }}</h3>
+            </div>
+            }
+        </div>
+    </div>
+</div>

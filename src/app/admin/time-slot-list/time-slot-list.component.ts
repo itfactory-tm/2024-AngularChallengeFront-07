@@ -9,14 +9,14 @@ import { AsyncPipe } from '@angular/common';
   selector: 'app-timeSlot-list',
   standalone: true,
   imports: [AsyncPipe],
-  templateUrl: './time-Slot-list.component.html',
-  styleUrl: './time-Slot-list.component.css',
+  templateUrl: './time-slot-list.component.html',
+  styleUrl: './time-slot-list.component.css',
 })
 export class TimeSlotListComponent implements OnInit {
   timeSlots$: Observable<TimeSlot[]> = new Observable<TimeSlot[]>();
   errorMessage: string = '';
 
-  constructor(private timeSlotService: TimeSlotService, private router: Router) {}
+  constructor(private timeSlotService: TimeSlotService, private router: Router) { }
   ngOnInit(): void {
     this.getTimeSlots();
   }

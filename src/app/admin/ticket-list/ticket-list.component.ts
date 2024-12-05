@@ -23,6 +23,7 @@ export class TicketListComponent implements OnInit {
 
   getTickets() {
     this.tickets$ = this.ticketService.getTickets();
+    console.log(this.tickets$)
   }
 
   add() {
