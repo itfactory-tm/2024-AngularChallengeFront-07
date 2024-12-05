@@ -1,5 +1,13 @@
-<div class="flex flex-col items-center justify-center min-h-screen p-6 bg-gray-900">
-  <h1 class="text-6xl font-extrabold text-yellow-200 mb-10 drop-shadow-lg">Get your tickets now!</h1>
+<div class="day-list-container relative">
+  @if(isLoading) {
+  <div class="loading-overlay">
+    <p class="text-white text-2xl">Loading...</p>
+  </div>
+  } @else {
+  <!-- Header -->
+  <h1 class="text-6xl font-extrabold text-yellow-200 mb-10 drop-shadow-lg text-center">Get your tickets now!</h1>
+
+  <!-- Sticky Bar with Button -->
   <div id="sticky-bar" class="sticky-bar transition-all duration-300 ease-in-out">
     <div class="my-8 text-center">
       <div
@@ -18,12 +26,7 @@
     </div>
   </div>
 
-  <!-- Full-page Loading Overlay -->
-  @if(isLoading) {
-  <div class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-75 z-50">
-    <p class="text-white text-2xl">Loading...</p>
-  </div>
-  } @else {
+  <!-- Tickets List -->
   @for (day of days$ | async; track $index) {
   <div class="text-center">
     <!-- Title with additional margin and letter spacing -->
