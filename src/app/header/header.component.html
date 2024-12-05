@@ -1,19 +1,12 @@
-<header
-  class="bg-secondary text-text-light fixed top-0 left-0 w-full z-50 shadow-lg h-24"
->
-  <div
-    class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center"
-  >
+<header class="bg-secondary text-text-light fixed top-0 left-0 w-full z-50 shadow-lg h-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
     <nav class="hidden md:block flex-1 justify-end">
       <ul class="flex space-x-6 justify-end">
         <!-- Left pages -->
         @for (page of leftPages; track $index) {
         <li>
-          <a
-            [routerLink]="page.path"
-            routerLinkActive="text-primary"
-            class="font-semibold text-lg text-text-light hover:text-primary hover:underline hover:scale-105 transition-transform duration-300 ease-in-out"
-          >
+          <a [routerLink]="page.path" routerLinkActive="text-primary"
+            class="font-semibold text-lg text-text-light hover:text-primary hover:underline hover:scale-105 transition-transform duration-300 ease-in-out">
             {{ page.name }}
           </a>
         </li>
@@ -21,15 +14,11 @@
       </ul>
     </nav>
     <div class="flex flex-col items-center flex-shrink-0 mx-8">
-      <a
-        [routerLink]="'/'"
-        class="text-4xl font-bold text-primary tracking-wide hover:text-accent transition-colors duration-300 ease-in-out"
-      >
+      <a [routerLink]="'/'"
+        class="text-4xl font-bold text-primary tracking-wide hover:text-accent transition-colors duration-300 ease-in-out">
         FritFest
       </a>
-      <p
-        class="text-accent font-medium hover:text-primary transition-colors duration-300 ease-in-out"
-      >
+      <p class="text-accent font-medium hover:text-primary transition-colors duration-300 ease-in-out">
         Food Truck Festival
       </p>
     </div>
@@ -38,11 +27,8 @@
         <!-- Right pages -->
         @for (page of rightPages; track $index) {
         <li>
-          <a
-            [routerLink]="page.path"
-            routerLinkActive="text-primary"
-            class="font-semibold text-lg text-text-light hover:text-primary hover:underline hover:scale-105 transition-transform duration-300 ease-in-out"
-          >
+          <a [routerLink]="page.path" routerLinkActive="text-primary"
+            class="font-semibold text-lg text-text-light hover:text-primary hover:underline hover:scale-105 transition-transform duration-300 ease-in-out">
             {{ page.name }}
           </a>
         </li>
@@ -50,152 +36,65 @@
         <li>
           @if (isAuthenticated()) {
           <div class="flex items-center space-x-4">
-            <!-- Logout Button -->
-            <app-logout-button></app-logout-button>
 
-            <!-- Admin Dropdown -->
-            <div class="relative">
-              <button
-                id="dropdownNavbarLink"
-                (click)="onAdminDropDownClick()"
-                class="flex justify-between items-center font-semibold text-lg text-text-light hover:text-primary hover:underline hover:scale-105 transition-transform duration-300 ease-in-out"
-              >
+            <div>
+              <a [routerLink]="'/admin/dashboard'" routerLinkActive="text-primary"
+                class="font-semibold text-lg text-text-light hover:text-primary hover:underline hover:scale-105 transition-transform duration-300 ease-in-out">
                 Admin
-                <svg
-                  class="ml-1 w-5 h-5"
-                  aria-hidden="true"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-              </button>
-
-              <!-- Dropdown menu -->
-              @if (adminDropdownOpen) {
-              <div
-                id="dropdownNavbar"
-                (mouseleave)="closeAdminDropDown()"
-                class="absolute right-0 w-44 font-bold shadow bg-secondary"
-              >
-                <ul
-                  class="py-1 text-sm text-gray-700"
-                  aria-labelledby="dropdownLargeButton"
-                >
-                <li>
-                  <a
-                    routerLink="/admin/article"
-                    routerLinkActive="active"
-                    [routerLinkActiveOptions]="{ exact: true }"
-                    class="block py-2 px-4 font-semibold text-text-light cursor-pointer hover:text-primary hover:underline hover:scale-105 transition-transform duration-300 ease-in-out"
-                    >Articles</a
-                  >
-                </li>
-                  <li>
-                    <a
-                      routerLink="/admin/artist"
-                      routerLinkActive="active"
-                      [routerLinkActiveOptions]="{ exact: true }"
-                      class="block py-2 px-4 font-semibold text-text-light cursor-pointer hover:text-primary hover:underline hover:scale-105 transition-transform duration-300 ease-in-out"
-                      >Artists</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      routerLink="/admin/stage"
-                      routerLinkActive="active"
-                      [routerLinkActiveOptions]="{ exact: true }"
-                      class="block py-2 px-4 font-semibold text-text-light cursor-pointer hover:text-primary hover:underline hover:scale-105 transition-transform duration-300 ease-in-out"
-                      >Stages</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      routerLink="/admin/ticket"
-                      routerLinkActive="active"
-                      [routerLinkActiveOptions]="{ exact: true }"
-                      class="block py-2 px-4 font-semibold text-text-light cursor-pointer hover:text-primary hover:underline hover:scale-105 transition-transform duration-300 ease-in-out"
-                      >Tickets</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      routerLink="/admin/timeSlot"
-                      routerLinkActive="active"
-                      [routerLinkActiveOptions]="{ exact: true }"
-                      class="block py-2 px-4 font-semibold text-text-light cursor-pointer hover:text-primary hover:underline hover:scale-105 transition-transform duration-300 ease-in-out"
-                      >Timeslots</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      routerLink="/admin/edition"
-                      routerLinkActive="active"
-                      [routerLinkActiveOptions]="{ exact: true }"
-                      class="block py-2 px-4 font-semibold text-text-light cursor-pointer hover:text-primary hover:underline hover:scale-105 transition-transform duration-300 ease-in-out"
-                      >Editions</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      routerLink="/admin/sponsor"
-                      routerLinkActive="active"
-                      [routerLinkActiveOptions]="{ exact: true }"
-                      class="block py-2 px-4 font-semibold text-text-light cursor-pointer hover:text-primary hover:underline hover:scale-105 transition-transform duration-300 ease-in-out"
-                    >
-                      Sponsors</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      routerLink="/admin/foodtruck"
-                      routerLinkActive="active"
-                      [routerLinkActiveOptions]="{exact: true}"
-                      class="block py-2 px-4 font-semibold text-text-light cursor-pointer hover:text-primary hover:underline hover:scale-105 transition-transform duration-300 ease-in-out"
->Foodtrucks</a>
-                  </li>
-                </ul>
-              </div>
-              }
+              </a>
             </div>
           </div>
           } @else {<app-login-button></app-login-button>}
         </li>
       </ul>
     </nav>
+    @if (isAuthenticated()) {
+    <div class="hidden md:block ml-8">
+      <!-- Logout Button -->
+      <app-logout-button></app-logout-button>
+    </div>
+    }
+
+
     <button class="md:hidden text-text-light" (click)="toggleMenu()">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-6 w-6 hover:text-primary transition-colors duration-300 ease-in-out"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="2"
-          d="M4 6h16M4 12h16M4 18h16"
-        />
+      <svg xmlns="http://www.w3.org/2000/svg"
+        class="h-6 w-6 hover:text-primary transition-colors duration-300 ease-in-out" fill="none" viewBox="0 0 24 24"
+        stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
       </svg>
     </button>
   </div>
-  <nav class="md:hidden" [ngClass]="{ hidden: !isMenuOpen }">
-    <ul class="flex flex-col items-center py-4">
+  <nav class="md:hidden relative z-20" [ngClass]="{ hidden: !isMenuOpen }">
+    <ul class="absolute -top-3 bg-secondary right-0 mt-2 bg-secondary-dark rounded-lg shadow-lg w-56">
       @for (page of leftPages.concat(rightPages); track $index) {
       <li class="w-full">
-        <a
+        <a 
+          (click)="toggleMenu()"
           [routerLink]="page.path"
           routerLinkActive="text-primary"
-          class="block font-semibold text-lg text-text-light hover:text-primary hover:bg-secondary-dark hover:scale-105 transition-all duration-300 ease-in-out py-2 px-4 text-center"
+          class="block font-semibold text-lg text-text-light hover:text-primary hover:bg-secondary hover:scale-105 transition-all duration-300 ease-in-out py-4 px-6 text-center"
         >
           {{ page.name }}
         </a>
+      </li>
+      }
+      @if (isAuthenticated()) {
+      <li class="py-4 px-6 text-center">
+        <a
+          [routerLink]="'/admin/dashboard'"
+          routerLinkActive="text-primary"
+          class="font-semibold text-lg text-text-light hover:text-primary hover:bg-secondary hover:scale-105 transition-all duration-300 ease-in-out"
+        >
+          Admin
+        </a>
+      </li>
+      <li class="py-4 px-6 text-center">
+        <!-- Logout Button -->
+        <app-logout-button></app-logout-button>
+      </li>
+      } @else {
+      <li class="py-4 px-6 text-center">
+        <app-login-button></app-login-button>
       </li>
       }
     </ul>

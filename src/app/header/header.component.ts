@@ -55,6 +55,7 @@ export class HeaderComponent {
 
   navigateTo(path: string) {
     this.closeAdminDropDown();
+    this.toggleMenu();
     this.router.navigate([path]);
   }
 }
