@@ -26,7 +26,7 @@ import { StageAdminListComponent } from './admin/stageAdmin-list/stageAdmin-list
 import { TicketFormComponent } from './admin/ticket-form/ticket-form.component';
 import { TicketListComponent } from './admin/ticket-list/ticket-list.component';
 
-import {LocationListComponent} from "./admin/location-list/location-list.component";
+// import {LocationListComponent} from "./admin/location-list/location-list.component";
 import {LocationFormComponent} from "./admin/location-form/location-form.component";
 
 import { EditionListComponent } from './admin/edition-list/edition-list.component';
@@ -35,6 +35,8 @@ import { ArticleListComponent } from './admin/article-list/article-list.componen
 import { ArticleFormComponent } from './admin/article-form/article-form.component';
 import { TimeSlotListComponent } from './admin/time-slot-list/time-slot-list.component';
 import { TimeSlotFormComponent } from './admin/time-slot-form/time-slot-form.component';
+import {LocationListComponent} from "./admin/location-list/location-list.component";
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
 
 
 export const routes: Routes = [
@@ -45,6 +47,11 @@ export const routes: Routes = [
   { path: 'stage-list', component: StageListComponent },
   { path: 'stage/:id', component: StageDetailComponent },
   { path: 'tickets', component: DayListComponent },
+  {
+    path: 'admin/dashboard',
+    component: DashboardComponent,
+    canActivate: [AuthGuard],
+  },
   {
     path: 'admin/artist',
     component: ArtistListComponent,

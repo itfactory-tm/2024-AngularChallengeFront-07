@@ -16,7 +16,7 @@ import { Observable } from "rxjs";
   styleUrl: './location-list.component.css'
 })
 export class LocationListComponent implements OnInit {
-  locations$: Observable<Location[]> = new Observable<Location[]>();
+  // locations$: Observable<Location[]> = new Observable<Location[]>();
   errorMessage: string = '';
   foodTrucks: { [key: string]: FoodTruck } = {};
 
@@ -27,8 +27,11 @@ export class LocationListComponent implements OnInit {
     private router: Router
   ) {
   }
-  ngOnInit(): void {
-    this.locations$ = this.locationService.getLocations();
+
+
+  ngOnInit():void {
+    // this.getLocations();
+
   }
   //   this.locations$.subscribe(location => {
   //     this.loadFoodtrucks(location);
@@ -55,12 +58,14 @@ export class LocationListComponent implements OnInit {
     this.router.navigate(['/admin/location/form'], { state: { id: id, mode: 'edit' } });
   }
 
-  delete(id: string) {
-    this.foodtruckService.deleteFoodtruck(id).subscribe(
-      {
-        next: (v) => this.locations$ = this.locationService.getLocations(),
-        error: (e) => (this.errorMessage = e.message),
-      }
-    );
-  }
+
+  // delete(id: string){
+  //   this.foodtruckService.deleteFoodtruck(id).subscribe(
+  //     {
+  //       next: (v) => this.loadLocationsAndFoodTrucks(),
+  //       error: (e) => (this.errorMessage = e.message),
+  //     }
+  //   );
+  // }
+
 }

@@ -9,7 +9,7 @@ import { environment } from '../../environments/environment'; // Import environm
 })
 export class TimeSlotService {
   constructor(private httpClient: HttpClient) { }
-  private apiUrl = `${environment.api_url}/TimeSlots`; // Use environment variable
+  private apiUrl = `${environment.api_url}/api/TimeSlots`; // Use environment variable
 
   getTimeSlots(): Observable<TimeSlot[]> {
     return this.httpClient.get<TimeSlot[]>(this.apiUrl);
