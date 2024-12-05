@@ -59,19 +59,19 @@ export class ArtistComponent implements OnInit {
     });
   }
 
-  formatDay(time: string): string {
+  formatDay(time: Date): string {
     const date = new Date(time);
     const options: Intl.DateTimeFormatOptions = { weekday: 'long' };
     return date.toLocaleDateString('en-US', options); 
   }
 
-  formatTime(time: string): string {
+  formatTime(time: Date): string {
     const date = new Date(time);
     const options: Intl.DateTimeFormatOptions = { hour: '2-digit', minute: '2-digit', hour12: true };
     return date.toLocaleTimeString('en-US', options);
   }
 
-  formatDateTime(time: string): string {
+  formatDateTime(time: Date): string {
     const date = new Date(time);
     const options: Intl.DateTimeFormatOptions = {
       weekday: 'long',
