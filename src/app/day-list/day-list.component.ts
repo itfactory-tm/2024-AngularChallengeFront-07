@@ -49,6 +49,10 @@ export class DayListComponent {
       ticketTypes: this.ticketTypeService.getTicketTypes()
     }).subscribe({
       next: ({ days, tickets, ticketTypes }) => {
+        // Sort days logically based on a predefined order
+        const dayOrder = ['Friday', 'Saturday', 'Sunday'];
+        days.sort((a, b) => dayOrder.indexOf(a.name) - dayOrder.indexOf(b.name));
+        
         this.days$.next(days);
         this.tickets$.next(tickets);
 
