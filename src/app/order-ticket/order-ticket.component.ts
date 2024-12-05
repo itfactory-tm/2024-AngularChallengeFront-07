@@ -10,6 +10,8 @@ import { TicketType } from '../interfaces/ticketType';
 import { BoughtTicketService } from '../services/bought-ticket.service';
 import { Observable } from 'rxjs';
 import { v4 as uuidv4 } from 'uuid';
+import { Mail } from '../interfaces/mail';
+import { MailService } from '../services/mail.service';
 
 
 @Component({
@@ -28,6 +30,14 @@ export class OrderTicketComponent implements OnInit {
   days$: Observable<Day[]> = new Observable<Day[]>();
   types$: Observable<TicketType[]> = new Observable<TicketType[]>();
 
+  //MailServer variables
+  mailTemplate: Mail = {
+    nameReceiver: "",
+    emailReceiver: "joppiegeurts@gmail.com",
+    subject: "Ordering Tickets Fritfest",
+    body: "You ordered your tickets, tickets are in the attachments."
+  }
+
   // Reactive form for adding tickets
   addingTicketForm = new FormGroup({
     nameOfBuyer: new FormControl(''),
@@ -42,6 +52,7 @@ export class OrderTicketComponent implements OnInit {
     private dayService: DayService,
     private ticketTypeService: TicketTypeService,
     private boughtTicketService: BoughtTicketService,
+    private mailService: MailService
   ) {}
 
   ngOnInit(): void {
@@ -116,7 +127,14 @@ export class OrderTicketComponent implements OnInit {
           });        
       });
 
-      //console.log(this.boughtTicketService.getTickets());
+      this.mailService.sendEmail(this.mailTemplate).subscribe({
+        next: () => {
+          console.log('Email sent successfully!');
+        },
+        error: (err) => {
+          console.log('Failed to send email: ' + err.error?.message || err.message);
+        },
+      });
 
     } else {
       console.log('Form is invalid', this.addingTicketForm.value);
