@@ -90,6 +90,22 @@
           #spotifyLink="ngModel"
         ></textarea>
       </div>
+      <div class="col-span-2">
+        <!-- Dropdown for Editions -->
+        <label for="edition" class="block mb-2 text-sm font-medium text-primary">Select Edition:</label>
+        <select
+          id="edition"
+          [(ngModel)]="artist.editionId"
+          name="edition"
+          class="form-control"
+          required
+        >
+          @for (edition of editions$; track edition){
+            <option [value]="edition.editionId">
+              {{ edition.editionName }}
+            </option>}
+        </select>
+      </div>
     </div>
 
     <!-- Buttons -->

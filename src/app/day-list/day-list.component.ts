@@ -46,7 +46,7 @@ export class DayListComponent {
     forkJoin({
       days: this.dayService.getDays(),
       tickets: this.ticketService.getTickets(),
-      ticketTypes: this.ticketTypeService.getAllTicketTypes()
+      ticketTypes: this.ticketTypeService.getTicketTypes()
     }).subscribe({
       next: ({ days, tickets, ticketTypes }) => {
         this.days$.next(days);

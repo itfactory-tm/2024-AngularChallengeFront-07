@@ -27,8 +27,9 @@
             <th class="px-6 py-3 text-md font-bold text-left">Email</th>
             <th class="px-6 py-3 text-md font-bold text-left">Description</th>
             <th class="px-6 py-3 text-md font-bold text-left">Spotify Link</th>
-            <th class="px-6 py-3 text-md font-bold text-left">Edities</th>
+            <th class="px-6 py-3 text-md font-bold text-left">Photo</th>
             <th class="px-6 py-3 text-md font-bold text-left">Genre</th>
+            <th class="px-6 py-3 text-md font-bold text-left">Editions</th>
             <th class="px-6 py-3 text-md text-center">&nbsp;</th>
           </tr>
         </thead>
@@ -66,6 +67,7 @@
               <img src="{{ artist.spotifyPhoto }}" alt="{{ artist.name }}" />
             </td>
             <td class="px-6 py-4 text-sm text-gray-600">{{ artist.genre }}</td>
+            <td class="px-6 py-4 text-sm text-gray-600">{{ artist.editionName }}</td>
             <td class="px-6 py-4 text-sm font-bold text-center">
               <div class="flex justify-end gap-4">
                 <!-- Edit Button -->

@@ -25,16 +25,23 @@ export class SponsorService {
   }
 
   postSponsor(sponsor: Sponsor): Observable<Sponsor> {
-    sponsor.sponsorId = uuidv4(); // Generate a new UUID for the sponsor
+    sponsor.sponsorId = uuidv4();
+    if (sponsor.sponsorLogoBase64 && !this.isValidBase64(sponsor.sponsorLogoBase64)) {
+      throw new Error('Invalid Base64 string for logo');
+    }
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
 
-    return this.httpClient.post<Sponsor>(`${this.apiUrl}/`, sponsor, {
+    console.log(sponsor);
+    return this.httpClient.post<Sponsor>(`${this.apiUrl}/`, sponsor,{
       headers: headers,
     });
   }
 
   putSponsor(id: string, sponsor: Sponsor): Observable<Sponsor> {
+    if (sponsor.sponsorLogoBase64 && !this.isValidBase64(sponsor.sponsorLogoBase64)) {
+      throw new Error('Invalid Base64 string for logo');
+    }
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
     return this.httpClient.put<Sponsor>(`${this.apiUrl}/${id}`, sponsor, {
@@ -44,5 +51,10 @@ export class SponsorService {
 
   deleteSponsor(id: string): Observable<Sponsor> {
     return this.httpClient.delete<Sponsor>(`${this.apiUrl}/${id}`);
+  }
+
+  private isValidBase64(str: string): boolean {
+    const base64Pattern = /^([A-Za-z0-9+\/=]|\n)*$/;
+    return base64Pattern.test(str);
   }
 }
