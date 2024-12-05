@@ -13,7 +13,7 @@ export class DayService {
 
   private day: Day[] = [];
 
-  private ApiUrl = `${environment.api_url}/api/days`;
+  private ApiUrl = `${environment.api_url}/days`;
 
   constructor(private httpClient: HttpClient) { 
 
