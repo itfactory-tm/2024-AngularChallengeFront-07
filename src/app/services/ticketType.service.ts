@@ -57,6 +57,10 @@ export class TicketTypeService {
   deleteTicketType(id: string): Observable<TicketType> {
     return this.apiService.delete<TicketType>('TicketTypes', id);
   }
+
+  getAllTicketTypes(): Observable<TicketType[]> {
+    return this.httpClient.get<TicketType[]>(`${this.ApiUrl}`);
+  }
 }
 
 

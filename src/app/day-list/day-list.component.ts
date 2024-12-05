@@ -7,6 +7,8 @@ import { TicketService } from '../services/ticket.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 import { Observable, map, forkJoin, BehaviorSubject, of } from 'rxjs';
+import { TicketTypeService } from '../services/ticketType.service';
+import { TicketType } from '../interfaces/ticketType';
 
 @Component({
   selector: 'app-day-list',
@@ -29,28 +31,36 @@ export class DayListComponent {
   // Unified loading state flag
   isLoading: boolean = true;
 
+  ticketTypeMap: Map<string, TicketType> = new Map();
+
   constructor(
     private dayService: DayService,
     private ticketService: TicketService,
+    private ticketTypeService: TicketTypeService,
     private router: Router
   ) { }
 
   ngOnInit(): void {
-    // Use forkJoin to load days and tickets concurrently
+    // Use forkJoin to load days, tickets, and ticket types concurrently
     forkJoin({
       days: this.dayService.getDays(),
-      tickets: this.ticketService.getTickets()
+      tickets: this.ticketService.getTickets(),
+      ticketTypes: this.ticketTypeService.getAllTicketTypes()
     }).subscribe({
-      next: ({ days, tickets }) => {
-        this.isLoading = false; // Data has been loaded
+      next: ({ days, tickets, ticketTypes }) => {
         this.days$.next(days);
         this.tickets$.next(tickets);
+
+        // Create a map for easy access to ticket types
+        this.ticketTypeMap = new Map(ticketTypes.map(tt => [tt.ticketTypeId, tt]));
 
         // Populate the filteredTicketsMap
         days.forEach(day => {
           const filtered = tickets.filter(ticket => ticket.dayId === day.dayId);
           this.filteredTicketsMap.set(day.dayId, of(filtered));
         });
+
+        this.isLoading = false; // Set loading to false after all data is loaded
       },
       error: (err) => {
         console.error('Error loading data', err);

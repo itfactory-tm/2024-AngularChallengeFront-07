@@ -11,25 +11,15 @@ import { TicketTypeService } from '../services/ticketType.service';
 })
 export class TicketsComponent implements OnInit {
   @Input() ticket!: Ticket;
+  @Input() ticketType?: TicketType;
   @Output() quantityChange = new EventEmitter<{ ticketId: string, quantity: number }>();
 
-  ticketType: TicketType | undefined;
   quantity: number = 0;
 
   constructor(private ticketTypeService: TicketTypeService) { }
 
   ngOnInit(): void {
-    if (this.ticket && this.ticket.ticketTypeId) {
-      // Fetch the TicketType asynchronously
-      this.ticketTypeService.getTicketTypeById(this.ticket.ticketTypeId).subscribe({
-        next: (ticketType) => {
-          this.ticketType = ticketType; // Assign the fetched TicketType
-        },
-        error: (err) => {
-          console.error('Error fetching ticket type', err); // Handle error gracefully
-        }
-      });
-    }
+    // Remove the ticketType fetching here
   }
 
   increaseQuantity(): void {

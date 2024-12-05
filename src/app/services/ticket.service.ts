@@ -5,6 +5,7 @@ import { ApiService } from './api.service';
 import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
+import { TicketType } from '../interfaces/ticketType';
 
 @Injectable({
   providedIn: 'root',
