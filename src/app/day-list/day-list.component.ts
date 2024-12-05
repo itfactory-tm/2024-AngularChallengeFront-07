@@ -9,11 +9,12 @@ import { RouterModule, Router } from '@angular/router';
 import { Observable, map, forkJoin, BehaviorSubject, of } from 'rxjs';
 import { TicketTypeService } from '../services/ticketType.service';
 import { TicketType } from '../interfaces/ticketType';
+import { LoaderComponent } from '../loader/loader.component';
 
 @Component({
   selector: 'app-day-list',
   standalone: true,
-  imports: [TicketsComponent, CommonModule, RouterModule],
+  imports: [TicketsComponent, CommonModule, RouterModule, LoaderComponent],
   templateUrl: './day-list.component.html',
   styleUrl: './day-list.component.css',
 })

@@ -32,6 +32,7 @@ export class ArtistFormComponent implements OnInit {
     spotifyPhoto: '',
     editionId: '',
     editionName: ''
+
   };
 
   isSubmitted: boolean = false;

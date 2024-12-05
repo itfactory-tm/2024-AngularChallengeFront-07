@@ -1,17 +1,22 @@
 import { Injectable } from '@angular/core';
 import { Stage } from '../interfaces/stage';
 import { Observable } from 'rxjs';
+
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {v4 as uuidv4} from 'uuid';
 import {environment} from "../../environments/environment";
+
 
 
 @Injectable({
   providedIn: 'root',
 })
 export class StageService {
-  constructor(private httpClient: HttpClient) {}
-  private apiUrl = environment.api_url;
+
+  constructor(private httpClient: HttpClient) { }
+  private apiUrl = `${environment.api_url}/Stages`; 
+
+
   getStages(): Observable<Stage[]> {
     return this.httpClient.get<Stage[]>(this.apiUrl);
   }
@@ -31,6 +36,7 @@ export class StageService {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
     return this.httpClient.put<Stage>(`${this.apiUrl}/${id}`, stage, {headers: headers, });
+
   }
 
   deleteStage(id: string): Observable<Stage> {

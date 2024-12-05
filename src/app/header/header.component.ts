@@ -33,13 +33,13 @@ export class HeaderComponent {
     { path: '/', name: 'Home' },
     { path: '/line-up', name: 'Line-up' },
     { path: '/stage-list', name: 'Stages' },
-    {path: '/food', name: 'Food' },
+
   ];
 
   rightPages = [
     { path: '/tickets', name: 'Tickets' },
-    { path: '/info', name: 'Info' },
-    { path: '/q-and-a', name: 'Q&A' },
+    { path: '/food', name: 'Food' },
+    { path: '/faq', name: 'FAQ' },
   ];
 
   toggleMenu() {
