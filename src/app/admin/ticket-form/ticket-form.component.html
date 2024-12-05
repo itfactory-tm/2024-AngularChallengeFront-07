@@ -9,77 +9,69 @@
       {{ errorMessage }}
     </div>
     }
-  
+
     <form (ngSubmit)="onSubmit()" #ticketForm="ngForm" class="px-4">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <!-- Edition name -->
-        <div>
-          <label for="editionName" class="block mb-2 text-sm font-medium text-primary"
-            >Edition Name</label
-          >
-          <input
-            type="text"
-            id="editionName"
-            name="editionName"
-            class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            placeholder="Edition ame"
+
+          <!-- Dropdown for Editions -->
+          <label for="edition" class="block mb-2 text-sm font-medium text-primary">Select Edition:</label>
+          <select
+            id="edition"
+            [(ngModel)]="ticket.editionId"
+            name="edition"
+            class="form-control"
             required
-            [(ngModel)]="ticket.editionName"
-            #editionName="ngModel"
-          />
-          <div [hidden]="editionName.valid || editionName.pristine" class="text-red-500 mt-2">
-            Edition Name is required
-          </div>
-        </div>
-  
+          >
+            @for (edition of editions$; track edition){
+              <option [value]="edition.editionId">
+                {{ edition.editionName }}
+              </option>}
+          </select>
+
+
         <!-- Ticket Price -->
-        <div>
-          <label for="ticketPrice" class="block mb-2 text-sm font-medium text-primary"
-            >Ticket Price</label
-          >
-          <input
-            type="ticketPrice"
-            id="ticketPrice"
-            name="ticketPrice"
-            class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            placeholder="Ticket Price"
+
+          <!-- Dropdown for Editions -->
+          <label for="price" class="block mb-2 text-sm font-medium text-primary">Select the price:</label>
+          <select
+            id="price"
+            [(ngModel)]="ticket.ticketTypeId"
+            name="price"
+            class="form-control"
             required
-            [(ngModel)]="ticket.ticketPrice"
-            #ticketPrice="ngModel"
-          />
-          <div [hidden]="ticketPrice.valid || ticketPrice.pristine" class="text-red-500 mt-2">
-            Ticket Price is required
-          </div>
-        </div>
-  
-        <!-- Day Name -->
-        <div class="col-span-2">
-          <label
-            for="dayName"
-            class="block mb-2 text-sm font-medium text-primary"
-            >Day Name</label
           >
-          <textarea
-            id="dayName"
-            name="dayName"
-            class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            placeholder="Day Name"
+            @for (type of ticketTypes$; track type){
+              <option [value]="type.ticketTypeId">
+                €{{ type.price }}
+              </option>}
+          </select>
+
+        <!-- Day of the ticket -->
+
+
+          <label for="day" class="block mb-2 text-sm font-medium text-primary">Select the day:</label>
+          <select
+            id="day"
+            [(ngModel)]="ticket.dayId"
+            name="day"
+            class="form-control"
             required
-            [(ngModel)]="ticket.dayName"
-            #dayName="ngModel"
-          ></textarea>
-          <div
-            [hidden]="dayName.valid || dayName.pristine"
-            class="text-red-500 mt-2"
           >
-            Day name is required
-          </div>
-        </div>
+            @for (day of days$; track day){
+              <option [value]="day.dayId">
+                {{ day.name }}
+              </option>}
+          </select>
+
+
+
+
       </div>
       <!-- editionId
       ticketTypeId
       dayId -->
-  
+
       <!-- Buttons -->
       <div class="flex space-x-4 mt-6">
         @if(isAdd) {
@@ -102,4 +94,3 @@
       </div>
     </form>
   </div>
-  

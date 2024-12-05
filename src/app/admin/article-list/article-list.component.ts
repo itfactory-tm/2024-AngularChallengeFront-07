@@ -3,12 +3,12 @@ import { ArticleService } from '../../services/article.service';
 import { Observable } from 'rxjs';
 import { Article } from '../../interfaces/article';
 import { Router } from '@angular/router';
-import { AsyncPipe } from '@angular/common';
+import {AsyncPipe, DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-article-list',
   standalone: true,
-  imports: [AsyncPipe],
+  imports: [AsyncPipe, DatePipe],
   templateUrl: './article-list.component.html',
   styleUrl: './article-list.component.css',
 })

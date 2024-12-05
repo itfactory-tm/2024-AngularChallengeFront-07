@@ -44,9 +44,10 @@
               >
             </td>
             <td class="px-6 py-4 text-sm text-gray-600 truncate max-w-sm">
-              <div class="tooltip" title="{{ stage.timeSlots }}">
-                {{ stage.timeSlots }}
-              </div>
+              @for(slot of stage.timeSlotsRanges; track $index){
+              <div >
+                {{ slot.startTime }} - {{slot.endTime}}
+              </div>}
             </td>
             <td class="px-6 py-4 text-sm text-gray-600">
               {{ stage.photos }}

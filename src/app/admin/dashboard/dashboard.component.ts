@@ -23,6 +23,20 @@ export class DashboardComponent {
     { name: 'Foodtrucks', path: '/admin/foodtruck', icon: 'assets/icons/foodtrucks.svg' },
     {name: 'Menu items', path: '/admin/menuItems', icon: 'assets/icons/menu.svg' },
     {name: 'Locations', path: '/admin/location', icon: 'assets/icons/location.svg' },
+    {name: 'Users', path: 'https://manage.auth0.com/dashboard/us/dev-o6pnv07uc6lnv4mr/users', icon: 'assets/icons/users.svg' },
   ];
+
+  constructor(private router: Router) {
+  }
+
+  navigate(link: any): void {
+    if (link.path.startsWith('http')) {
+      // Open external links in a new tab
+      window.open(link.path, '_blank');
+    } else {
+      // Navigate within the app
+      this.router.navigateByUrl(link.path);
+    }
+  }
 }
 

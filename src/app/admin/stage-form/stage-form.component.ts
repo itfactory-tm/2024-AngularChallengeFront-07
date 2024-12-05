@@ -6,6 +6,8 @@ import { EditionService } from '../../services/edition.service';
 import { Observable } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 import { AsyncPipe } from '@angular/common';
+import {Location} from "../../interfaces/location";
+import {LocationService} from "../../services/location.service";
 
 @Component({
   selector: 'app-stage-form',
@@ -18,13 +20,14 @@ export class StageFormComponent implements OnInit {
   isAdd: boolean = false;
   isEdit: boolean = false;
   stageId: string = '';
+  locations$: Location[] = [];
 
   stage: Stage = {
     stageId: '',
     name: '',
     locationId: '',
     locationName: '',
-    timeSlots: [],
+    timeSlotsRanges: [],
     photos: [],
   };
 
@@ -34,6 +37,7 @@ export class StageFormComponent implements OnInit {
   constructor(
     private router: Router,
     private stageService: StageService,
+    private locationService:LocationService
   ) {
     const state = this.router.getCurrentNavigation()?.extras.state || {};
     this.isAdd = state['mode'] === 'add';
@@ -45,10 +49,17 @@ export class StageFormComponent implements OnInit {
     }
   }
   ngOnInit(): void {
+    this.locationService.getLocations().subscribe(locations => {
+      this.locations$ = locations;
+    })
     if (this.stageId != null) {
       this.stageService.getStageById(this.stageId).subscribe((result) => {
         this.stage = result;
         console.log('Stage before binding:', this.stage);
+        if(this.isEdit){
+          this.stage.locationId = '';
+          this.stage.locationName = '';
+        }
       });
     }
   }

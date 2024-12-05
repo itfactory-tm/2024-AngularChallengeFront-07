@@ -6,7 +6,11 @@ import { EditionService } from '../../services/edition.service';
 import { Observable } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 import { Edition } from '../../interfaces/edition';
+import { Stage } from '../../interfaces/stage';
 import { AsyncPipe } from '@angular/common';
+import {Artist} from "../../interfaces/artist";
+import {StageService} from "../../services/stage.service";
+import {ArtistService} from "../../services/artist.service";
 
 @Component({
   selector: 'app-timeSlot-form',
@@ -19,8 +23,9 @@ export class TimeSlotFormComponent implements OnInit {
   isAdd: boolean = false;
   isEdit: boolean = false;
   timeSlotId: string = '';
-  editions$: Observable<Edition[]> = new Observable<Edition[]>();
 
+  stages$: Stage[] = [];
+  artists$: Artist[] = [];
   timeSlot: TimeSlot = {
     timeSlotId: '',
     startTime: new Date(),
@@ -37,7 +42,9 @@ export class TimeSlotFormComponent implements OnInit {
   constructor(
     private router: Router,
     private timeSlotService: TimeSlotService,
-    private editionService: EditionService
+
+    private stageService: StageService,
+    private artistService: ArtistService
   ) {
     const state = this.router.getCurrentNavigation()?.extras.state || {};
     this.isAdd = state['mode'] === 'add';
@@ -49,10 +56,22 @@ export class TimeSlotFormComponent implements OnInit {
     }
   }
   ngOnInit(): void {
-    this.editions$ = this.editionService.getEditions();
+
+    this.artistService.getArtists().subscribe((artists)=>{
+      this.artists$ = artists;
+    })
+    this.stageService.getStages().subscribe((stages)=>{
+      this.stages$ = stages;
+    })
     if (this.timeSlotId != null) {
       this.timeSlotService.getTimeSlotById(this.timeSlotId).subscribe((result) => {
         this.timeSlot = result;
+        if(this.isEdit){
+          this.timeSlot.stageId;
+          this.timeSlot.artistId;
+          this.timeSlot.endTime = new Date();
+          this.timeSlot.startTime = new Date();
+        }
       });
     }
   }

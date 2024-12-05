@@ -9,7 +9,7 @@
       {{ errorMessage }}
     </div>
     }
-  
+
     <form (ngSubmit)="onSubmit()" #articleForm="ngForm" class="px-4">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <!-- Title -->
@@ -31,7 +31,7 @@
             Title is required
           </div>
         </div>
-  
+
         <!-- date -->
         <div>
           <label for="description" class="block mb-2 text-sm font-medium text-primary"
@@ -51,7 +51,7 @@
             Date is required
           </div>
         </div>
-  
+
         <!-- description -->
         <div class="col-span-2">
           <label
@@ -75,11 +75,25 @@
           Description is required
           </div>
         </div>
-        <!-- editionId: '',
-        editionName: '', -->
+        <div class="col-span-2">
+          <!-- Dropdown for Editions -->
+          <label for="edition" class="block mb-2 text-sm font-medium text-primary">Select Edition:</label>
+          <select
+            id="edition"
+            [(ngModel)]="article.editionId"
+            name="edition"
+            class="form-control"
+            required
+          >
+            @for (edition of editions$; track edition){
+              <option [value]="edition.editionId">
+                {{ edition.editionName }}
+              </option>}
+          </select>
+        </div>
 
       </div>
-  
+
       <!-- Buttons -->
       <div class="flex space-x-4 mt-6">
         @if(isAdd) {
@@ -102,4 +116,3 @@
       </div>
     </form>
   </div>
-  

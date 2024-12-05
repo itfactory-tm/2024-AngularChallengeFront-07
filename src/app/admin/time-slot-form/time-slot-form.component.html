@@ -9,16 +9,16 @@
       {{ errorMessage }}
     </div>
     }
-  
+
     <form (ngSubmit)="onSubmit()" #timeSlotForm="ngForm" class="px-4">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <!-- Start Time -->
         <div>
-          <label for="time" class="block mb-2 text-sm font-medium text-primary"
+          <label for="startTime" class="block mb-2 text-sm font-medium text-primary"
             >Start time</label
           >
           <input
-            type="startTime"
+            type="time"
             id="startTime"
             name="startTime"
             class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
@@ -33,7 +33,7 @@
         </div>
         <!-- End Time -->
         <div>
-          <label for="time" class="block mb-2 text-sm font-medium text-primary"
+          <label for="endTime" class="block mb-2 text-sm font-medium text-primary"
             >End time</label
           >
           <input
@@ -50,53 +50,54 @@
             End time is required
           </div>
         </div>
-  
+
         <!-- ArtistName -->
-        <div>
-          <label for="artistName" class="block mb-2 text-sm font-medium text-primary"
-            >Artist name</label
-          >
-          <input
-            type="text"
-            id="artistName"
-            name="artistName"
-            class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            placeholder="Artist Name"
+          <label for="artist" class="block font-medium text-primary">Select Artist:</label>
+          <select
+            id="artist"
+            [(ngModel)]="timeSlot.artistId"
+            name="artist"
+            class="form-control"
             required
-            [(ngModel)]="timeSlot.artistName"
             #artistName="ngModel"
-          />
-          <div [hidden]="artistName.valid || artistName.pristine" class="text-red-500 mt-2">
-            Artist name is required
-          </div>
+          >
+            @for (artist of artists$; track artist){
+              <option [value]="artist.artistId">
+                {{ artist.name }}
+              </option>}
+          </select>
+        <div
+          [hidden]="artistName.valid || artistName.pristine"
+          class="text-red-500 mt-2"
+        >
+          Artist name is required
         </div>
-  
+
+
         <!-- Stage Name -->
-        <div class="col-span-2">
-          <label
-            for="stageName"
-            class="block mb-2 text-sm font-medium text-primary"
-            >Stage name</label
-          >
-          <input
-            type="text"
-            id="stageName"
-            name="stageName"
-            class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            placeholder="Stage name"
-            required
-            [(ngModel)]="timeSlot.stageName"
-            #stageName="ngModel"
-          >
-          <div
-            [hidden]="stageName.valid || stageName.pristine"
-            class="text-red-500 mt-2"
-          >
+        <label for="stage" class="block font-medium text-primary">Select Stage:</label>
+        <select
+          id="stage"
+          [(ngModel)]="timeSlot.stageId"
+          name="stage"
+          class="form-control"
+          required
+          #stageName="ngModel"
+        >
+          @for (stage of stages$; track stage){
+            <option [value]="stage.stageId">
+              {{ stage.name }}
+            </option>}
+        </select>
+        <div
+          [hidden]="stageName.valid || stageName.pristine"
+          class="text-red-500 mt-2"
+        >
           Stage name is required
-          </div>
         </div>
-      </div>
-  
+        </div>
+
+
       <!-- Buttons -->
       <div class="flex space-x-4 mt-6">
         @if(isAdd) {
@@ -119,4 +120,3 @@
       </div>
     </form>
   </div>
-  
