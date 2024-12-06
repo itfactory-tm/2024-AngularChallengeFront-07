@@ -25,7 +25,9 @@ export class SponsorListComponent implements OnInit {
   getSponsors() {
     this.sponsors$ = this.sponsorService.getSponsors();
   }
-
+  goBack() {
+    this.router.navigate(['/admin/dashboard']);
+  }
   add() {
     this.router.navigate(['admin/sponsor/form'], { state: { mode: 'add' } });
   }

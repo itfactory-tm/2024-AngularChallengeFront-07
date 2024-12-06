@@ -56,6 +56,9 @@ export class LocationListComponent implements OnInit {
       })
     )
   }
+  goBack() {
+    this.router.navigate(['/admin/dashboard']);
+  }
 
   add() {
     this.router.navigate(['/admin/location/form'], { state: { mode: 'add' } });

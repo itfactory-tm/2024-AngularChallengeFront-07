@@ -2,15 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { TimeSlot } from '../../interfaces/timeSlot';
 import { Router } from '@angular/router';
 import { TimeSlotService } from '../../services/timeSlot.service';
-import { EditionService } from '../../services/edition.service';
-import { Observable } from 'rxjs';
 import { FormsModule } from '@angular/forms';
-import { Edition } from '../../interfaces/edition';
 import { Stage } from '../../interfaces/stage';
 import { AsyncPipe } from '@angular/common';
-import {Artist} from "../../interfaces/artist";
-import {StageService} from "../../services/stage.service";
-import {ArtistService} from "../../services/artist.service";
+import { Artist } from "../../interfaces/artist";
+import { StageService } from "../../services/stage.service";
+import { ArtistService } from "../../services/artist.service";
 
 @Component({
   selector: 'app-timeSlot-form',
@@ -24,6 +21,7 @@ export class TimeSlotFormComponent implements OnInit {
   isEdit: boolean = false;
   timeSlotId: string = '';
 
+
   stages$: Stage[] = [];
   artists$: Artist[] = [];
   timeSlot: TimeSlot = {
@@ -34,6 +32,10 @@ export class TimeSlotFormComponent implements OnInit {
     artistName: '',
     stageId: '',
     stageName: '',
+  };
+  timeInputs = {
+    start: '', 
+    end: '',
   };
 
   isSubmitted: boolean = false;
@@ -57,16 +59,16 @@ export class TimeSlotFormComponent implements OnInit {
   }
   ngOnInit(): void {
 
-    this.artistService.getArtists().subscribe((artists)=>{
+    this.artistService.getArtists().subscribe((artists) => {
       this.artists$ = artists;
     })
-    this.stageService.getStages().subscribe((stages)=>{
+    this.stageService.getStages().subscribe((stages) => {
       this.stages$ = stages;
     })
     if (this.timeSlotId != null) {
       this.timeSlotService.getTimeSlotById(this.timeSlotId).subscribe((result) => {
         this.timeSlot = result;
-        if(this.isEdit){
+        if (this.isEdit) {
           this.timeSlot.stageId;
           this.timeSlot.artistId;
           this.timeSlot.endTime = new Date();
@@ -76,19 +78,30 @@ export class TimeSlotFormComponent implements OnInit {
     }
   }
 
+  convertDateToDateTime(time: string): Date {
+    const [hours, minutes] = time.split(':').map(Number);
+    const currentDate = new Date();
+    currentDate.setHours(hours, minutes, 0, 0);
+
+    return currentDate;
+}
+
   onSubmit() {
     this.isSubmitted = true;
+    this.timeSlot.startTime = this.convertDateToDateTime(this.timeInputs.start);
+    this.timeSlot.endTime = this.convertDateToDateTime(this.timeInputs.end);
     if (this.isAdd) {
       this.timeSlotService.postTimeSlot(this.timeSlot).subscribe({
         next: (v) => this.router.navigateByUrl('/admin/timeSlot'),
         error: (e) => (this.errorMessage = e.message),
       });
     }
+
     if (this.isEdit) {
       this.timeSlotService.putTimeSlot(this.timeSlotId, this.timeSlot).subscribe({
         next: (v) => this.router.navigateByUrl('/admin/timeSlot'),
         error: (e) => (this.errorMessage = e.message),
       });
     }
-  }
+  };
 }

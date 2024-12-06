@@ -47,7 +47,9 @@ export class FoodtruckListComponent implements OnInit {
       }
     });
   }
-
+  goBack() {
+    this.router.navigate(['/admin/dashboard']);
+  }
   add(){
     this.router.navigate(['/admin/foodtruck/form'], {state: {mode: 'add'}});
   }

@@ -6,12 +6,12 @@ import { EditionService } from '../../services/edition.service';
 import { Observable } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 import { Edition } from '../../interfaces/edition';
-import {AsyncPipe, DatePipe} from '@angular/common';
+import { AsyncPipe, DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-article-form',
   standalone: true,
-  imports: [FormsModule, ],
+  imports: [FormsModule,AsyncPipe],
   templateUrl: './article-form.component.html',
   styleUrl: './article-form.component.css',
 })
@@ -19,7 +19,7 @@ export class ArticleFormComponent implements OnInit {
   isAdd: boolean = false;
   isEdit: boolean = false;
   articleId: string = '';
-  editions$: Edition[] = [];
+  editions$: Observable<Edition[]> = new Observable<Edition[]>();;
 
   article: Article = {
     articleId: '',
@@ -27,7 +27,6 @@ export class ArticleFormComponent implements OnInit {
     description: '',
     date: new Date(),
     editionId: '',
-    editionName: '',
   };
 
   isSubmitted: boolean = false;
@@ -48,9 +47,9 @@ export class ArticleFormComponent implements OnInit {
     }
   }
   ngOnInit(): void {
-    this.editionService.getEditions().subscribe((editions)=>{
-      this.editions$ = editions;
-    })
+    this.editions$ = this.editionService.getEditions();
+
+
     if (this.articleId != null) {
       this.articleService.getArticleById(this.articleId).subscribe((result) => {
         this.article = result;

@@ -24,6 +24,9 @@ export class ArticleListComponent implements OnInit {
   getArticles() {
     this.articles$ = this.articleService.getArticles();
   }
+  goBack() {
+    this.router.navigate(['/admin/dashboard']);
+  }
 
   add() {
     //Navigate to form in add mode
