@@ -33,13 +33,15 @@ export class StageAdminListComponent implements OnInit {
           timeSlots: timeSlots.filter(
             (timeSlot) => timeSlot.stageId === stage.stageId,
           ),
-        }));
+
+        }))
       }),
       catchError((err) => {
         console.error('Error fetching data:', err);
         return of([]); // Handle errors gracefully
       })
     )
+
   }
 
   add() {
@@ -60,4 +62,6 @@ export class StageAdminListComponent implements OnInit {
       error: (e) => (this.errorMessage = e.message),
     });
   }
+
+  protected readonly console = console;
 }

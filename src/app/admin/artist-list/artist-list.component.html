@@ -41,24 +41,30 @@
             </td>
             <td class="px-6 py-4 text-sm text-gray-600">{{ artist.name }}</td>
             <td class="px-6 py-4 text-sm text-gray-600">
-              <span
-                class="px-2 py-1 rounded-md bg-blue-100 text-blue-800 font-semibold"
-                >{{ artist.mail }}</span
-              >
+              @if(artist.mail){
+              <a href="mailto:{{ artist.mail }}" class="px-2 py-1 rounded-md bg-blue-100 text-blue-800 font-semibold">
+                {{ artist.mail }}
+              </a>
+              } @else {
+                No email available
+              }
+
             </td>
             <td class="px-6 py-4 text-sm text-gray-600 truncate max-w-sm">
               <div class="tooltip" title="{{ artist.description }}">
                 {{ artist.description }}
               </div>
             </td>
-            <td class="px-6 py-4 text-sm max-w-xs">
+            <td class="px-6 py-4 text-sm w-full sm:w-1/2 md:w-1/3 lg:w-1/4">
               @if (artist.apiCode) {
+
               <a
                 href="{{ artist.spotifyLink }}"
                 target="_blank"
-                class="hover:underline text-blue-600"
+                class="hover:underline text-blue-600 px-2 py-1 rounded-md bg-blue-100 text-blue-800 font-semibold tooltip"
                 >{{ artist.name }}</a
               >
+
               }@else {
               <p>No Spotify link available</p>
               }
