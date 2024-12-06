@@ -25,6 +25,10 @@ export class LineUpComponent implements OnInit {
     { label: 'Genre', value: 'genre' },
     { label: 'Stage', value: 'stage' }
   ];
+  genreKeywords = [
+    'Pop', 'Rock', 'Hip-Hop', 'Dance/Electronic', 'R&B/Soul', 'Country',
+    'Jazz', 'Classical', 'Reggae', 'Blues', 'Metal', 'Punk'
+  ];
 
   constructor(
     private artistService: ArtistService,
@@ -70,7 +74,7 @@ export class LineUpComponent implements OnInit {
       });
     } else if (type === 'genre') {
       this.artists.forEach((artist) => {
-        const genre = artist.genre || 'Genre NA'; 
+        const genre = this.mapGenreToKeyword(artist.genre || 'Genre NA');
         this.addToGroup(genre, artist.artistId);
       });
     } else if (type === 'stage') {
@@ -114,5 +118,15 @@ export class LineUpComponent implements OnInit {
 
   trackByFn(item: any): any {
     return item ? item.key : undefined;
+  }
+
+  mapGenreToKeyword(genre: string): string {
+    const normalizedGenre = genre.toLowerCase();
+    for (const keyword of this.genreKeywords) {
+      if (normalizedGenre.includes(keyword.toLowerCase())) {
+        return keyword;
+      }
+    }
+    return genre; 
   }
 }
