@@ -89,4 +89,16 @@ export class ArtistComponent implements OnInit {
   goBack(): void {
     window.history.back();
   }
+  
+  formatGenre(genre: string): string {
+    if (!genre) return '';
+
+    let formattedGenre = genre.charAt(0).toUpperCase() + genre.slice(1);
+
+    formattedGenre = formattedGenre.replace(/,([^ ])/g, ', $1');
+  
+    formattedGenre = formattedGenre.replace(/,([^,]*)$/, ' &$1');
+  
+    return formattedGenre;
+  }
 }

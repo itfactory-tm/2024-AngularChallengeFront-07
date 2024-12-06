@@ -6,10 +6,23 @@
     
        <div [ngClass]="{'md:flex md:flex-row m-10': isDetail}">
             <section class="relative" [ngClass]="{'md:w-1/2': isDetail}">
-                @if(stage.photos.length) {
-                    <img [src]="'assets/images/' + stage.photos[0]" alt="{{stage.name}}" class="w-full h-full object-cover rounded-t-xl">
+                @if(stage.photos.length) 
+                { 
+                    <img src="https://d1dbgh6ga9ets8.cloudfront.net/wp-content/uploads/2017/03/shutterstock_370478597-1-e1501560307398.jpg" alt="{{stage.name}}" 
+                     class="object-cover rounded-t-xl" width="640px" height="375px" style="width: 640px; height: 375px;">
+
                 }
-            
+                @else 
+                { 
+                    <svg width="640px" height="640px" class="w-full h-full rounded-t-xl" xmlns="http://www.w3.org/2000/svg" 
+                    viewBox="0 0 640 640"> 
+                        <rect width="100%" height="100%" fill="#6c757d"/> 
+                            <text class="font-bold" x="50%" y="50%" 
+                            dominant-baseline="middle" text-anchor="middle" fill="white" font-size="32">No Image Available
+                            </text> 
+                    </svg>
+                }
+                
                 <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-70 text-white text-center py-2">
                     <p class="italic font-bold text-lg">{{stage.name}}</p>
                 </div>
