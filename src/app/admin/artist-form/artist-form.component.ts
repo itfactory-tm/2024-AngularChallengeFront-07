@@ -59,10 +59,6 @@ export class ArtistFormComponent implements OnInit {
     if (this.artistId != null) {
       this.artistService.getArtistById(this.artistId).subscribe((result) => {
         this.artist = result;
-        if(this.isEdit){
-          this.artist.editionId;
-          this.artist.editionName;
-        }
       });
     }
 

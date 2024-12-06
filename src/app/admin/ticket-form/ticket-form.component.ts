@@ -69,14 +69,7 @@ export class TicketFormComponent implements OnInit {
     if (this.ticketId != null) {
       this.ticketService.getTicketById(this.ticketId).subscribe((result) => {
         this.ticket = result;
-        if(this.isEdit){
-          this.ticket.editionId;
-          this.ticket.editionName;
-          this.ticket.ticketTypeId;
-          this.ticket.ticketPrice;
-          this.ticket.dayId;
-          this.ticket.dayName;
-        }
+
       });
     }
   }

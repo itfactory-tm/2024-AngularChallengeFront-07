@@ -31,4 +31,5 @@ export class BoughtTicketService {
     return this.boughtTicket;
   }
 
+
 }

@@ -56,10 +56,6 @@ export class StageFormComponent implements OnInit {
       this.stageService.getStageById(this.stageId).subscribe((result) => {
         this.stage = result;
         console.log('Stage before binding:', this.stage);
-        if(this.isEdit){
-          this.stage.locationId = '';
-          this.stage.locationName = '';
-        }
       });
     }
   }

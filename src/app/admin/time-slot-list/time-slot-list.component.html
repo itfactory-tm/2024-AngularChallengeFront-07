@@ -43,10 +43,8 @@
               <td class="px-6 py-4 text-sm text-gray-600">{{ timeSlot.endTime | date: "HH:mm" }}</td>
 
               <td class="px-6 py-4 text-sm text-gray-600">
-                <span
-                  class="px-2 py-1 rounded-md bg-blue-100 text-blue-800 font-semibold"
-                  >{{ timeSlot.artistName }}</span
-                >
+                {{ timeSlot.artistName }}
+
               </td>
               <td class="px-6 py-4 text-sm text-gray-600 truncate max-w-sm">
                 <div class="tooltip" title="{{ timeSlot.stageName }}">

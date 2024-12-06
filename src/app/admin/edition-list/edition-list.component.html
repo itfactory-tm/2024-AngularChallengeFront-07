@@ -34,8 +34,8 @@
               <th class="px-6 py-3 text-md text-center">&nbsp;</th>
               <!-- artistsNames: string[];
               photos: string[];
-              articleNames: string[]; 
-              sponsorNames: string[]; 
+              articleNames: string[];
+              sponsorNames: string[];
               foodtruckNames: string[];  -->
             </tr>
           </thead>
@@ -47,10 +47,13 @@
               </td>
               <td class="px-6 py-4 text-sm text-gray-600">{{ edition.editionName }}</td>
               <td class="px-6 py-4 text-sm text-gray-600">
-                <span
-                  class="px-2 py-1 rounded-md bg-blue-100 text-blue-800 font-semibold"
-                  >{{ edition.mail }}</span
-                >
+                @if(edition.mail){
+                <a href="mailto:{{ edition.mail }}" class="px-2 py-1 rounded-md bg-blue-100 text-blue-800 font-semibold">
+                  {{ edition.mail }}
+                </a>
+                } @else {
+                  No email available
+                }
               </td>
               <td class="px-6 py-4 text-sm text-gray-600 truncate max-w-sm">
                 <div class="tooltip" title="{{ edition.adres }}">
@@ -89,7 +92,7 @@
                     </svg>
                     <span>Edit</span>
                   </button>
-  
+
                   <!-- Delete Button -->
                   <button
                     (click)="delete(edition.editionId)"
@@ -122,4 +125,3 @@
       </div>
     </div>
   </div>
-  

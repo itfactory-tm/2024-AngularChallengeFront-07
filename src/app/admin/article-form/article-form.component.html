@@ -69,7 +69,7 @@
             #description="ngModel"
           ></textarea>
           <div
-            [hidden]="date.valid || date.pristine"
+            [hidden]="description.valid || description.pristine"
             class="text-red-500 mt-2"
           >
           Description is required
@@ -82,14 +82,23 @@
             id="edition"
             [(ngModel)]="article.editionId"
             name="edition"
-            class="form-control"
+            class="form-select block w-full px-4 py-2 text-base text-gray-700 bg-white border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 hover:border-gray-400 transition ease-in-out duration-300"
             required
+            #edition="ngModel"
           >
+            <option value="" disabled selected>-- Select an edition --</option>
             @for (edition of editions$; track edition){
               <option [value]="edition.editionId">
                 {{ edition.editionName }}
-              </option>}
+              </option>
+            }
           </select>
+          <div
+            [hidden]="edition.valid || edition.pristine"
+            class="text-red-500 mt-2"
+          >
+            Edition is required
+          </div>
         </div>
 
       </div>

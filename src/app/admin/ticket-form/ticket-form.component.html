@@ -15,55 +15,90 @@
         <!-- Edition name -->
 
           <!-- Dropdown for Editions -->
-          <label for="edition" class="block mb-2 text-sm font-medium text-primary">Select Edition:</label>
+        <div class="col-span-2">
+          <!-- Dropdown for Location -->
+          <label for="edition" class="block mb-2 text-sm font-medium text-primary">Select edition:</label>
           <select
             id="edition"
             [(ngModel)]="ticket.editionId"
             name="edition"
-            class="form-control"
+            class="form-select block w-full px-4 py-2 text-base text-gray-700 bg-white border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 hover:border-gray-400 transition ease-in-out duration-300"
             required
+            #edition="ngModel"
           >
+            <option value="" disabled selected>-- Select an edition --</option>
             @for (edition of editions$; track edition){
               <option [value]="edition.editionId">
                 {{ edition.editionName }}
-              </option>}
+              </option>
+            }
           </select>
+          <div
+            [hidden]="edition.valid || edition.pristine"
+            class="text-red-500 mt-2"
+          >
+            Edition is required
+          </div>
+
+        </div>
 
 
         <!-- Ticket Price -->
-
-          <!-- Dropdown for Editions -->
+        <div class="col-span-2">
+          <!-- Dropdown for Location -->
           <label for="price" class="block mb-2 text-sm font-medium text-primary">Select the price:</label>
           <select
             id="price"
             [(ngModel)]="ticket.ticketTypeId"
             name="price"
-            class="form-control"
+            class="form-select block w-full px-4 py-2 text-base text-gray-700 bg-white border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 hover:border-gray-400 transition ease-in-out duration-300"
             required
+            #price="ngModel"
           >
+            <option value="" disabled selected>-- Select the price --</option>
             @for (type of ticketTypes$; track type){
               <option [value]="type.ticketTypeId">
                 €{{ type.price }}
               </option>}
+
           </select>
+          <div
+            [hidden]="price.valid || price.pristine"
+            class="text-red-500 mt-2"
+          >
+            Price is required
+          </div>
+
+        </div>
+
 
         <!-- Day of the ticket -->
-
-
+        <div class="col-span-2">
+          <!-- Dropdown for Location -->
           <label for="day" class="block mb-2 text-sm font-medium text-primary">Select the day:</label>
           <select
             id="day"
             [(ngModel)]="ticket.dayId"
             name="day"
-            class="form-control"
+            class="form-select block w-full px-4 py-2 text-base text-gray-700 bg-white border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 hover:border-gray-400 transition ease-in-out duration-300"
             required
+            #day="ngModel"
           >
+            <option value="" disabled selected>-- Select the day --</option>
             @for (day of days$; track day){
               <option [value]="day.dayId">
                 {{ day.name }}
               </option>}
-          </select>
 
+          </select>
+          <div
+            [hidden]="day.valid || day.pristine"
+            class="text-red-500 mt-2"
+          >
+            Day is required
+          </div>
+
+        </div>
 
 
 

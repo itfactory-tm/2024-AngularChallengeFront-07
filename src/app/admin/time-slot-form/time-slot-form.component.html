@@ -51,49 +51,59 @@
           </div>
         </div>
 
-        <!-- ArtistName -->
-          <label for="artist" class="block font-medium text-primary">Select Artist:</label>
+        <div class="col-span-2">
+
+          <label for="artist" class="block mb-2 text-sm font-medium text-primary">Select the artist:</label>
           <select
             id="artist"
             [(ngModel)]="timeSlot.artistId"
             name="artist"
-            class="form-control"
+            class="form-select block w-full px-4 py-2 text-base text-gray-700 bg-white border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 hover:border-gray-400 transition ease-in-out duration-300"
             required
-            #artistName="ngModel"
+            #artist="ngModel"
           >
+            <option value="" disabled selected>-- Select the artist --</option>
             @for (artist of artists$; track artist){
               <option [value]="artist.artistId">
                 {{ artist.name }}
               </option>}
+
           </select>
-        <div
-          [hidden]="artistName.valid || artistName.pristine"
-          class="text-red-500 mt-2"
-        >
-          Artist name is required
+          <div
+            [hidden]="artist.valid || artist.pristine"
+            class="text-red-500 mt-2"
+          >
+            Artist is required
+          </div>
+
         </div>
 
-
         <!-- Stage Name -->
-        <label for="stage" class="block font-medium text-primary">Select Stage:</label>
-        <select
-          id="stage"
-          [(ngModel)]="timeSlot.stageId"
-          name="stage"
-          class="form-control"
-          required
-          #stageName="ngModel"
-        >
-          @for (stage of stages$; track stage){
-            <option [value]="stage.stageId">
-              {{ stage.name }}
-            </option>}
-        </select>
-        <div
-          [hidden]="stageName.valid || stageName.pristine"
-          class="text-red-500 mt-2"
-        >
-          Stage name is required
+        <div class="col-span-2">
+
+          <label for="stage" class="block mb-2 text-sm font-medium text-primary">Select the stage:</label>
+          <select
+            id="stage"
+            [(ngModel)]="timeSlot.stageId"
+            name="stage"
+            class="form-select block w-full px-4 py-2 text-base text-gray-700 bg-white border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 hover:border-gray-400 transition ease-in-out duration-300"
+            required
+            #stage="ngModel"
+          >
+            <option value="" disabled selected>-- Select the stage --</option>
+            @for (stage of stages$; track stage){
+              <option [value]="stage.stageId">
+                {{ stage.name }}
+              </option>}
+
+          </select>
+          <div
+            [hidden]="stage.valid || stage.pristine"
+            class="text-red-500 mt-2"
+          >
+            Stage is required
+          </div>
+
         </div>
         </div>
 
