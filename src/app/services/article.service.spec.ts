@@ -8,11 +8,11 @@ describe('ArticleService', () => {
   let service: ArticleService;
   let httpMock: HttpTestingController;
 
-  const apiUrl = `${environment.api_url}/api/Articles`;
+  const apiUrl = `${environment.api_url}/Articles`;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule], // Using HttpClientTestingModule for HTTP calls
+      imports: [HttpClientTestingModule],
       providers: [ArticleService],
     });
     service = TestBed.inject(ArticleService);
