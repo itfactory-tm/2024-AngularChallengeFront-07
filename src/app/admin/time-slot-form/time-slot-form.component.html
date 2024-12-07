@@ -1,5 +1,5 @@
 <div class="container mx-auto p-6 max-w-4xl">
-    <h1 class="text-2xl font-bold text-yellow-200 mb-6 text-center">
+    <h1 class="text-2xl font-bold text-quaternary mb-6 text-center">
       {{ isAdd ? 'Add a Time slot' : 'Edit a Time slot' }}
     </h1>
     @if(isSubmitted && errorMessage) {
@@ -114,7 +114,7 @@
         <button
           type="submit"
           [disabled]="!timeSlotForm.form.valid || isSubmitted"
-          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center disabled:opacity-75"
+          class="text-white bg-primary hover:bg-tertiary font-medium rounded-lg text-sm px-5 py-2.5 text-center disabled:opacity-75"
         >
           Add
         </button>
@@ -122,11 +122,17 @@
         <button
           type="submit"
           [disabled]="!timeSlotForm.form.valid || isSubmitted"
-          class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center disabled:opacity-75"
+          class="text-white bg-primary hover:bg-tertiary font-medium rounded-lg text-sm px-5 py-2.5 text-center disabled:opacity-75"
         >
           Save
         </button>
         }
+        <button
+          type="cancel"
+          class="text-white bg-primary hover:bg-tertiary font-medium rounded-lg text-sm px-5 py-2.5 text-center disabled:opacity-75" (click)="goBack()"
+        >
+          Cancel
+        </button>
       </div>
     </form>
   </div>

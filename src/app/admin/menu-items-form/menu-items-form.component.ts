@@ -72,4 +72,7 @@ export class MenuItemsFormComponent implements OnInit {
     }
   }
 
+  goBack() {
+    window.history.back();
+  }
 }

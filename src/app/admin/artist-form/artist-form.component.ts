@@ -64,6 +64,10 @@ export class ArtistFormComponent implements OnInit {
 
   }
 
+  goBack() {
+    window.history.back();
+  }
+
   onSubmit() {
     this.isSubmitted = true;
     if (this.isAdd) {

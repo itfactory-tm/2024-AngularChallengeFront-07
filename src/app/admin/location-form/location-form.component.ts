@@ -65,4 +65,8 @@ export class LocationFormComponent implements OnInit {
       })
     }
   }
+
+  goBack() {
+    window.history.back();
+  }
 }

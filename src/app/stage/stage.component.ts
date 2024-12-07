@@ -17,9 +17,9 @@ export class StageComponent implements OnInit {
   @Input() stage!: Stage;
   @Input() isDetail: boolean = false;
   timeslots: TimeSlot[] = [];
+  photoExists: boolean = false;
 
   constructor(
-    private stageService: StageService,
     private timeSlotService: TimeSlotService,
     private router: Router
   ) {}
@@ -36,6 +36,15 @@ export class StageComponent implements OnInit {
         this.timeslots = timeslots;
       });
     }
+    this.checkPhotoExists();
+  }
+
+  checkPhotoExists(): void { 
+    const photoUrl = `public/assets/stages/${this.stage.name}.jpg`; 
+    this.checkFileExists(photoUrl).then(exists => { this.photoExists = exists; }); 
+  } 
+  checkFileExists(url: string): Promise<boolean> { 
+    return fetch(url, { method: 'HEAD' }).then(response => response.ok) .catch(() => false); 
   }
 
   detail(id: string) {

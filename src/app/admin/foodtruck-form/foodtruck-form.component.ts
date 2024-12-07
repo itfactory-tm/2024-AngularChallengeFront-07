@@ -80,4 +80,8 @@ export class FoodtruckFormComponent implements OnInit{
       });
     }
   }
+
+  goBack() {
+    window.history.back();
+  }
 }

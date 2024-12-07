@@ -8,14 +8,14 @@
   }
   <div class="mb-6 flex flex-col md:flex-row items-center justify-between">
     <button
-    class="px-4 py-2 bg-primary text-white rounded-md hover:bg-gray-300 transition ease-in-out"
+    class="px-4 py-2 bg-primary text-white rounded-md hover:bg-tertiary transition ease-in-out"
     (click)="goBack()"
   >
     Go Back
   </button>
 
 
-    <h1 class="text-4xl font-bold text-yellow-200">Manage Artists</h1>
+    <h1 class="text-4xl font-bold text-quaternary">Manage Artists</h1>
     <input
       type="text"
       placeholder="Search artists..."
@@ -24,7 +24,7 @@
       class="mt-4 md:mt-0 px-4 py-2 rounded-lg border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition duration-200 ease-in-out"
     />
     <button
-      class="mt-4 md:mt-0 px-5 py-3 rounded-md bg-primary text-white font-semibold hover:bg-sky-700 transition duration-300 ease-in-out"
+      class="mt-4 md:mt-0 px-5 py-3 rounded-md bg-primary text-white font-semibold hover:bg-tertiary transition duration-300 ease-in-out"
       (click)="add()"
     >
       Create Artist
@@ -32,7 +32,7 @@
   </div>
   <div class="overflow-x-auto">
     <div
-      class="inline-block min-w-full overflow-hidden align-middle shadow-lg rounded-lg"
+      class="inline-block min-w-full overflow-auto align-middle shadow-lg rounded-lg"
     >
       <table class="min-w-full divide-y divide-gray-200">
         <thead class="bg-primary text-white">
@@ -66,10 +66,10 @@
 
             </td>
             <td class="px-6 py-4 text-sm text-gray-600 truncate max-w-sm">
-              <div class="tooltip " title="{{ artist.description }}">
-                {{ artist.description }}
+              <div class="tooltip" [title]="artist.description">
+                {{ artist.description | slice:0:30 }}{{ artist.description.length > 30 ? '...' : '' }}
               </div>
-            </td>
+            </td>            
             <td class="px-6 py-4 text-sm w-full sm:w-1/2 md:w-1/3 lg:w-1/4">
               @if (artist.apiCode) {
 
