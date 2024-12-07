@@ -32,6 +32,7 @@ export class DashboardComponent {
     { name: 'Foodtrucks', path: '/admin/foodtruck', icon: 'assets/icons/foodtrucks.svg' },
     { name: 'Menu items', path: '/admin/menuItems', icon: 'assets/icons/menu.svg' },
     { name: 'Locations', path: '/admin/location', icon: 'assets/icons/location.svg' },
+    {name: 'Ticket types', path: '/admin/ticketTypes', icon: 'assets/icons/type.svg' },
     { name: 'Users', path: 'https://manage.auth0.com/dashboard/us/dev-o6pnv07uc6lnv4mr/users', icon: 'assets/icons/users.svg' },
   ];
 

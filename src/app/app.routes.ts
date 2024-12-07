@@ -41,6 +41,8 @@ import { MenuItemsFormComponent } from "./admin/menu-items-form/menu-items-form.
 import { MenuItemsListComponent } from "./admin/menu-items-list/menu-items-list.component";
 import { FoodDrinksComponent } from "./food-drinks/food-drinks.component";
 import { TimeScheduleComponent } from './time-schedule/time-schedule.component';
+import {TicketTypeListComponent} from "./admin/ticket-type-list/ticket-type-list.component";
+import {TicketTypeFormComponent} from "./admin/ticket-type-form/ticket-type-form.component";
 
 
 export const routes: Routes = [
@@ -158,6 +160,17 @@ export const routes: Routes = [
     component: MenuItemsFormComponent,
     canActivate: [AuthGuard],
   },
+  {
+    path: 'admin/ticketTypes',
+    component: TicketTypeListComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'admin/ticketTypes/form',
+    component: TicketTypeFormComponent,
+    canActivate: [AuthGuard],
+  },
+
 
   { path: 'privacy', component: PrivacyComponent },
   { path: 'terms', component: TermsComponent },
