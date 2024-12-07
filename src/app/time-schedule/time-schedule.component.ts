@@ -1,10 +1,10 @@
-import { Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { TimeSlotService } from '../services/timeSlot.service';
 import { CommonModule } from '@angular/common';
 import { TimeSlot } from '../interfaces/timeSlot';
 import { ArtistService } from '../services/artist.service';
 import { Artist } from '../interfaces/artist';
-import { combineLatest, forkJoin, map, Observable, of } from 'rxjs';
+import { combineLatest, map, Observable } from 'rxjs';
 import { StageService } from '../services/stage.service';
 import { Stage } from '../interfaces/stage';
 import { Router } from '@angular/router';
@@ -33,147 +33,6 @@ export class TimeScheduleComponent implements OnInit {
     '03:00', '04:00'
   ];
 
-  // artists: Artist[] = [
-  //   {
-  //     artistId: '1',
-  //     name: 'John Doe',
-  //     mail: 'john.doe@example.com',
-  //     description: 'A talented rock musician.',
-  //     spotifyLink: 'https://spotify.com/johndoe',
-  //     apiCode: 'JD2023',
-  //     spotifyPhoto: 'https://example.com/johndoe.jpg',
-  //     genre: 'Rock',
-  //     editionId: 'E1',
-  //     editionName: 'Summer Fest 2023',
-  //   },
-  //   {
-  //     artistId: '2',
-  //     name: 'Jane Smith',
-  //     mail: 'jane.smith@example.com',
-  //     description: 'An up-and-coming pop sensation.',
-  //     spotifyLink: 'https://spotify.com/janesmith',
-  //     apiCode: 'JS2023',
-  //     spotifyPhoto: 'https://example.com/janesmith.jpg',
-  //     genre: 'Pop',
-  //     editionId: 'E1',
-  //     editionName: 'Summer Fest 2023',
-  //   },
-  //   {
-  //     artistId: '3',
-  //     name: 'wam',
-  //     mail: 'wam.wam@example.com',
-  //     description: 'A talented rock musician.',
-  //     spotifyLink: 'https://spotify.com/johndoe',
-  //     apiCode: 'JD2023',
-  //     spotifyPhoto: 'https://example.com/johndoe.jpg',
-  //     genre: 'Rock',
-  //     editionId: 'E1',
-  //     editionName: 'Summer Fest 2023',
-  //   },
-  //   {
-  //     artistId: '4',
-  //     name: 'bam',
-  //     mail: 'bam.bam@example.com',
-  //     description: 'A talented rock musician.',
-  //     spotifyLink: 'https://spotify.com/johndoe',
-  //     apiCode: 'JD2023',
-  //     spotifyPhoto: 'https://example.com/johndoe.jpg',
-  //     genre: 'Rock',
-  //     editionId: 'E1',
-  //     editionName: 'Summer Fest 2023',
-  //   },
-  // ];
-
-  // // Dummy data for stages
-  // stages: Stage[] = [
-  //   {
-  //     stageId: 'S1',
-  //     name: 'Main Stage',
-  //     locationId: 'L1',
-  //     locationName: 'Central Park',
-  //     timeSlots: [],
-  //     photos: ['https://example.com/mainstage.jpg'],
-  //   },
-  //   {
-  //     stageId: 'S2',
-  //     name: 'Acoustic Stage',
-  //     locationId: 'L2',
-  //     locationName: 'Hilltop',
-  //     timeSlots: [],
-  //     photos: ['https://example.com/acousticstage.jpg'],
-  //   },
-  //   {
-  //     stageId: 'S3',
-  //     name: '3 Stage',
-  //     locationId: 'L3',
-  //     locationName: 'L3',
-  //     timeSlots: [],
-  //     photos: ['https://example.com/acousticstage.jpg'],
-  //   },
-  //   {
-  //     stageId: 'S4',
-  //     name: '4 Stage',
-  //     locationId: 'L3',
-  //     locationName: 'L3',
-  //     timeSlots: [],
-  //     photos: ['https://example.com/acousticstage.jpg'],
-  //   },
-  // ];
-
-  // // Dummy data for time slots
-  // timeSlots: TimeSlot[] = [
-  //   {
-  //     timeSlotId: 'TS1',
-  //     startTime: new Date('2023-06-21T18:00:00'),
-  //     endTime: new Date('2023-06-21T19:00:00'),
-  //     artistId: '1',
-  //     artistName: 'John Doe',
-  //     stageId: 'S1',
-  //     stageName: 'Main Stage',
-  //   },
-  //   {
-  //     timeSlotId: 'TS2',
-  //     startTime: new Date('2023-06-21T19:30:00'),
-  //     endTime: new Date('2023-06-21T20:30:00'),
-  //     artistId: '2',
-  //     artistName: 'Jane Smith',
-  //     stageId: 'S2',
-  //     stageName: 'Acoustic Stage',
-  //   },
-  //   {
-  //     timeSlotId: 'TS3',
-  //     startTime: new Date('2023-06-21T18:30:00'),
-  //     endTime: new Date('2023-06-21T19:30:00'),
-  //     artistId: '3',
-  //     artistName: 'BoB',
-  //     stageId: 'S3',
-  //     stageName: 'Acoustic Stage',
-  //   },
-  //   {
-  //     timeSlotId: 'TS4',
-  //     startTime: new Date('2023-06-21T15:00:00'),
-  //     endTime: new Date('2023-06-21T18:00:00'),
-  //     artistId: '4',
-  //     artistName: 'karl',
-  //     stageId: 'S3',
-  //     stageName: 'Acoustic Stage',
-  //   },
-  //   {
-  //     timeSlotId: 'TS5',
-  //     startTime: new Date('2023-06-21T15:30:00'),
-  //     endTime: new Date('2023-06-21T16:30:00'),
-  //     artistId: '4',
-  //     artistName: 'karl',
-  //     stageId: 'S4',
-  //     stageName: 'Acoustic Stage',
-  //   },
-  // ];
-  // timeSchedules$: Observable<TimeSlot[]> = of(this.timeSlots);
-  // artists$: Observable<Artist[]> = of(this.artists);
-  // stages$: Observable<Stage[]> = of(this.stages);
-
-  @ViewChild('scrollableContainer', { static: false }) scrollableContainer!: ElementRef;
-
   @Input() selectedDay: string = 'friday';
   stage: number = 1;
 
@@ -184,22 +43,6 @@ export class TimeScheduleComponent implements OnInit {
     private router: Router
     
   ) { }
-
-  // artistsWithTimes$: Observable<{ artist: Artist; startTime: Date | null; endTime: Date | null }[]> = combineLatest([
-  //   this.artists$,
-  //   this.timeSchedules$
-  // ]).pipe(
-  //   map(([artists, timeSchedules]) =>
-  //     artists.map(artist => {
-  //       const schedule = timeSchedules.find(schedule => schedule.artistId === artist.artistId);
-  //       return {
-  //         artist,
-  //         startTime: schedule?.startTime || null,
-  //         endTime: schedule?.endTime || null
-  //       };
-  //     })
-  //   )
-  // );
 
   ngOnInit(): void {
     this.updateScheduleAndArtists();
@@ -241,9 +84,10 @@ export class TimeScheduleComponent implements OnInit {
   }
 
   parseTime(time: Date): number {
+
     const startHour = 11; // Adjust according to the time range
-    const scale = 115; // Height of each hour block
-    const baseValue = 67; // Top offset for the grid
+    const scale = 114; // Height of each hour block
+    const baseValue = 75; // Top offset for the grid
   
     const hours = time.getHours();
     const minutes = time.getMinutes();
@@ -254,8 +98,11 @@ export class TimeScheduleComponent implements OnInit {
   }
   
   calculateElementPositionAndHeight(start: Date, end: Date) {
-    const startPosition = this.parseTime(start);
-    const endPosition = this.parseTime(end);
+    const startSet = new Date(start);
+    const endSet = new Date(end);
+
+    const startPosition = this.parseTime(startSet);
+    const endPosition = this.parseTime(endSet);
     const duration = endPosition - startPosition;
   
     return {
@@ -272,23 +119,5 @@ export class TimeScheduleComponent implements OnInit {
   }
   changeView(view: string) {
 
-  }
-
-  scrollLeft(): void {
-    if (this.scrollableContainer) {
-      this.scrollableContainer.nativeElement.scrollBy({
-        left: -300,
-        behavior: 'smooth',
-      });
-    }
-  }
-  
-  scrollRight(): void {
-    if (this.scrollableContainer) {
-      this.scrollableContainer.nativeElement.scrollBy({
-        left: 300,
-        behavior: 'smooth',
-      });
-    }
   }
 }

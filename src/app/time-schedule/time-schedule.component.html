@@ -69,16 +69,17 @@
     <!-- Times displayed as background -->
     <div class="times-column z-20">
       @for (time of times; track $index) {
-        
+
       <div class="time-row">
         {{ time }}
       </div>
       <hr class="absolute top-1px h-px -mt-14 left-20 w-screen -z-10">
       }
     </div>
-  
+
     <!-- Horizontal scroll for stages -->
-    <div class="scroll-container">
+    <div class="scroll-container #container">
+
       <div class="schedule-grid">
         @for (stage of stagesWithArtists$|async; track $index) {
         <div class="stage-column">
