@@ -1,20 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { ArtistService } from '../../services/artist.service';
-import { Observable } from 'rxjs';
+import {map, Observable} from 'rxjs';
 import { Artist } from '../../interfaces/artist';
 import { Router } from '@angular/router';
 import { AsyncPipe } from '@angular/common';
+import {FormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-artist-list',
   standalone: true,
-  imports: [AsyncPipe],
+  imports: [AsyncPipe, FormsModule],
   templateUrl: './artist-list.component.html',
   styleUrl: './artist-list.component.css',
 })
 export class ArtistListComponent implements OnInit {
   artists$: Observable<Artist[]> = new Observable<Artist[]>();
+  filteredArtists$ :Observable<Artist[]> = new Observable<Artist[]>();
   errorMessage: string = '';
+  searchTerm: string = '';
+  currentPage: number = 1;
+  itemsPerPage = 10;
 
   constructor(private artistService: ArtistService, private router: Router) {}
   ngOnInit(): void {
@@ -23,6 +28,14 @@ export class ArtistListComponent implements OnInit {
 
   getArtists() {
     this.artists$ = this.artistService.getArtists();
+    this.filteredArtists$ = this.artists$;
+  }
+
+  filteredArtists(){
+    this.filteredArtists$ = this.artists$.pipe(
+      map((artists: any[]) =>
+      artists.filter(artist => artist.name.toLowerCase().includes(this.searchTerm.toLowerCase()))
+    ));
   }
   goBack() {
     this.router.navigate(['/admin/dashboard']);

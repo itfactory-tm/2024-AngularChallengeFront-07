@@ -13,7 +13,16 @@
   >
     Go Back
   </button>
+
+
     <h1 class="text-4xl font-bold text-yellow-200">Manage Artists</h1>
+    <input
+      type="text"
+      placeholder="Search artists..."
+      [(ngModel)]="searchTerm"
+      (input)="filteredArtists()"
+      class="mt-4 md:mt-0 px-4 py-2 rounded-lg border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition duration-200 ease-in-out"
+    />
     <button
       class="mt-4 md:mt-0 px-5 py-3 rounded-md bg-primary text-white font-semibold hover:bg-sky-700 transition duration-300 ease-in-out"
       (click)="add()"
@@ -40,7 +49,7 @@
           </tr>
         </thead>
         <tbody class="bg-white divide-y divide-gray-300">
-          @for (artist of artists$ | async; track artist.artistId) {
+          @for (artist of filteredArtists$ | async; track artist.artistId) {
           <tr class="hover:bg-gray-100 transition ease-in-out">
             <td class="px-6 py-4 text-sm font-medium text-gray-700">
               {{ $index + 1 }}
