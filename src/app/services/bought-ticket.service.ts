@@ -15,6 +15,9 @@ export class BoughtTicketService {
   constructor(private httpClient: HttpClient) {
 
   }
+  getAllTickets(): Observable<BoughtTickets[]> {
+    return this.httpClient.get<BoughtTickets[]>(this.ApiUrl);
+  }
 
   addTickets(ticket: BoughtTickets): void {
     this.boughtTicket.push(ticket);

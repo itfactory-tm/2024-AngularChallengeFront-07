@@ -24,6 +24,9 @@ export class ArtistListComponent implements OnInit {
   getArtists() {
     this.artists$ = this.artistService.getArtists();
   }
+  goBack() {
+    this.router.navigate(['/admin/dashboard']);
+  }
 
   add() {
     //Navigate to form in add mode

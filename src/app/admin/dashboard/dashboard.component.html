@@ -1,17 +1,47 @@
 <div class="min-h-screen bg-gray-900 py-8">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Header Section -->
         <h1
             class="text-5xl font-extrabold text-quaternary text-center tracking-wide mb-6">
             Your Dashboard
         </h1>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            @for (link of adminLinks; track $index) {
-            <div (click)="navigate(link)" class="bg-secondary hover:bg-primary text-text-light hover:text-text-light transition-all duration-300 ease-in-out shadow-xl rounded-xl p-6 flex flex-col items-center cursor-pointer transform hover:scale-105"
-                >
-                <div class="mb-4 flex items-center justify-center w-16 h-16 bg-tertiary rounded-full shadow-inner">
-                    <img [src]="link.icon" alt="{{ link.name }}" class="w-10 h-10" />
+        <div class="text-center mb-12">
+            <p class="text-text-light text-lg font-medium">
+                 Here's a snapshot of your festival so far:
+            </p>
+            <!-- Stats Section -->
+            <div class="mt-4 flex justify-center gap-8">
+                <div class="bg-secondary text-text-light p-6 rounded-lg shadow-lg w-48">
+                    <p class="text-2xl font-extrabold text-white">{{ ticketCount }}</p>
+                    <p class="text-quaternary uppercase font-medium">Tickets Sold</p>
+                    <p class="text-quaternary text-xl">🎟️</p>
                 </div>
-                <h3 class="text-lg text-quaternary font-semibold mt-2">{{ link.name }}</h3>
+                <div class="bg-secondary text-text-light p-6 rounded-lg shadow-lg w-48">
+                    <p class="text-2xl font-extrabold text-white">{{ artistCount }}</p>
+                    <p class="text-quaternary uppercase font-medium">Artists Booked</p>
+                    <p class="text-quaternary text-xl">🎤</p>
+                </div>
+                <div class="bg-secondary text-text-light p-6 rounded-lg shadow-lg w-48">
+                    <p class="text-2xl font-extrabold text-white">{{ foodTruckCount }}</p>
+                    <p class="text-quaternary uppercase font-medium">Food Trucks</p>
+                    <p class="text-quaternary text-xl">🍔</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Links Section -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            @for (link of adminLinks; track $index) {
+            <div (click)="navigate(link)"
+                class="bg-secondary hover:bg-primary text-text-light hover:text-text-light transition-all duration-300 ease-in-out shadow-lg rounded-lg p-6 flex flex-col items-center cursor-pointer transform hover:scale-105">
+                <!-- Icon Section -->
+                <div class="mb-6 flex items-center justify-center w-24 h-24 bg-tertiary rounded-full shadow-inner">
+                    <img [src]="link.icon" alt="{{ link.name }}" class="w-16 h-16" />
+                </div>
+                <!-- Link Name -->
+                <h3 class="text-xl text-quaternary font-semibold mt-2 text-center uppercase tracking-wider">
+                    {{ link.name }}
+                </h3>
             </div>
             }
         </div>

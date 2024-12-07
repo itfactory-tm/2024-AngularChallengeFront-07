@@ -87,7 +87,7 @@
             #edition="ngModel"
           >
             <option value="" disabled selected>-- Select an edition --</option>
-            @for (edition of editions$; track edition){
+            @for (edition of editions$ | async; track edition){
               <option [value]="edition.editionId">
                 {{ edition.editionName }}
               </option>

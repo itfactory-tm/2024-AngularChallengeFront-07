@@ -25,7 +25,9 @@ export class TicketListComponent implements OnInit {
     this.tickets$ = this.ticketService.getTickets();
     console.log(this.tickets$)
   }
-
+  goBack() {
+    this.router.navigate(['/admin/dashboard']);
+  }
   add() {
     //Navigate to form in add mode
     this.router.navigate(['admin/ticket/form'], { state: { mode: 'add' } });
