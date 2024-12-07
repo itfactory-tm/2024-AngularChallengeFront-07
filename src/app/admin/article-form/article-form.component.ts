@@ -19,7 +19,7 @@ export class ArticleFormComponent implements OnInit {
   isAdd: boolean = false;
   isEdit: boolean = false;
   articleId: string = '';
-  editions$: Observable<Edition[]> = new Observable<Edition[]>();;
+  editions$: Observable<Edition[]> = new Observable<Edition[]>();
 
   article: Article = {
     articleId: '',
