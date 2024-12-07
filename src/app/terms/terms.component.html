@@ -1,19 +1,18 @@
 <div class="w-full px-8 py-8">
   <div class="max-w-4xl mx-auto bg-white bg-opacity-20 backdrop-blur-md rounded-xl shadow-lg p-8">
-    <h1 class="text-5xl font-bold text-primary text-center mb-12">Terms of Service</h1>
-    <p class="text-sm text-red-300 mb-6">Last updated: 22.10.2024</p>
+    <h1 class="text-5xl font-bold text-quaternary text-center mb-12">Terms of Service</h1>
 
     <div class="space-y-8">
       <section *ngFor="let section of sections" class="mb-8">
-        <h2 class="text-3xl font-semibold text-red-400 mb-4">{{ section.title }}</h2>
-        <div class="text-red-200" [innerHTML]="section.content"></div>
+        <h2 class="text-3xl font-semibold text-tertiary mb-4">{{ section.title }}</h2>
+        <div class="text-white" [innerHTML]="section.content"></div>
       </section>
     </div>
 
     <div class="mt-14 text-center">
-      <p class="text-red-300 mb-4 text-lg">Have questions about our Terms of Service?</p>
+      <p class="text-tertiary mb-4 text-lg">Have questions about our Terms of Service?</p>
       <a href="mailto:terms@fritfest.com"
-        class="inline-block bg-red-500 text-secondary font-semibold py-3 px-6 rounded-full shadow hover:bg-red-600 transition">
+        class="inline-block bg-primary text-white font-semibold py-3 px-6 rounded-full shadow hover:bg-tertiary transition">
         Contact Us
       </a>
     </div>
