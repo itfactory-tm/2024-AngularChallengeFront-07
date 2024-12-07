@@ -3,30 +3,30 @@
         'max-w-5xl border-none transform-none scale-100 hover:scale-100 transition-none': isDetail,
         'max-w-sm  border-4 border-white rounded-t-2xl transform hover:scale-105 transition-transform duration-300': !isDetail
     }">
-    
+
        <div [ngClass]="{'md:flex md:flex-row m-10': isDetail}">
             <section class="relative" [ngClass]="{'md:w-1/2': isDetail}">
-                @if(stage.photos.length) 
-                { 
-                    <img [src]="stage.photos[0]" alt="{{stage.name}}" 
-                     class="object-cover rounded-t-xl" width="640px" height="375px" style="width: 640px; height: 375px;">
+<!--                @if(stage.photos.length) -->
+<!--                { -->
+<!--                    <img [src]="stage.photos[0]" alt="{{stage.name}}" -->
+<!--                     class="object-cover rounded-t-xl" width="640px" height="375px" style="width: 640px; height: 375px;">-->
 
-                }
-                @else 
-                { 
-                    <svg width="640px" height="640px" class="w-full h-full rounded-t-xl" xmlns="http://www.w3.org/2000/svg" 
-                    viewBox="0 0 640 640"> 
-                        <rect width="100%" height="100%" fill="#6c757d"/> 
-                            <text class="font-bold" x="50%" y="50%" 
+<!--                }-->
+<!--                @else -->
+<!--                { -->
+                    <svg width="640px" height="640px" class="w-full h-full rounded-t-xl" xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 640 640">
+                        <rect width="100%" height="100%" fill="#6c757d"/>
+                            <text class="font-bold" x="50%" y="50%"
                             dominant-baseline="middle" text-anchor="middle" fill="white" font-size="32">No Image Available
-                            </text> 
+                            </text>
                     </svg>
-                }
-                
+<!--                }-->
+
                 <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-70 text-white text-center py-2">
                     <p class="italic font-bold text-lg">{{stage.name}}</p>
                 </div>
-    
+
                 @if(!isDetail) {
                     <button class="absolute top-2 right-2 bg-primary hover:bg-tertiary rounded-full p-2 transition-colors duration-300" (click)="detail(stage.stageId)">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -34,8 +34,8 @@
                         </svg>
                     </button>
                 }
-            </section>    
-            
+            </section>
+
             @if(isDetail) {
                 <section [ngClass]="{'bg-gray-900 md:flex md:flex-row rounded-b-xl md:rounded-b-none md:items-center md:rounded-t-xl overflow-hidden shadow-lg md:w-1/2': isDetail}">
                     <div class="px-6 py-4">

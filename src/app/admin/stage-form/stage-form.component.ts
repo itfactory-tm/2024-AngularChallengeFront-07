@@ -27,7 +27,6 @@ export class StageFormComponent implements OnInit {
     name: '',
     locationId: '',
     locationName: '',
-    photos: [],
   };
 
   isSubmitted: boolean = false;

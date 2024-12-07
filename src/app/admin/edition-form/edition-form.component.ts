@@ -4,12 +4,11 @@ import { Router } from '@angular/router';
 import { EditionService } from '../../services/edition.service';
 import { Observable } from 'rxjs';
 import { FormsModule } from '@angular/forms';
-import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-edition-form',
   standalone: true,
-  imports: [FormsModule, AsyncPipe],
+  imports: [FormsModule],
   templateUrl: './edition-form.component.html',
   styleUrl: './edition-form.component.css',
 })
@@ -30,7 +29,6 @@ export class EditionFormComponent implements OnInit {
     year: 0,
     ticketCount: 0,
     artistsNames: [],
-    photos: [],
     articleNames: [],
     sponsorNames: [],
     foodtruckNames: [],
