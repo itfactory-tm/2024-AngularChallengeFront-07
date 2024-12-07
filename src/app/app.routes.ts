@@ -43,6 +43,7 @@ import { FoodDrinksComponent } from "./food-drinks/food-drinks.component";
 import { TimeScheduleComponent } from './time-schedule/time-schedule.component';
 import {TicketTypeListComponent} from "./admin/ticket-type-list/ticket-type-list.component";
 import {TicketTypeFormComponent} from "./admin/ticket-type-form/ticket-type-form.component";
+import { TicketReturnPageComponent } from './ticket-return-page/ticket-return-page.component';
 
 
 export const routes: Routes = [
@@ -177,6 +178,7 @@ export const routes: Routes = [
   { path: 'artist', component: ArtistComponent },
   { path: 'artist/:id', component: ArtistDetailComponent },
   { path: 'order-ticket', component: OrderTicketComponent },
+  { path: 'confirmTicket', component: TicketReturnPageComponent},
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', redirectTo: '/home' },
 ];
