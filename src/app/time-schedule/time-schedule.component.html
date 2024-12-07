@@ -1,18 +1,105 @@
-@for (schedule of timeSchedules; track $index) {
-<!-- <div
-  [ngStyle]="{
-    'top.px': calculateElementPositionAndHeight(
-      schedule.startSet,
-      schedule.endSet
-    ).top,
-    'height.px': calculateElementPositionAndHeight(
-      schedule.startSet,
-      schedule.endSet
-    ).height
-  }"
-  class="sticky text-2xl bg-gray-800 text-blue-600 font-extrabold"
->
-  {{ artists[$index].name }} <br />
-  {{ schedule.startSet }} - {{ schedule.endSet }}
-</div> -->
-}
+<!-- Content for small screens -->
+<div class="flex-col justify-center lg:hidden bg-secondary p-6">
+  <div>
+    <hr>
+    <!-- filter functions for the time table -->
+    <ul class="text-3xl font-extrabold text-blue-600 tracking-widest mb-5 flex flex-wrap justify-left gap-10">
+      <li
+        class="text-tertiary hover:text-primary hover:bg-secondary-dark hover:scale-105 transition-all duration-300 ease-in-out">
+        <button (click)="setDay('friday')">Friday</button>
+      </li>
+      <li
+        class="text-tertiary hover:text-primary hover:bg-secondary-dark hover:scale-105 transition-all duration-300 ease-in-out">
+        <button (click)="setDay('saturday')">Saturday</button>
+      </li>
+      <li
+        class="text-tertiary hover:text-primary hover:bg-secondary-dark hover:scale-105 transition-all duration-300 ease-in-out">
+        <button (click)="setDay('sunday')">Sunday</button>
+      </li>
+    </ul>
+    <hr>
+  </div>
+  <!-- Selected day -->
+  <div>
+    <h2 class="text-3xl text-quaternary font-extrabold text-center">Schedule on {{selectedDay}}</h2>
+  </div>
+
+  @for (stage of stagesWithArtists$ |async; track $index) {
+  <section class="my-4">
+    <h4 class="font-bold text-3xl text-center bg-gray-800 text-primary py-4 mb-0.5">{{stage.stage.name}}</h4>
+    <ul>
+      @for (artist of stage.artists; track $index) {
+      <li class="bg-gray-800 text-white py-2 px-4 mb-0.5">
+        <span class="text-2xl font-bold">{{artist.artist.name}}</span> <br>
+        {{artist.startTime | date: 'HH:mm'}} - {{artist.endTime | date: 'HH:mm'}}
+
+      </li>
+      }
+    </ul>
+  </section>
+  }
+</div>
+
+<!-- Content for medium and large screens -->
+<div class="flex-col justify-center text-center hidden lg:flex">
+  <div class="bg-secondary shadow-md p-6 pt-16">
+    <hr>
+    <!-- filter functions for the time table -->
+    <ul class="text-3xl font-extrabold text-blue-600 tracking-widest mb-5 flex flex-wrap justify-left gap-10">
+      <li
+        class="text-quaternary hover:text-primary hover:bg-secondary-dark hover:scale-105 transition-all duration-300 ease-in-out">
+        <button (click)="setDay('friday')">Friday</button>
+      </li>
+      <li
+        class="text-quaternary hover:text-primary hover:bg-secondary-dark hover:scale-105 transition-all duration-300 ease-in-out">
+        <button (click)="setDay('saturday')">Saturday</button>
+      </li>
+      <li
+        class="text-quaternary hover:text-primary hover:bg-secondary-dark hover:scale-105 transition-all duration-300 ease-in-out">
+        <button (click)="setDay('sunday')">Sunday</button>
+      </li>
+    </ul>
+    <hr>
+  </div>
+  <!-- Selected day -->
+  <div>
+    <h2 class="text-quaternary text-3xl font-extrabold pb-4">Schedule on {{selectedDay}}</h2>
+  </div>
+  <div class="time-schedule">
+    <!-- Times displayed as background -->
+    <div class="times-column z-20">
+      @for (time of times; track $index) {
+        
+      <div class="time-row">
+        {{ time }}
+      </div>
+      <hr class="absolute top-1px h-px -mt-14 left-20 w-screen -z-10">
+      }
+    </div>
+  
+    <!-- Horizontal scroll for stages -->
+    <div class="scroll-container">
+      <div class="schedule-grid">
+        @for (stage of stagesWithArtists$|async; track $index) {
+        <div class="stage-column">
+          <div class="stage-header text-xl font-bold">
+            {{ stage.stage.name }}
+          </div>
+          @for (artist of stage.artists; track $index) {
+          <div class="artist-slot" [ngStyle]="{
+                'top.px': calculateElementPositionAndHeight(artist.startTime, artist.endTime).top,
+                'height.px': calculateElementPositionAndHeight(artist.startTime, artist.endTime).height
+              }">
+            <span class="artist-name text-3xl font-bold text-white">{{ artist.artist.name }}</span>
+            <br>
+            <span class="artist-time text-3xl font-bold text-white">
+              {{ artist.startTime | date: 'HH:mm' }} - {{ artist.endTime | date: 'HH:mm' }}
+            </span>
+          </div>
+          }
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>
