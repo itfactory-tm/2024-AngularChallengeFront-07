@@ -78,18 +78,23 @@ export class TimeSlotFormComponent implements OnInit {
     }
   }
 
-  convertDateToDateTime(time: string): Date {
+  convertDateToUTC(time: string): Date {
     const [hours, minutes] = time.split(':').map(Number);
-    const currentDate = new Date();
-    currentDate.setHours(hours, minutes, 0, 0);
+    const utcTime = new Date(Date.UTC(
+      new Date().getUTCFullYear(),
+      new Date().getUTCMonth(),
+      new Date().getUTCDate(),
+      hours,
+      minutes
+    ));
+    return utcTime;
+  }
 
-    return currentDate;
-}
 
   onSubmit() {
     this.isSubmitted = true;
-    this.timeSlot.startTime = this.convertDateToDateTime(this.timeInputs.start);
-    this.timeSlot.endTime = this.convertDateToDateTime(this.timeInputs.end);
+    this.timeSlot.startTime = this.convertDateToUTC(this.timeInputs.start);
+    this.timeSlot.endTime = this.convertDateToUTC(this.timeInputs.end);
     if (this.isAdd) {
       this.timeSlotService.postTimeSlot(this.timeSlot).subscribe({
         next: (v) => this.router.navigateByUrl('/admin/timeSlot'),
