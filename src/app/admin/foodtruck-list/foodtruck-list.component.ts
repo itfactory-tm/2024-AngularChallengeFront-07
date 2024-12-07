@@ -2,21 +2,24 @@ import {Component, OnInit} from '@angular/core';
 import {AsyncPipe} from "@angular/common";
 import {FoodTruck} from "../../interfaces/foodTruck";
 import {Location} from "../../interfaces/location";
-import {Observable} from "rxjs";
+import {map, Observable} from "rxjs";
 import {FoodtruckService} from "../../services/foodtruck.service";
 import {Router} from "@angular/router";
 import {LocationService} from "../../services/location.service";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-foodtruck-list',
   standalone: true,
-  imports: [AsyncPipe],
+  imports: [AsyncPipe, ReactiveFormsModule, FormsModule],
   templateUrl: './foodtruck-list.component.html',
   styleUrl: './foodtruck-list.component.css'
 })
 export class FoodtruckListComponent implements OnInit {
   foodtrucks$: Observable<FoodTruck[]> = new Observable<FoodTruck[]>();
   errorMessage: string = '';
+  filteredFoodtrucks$: Observable<FoodTruck[]> = new Observable<FoodTruck[]>();
+  searchTerm: string = '';
   locations: {[key: string]: Location} = {};
 
   constructor(
@@ -31,9 +34,21 @@ export class FoodtruckListComponent implements OnInit {
 
   getFoodtrucks(){
     this.foodtrucks$ = this.foodtruckService.getFoodtrucks();
+    this.filteredFoodtrucks$ = this.foodtrucks$;
     this.foodtrucks$.subscribe(foodtrucks => {
       this.loadLocations(foodtrucks);
     })
+  }
+
+  filteredFoodtrucks(){
+    this.filteredFoodtrucks$ = this.foodtrucks$.pipe(
+      map(foodtrucks => (
+        foodtrucks.filter(
+          foodtruck =>
+            foodtruck.name.toLowerCase().includes(this.searchTerm.toLowerCase()),
+        )
+      ))
+    )
   }
 
   loadLocations(foodtrucks: FoodTruck[]): void {
