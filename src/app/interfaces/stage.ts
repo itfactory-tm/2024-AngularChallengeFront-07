@@ -5,5 +5,4 @@ export interface Stage {
   name: string;
   locationId: string;
   locationName: string;
-  photos: string[];
 }

@@ -10,7 +10,6 @@ export interface Edition {
   year: number;
   ticketCount: number;
   artistsNames: string[];
-  photos: string[];
   articleNames: string[];
   sponsorNames: string[];
   foodtruckNames: string[];
