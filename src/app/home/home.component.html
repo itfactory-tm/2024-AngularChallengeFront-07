@@ -3,7 +3,7 @@
     [ngStyle]="{'background-image': 'url(' + backgroundImage + ')'}" #bgImage></div>
   <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
     <div class="text-center mb-16">
-      <h1 class="text-7xl font-extrabold text-quaternary mt-24 drop-shadow-lg" style="-webkit-text-stroke: 1px black;">Welcome to FritFest</h1>
+      <h1 class="text-7xl font-extrabold text-primary mt-24 drop-shadow-lg" style="-webkit-text-stroke: 1px black;">Welcome to FritFest</h1>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 m-5">
       @for (card of cards; track $index) {
@@ -18,10 +18,10 @@
     </div>
     <div class="mt-20 text-center">
       <a routerLink="/tickets"
-        class="ticket-button group relative inline-flex items-center justify-center px-10 py-5 text-xl font-bold text-white transition-all duration-500 ease-in-out bg-gradient-to-r from-yellow-500 via-red-500 to-pink-500 rounded-full overflow-hidden shadow-2xl hover:shadow-xl">
-        <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-yellow-500 via-red-500 to-pink-500"></span>
+        class="ticket-button group relative inline-flex items-center justify-center px-10 py-5 text-xl font-bold text-white transition-all duration-500 ease-in-out bg-primary group-hover:bg-tertiary rounded-full overflow-hidden">
+        <span class="absolute inset-0 w-full h-full bg-primary group-hover:bg-tertiary"></span>
         <span
-          class="absolute bottom-0 right-0 block w-72 h-72 mb-36 mr-6 transition duration-700 origin-bottom-left transform rotate-45 translate-x-28 bg-red-500 opacity-40 group-hover:rotate-90 ease"></span>
+          class="absolute bottom-0 right-0 block w-72 h-72 mb-36 mr-6 transition duration-700 origin-bottom-left transform rotate-45 translate-x-28 group-hover:rotate-90 ease"></span>
         <span class="relative">Get Your Tickets</span>
         <svg
           class="relative w-6 h-6 ml-3 transition-transform duration-500 ease-out transform group-hover:translate-x-2"

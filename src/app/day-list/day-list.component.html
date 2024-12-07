@@ -3,17 +3,17 @@
   <app-loader></app-loader>
   } @else {
   <!-- Header -->
-  <h1 class="text-5xl font-extrabold text-quaternary mb-10 mt-10 drop-shadow-lg text-center">Get your tickets now!</h1>
+  <h1 class="text-5xl font-extrabold text-quaternary m-5 drop-shadow-lg text-center">Get your tickets now!</h1>
 
   <!-- Sticky Bar with Button -->
   <div id="sticky-bar" class="sticky-bar transition-all duration-300 ease-in-out">
     <div class="my-8 text-center">
       <div
-        class="ticket-button group relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white transition-transform duration-300 ease-out transform hover:scale-105 hover:shadow-lg bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 rounded-full overflow-hidden shadow-2xl"
+        class="ticket-button group relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold group-hover:bg-tertiary text-white transition-transform duration-300 ease-out transform hover:scale-105 hover:shadow-lg bg-primary rounded-full overflow-hidden shadow-2xl"
         [class.cursor-not-allowed]="totalSelectedTickets === 0" [class.opacity-50]="totalSelectedTickets === 0"
         (click)="submitTickets()" [attr.disabled]="totalSelectedTickets === 0 ? true : null">
         <span
-          class="absolute inset-0 w-full h-full opacity-50 group-hover:opacity-75 transition-opacity duration-300 bg-gradient-to-r from-purple-600 via-pink-500 to-red-500"></span>
+          class="absolute inset-0 w-full h-full transition-opacity duration-30 hover:bg-tertiary"></span>
         <span class="relative pointer-events-none select-none">Get Your Tickets</span>
         <svg
           class="relative w-5 h-5 ml-2 transition-transform duration-300 ease-out transform group-hover:translate-x-1"
