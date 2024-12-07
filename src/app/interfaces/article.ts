@@ -4,6 +4,6 @@ export interface Article {
     description: string;
     date: Date;
     editionId: string;
-    editionName: string;
+    editionName?: string;
   }
   

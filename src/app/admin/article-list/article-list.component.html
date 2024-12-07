@@ -7,6 +7,12 @@
     </div>
     }
     <div class="mb-6 flex flex-col md:flex-row items-center justify-between">
+      <button
+      class="px-4 py-2 bg-primary text-white rounded-md hover:bg-gray-300 transition ease-in-out"
+      (click)="goBack()"
+    >
+      Go Back
+    </button>
       <h1 class="text-4xl font-bold text-yellow-200">Manage Articles</h1>
       <button
         class="mt-4 md:mt-0 px-5 py-3 rounded-md bg-primary text-white font-semibold hover:bg-sky-700 transition duration-300 ease-in-out"
@@ -26,8 +32,7 @@
               <th class="px-6 py-3 text-md font-bold text-left">Title</th>
               <th class="px-6 py-3 text-md font-bold text-left">Description</th>
               <th class="px-6 py-3 text-md font-bold text-left">Date</th>
-              <!-- editionId: '',
-              editionName: '', -->
+              <th class="px-6 py-3 text-md font-bold text-left">Edition</th>
               <th class="px-6 py-3 text-md text-center">&nbsp;</th>
             </tr>
           </thead>
@@ -46,6 +51,9 @@
 
                {{ article.date | date: 'dd-MM-yyyy' }}
               </td>
+              <td class="px-6 py-4 text-sm text-gray-600 truncate max-w-sm">
+                {{ article.editionName}}
+               </td>
               <td class="px-6 py-4 text-sm font-bold text-center">
                 <div class="flex justify-end gap-4">
                   <!-- Edit Button -->

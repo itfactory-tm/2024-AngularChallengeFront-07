@@ -24,7 +24,9 @@ export class TimeSlotListComponent implements OnInit {
   getTimeSlots() {
     this.timeSlots$ = this.timeSlotService.getTimeSlots();
   }
-
+  goBack() {
+    this.router.navigate(['/admin/dashboard']);
+  }
   add() {
     //Navigate to form in add mode
     this.router.navigate(['admin/timeSlot/form'], { state: { mode: 'add' } });

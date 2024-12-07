@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { StageService } from '../../services/stage.service';
-import {catchError, forkJoin, map, Observable, of} from 'rxjs';
+import {Observable} from 'rxjs';
 import { Stage } from '../../interfaces/stage';
 import { Router } from '@angular/router';
 import {AsyncPipe, CommonModule} from '@angular/common';
 import {TimeSlotService} from "../../services/timeSlot.service";
+import { TimeSlot } from '../../interfaces/timeSlot';
 
 @Component({
   selector: 'app-stageAdmin-list',
@@ -15,35 +16,35 @@ import {TimeSlotService} from "../../services/timeSlot.service";
 })
 export class StageAdminListComponent implements OnInit {
   stages$: Observable<Stage[]> = new Observable<Stage[]>();
+  timeSlots$: Observable<TimeSlot[]> = new Observable<TimeSlot[]>();
+  timeSlotsByStage: { [key: string]: TimeSlot[] } = {};
   errorMessage: string = '';
 
   constructor(private stageService: StageService, private timeSlotService:TimeSlotService,private router: Router) {}
   ngOnInit(): void {
     this.getStages();
+    this.getTimeSlots();
+    
   }
 
   getStages() {
-    this.stages$ = forkJoin({
-      stages: this.stageService.getStages(),
-      timeSlots: this.timeSlotService.getTimeSlots(),
-    }).pipe(
-      map(({stages,timeSlots})=>{
-        return stages.map((stage) => ({
-          ...stage,
-          timeSlots: timeSlots.filter(
-            (timeSlot) => timeSlot.stageId === stage.stageId,
-          ),
-
-        }))
-      }),
-      catchError((err) => {
-        console.error('Error fetching data:', err);
-        return of([]); // Handle errors gracefully
-      })
-    )
+    this.stages$ = this.stageService.getStages();
 
   }
+  getTimeSlots(){
+    this.timeSlots$ = this.timeSlotService.getTimeSlots();
 
+    this.timeSlots$.subscribe((slots) => {
+      this.timeSlotsByStage = slots.reduce((acc, slot) => {
+        if (!acc[slot.stageId]) acc[slot.stageId] = [];
+        acc[slot.stageId].push(slot);
+        return acc;
+      }, {} as { [key: string]: TimeSlot[] });
+    });
+  }
+  goBack() {
+    this.router.navigate(['/admin/dashboard']);
+  }
   add() {
     //Navigate to form in add mode
     this.router.navigate(['admin/stage/form'], { state: { mode: 'add' } });
@@ -62,6 +63,4 @@ export class StageAdminListComponent implements OnInit {
       error: (e) => (this.errorMessage = e.message),
     });
   }
-
-  protected readonly console = console;
 }

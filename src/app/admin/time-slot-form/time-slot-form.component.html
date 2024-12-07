@@ -19,15 +19,15 @@
           >
           <input
             type="time"
-            id="startTime"
-            name="startTime"
+            id="start"
+            name="start"
             class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             placeholder="startTime"
             required
-            [(ngModel)]="timeSlot.startTime"
-            #startTime="ngModel"
+            [(ngModel)]="timeInputs.start"
+            #start="ngModel"
           />
-          <div [hidden]="startTime.valid || startTime.pristine" class="text-red-500 mt-2">
+          <div [hidden]="start.valid || start.pristine" class="text-red-500 mt-2">
             Start time is required
           </div>
         </div>
@@ -38,15 +38,15 @@
           >
           <input
             type="time"
-            id="endTime"
-            name="endTime"
+            id="end"
+            name="end"
             class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             placeholder="End time"
             required
-            [(ngModel)]="timeSlot.endTime"
-            #endTime="ngModel"
+            [(ngModel)]="timeInputs.end"
+            #end="ngModel"
           />
-          <div [hidden]="endTime.valid || endTime.pristine" class="text-red-500 mt-2">
+          <div [hidden]="end.valid || end.pristine" class="text-red-500 mt-2">
             End time is required
           </div>
         </div>

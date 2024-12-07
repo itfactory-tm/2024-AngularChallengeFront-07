@@ -46,7 +46,9 @@ export class MenuItemsListComponent implements OnInit {
       }
     })
   }
-
+  goBack() {
+    this.router.navigate(['/admin/dashboard']);
+  }
   add(){
     this.router.navigate(['/admin/menuItems/form'], {state: {mode: 'add'}});
   }

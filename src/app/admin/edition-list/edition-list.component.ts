@@ -24,6 +24,9 @@ export class EditionListComponent implements OnInit {
   getEditions() {
     this.editions$ = this.editionService.getEditions();
   }
+  goBack() {
+    this.router.navigate(['/admin/dashboard']);
+  }
 
   add() {
     //Navigate to form in add mode

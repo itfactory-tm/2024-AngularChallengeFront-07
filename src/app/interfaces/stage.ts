@@ -5,6 +5,5 @@ export interface Stage {
   name: string;
   locationId: string;
   locationName: string;
-  timeSlotsRanges?: TimeSlot[];
   photos: string[];
 }
