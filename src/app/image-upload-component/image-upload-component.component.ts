@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import {NgxImageCompressService} from "ngx-image-compress";
+
 
 @Component({
   selector: 'app-image-upload-component',
@@ -13,7 +13,7 @@ export class ImageUploadComponentComponent {
   previewUrl: string | null = null;
 
   @Output() imageUploaded = new EventEmitter<string>();
-  constructor(private imageCompress: NgxImageCompressService) {}
+  constructor() {}
 
   // Handle file selection and preview image
   onFileSelect(event: any): void {
@@ -33,13 +33,6 @@ export class ImageUploadComponentComponent {
       const reader = new FileReader();
       reader.onload = (e: any) => {
         const image = e.target.result as string;
-        this.imageCompress.compressFile(image, -1, 50, 50).then(
-          (compressedImage) => {
-            console.log('Compressed Image:', compressedImage);
-            this.imageUploaded.emit(compressedImage);
-            this.clearSelection();
-          }
-        );
       };
       reader.readAsDataURL(this.selectedFile);
     }

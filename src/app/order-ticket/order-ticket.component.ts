@@ -10,6 +10,7 @@ import { TicketType } from '../interfaces/ticketType';
 import { BoughtTicketService } from '../services/bought-ticket.service';
 import { Observable } from 'rxjs';
 import { v4 as uuidv4 } from 'uuid';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -44,6 +45,7 @@ export class OrderTicketComponent implements OnInit {
     private dayService: DayService,
     private ticketTypeService: TicketTypeService,
     private boughtTicketService: BoughtTicketService,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -108,12 +110,14 @@ export class OrderTicketComponent implements OnInit {
         this.boughtTicketService.postTicket(ticket).subscribe(
           response => {
             console.log('Ticket created successfully', response);
+            this.router.navigate(['/confirmTicket'], { queryParams: { isConfirmed : true } });
           },
           error => {
             console.error('Error creating ticket:', error);
             if (error.status === 400) {
               // Handle bad request errors
               console.log('Bad Request Error:', error.error);
+              this.router.navigate(['/confirmTicket'], { queryParams: { isConfirmed : false } });
             }
           });        
       });
@@ -129,6 +133,7 @@ export class OrderTicketComponent implements OnInit {
 
     } else {
       console.log('Form is invalid', this.addingTicketForm.value);
+      this.router.navigate(['/confirmTicket'], { queryParams: { isConfirmed : false } });
     }
   }
 
