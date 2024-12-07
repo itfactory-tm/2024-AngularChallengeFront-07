@@ -1,4 +1,7 @@
-<div class="min-h-screen w-full p-6 sm:p-10 flex items-start justify-center overflow-y-auto">
+<div class="text-center mt-5 text-5xl font-extrabold text-quaternary">
+  <h1>Food</h1>
+</div>
+<div class="min-h-screen w-full p-5 sm:p-10 flex items-start justify-center overflow-y-auto">
   <div class="w-full max-w-8xl grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-10 auto-rows-min">
     @for (foodtruck of foodtrucks$ | async; track foodtruck.foodTruckId){
     <div class="bg-tertiary shadow-2xl rounded-xl p-8 transform transition-transform hover:scale-105 hover:shadow-3xl">
