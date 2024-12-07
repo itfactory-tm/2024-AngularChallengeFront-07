@@ -1,10 +1,10 @@
-import { Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { TimeSlotService } from '../services/timeSlot.service';
 import { CommonModule } from '@angular/common';
 import { TimeSlot } from '../interfaces/timeSlot';
 import { ArtistService } from '../services/artist.service';
 import { Artist } from '../interfaces/artist';
-import { combineLatest, forkJoin, map, Observable, of } from 'rxjs';
+import { combineLatest, map, Observable } from 'rxjs';
 import { StageService } from '../services/stage.service';
 import { Stage } from '../interfaces/stage';
 import { Router } from '@angular/router';
@@ -32,8 +32,6 @@ export class TimeScheduleComponent implements OnInit {
     '19:00', '20:00', '21:00', '22:00', '23:00', '24:00', '01:00', '02:00',
     '03:00', '04:00'
   ];
-
-  @ViewChild('scrollableContainer', { static: false }) scrollableContainer!: ElementRef;
 
   @Input() selectedDay: string = 'friday';
   stage: number = 1;
@@ -121,23 +119,5 @@ export class TimeScheduleComponent implements OnInit {
   }
   changeView(view: string) {
 
-  }
-
-  scrollLeft(): void {
-    if (this.scrollableContainer) {
-      this.scrollableContainer.nativeElement.scrollBy({
-        left: -300,
-        behavior: 'smooth',
-      });
-    }
-  }
-  
-  scrollRight(): void {
-    if (this.scrollableContainer) {
-      this.scrollableContainer.nativeElement.scrollBy({
-        left: 300,
-        behavior: 'smooth',
-      });
-    }
   }
 }
