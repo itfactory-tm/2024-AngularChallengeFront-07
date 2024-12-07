@@ -73,4 +73,8 @@ export class StageFormComponent implements OnInit {
       });
     }
   }
+
+  goBack() {
+    window.history.back();
+  }
 }

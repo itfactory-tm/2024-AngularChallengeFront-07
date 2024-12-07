@@ -5,13 +5,13 @@
   </div>
   }
   <div class="mb-6 flex flex-col md:flex-row items-center justify-between">
-    <button class="px-4 py-2 bg-primary text-white rounded-md hover:bg-gray-300 transition ease-in-out"
+    <button class="px-4 py-2 bg-primary text-white rounded-md hover:bg-tertiary transition ease-in-out"
       (click)="goBack()">
       Go Back
     </button>
-    <h1 class="text-4xl font-bold text-yellow-200">Manage Stages</h1>
+    <h1 class="text-4xl font-bold text-quaternary">Manage Stages</h1>
     <button
-      class="mt-4 md:mt-0 px-5 py-3 rounded-md bg-primary text-white font-semibold hover:bg-sky-700 transition duration-300 ease-in-out"
+      class="mt-4 md:mt-0 px-5 py-3 rounded-md bg-primary text-white font-semibold hover:bg-tertiary transition duration-300 ease-in-out"
       (click)="add()">
       Create Stage
     </button>
@@ -25,7 +25,6 @@
             <th class="px-6 py-3 text-md font-bold text-left">Name</th>
             <th class="px-6 py-3 text-md font-bold text-left">Location</th>
             <th class="px-6 py-3 text-md font-bold text-left">TimeSlots</th>
-            <th class="px-6 py-3 text-md font-bold text-left">Photos</th>
             <th class="px-6 py-3 text-md text-center">&nbsp;</th>
           </tr>
         </thead>
@@ -46,9 +45,6 @@
                 {{ slot.startTime | date: 'HH:mm' }} - {{ slot.endTime | date: 'HH:mm' }}
               </div>}
             </td>
-<!--            <td class="px-6 py-4 text-sm text-gray-600">-->
-<!--              {{ stage.photos }}-->
-<!--            </td>-->
             <td class="px-6 py-4 text-sm font-bold text-center">
               <div class="flex justify-end gap-4">
                 <!-- Edit Button -->

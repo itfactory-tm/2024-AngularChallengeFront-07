@@ -3,13 +3,13 @@ import { ArtistService } from '../../services/artist.service';
 import {map, Observable} from 'rxjs';
 import { Artist } from '../../interfaces/artist';
 import { Router } from '@angular/router';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, CommonModule } from '@angular/common';
 import {FormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-artist-list',
   standalone: true,
-  imports: [AsyncPipe, FormsModule],
+  imports: [AsyncPipe, FormsModule, CommonModule],
   templateUrl: './artist-list.component.html',
   styleUrl: './artist-list.component.css',
 })

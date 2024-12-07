@@ -109,4 +109,8 @@ export class TimeSlotFormComponent implements OnInit {
       });
     }
   };
+
+  goBack() {
+    window.history.back();
+  }
 }

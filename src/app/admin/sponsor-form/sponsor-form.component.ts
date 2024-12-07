@@ -90,4 +90,8 @@ export class SponsorFormComponent implements OnInit {
       });
     }
   }
+
+  goBack() {
+    window.history.back();
+  }
 }

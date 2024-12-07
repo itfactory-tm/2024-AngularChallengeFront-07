@@ -74,5 +74,9 @@ export class EditionFormComponent implements OnInit {
       });
     }
   }
+
+  goBack() {
+    window.history.back();
+  }
 }
 

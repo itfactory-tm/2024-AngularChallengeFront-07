@@ -89,4 +89,8 @@ export class TicketFormComponent implements OnInit {
       });
     }
   }
+
+  goBack() {
+    window.history.back();
+  }
 }

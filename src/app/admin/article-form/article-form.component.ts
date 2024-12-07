@@ -72,4 +72,8 @@ export class ArticleFormComponent implements OnInit {
       });
     }
   }
+  
+  goBack() {
+    window.history.back();
+  }
 }
