@@ -1,23 +1,23 @@
 <!-- Content for small screens -->
 <div class="flex-col justify-center lg:hidden bg-secondary p-6">
   <div>
-    <hr>
+    <hr class="border-tertiary">
     <!-- filter functions for the time table -->
-    <ul class="text-3xl font-extrabold text-blue-600 tracking-widest mb-5 flex flex-wrap justify-left gap-10">
+    <ul class="text-3xl font-extrabold text-tertiary tracking-widest mb-5 flex flex-wrap justify-left gap-10">
       <li
-        class="text-tertiary hover:text-primary hover:bg-secondary-dark hover:scale-105 transition-all duration-300 ease-in-out">
+        class="hover:text-primary hover:bg-secondary-dark hover:scale-105 transition-all duration-300 ease-in-out px-3 py-2 rounded-lg cursor-pointer">
         <button (click)="setDay('friday')">Friday</button>
       </li>
       <li
-        class="text-tertiary hover:text-primary hover:bg-secondary-dark hover:scale-105 transition-all duration-300 ease-in-out">
+        class="hover:text-primary hover:bg-secondary-dark hover:scale-105 transition-all duration-300 ease-in-out px-3 py-2 rounded-lg cursor-pointer">
         <button (click)="setDay('saturday')">Saturday</button>
       </li>
       <li
-        class="text-tertiary hover:text-primary hover:bg-secondary-dark hover:scale-105 transition-all duration-300 ease-in-out">
+        class="hover:text-primary hover:bg-secondary-dark hover:scale-105 transition-all duration-300 ease-in-out px-3 py-2 rounded-lg cursor-pointer">
         <button (click)="setDay('sunday')">Sunday</button>
       </li>
     </ul>
-    <hr>
+    <hr class="border-tertiary">
   </div>
   <!-- Selected day -->
   <div>
@@ -26,13 +26,14 @@
 
   @for (stage of stagesWithArtists$ |async; track $index) {
   <section class="my-4">
-    <h4 class="font-bold text-3xl text-center bg-gray-800 text-primary py-4 mb-0.5">{{stage.stage.name}}</h4>
+    <h4 class="font-bold text-3xl text-center bg-primary text-white py-4 mb-0.5 rounded-t-lg">{{stage.stage.name}}</h4>
     <ul>
       @for (artist of stage.artists; track $index) {
-      <li class="bg-gray-800 text-white py-2 px-4 mb-0.5">
-        <span class="text-2xl font-bold">{{artist.artist.name}}</span> <br>
-        {{artist.startTime | date: 'HH:mm'}} - {{artist.endTime | date: 'HH:mm'}}
-
+      <li class="bg-secondary text-text py-2 px-4 mb-0.5 rounded-lg">
+        <span class="text-2xl font-bold text-tertiary">{{artist.artist.name}}</span> <br>
+        <span class="text-accent">
+          {{artist.startTime | date: 'HH:mm'}} - {{artist.endTime | date: 'HH:mm'}}
+        </span>
       </li>
       }
     </ul>
@@ -42,58 +43,59 @@
 
 <!-- Content for medium and large screens -->
 <div class="flex-col justify-center text-center hidden lg:flex">
-  <div class="bg-secondary shadow-md p-6 pt-16">
-    <hr>
-    <!-- filter functions for the time table -->
-    <ul class="text-3xl font-extrabold text-blue-600 tracking-widest mb-5 flex flex-wrap justify-left gap-10">
+  <div class="bg-secondary shadow-lg p-8 pt-20 rounded-lg">
+    <hr class="border-tertiary mb-6">
+    <!-- Filter functions for the time table -->
+    <ul class="text-3xl font-extrabold text-tertiary tracking-widest mb-6 flex flex-wrap justify-center gap-12">
       <li
-        class="text-quaternary hover:text-primary hover:bg-secondary-dark hover:scale-105 transition-all duration-300 ease-in-out">
+        class="hover:text-primary hover:bg-secondary-dark hover:scale-110 transform transition-all duration-300 ease-in-out px-5 py-3 rounded-full bg-secondary-light border border-tertiary shadow-inner shadow-tertiary cursor-pointer">
         <button (click)="setDay('friday')">Friday</button>
       </li>
       <li
-        class="text-quaternary hover:text-primary hover:bg-secondary-dark hover:scale-105 transition-all duration-300 ease-in-out">
+        class="hover:text-primary hover:bg-secondary-dark hover:scale-110 transform transition-all duration-300 ease-in-out px-5 py-3 rounded-full bg-secondary-light border border-tertiary shadow-inner shadow-tertiary cursor-pointer">
         <button (click)="setDay('saturday')">Saturday</button>
       </li>
       <li
-        class="text-quaternary hover:text-primary hover:bg-secondary-dark hover:scale-105 transition-all duration-300 ease-in-out">
+        class="hover:text-primary hover:bg-secondary-dark hover:scale-110 transform transition-all duration-300 ease-in-out px-5 py-3 rounded-full bg-secondary-light border border-tertiary shadow-inner shadow-tertiary cursor-pointer">
         <button (click)="setDay('sunday')">Sunday</button>
       </li>
     </ul>
-    <hr>
+    <hr class="border-tertiary mt-6">
   </div>
+  
   <!-- Selected day -->
   <div>
-    <h2 class="text-quaternary text-3xl font-extrabold pb-4">Schedule on {{selectedDay}}</h2>
+    <h2 class="text-3xl font-extrabold text-quaternary text-center tracking-wide mb-6">Schedule on {{selectedDay}}</h2>
   </div>
-  <div class="time-schedule">
+  <div class="time-schedule bg-secondary">
     <!-- Times displayed as background -->
     <div class="times-column z-20">
       @for (time of times; track $index) {
-
-      <div class="time-row">
+      <div class="time-row text-text py-2 px-4">
         {{ time }}
       </div>
-      <hr class="absolute top-1px h-px -mt-14 left-20 w-screen -z-10">
+      <hr class="absolute top-1px h-px -mt-14 left-20 w-screen -z-10 border-quaternary">
       }
     </div>
 
     <!-- Horizontal scroll for stages -->
-    <div class="scroll-container #container">
+    <div class="scroll-container #container overflow-x-auto">
 
       <div class="schedule-grid">
         @for (stage of stagesWithArtists$|async; track $index) {
-        <div class="stage-column">
-          <div class="stage-header text-xl font-bold">
+        <div class="stage-column bg-secondary border-x-2 border-t-2 border-tertiary shadow-inner shadow-tertiary rounded-lg mx-2">
+          <div class="stage-header text-2xl font-bold text-quaternary bg-secondary-dark py-3 rounded-t-lg">
             {{ stage.stage.name }}
           </div>
           @for (artist of stage.artists; track $index) {
-          <div class="artist-slot" [ngStyle]="{
+          <div class="artist-slot bg-primary text-center text-white rounded-xl my-2"
+            [ngStyle]="{
                 'top.px': calculateElementPositionAndHeight(artist.startTime, artist.endTime).top,
                 'height.px': calculateElementPositionAndHeight(artist.startTime, artist.endTime).height
               }">
-            <span class="artist-name text-3xl font-bold text-white">{{ artist.artist.name }}</span>
+            <span class="artist-name text-3xl font-bold">{{ artist.artist.name }}</span>
             <br>
-            <span class="artist-time text-3xl font-bold text-white">
+            <span class="artist-time text-2xl font-bold">
               {{ artist.startTime | date: 'HH:mm' }} - {{ artist.endTime | date: 'HH:mm' }}
             </span>
           </div>

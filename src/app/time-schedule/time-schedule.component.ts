@@ -86,8 +86,8 @@ export class TimeScheduleComponent implements OnInit {
   parseTime(time: Date): number {
 
     const startHour = 11; // Adjust according to the time range
-    const scale = 114; // Height of each hour block
-    const baseValue = 75; // Top offset for the grid
+    const scale = 117; // Height of each hour block
+    const baseValue = 70; // Top offset for the grid
   
     const hours = time.getHours();
     const minutes = time.getMinutes();
