@@ -42,7 +42,7 @@ export class StageComponent implements OnInit {
 
   getPhotoUrl(stage: Stage): string {
     const stageKeywords = [
-      'Main', 'Pop', 'Rock', 'Dance/Electronic', 'R&B/Soul', 'Country',
+      'Main', 'Pop', 'Rock', 'Electronic', 'R&B', 'Country',
       'Jazz', 'Reggae', 'Metal', 'Punk'
     ];
     const keywords = stageKeywords.map(keyword => keyword.toLowerCase());
