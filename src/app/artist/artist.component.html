@@ -12,7 +12,7 @@
       <section class="relative" [ngClass]="{ 'md:w-1/2': isDetail }">
         @if(artist.spotifyPhoto) 
         { 
-          <img src="{{artist.spotifyPhoto}}" alt="{{artist.name}}" class="rounded-t-xl"> 
+          <img src="{{artist.spotifyPhoto}}" alt="{{artist.name}}" class="rounded-t-xl w-full h-96 object-cover"> 
         } 
         @else 
         { 

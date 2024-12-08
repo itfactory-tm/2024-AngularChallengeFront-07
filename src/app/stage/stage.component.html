@@ -9,7 +9,7 @@
                @if(photoExists)
                 { 
                   <img [src]="getPhotoUrl(stage)" alt="{{stage.name}}" 
-                    class="object-cover rounded-t-xl">
+                    class="object-cover rounded-t-xl" [ngClass]="{'md:w-full md:h-full': isDetail}">
 
                 }
                 @else 
@@ -50,7 +50,7 @@
                                         <div class="flex-grow-1 bg-quaternary text-secondary rounded p-3">
                                             <h5 class="m-0 whitespace-nowrap">{{ timeslot.artistName }}</h5>
                                             <small class="whitespace-nowrap">
-                                                {{ timeslot.startTime | date: 'shortTime' }} - {{ timeslot.endTime | date: 'shortTime' }}
+                                                <span class="italic uppercase">{{ getDayName(timeslot.startTime) }}:</span> {{ timeslot.startTime | date: 'shortTime' }} - {{ timeslot.endTime | date: 'shortTime' }}
                                             </small>
                                         </div>
                                     </div>

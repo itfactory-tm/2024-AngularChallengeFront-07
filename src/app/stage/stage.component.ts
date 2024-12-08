@@ -1,17 +1,18 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Stage } from '../interfaces/stage';
-import { StageService } from '../services/stage.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { TimeSlot } from '../interfaces/timeSlot';
 import { TimeSlotService } from '../services/timeSlot.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-stage',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './stage.component.html',
-  styleUrls: ['./stage.component.css'],
+  styleUrl: './stage.component.css',
+  providers: [DatePipe]
 })
 export class StageComponent implements OnInit {
   @Input() stage!: Stage;
@@ -21,7 +22,8 @@ export class StageComponent implements OnInit {
 
   constructor(
     private timeSlotService: TimeSlotService,
-    private router: Router
+    private router: Router,
+    private datePipe: DatePipe
   ) {}
 
   ngOnInit(): void {
@@ -30,10 +32,12 @@ export class StageComponent implements OnInit {
         this.timeslots = timeslots.filter(
           (ts) => ts.stageId === this.stage.stageId
         );
+        this.sortTimeslotsByDayName();
       });
     } else if (!this.isDetail) {
       this.timeSlotService.getTimeSlots().subscribe((timeslots) => {
         this.timeslots = timeslots;
+        this.sortTimeslotsByDayName();
       });
     }
 
@@ -67,6 +71,19 @@ export class StageComponent implements OnInit {
     }); 
   }
 
+  getDayName(date: Date): string {
+    return this.datePipe.transform(date, 'EEEE') || '';
+  }
+
+  sortTimeslotsByDayName(): void {
+    const dayOrder = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    this.timeslots.sort((a, b) => {
+      const dayA = this.getDayName(a.startTime);
+      const dayB = this.getDayName(b.startTime);
+      return dayOrder.indexOf(dayA) - dayOrder.indexOf(dayB);
+    });
+  }
+
   detail(id: string) {
     this.router.navigate(['/stage', id]);
   }
@@ -75,3 +92,4 @@ export class StageComponent implements OnInit {
     window.history.back();
   }
 }
+

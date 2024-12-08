@@ -11,7 +11,7 @@
   </div>  
   <div> @for (group of displayedGroups | keyvalue; track $index) 
     { 
-      <h2 class="text-3xl font-bold text-center text-tertiary m-5"> {{ group.key }} </h2> 
+      <h2 class="text-3xl font-bold text-center text-tertiary m-10"> {{ group.key }} </h2> 
       <div class="flex flex-wrap justify-center gap-20 m-5"> 
         @for (artist of group.value; track $index) 
         { 
