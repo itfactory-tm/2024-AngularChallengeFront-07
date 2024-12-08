@@ -11,7 +11,7 @@ import { TimeSlotService } from '../services/timeSlot.service';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './stage.component.html',
-  styleUrl: './stage.component.css',
+  styleUrls: ['./stage.component.css'],
 })
 export class StageComponent implements OnInit {
   @Input() stage!: Stage;
@@ -36,15 +36,35 @@ export class StageComponent implements OnInit {
         this.timeslots = timeslots;
       });
     }
+
     this.checkPhotoExists();
   }
 
+  getPhotoUrl(stage: Stage): string {
+    const stageKeywords = [
+      'Main', 'Pop', 'Rock', 'Dance/Electronic', 'R&B/Soul', 'Country',
+      'Jazz', 'Reggae', 'Metal', 'Punk'
+    ];
+    const keywords = stageKeywords.map(keyword => keyword.toLowerCase());
+    const stageName = stage.name.toLowerCase();
+    const locationName = stage.locationName.toLowerCase();
+
+    let keyword = keywords.find(kw => stageName.includes(kw) || locationName.includes(kw));
+    if (keyword) {
+      keyword = keyword.replace('/', '-');
+      return `assets/stages/${keyword}.jpg`;
+    }
+
+    return `assets/stages/default.jpg`; 
+  }
+
   checkPhotoExists(): void { 
-    const photoUrl = `public/assets/stages/${this.stage.name}.jpg`; 
-    this.checkFileExists(photoUrl).then(exists => { this.photoExists = exists; }); 
-  } 
-  checkFileExists(url: string): Promise<boolean> { 
-    return fetch(url, { method: 'HEAD' }).then(response => response.ok) .catch(() => false); 
+    const photoUrl = this.getPhotoUrl(this.stage); 
+    fetch(photoUrl, { method: 'HEAD' }) 
+    .then(response => { this.photoExists = response.ok; 
+    }) 
+    .catch(() => { this.photoExists = false; 
+    }); 
   }
 
   detail(id: string) {
