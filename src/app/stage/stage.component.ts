@@ -52,10 +52,10 @@ export class StageComponent implements OnInit {
     let keyword = keywords.find(kw => stageName.includes(kw) || locationName.includes(kw));
     if (keyword) {
       keyword = keyword.replace('/', '-');
-      return `assets/stages/${keyword}.jpg`;
+      return `assets/stages/${keyword}.webp`;
     }
 
-    return `assets/stages/default.jpg`; 
+    return `assets/stages/stage.webp`; 
   }
 
   checkPhotoExists(): void { 
