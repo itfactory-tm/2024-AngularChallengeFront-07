@@ -8,12 +8,11 @@ import { FormsModule } from '@angular/forms';
 import { AsyncPipe } from '@angular/common';
 import { info } from 'autoprefixer';
 import { EditionService } from '../../services/edition.service';
-import {ImageUploadComponentComponent} from "../../image-upload-component/image-upload-component.component";
 
 @Component({
   selector: 'app-sponsor-form',
   standalone: true,
-  imports: [FormsModule,ImageUploadComponentComponent],
+  imports: [FormsModule],
   templateUrl: './sponsor-form.component.html',
   styleUrl: './sponsor-form.component.css',
 })
@@ -29,7 +28,6 @@ export class SponsorFormComponent implements OnInit {
     sponsorMail: '',
     sponsoredItem: '',
     amount: 0,
-    sponsorLogoBase64: '',
     editionId: '',
     editionName: '',
   };
@@ -65,14 +63,6 @@ export class SponsorFormComponent implements OnInit {
   }
 
 
-
-  onImageUploaded(base64Image: string): void {
-    if (base64Image) {
-      console.log('Image uploaded:', base64Image);
-      this.sponsor.sponsorLogoBase64 = base64Image;
-      console.log('Sponsor logo base64:', this.sponsor.sponsorLogoBase64);
-    }
-  }
 
   onSubmit() {
     this.isSubmitted = true;

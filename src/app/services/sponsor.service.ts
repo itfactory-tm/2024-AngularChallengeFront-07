@@ -26,9 +26,6 @@ export class SponsorService {
 
   postSponsor(sponsor: Sponsor): Observable<Sponsor> {
     sponsor.sponsorId = uuidv4();
-    if (sponsor.sponsorLogoBase64 && !this.isValidBase64(sponsor.sponsorLogoBase64)) {
-      throw new Error('Invalid Base64 string for logo');
-    }
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
 
@@ -39,9 +36,6 @@ export class SponsorService {
   }
 
   putSponsor(id: string, sponsor: Sponsor): Observable<Sponsor> {
-    if (sponsor.sponsorLogoBase64 && !this.isValidBase64(sponsor.sponsorLogoBase64)) {
-      throw new Error('Invalid Base64 string for logo');
-    }
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
     return this.httpClient.put<Sponsor>(`${this.apiUrl}/${id}`, sponsor, {

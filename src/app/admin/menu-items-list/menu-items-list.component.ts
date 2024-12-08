@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Observable} from "rxjs";
+import {map, Observable} from "rxjs";
 import {MenuItems} from "../../interfaces/menu-items";
 import {FoodTruck} from "../../interfaces/foodTruck";
 import {HttpClient} from "@angular/common/http";
@@ -7,19 +7,23 @@ import {Router} from "@angular/router";
 import {MenuItemsService} from "../../services/menu-items.service";
 import {FoodtruckService} from "../../services/foodtruck.service";
 import {AsyncPipe} from "@angular/common";
+import {FormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-menu-items-list',
   standalone: true,
   imports: [
-    AsyncPipe
+    AsyncPipe,
+    FormsModule
   ],
   templateUrl: './menu-items-list.component.html',
   styleUrl: './menu-items-list.component.css'
 })
 export class MenuItemsListComponent implements OnInit {
   menuItems$:Observable<MenuItems[]> = new Observable<MenuItems[]>();
+  filteredMenuItems$:Observable<MenuItems[]> = new Observable<MenuItems[]>();
   errorMessage = '';
+  searchTerm: string = '';
   foodTrucks: {[key: string]: FoodTruck} = {};
 
   constructor(private router:Router,
@@ -34,7 +38,15 @@ export class MenuItemsListComponent implements OnInit {
     this.menuItems$ = this.menuItemsService.getMenuItems();
     this.menuItems$.subscribe(menuItems => {
       this.loadFoodTrucks(menuItems);
-    })
+    });
+    this.filteredMenuItems$ = this.menuItems$;
+  }
+
+  filteredItems(){
+    this.filteredMenuItems$ = this.menuItems$.pipe(
+      map((items: any[]) =>
+      items.filter(item => item.name.toLowerCase().includes(this.searchTerm.toLowerCase())))
+    )
   }
 
   loadFoodTrucks(menuItems: MenuItems[]): void {

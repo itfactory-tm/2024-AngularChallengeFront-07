@@ -18,8 +18,7 @@ export class ArtistListComponent implements OnInit {
   filteredArtists$ :Observable<Artist[]> = new Observable<Artist[]>();
   errorMessage: string = '';
   searchTerm: string = '';
-  currentPage: number = 1;
-  itemsPerPage = 10;
+
 
   constructor(private artistService: ArtistService, private router: Router) {}
   ngOnInit(): void {
