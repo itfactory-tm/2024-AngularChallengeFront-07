@@ -54,7 +54,7 @@ export class HomeComponent implements AfterViewInit {
   ];
 
   constructor() {
-    this.backgroundImage = '/home/festival_main.webp';
+    this.backgroundImage = '/home/main-photo.webp';
   }
 
   ngAfterViewInit() {
