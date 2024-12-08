@@ -72,11 +72,11 @@ export class StageComponent implements OnInit {
   }
 
   getDayName(date: Date): string {
-    return this.datePipe.transform(date, 'EEEE') || '';
+    return this.datePipe.transform(date, 'EEE') || '';
   }
 
   sortTimeslotsByDayName(): void {
-    const dayOrder = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    const dayOrder = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
     this.timeslots.sort((a, b) => {
       const dayA = this.getDayName(a.startTime);
       const dayB = this.getDayName(b.startTime);
