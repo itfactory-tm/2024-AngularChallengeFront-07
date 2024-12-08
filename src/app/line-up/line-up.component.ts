@@ -26,8 +26,8 @@ export class LineUpComponent implements OnInit {
     { label: 'Stage', value: 'stage' }
   ];
   genreKeywords = [
-    'Pop', 'Rock', 'Hip-Hop', 'Dance/Electronic', 'R&B/Soul', 'Country',
-    'Jazz', 'Classical', 'Reggae', 'Blues', 'Metal', 'Punk'
+    'Pop', 'Rock', 'Dance/Electronic', 'R&B/Soul', 'Country',
+    'Jazz', 'Reggae', 'Metal', 'Punk'
   ];
 
   constructor(
