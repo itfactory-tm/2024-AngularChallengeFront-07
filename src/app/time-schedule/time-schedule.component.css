@@ -10,18 +10,16 @@
   .times-column {
     position: sticky;
     left: 0;
-    background: #f4f4f4;
     padding: 1rem;
     position: relative;
   }
   
   .time-row {
-    height: 114px; /* Match scale */
+    height: 117px; /* Match scale */
     display: flex;
     align-items: center;
     justify-content: right;
     font-size: 14px;
-    color: #555;
   }
   
   .schedule-grid {
@@ -35,7 +33,6 @@
   
   .stage-column {
     position: relative;
-    border-left: 1px solid #ddd;
     flex-shrink: 0; 
     width: 350px; /* Fix each column width to the same value */
   }
@@ -44,8 +41,6 @@
     text-align: center;
     font-weight: bold;
     padding: 25px;
-    background-color: #000;
-    color: #fff;
   }
   
   .artist-slot {
@@ -54,7 +49,6 @@
     right: 10px;
     background: #F2055C;
     color: #fff;
-    border-radius: 4px;
     padding: 5px;
     font-size: 12px;
     z-index: 30;
