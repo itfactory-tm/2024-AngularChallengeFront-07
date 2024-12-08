@@ -22,7 +22,7 @@ export class FaqComponent implements OnInit {
     },
     {
       question: "When and where is FritFest held?",
-      answer: "FritFest is held annually on the first weekend of July in Brussels Expo. The exact dates for this year are July 1-3, 2023."
+      answer: "FritFest is held annually on the weekend of the national holiday of Belgium. The exact dates for this year are July 18-20, 2025."
     },
     {
       question: "How much do tickets cost?",
