@@ -25,7 +25,7 @@ export class LineUpComponent implements OnInit {
     { label: 'Genre', value: 'genre' },
     { label: 'Stage', value: 'stage' }
   ];
-  
+
   genreKeywords = [
     'Pop', 'Rock', 'Electronic', 'R&B', 'Country',
     'Jazz', 'Reggae', 'Metal', 'Punk'
@@ -36,7 +36,7 @@ export class LineUpComponent implements OnInit {
     private timeSlotService: TimeSlotService,
     private router: Router,
     private route: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.loadArtists();
@@ -53,7 +53,7 @@ export class LineUpComponent implements OnInit {
   loadArtists(): void {
     this.artistService.getArtists().subscribe((data) => {
       this.artists = data;
-      this.groupBy(this.selectedFilter); 
+      this.groupBy(this.selectedFilter);
       this.updateDisplayedGroups();
     });
   }
@@ -75,12 +75,12 @@ export class LineUpComponent implements OnInit {
       });
     } else if (type === 'genre') {
       this.artists.forEach((artist) => {
-        const genre = this.mapGenreToKeyword(artist.genre || 'Genre NA');
+        const genre = this.mapGenreToKeyword(artist.genre || 'Variety');
         this.addToGroup(genre, artist.artistId);
       });
     } else if (type === 'stage') {
       this.timeSlots.forEach((slot) => {
-        const stage = slot.stageName || 'Stage NA'; 
+        const stage = slot.stageName || 'Stage NA';
         this.addToGroup(stage, slot.artistId);
       });
     }
@@ -99,8 +99,8 @@ export class LineUpComponent implements OnInit {
   updateFilter(filter: string): void {
     this.selectedFilter = filter;
     this.router.navigate([], { queryParams: { filter }, queryParamsHandling: 'merge' });
-    this.groupBy(filter); 
-    this.updateDisplayedGroups(); 
+    this.groupBy(filter);
+    this.updateDisplayedGroups();
   }
 
   updateDisplayedGroups(): void {
@@ -112,7 +112,7 @@ export class LineUpComponent implements OnInit {
     const options: Intl.DateTimeFormatOptions = { weekday: 'long' };
     const dayOfWeek = date.toLocaleDateString('en-US', options);
     const day = date.getDate().toString().padStart(2, '0');
-    const month = (date.getMonth() + 1).toString().padStart(2, '0'); 
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
     const year = date.getFullYear();
     return `${dayOfWeek} (${day}/${month}/${year})`;
   }
@@ -128,6 +128,6 @@ export class LineUpComponent implements OnInit {
         return keyword;
       }
     }
-    return genre; 
+    return genre;
   }
 }
