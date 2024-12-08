@@ -29,6 +29,10 @@ export class FaqComponent implements OnInit {
       answer: "For detailed information on ticket types and prices, please visit our tickets page. Please note that all ticket sales are final and non-refundable. There is no limit on the number of tickets you can purchase, so feel free to bring all your friends and family!"
     },
     {
+      question: "What are the differences between General Admission, Super, and VIP tickets?",
+      answer: "General Admission tickets provide access to all the main festival areas and events. Super tickets offer additional perks such as faster entry and access to exclusive areas. VIP tickets are perfect for those looking for a premium experience, including priority entry, access to a VIP lounge with complimentary drinks, and meet-and-greets with celebrity chefs. General Admission is great for those who want to enjoy the festival at a standard level, Super is ideal for those who want a bit more comfort and exclusivity, and VIP is best for those seeking the ultimate festival experience."
+    },
+    {
       question: "Is FritFest suitable for children?",
       answer: "Absolutely! FritFest is designed to be fun for all ages. We have dedicated areas with activities for children, including fry-themed games, face painting, and kid-friendly food options."
     },
